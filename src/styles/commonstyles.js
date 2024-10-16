@@ -226,6 +226,7 @@ paddingRight:15
   categoryText: {
     fontSize: 22,
     color: blackcolor, fontFamily: 'Mukta-SemiBold',
+    width:'100%'
   },
   bookmarkcategoryText: {
     fontSize: 16,
@@ -373,7 +374,7 @@ paddingRight:15
   },
   galleryArticlecategorytext:{
     color: blackcolor, fontSize: 20, paddingLeft: 10,
-    fontFamily: 'Mukta-Bold', paddingTop: 10
+    fontFamily: 'Mukta-Bold', paddingTop: 10,fontWeight:'bold'
   },
   latestTxtTag: {
     color: blackcolor, fontFamily: 'Mukta-SemiBold',
@@ -383,7 +384,7 @@ paddingRight:15
     width: ITEM_WIDTH-150,
     height: 200,
     borderRadius: 5,
-    objectFit:'fill'
+    objectFit:'coverd'
   },
   photocard: {
     height: Dimensions.get('window').height * 0.32,
@@ -476,6 +477,14 @@ paddingRight:15
     fontSize: 22,
        left: 10,
     // fontWeight: '400'
+
+  },
+  RelatedCategory: {
+    color: blackcolor,
+    fontFamily: 'Mukta-Bold',
+    fontSize: 22,
+       left: 10,
+    fontWeight: '700'
 
   },
   homeNextImage: {

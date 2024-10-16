@@ -3,7 +3,7 @@
 /* eslint-disable prettier/prettier */
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, Linking, ScrollView, FlatList, Share, Dimensions } from 'react-native';
-import { appThemeColor, blackcolor, commonstyles, Header_text, whitecolor, gllery_background } from '../styles/commonstyles';
+import { appThemeColor, blackcolor, commonstyles, Header_text, whitecolor } from '../styles/commonstyles';
 import AutoHeightWebView from 'react-native-autoheight-webview';
 import LinearGradient from 'react-native-linear-gradient';
 import FastImage from 'react-native-fast-image';
@@ -26,8 +26,6 @@ const PhotoArticle = ({ navigation, route }: Props) => {
 
   const result1 = route?.params?.item?.content?.rendered;
   var result = result1?.replace('lazyload', 'text/javascript');
-  // Remove all anchor tags
-  result = result.replace(/<a[^>]*>/g, "").replace(/<\/a>/g, "");
   useEffect(() => {
     dispatch(getRelatedAction());
     setDetailsData(route?.params?.detailsData);
@@ -52,14 +50,14 @@ const PhotoArticle = ({ navigation, route }: Props) => {
 
     <View style={commonstyles.container}>
       <View >
-        <View style={HeaderStyle.subHeaderviewHeight}>
-          <View style={{}}>
+      <View style={HeaderStyle.subHeaderviewHeight}>
+          <View style={{ flex: 0.3 }}>
             <TouchableOpacity onPress={() => {
               navigation.goBack();
             }} style={{ zIndex: 999 }}>
               <Image
-                source={require('../Assets/Images/arrow.png')}
-                style={{ width: 20, height: 20 }}
+                source={require('../Assets/Images/arrow_white.png')}
+                style={{}}
               />
             </TouchableOpacity>
           </View>
@@ -70,15 +68,15 @@ const PhotoArticle = ({ navigation, route }: Props) => {
             <TouchableOpacity style={{}}
               onPress={() => { sharecall() }}>
               <Image
-                source={require('../Assets/Images/share_black.png')}
-                style={{ width: 20, height: 20 }}
+                source={require('../Assets/Images/share_white.png')}
+                style={{}}
               />
             </TouchableOpacity>
           </View>
         </View>
       </View>
       <ScrollView ref={scrollViewRef}
-        style={{ backgroundColor: gllery_background, }}
+        style={{ backgroundColor: blackcolor, }}
       >
         <View>
           <View style={{ margin: 10, flex: 1, }}>
@@ -87,51 +85,34 @@ const PhotoArticle = ({ navigation, route }: Props) => {
               stylesheet={headerStyles}
             />
           </View>
-          <View style={{}}>
-                     <AutoHeightWebView
+          <View>
+            <AutoHeightWebView
               javaScriptEnabled={true}
               scalesPageToFit={false}
               customStyle={`
     @font-face {
-        font-family: 'Mandali';
-        src: url('https://fonts.googleapis.com/css2?family=Mandali&display=swap');
+      font-family: 'Mandali';
+      src: url('https://fonts.googleapis.com/css2?family=Mandali&display=swap');
     }
-    p {
-        font-family: 'Mandali', sans-serif;
-        color:#fff;
-      
+    p,.wp-caption-text {
+      font-family: 'Mandali', sans-serif;
+      color:#fff
     }
-      
-  .wp-caption-text {
-        font-family: 'Mandali', sans-serif;
-        color:#fff;
-        padding:10px 10px 0px 10px;
-        text-align:left;
-      
-    }
-   
+    
     .gallery img{
-        width:95% !important;
-        height:auto !important;
-        object-fit:fill;
-        aspect-ratio:10/9;
+        width:100% !important;
+         height:auto !important;
+         object-fit:contain;
+         aspect-ratio:10/9;
     }
-    `}
-              injectedJavaScript={`
-        document.querySelectorAll('a').forEach(a => {
-            a.onclick = function(event) {
-                event.preventDefault();
-            };
-        });
-        true;
-    `}
+  `}
               source={{ html: result }}
               viewportContent={'width=device-width, user-scalable=no'}
             />
 
           </View>
           {/* more gallry */}
-          {/* <View>
+          <View>
             <View style={{ margin: 10 }}>
               <Text style={{ color: whitecolor, fontSize: 22, fontWeight: '800' }}>More Gallery</Text>
             </View>
@@ -208,7 +189,7 @@ const PhotoArticle = ({ navigation, route }: Props) => {
               )}
 
             />
-          </View> */}
+          </View>
 
         </View>
 
@@ -227,7 +208,7 @@ const styles = StyleSheet.create({
   },
 });
 const headerStyles = StyleSheet.create({
-  p: { color: whitecolor, fontSize: 22, fontFamily: 'Mandali-Bold', lineHeight: 29, },
+  p: { color: whitecolor, fontSize: 26, fontFamily: 'Mandali-Bold', lineHeight: 37 },
 
 });
 

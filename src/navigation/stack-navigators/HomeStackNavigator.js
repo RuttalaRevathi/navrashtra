@@ -66,7 +66,7 @@ const HomeStackNavigator = ({ menuData }: Props) => {
       )}
       <Stack.Screen name="Details" component={Details} />
       <Stack.Screen name="DeeplinkingDetails" component={DeeplinkingDetails} />
-      <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
+      {/* <Stack.Screen name="CategoryScreen" component={CategoryScreen} /> */}
       <Stack.Screen name="PhotoArticle" component={PhotoArticle} />
       <Stack.Screen name="VideoArticle" component={VideoArticle} />
       <Stack.Screen name="Bookmark" component={BookmarkScreen} />

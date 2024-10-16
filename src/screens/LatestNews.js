@@ -59,7 +59,7 @@ const LatestNews = ({ navigation, route }: Props) => {
             <View style={{ position: 'relative' }}>
               <FlatList
                 style={commonstyles.cateflist}
-                data={latestNews?.data?.slice(0, -1).filter(obj => obj.format === 'standard')}
+                data={latestNews?.data}
                 renderItem={renderItemTwo}
               />
             </View>

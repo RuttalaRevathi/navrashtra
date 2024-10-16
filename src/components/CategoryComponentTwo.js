@@ -9,7 +9,7 @@ import {
 import moment from 'moment';
 import {
   commonstyles,
-  } from '../styles/commonstyles';
+} from '../styles/commonstyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import FastImage from 'react-native-fast-image';
 
@@ -71,7 +71,7 @@ const CategoryComponentTwo = ({ item, navigation, propsdata }) => {
       .catch((error) => console.log(error));
   };
 
-   const defaultImage = require('../Assets/Images/noimage.png');
+  const defaultImage = require('../Assets/Images/noimage.png');
   const imageUrl = item?.web_featured_image
     ? { uri: item?.web_featured_image }
     : defaultImage;
@@ -93,7 +93,7 @@ const CategoryComponentTwo = ({ item, navigation, propsdata }) => {
   } else {
     formattedDate = `${diffDays} days ago`;
   }
- 
+
   return (
     <View>
       <TouchableOpacity
@@ -103,22 +103,22 @@ const CategoryComponentTwo = ({ item, navigation, propsdata }) => {
             detailsData: propsdata,
           });
         }}>
-          <View style={commonstyles.HomeComp2DotView}>
-            <View style={commonstyles.cateviewText}>
-              <View>
+        <View style={commonstyles.HomeComp2DotView}>
+          <View style={commonstyles.cateviewText}>
+            <View>
               <Text
                 numberOfLines={2}
                 ellipsizeMode="tail"
                 style={commonstyles.latestText}>
                 {decode(item?.title?.rendered)}
               </Text>
+            </View>
+            {/* Time View */}
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 5, }}>
+              <View style={{}}>
+                <Text style={commonstyles.HomeTwotime}>{formattedDate}</Text>
               </View>
-              {/* Time View */}
-              <View style={{flexDirection:'row',justifyContent:'space-between',paddingTop:5,}}>
-                <View style={{}}>
-                  <Text style={commonstyles.HomeTwotime}>{formattedDate}</Text>
-                </View>
-                <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
 
                 <View>
                   <TouchableOpacity
@@ -126,9 +126,9 @@ const CategoryComponentTwo = ({ item, navigation, propsdata }) => {
                       handleBookmark();
                     }}>
                     <Image
-                      style={{ width: 15, height: 15,right:20 }}
+                      style={{ width: 15, height: 15, right: 20 }}
                       source={bookmarked ? require('../Assets/Images/bookmark_filledblack.png') : require('../Assets/Images/bookmark-black.png')}
-                      />
+                    />
                   </TouchableOpacity>
                 </View>
                 <View>
@@ -137,19 +137,20 @@ const CategoryComponentTwo = ({ item, navigation, propsdata }) => {
                       sharecall();
                     }}>
                     <Image
-                      style={{ width: 15, height: 15,right:10 }}
+                      style={{ width: 15, height: 15, right: 10 }}
                       source={require('../Assets/Images/share_black.png')}
                     />
                   </TouchableOpacity>
                 </View>
-                </View>
               </View>
             </View>
-            <View style={commonstyles.cateviewImg}>
-            <FastImage
-          resizeMode={FastImage.resizeMode.contain} source={imageUrl} style={commonstyles.cateImage} />
-            </View>
           </View>
+          <View style={commonstyles.cateviewImg}>
+            <FastImage
+              resizeMode={FastImage.resizeMode.contain}
+              source={imageUrl} style={commonstyles.cateImage} />
+          </View>
+        </View>
       </TouchableOpacity>
     </View>
   );

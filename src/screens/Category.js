@@ -13,51 +13,48 @@ const CategoryScreen = ({ item }) => {
 
   useEffect(() => {
     fetchParentData();
-  }, [route.params, item]); // Added dependencies to useEffect
+  }, []);
 
   const fetchParentData = async () => {
-    setLoading(true); 
+    setLoading(true); // Set loading to true before starting the fetch
     try {
-      const url = route.params?.isCategoryClicked ? route.params?.url : item?.url;
-      console.log(url, "URL being fetched");
-      const response = await fetch(
-        `https://navarashtra.com/wp-json/navarashtra/v1/category-posts/${url}`
-      );
-      
+      let response = null;
+      if (route.params?.isCategoryClicked) {
+        response = await fetch(
+          'https://navbharatlive.com/wp-json/navbharatlive/v1/category-posts/' + route.params?.url
+        );
+      } else {
+        response = await fetch(
+          'https://navbharatlive.com/wp-json/navbharatlive/v1/category-posts/' + item?.url
+        );
+      }
       const jsonData = await response.json();
 
-      if (jsonData.status === 'success' && Array.isArray(jsonData.data)) {
-        setParentData(jsonData.data);
+      if (jsonData.status === 'success') {
+        setParentData(jsonData?.data);
+        setLoading(false);
       } else {
-        // console.error('Error from API category:', jsonData);
-        console.log(JSON.stringify(jsonData, null, 2));
-
+        console.error('Error from API category: ', jsonData);
       }
     } catch (error) {
       console.error('Error fetching parent data in category: ', error);
     } finally {
-      setLoading(false);
+      setLoading(false); // Ensure loading stops after fetch or error
     }
   };
 
-  console.log(parentData, "parentData in category screen");
-
   return (
-    <>
-      {loading ? (
-        <View style={commonstyles.spinnerView}>
-          <ActivityIndicator color={blackcolor} size="large" />
-          <Text style={commonstyles.spinnerText}>. . . Loading . . .</Text>
-        </View>
-      ) : (
-        <CategoryUI
-          data={parentData}
-          navigation={navigation}
-          title={item?.title}
-          categoryName={item?.title}
-        />
-      )}
+    <>{loading? <View style={commonstyles.spinnerView}>
+    <ActivityIndicator color={blackcolor} size="large" />
+    <Text style={commonstyles.spinnerText}>. . . Loading . . .</Text>
+  </View>: <CategoryUI
+      data={parentData}
+      navigation={navigation}
+      title={item?.title}
+      categoryName={item?.title}
+    />} 
     </>
+    
   );
 };
 

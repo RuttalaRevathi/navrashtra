@@ -27,7 +27,6 @@ function CategoryUI({ navigation, data }) {
       navigation={navigation}
     />
   );
- console.log(data,"data in category ui");
  
   return (
     <SafeAreaView styles={commonstyles.container}>

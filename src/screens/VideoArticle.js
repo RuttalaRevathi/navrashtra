@@ -10,6 +10,7 @@ import getRelatedAction from '../redux/actions/getRelatedAction';
 import AutoHeightWebView from 'react-native-autoheight-webview';
 import { useState } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
+import FastImage from 'react-native-fast-image';
 const screenWidth = Dimensions.get('window').width;
 
 const VideoArticle = ({ navigation, route }: Props) => {
@@ -62,7 +63,11 @@ const VideoArticle = ({ navigation, route }: Props) => {
   } else {
     formattedDate = `${diffDays} दिन पहले`;
   }
-
+  // Image url
+  const defaultImage = require('../Assets/Images/no_image.jpeg');
+  const imageUrl = route?.params?.item?.web_featured_image
+  ? { uri: route?.params?.item?.web_featured_image }
+  : defaultImage;
   return (
     <View style={{ backgroundColor: whitecolor, flex: 1 }}>
       <View>
@@ -103,42 +108,50 @@ const VideoArticle = ({ navigation, route }: Props) => {
 
           </View>
 
-           {/* Time */}
-           <View style={{ flexDirection: 'row',paddingLeft:10,}}>
-              {/* Author */}
-              <View style={{
-              }}>
-                <Text style={commonstyles.detailauthor}>
-                  {route?.params?.item?.author_name}
-                </Text>
-              </View>
-              {/* category name */}
-              <View style={{}}>
-                <Text style={commonstyles.detailsCateName}> | {route?.params?.item?.category_name}</Text>
-              </View>
-              {/* Time */}
-              <View style={{}}>
-                <Text style={commonstyles.detailTime}> | {formattedDate}</Text>
-              </View>
+          {/* Time */}
+          <View style={{ flexDirection: 'row', paddingLeft: 10, }}>
+            {/* Author */}
+            <View style={{
+            }}>
+              <Text style={commonstyles.detailauthor}>
+                {route?.params?.item?.author_name}
+              </Text>
             </View>
-            {/* Content */}
-            <Text>
+            {/* category name */}
+            <View style={{}}>
+              <Text style={commonstyles.detailsCateName}> | {route?.params?.item?.category_name}</Text>
+            </View>
+            {/* Time */}
+            <View style={{}}>
+              <Text style={commonstyles.detailTime}> | {formattedDate}</Text>
+            </View>
+          </View>
+          {/* Image */}
+          <View style={{ width: '100%' }}>
+              <FastImage
+                source={imageUrl}
+                style={commonstyles.Detailslargecard}
+                resizeMode={FastImage.resizeMode.cover}
+              />
+            </View>
+          {/* Content */}
+          <Text>
 
-            </Text>
+          </Text>
           <View style={{
             justifyContent: 'center',
           }}>
             {videoAvailable ? (
-              
               <AutoHeightWebView
                 javaScriptEnabled={true}
                 scalesPageToFit={false}
-
-                style={{ width: Dimensions.get('window').width,}}
+                allowsFullscreenVideo={true}
+                style={{ width: Dimensions.get('window').width, }}
                 customStyle={`
                 iframe[src^="https://www.youtube.com/embed/"] {
-                                width:100% !important;
-                                height:225px
+                                width:100%;
+                                height:225px;
+                                 
                              
                     }
                 iframe[title]{
@@ -159,7 +172,7 @@ const VideoArticle = ({ navigation, route }: Props) => {
                    }
                 p, h4 a {
                   font-size: 14px;
-                  text-align:left;
+                  text-align:left; 
                   margin:5px;
                   font-family:'Mandali-Regular';
                   line-height:1.6;
@@ -201,7 +214,7 @@ const VideoArticle = ({ navigation, route }: Props) => {
                                               
                                               
               `}
-               
+
                 source={{ html: source1, baseUrl: 'https://instagram.com', }}
                 viewportContent={'width=device-width, user-scalable=yes'}
                 onError={(error) => console.error('WebView Error:', error)}

@@ -81,10 +81,8 @@ const Details = ({ navigation, route }) => {
   const getDetailArticleAction = async artId => {
     try {
       const response = await fetch(BaseUrl + DetailsUrl + '?id=' + artId);
-      console.log(artId, 'articleId in getDetailArticleAction');
 
       const responseJson = await response.json();
-      console.log(responseJson, 'responseJson');
       setDetailArticleData(responseJson);
     } catch (error) {
       console.error('Error fetching article details:', error);
@@ -233,9 +231,9 @@ const Details = ({ navigation, route }) => {
       // Extract the post_id from the URL
       let postId = url.split('post_id=')[1];
       // Navigate to the details screen using deep linking
-    // navigation.navigate('DeeplinkingDetails', {
-    //   postId: postId,
-    // });
+      // navigation.navigate('DeeplinkingDetails', {
+      //   postId: postId,
+      // });
 
       // Update the formatedid to fetch the new article
       setArticleId(postId);
@@ -332,7 +330,7 @@ const Details = ({ navigation, route }) => {
                 ellipsizeMode="tail"
                 style={commonstyles.categoryText}>
                 {decode(firstArticle?.title?.rendered)}
-               
+
               </Text>
               {/* <Text>{firstArticle?.id}</Text> */}
             </View>
@@ -367,6 +365,7 @@ const Details = ({ navigation, route }) => {
               />
             </View>
             {/* content */}
+           {/* <Text>{source1}</Text> */}
             <View
               style={{
                 justifyContent: 'center',
@@ -375,8 +374,15 @@ const Details = ({ navigation, route }) => {
                 <AutoHeightWebView
                   javaScriptEnabled={true}
                   scalesPageToFit={false}
+                  allowsFullscreenVideo={true}
+
                   style={{ opacity: 0.99 }}
-                customStyle={`
+                  customStyle={`
+                     iframe[src^="https://www.youtube.com/embed/"] {
+                                width:100% !important;
+                                height:225px
+                             
+                    }
     iframe[title]{
       font-size: 16px;
     }
@@ -439,6 +445,13 @@ const Details = ({ navigation, route }) => {
       width:100%;
       height:inherit
       }
+      div[dir="auto"]{
+      font-size: 14px;
+      text-align:left;
+      margin:5px;
+      font-family:'Mandali-Regular';
+      line-height:1.6
+      }
   `}
                   source={{
                     html: `
@@ -464,7 +477,7 @@ const Details = ({ navigation, route }) => {
               borderBottomWidth: 2,
             }}>
             <View style={[commonstyles.DetailsLatestView]}>
-              <Text style={commonstyles.Category}>Next Articles</Text>
+              <Text style={commonstyles.RelatedCategory}>Next Articles</Text>
             </View>
             {detailsData.length > 0 ? (
               <View style={{ paddingLeft: 10 }}>
@@ -493,13 +506,13 @@ const Details = ({ navigation, route }) => {
           {/* Related News */}
           <View>
             <View style={commonstyles.DetailsLatestView}>
-              <Text style={commonstyles.Category}>सम्बंधित ख़बरें</Text>
+              <Text style={commonstyles.RelatedCategory}>सम्बंधित ख़बरें</Text>
             </View>
             <View style={{ paddingLeft: 10 }}>
               <FlatList
                 data={relatedData?.data}
                 renderItem={renderItemTwo}
-                keyExtractor={item => item.id.toString()}
+                // keyExtractor={item => item.id.toString()}
                 initialNumToRender={5}
                 maxToRenderPerBatch={10}
                 windowSize={10}

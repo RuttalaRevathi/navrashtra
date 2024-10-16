@@ -36,6 +36,7 @@ const App = () => {
   const [connectionType, setConnectionType] = useState(null);
 
   useEffect(() => {
+    // Dispatch actions to fetch data
     store.dispatch(getSliderAction());
     store.dispatch(getLatestNewsAction());
     store.dispatch(getVideoAction());
@@ -58,26 +59,31 @@ const App = () => {
     store.dispatch(getPuneAction());
     store.dispatch(getNagpurAction());
 
+    // Subscribe to network state changes
+    const unsubscribe = NetInfo.addEventListener(state => {
+      const newConnectionType = state.type;
+      const newIsConnected = state.isConnected;
 
- // Network status check
-// const unsubscribe = NetInfo.addEventListener(state => {
-//   if (state.isConnected && !isConnected) {
-//     setIsConnected(true);
-//     Alert.alert('Network Connected', 'You are now connected to the internet.');
-//   } else if (!state.isConnected && isConnected) {
-//     setIsConnected(false);
-//     Alert.alert('Network Disconnected', 'Please check your internet connection.');
-//   }
-// });
+      // Handle network change between Wi-Fi and mobile data
+      if (!newIsConnected) {
+        Alert.alert('Network Disconnected', 'You have lost internet connection.');
+      } else if (newConnectionType === 'wifi') {
+        Alert.alert('Wi-Fi Connected', 'You are connected to Wi-Fi.');
+      } else if (newConnectionType === 'cellular') {
+        Alert.alert('Mobile Data Connected', 'You are now using mobile data.');
+      }
 
-// return () => {
-//   unsubscribe();
-// };
-// }, [isConnected]);
-  },[]);
-  // useEffect(() => {
-  //   SplashScreen.hide();
-  // }, []);
+      // Update state to keep track of the connection status
+      setConnectionType(newConnectionType);
+      setIsConnected(newIsConnected);
+    });
+
+    // Cleanup the NetInfo listener on component unmount
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
   return (
     <Provider store={store}>
       <StatusBar barStyle="dark-content" backgroundColor={off_white} />

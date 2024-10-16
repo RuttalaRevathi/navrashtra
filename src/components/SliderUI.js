@@ -6,10 +6,10 @@ import {
     FlatList,
     SafeAreaView,
 } from 'react-native';
-import {commonstyles } from '../styles/commonstyles';
+import { commonstyles } from '../styles/commonstyles';
 import HomeSliderComponent from './HomeSliderComponent';
 function SliderUI(props) {
-    const renderItemOne = ({ item ,index }) => (
+    const renderItemOne = ({ item, index }) => (
         <HomeSliderComponent
             item={item}
             propsdata={props?.data}
@@ -36,9 +36,8 @@ function SliderUI(props) {
                 <View>
                     <View style={commonstyles.SliderflatView}>
                         <FlatList
-                            data={newdata.filter(obj => {
-                                return obj.format === 'standard';
-                            })} showsHorizontalScrollIndicator={true}
+                            data={newdata}
+                            showsHorizontalScrollIndicator={true}
                             horizontal={true}
                             scrollEnabled={true}
                             getItemLayout={(data, index) => ({

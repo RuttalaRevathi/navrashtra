@@ -9,6 +9,7 @@ import Home from '../screens/Home';
 import { blackcolor, whitecolor } from '../styles/commonstyles';
 import PhotoGallery from '../screens/PhotoGallery';
 import Videos from '../screens/Videos';
+import Webstories from '../screens/Webstories';
 
 const TopTab = createMaterialTopTabNavigator();
 
@@ -78,7 +79,6 @@ const TopTabNavigator = ({ navigation }: Props) => {
       {/* Other Tabs */}
       {mergedArray.length > 0 ? (
         mergedArray.map((item) => (
-          console.log(item,"item in toptab"),
           
           <TopTab.Screen
             key={item.title}
@@ -87,7 +87,9 @@ const TopTabNavigator = ({ navigation }: Props) => {
               item.title === 'व्हिडिओ'
                 ? Videos:
                 item.title === 'फोटो'
-                ? PhotoGallery
+                ? PhotoGallery:
+                item.title ==='वेब स्टोरीज'
+                ? Webstories
                 : () => <CategoryScreen item={item} />
                 
                 

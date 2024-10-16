@@ -44,7 +44,7 @@ const DrawerNavigator = () => {
             <View style={{ flexDirection: 'row', marginRight: 10, }}>
               <TouchableOpacity
                 style={{
-                  flexDirection: 'row', marginRight: 30, borderColor: blackcolor,
+                  flexDirection: 'row', marginRight: 10, borderColor: blackcolor,
                   borderWidth: 1.5, borderRadius: 5, width: 70, justifyContent: 'center',
                   alignSelf: 'center', alignContent: 'center', height: 25,
                 }}
@@ -65,11 +65,11 @@ const DrawerNavigator = () => {
                 onPress={() => {
                   navigation.navigate('Notifications');
                 }}> */}
-              <Image
+              {/* <Image
                 style={{ height: 20, width: 20, marginRight: 10, marginTop: 2 }}
                 source={require('../Assets/Images/notification.png')}
 
-              />
+              /> */}
               {/* </TouchableOpacity> */}
             </View>
           ),
@@ -89,16 +89,16 @@ const DrawerNavigator = () => {
           headerTitle: () => (
             <View
               style={HeaderStyle.HeadTitleView}>
-              {/* <TouchableOpacity
+              <TouchableOpacity
                 onPress={() => {
                   navigation.navigate('TopTabs', { screen: 'Home' });
                 }}
-              > */}
+              >
                 <Image
                   style={HeaderStyle.HeadTitleImg}
                   source={require('../Assets/Images/logo1.png')}
                 />
-              {/* </TouchableOpacity> */}
+              </TouchableOpacity>
             </View>
           ),
         })}
