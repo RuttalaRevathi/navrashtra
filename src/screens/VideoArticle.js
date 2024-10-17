@@ -74,7 +74,7 @@ const VideoArticle = ({ navigation, route }: Props) => {
         <View style={HeaderStyle.subHeaderviewHeight}>
           <View style={{}}>
             <TouchableOpacity onPress={() => {
-              navigation.goBack();
+              navigation.navigate(route.params.screenName==="Videos"?"Videos":"Home");
             }} >
               <Image
                 source={require('../Assets/Images/arrow.png')}
@@ -151,6 +151,7 @@ const VideoArticle = ({ navigation, route }: Props) => {
                 iframe[src^="https://www.youtube.com/embed/"] {
                                 width:100%;
                                 height:225px;
+                                padding-bottom:10px;
                                  
                              
                     }

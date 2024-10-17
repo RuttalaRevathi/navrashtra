@@ -158,7 +158,7 @@ class ShortsComponent extends React.PureComponent {
                                 justifyContent: 'flex-end', width: 150, marginRight: 20,
                                 alignSelf: 'flex-end',
                             }}>
-                                <Text style={{ color: blackcolor, alignSelf: 'center', fontFamily: 'Mukta-Bold' }}>
+                                <Text style={{ color: whitecolor, alignSelf: 'center', fontFamily: 'Mukta-Bold',fontWeight:'700' }}>
                                     Read full Article
                                 </Text>
                             </View>

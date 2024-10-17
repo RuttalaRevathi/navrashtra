@@ -45,7 +45,7 @@ function HomeUINew(props) {
           <View>
           <TouchableOpacity
               onPress={() => {
-                navigation.navigate('CategoryScreen', {
+                navigation.navigate(props?.categoryName, {
                   url: props?.navigationScreen,
                   title: props?.categoryName,
                   isCategoryClicked: true

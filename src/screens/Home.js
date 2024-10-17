@@ -336,7 +336,7 @@ const Home = ({ navigation }) => {
           <HomeUINew
             categoryName="महाराष्ट्र"
             data={maharashtraData?.data}
-            navigationScreen="Maharashtra"
+            navigationScreen="maharashtra"
             navigation={navigation}
           />
           {/* videos Gallery */}
@@ -380,98 +380,98 @@ const Home = ({ navigation }) => {
           <HomeUI
             categoryName="मुंबई"
             data={mumbaiData?.data || []}
-            navigationScreen="Mumbai"
+            navigationScreen="mumbai"
             navigation={navigation}
           />
           {/* Pune */}
           <HomeUINew
             categoryName="पुणे"
             data={puneData?.data}
-            navigationScreen="Pune"
+            navigationScreen="pune"
             navigation={navigation}
           />
           {/* Nagpur */}
           <HomeUI
             categoryName="नागपूर"
             data={nagpurData?.data || []}
-            navigationScreen="Nagpur"
+            navigationScreen="nagpur"
             navigation={navigation}
           />
           {/* world */}
           <HomeUINew
             categoryName="वर्ल्ड"
             data={worldData?.data}
-            navigationScreen="World"
+            navigationScreen="world"
             navigation={navigation}
           />
           {/* Sports */}
           <HomeUI
-            categoryName="खेल"
+            categoryName="क्रीडा"
             data={sportsData?.data}
             navigationScreen="Sports"
             navigation={navigation}
           />
           {/* lifestyle */}
           <HomeUINew
-            categoryName="लाइफ़स्टाइल"
+            categoryName="लाइफ स्टाइल"
             data={lifestyleData?.data}
             navigationScreen="Lifestyle"
             navigation={navigation}
           />
           {/* Special */}
           <HomeUI
-            categoryName="नवभारत विशेष"
+            categoryName="नवराष्ट्र विशेष"
             data={specialData?.data}
             navigationScreen="special-coverage"
             navigation={navigation}
           />
           {/* Movies */}
           <HomeUI
-            categoryName="मूवी मसाला"
+            categoryName="मनोरंजन"
             data={moviesData?.data}
-            navigationScreen="Movies"
+            navigationScreen="movies"
             navigation={navigation}
           />
           {/* Viral */}
           <HomeUINew
-            categoryName="वायरल"
+            categoryName="व्हायरल"
             data={viralData?.data}
-            navigationScreen="Viral"
+            navigationScreen="viral"
             navigation={navigation}
           />
           {/* Business */}
           <HomeUI
-            categoryName="बिज़नेस"
+            categoryName="व्यापार"
             data={businessData?.data}
-            navigationScreen="Business"
+            navigationScreen="business"
             navigation={navigation}
           />
           {/* Automobile */}
           <HomeUINew
-            categoryName="ऑटोमोबाइल"
+            categoryName="ऑटो"
             data={automobileData?.data}
-            navigationScreen="Automobile"
+            navigationScreen="automobile"
             navigation={navigation}
           />
           {/* Technology */}
           <HomeUI
-            categoryName="टेक्नॉलजी"
+            categoryName="टेक"
             data={technologyData?.data}
-            navigationScreen="Technology"
+            navigationScreen="technology"
             navigation={navigation}
           />
           {/* Religion */}
           <HomeUINew
             categoryName="धर्म"
             data={religionData?.data}
-            navigationScreen="Religion"
+            navigationScreen="religion"
             navigation={navigation}
           />
           {/* Career */}
           <HomeUI
-            categoryName="करियर"
+            categoryName="करिअर"
             data={careerData?.data}
-            navigationScreen="Career"
+            navigationScreen="career"
             navigation={navigation}
           />
           

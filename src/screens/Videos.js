@@ -47,6 +47,7 @@ const Videos = ({
                                         navigation.navigate('VideoArticle', {
                                             item: item,
                                             detailsData: videosData?.data,
+                                            screenName:"Videos"
                                         });
                                     }}>
                                         <View style={{}}>

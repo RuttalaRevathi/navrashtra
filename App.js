@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Alert } from 'react-native';
+import { View, StyleSheet, StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { store } from './src/redux/store';
@@ -11,25 +11,9 @@ import getVideoAction from './src/redux/actions/getVideoAction';
 import getPhotoGalleryAction from './src/redux/actions/getPhotoGalleryAction';
 import getTopMenuDataAction from './src/redux/actions/getTopMenuDataAction';
 import SplashScreen from 'react-native-splash-screen';
-import { StatusBar } from 'react-native';
 import { off_white } from './src/styles/commonstyles';
-import getAutomobileAction from './src/redux/actions/getAutomobileAction';
-import getIndiaAction from './src/redux/actions/getIndiaAction';
-import getMaharashtraAction from './src/redux/actions/getMaharashtraAction';
-import getMumbaiAction from './src/redux/actions/getMumbaiAction';
-import { getWorldAction } from './src/redux/actions/getWorldAction';
-import getSportsAction from './src/redux/actions/getSportsAction';
-import { getLifestyleAction } from './src/redux/actions/getLifestyleAction';
-import { getSpecialAction } from './src/redux/actions/getSpecialAction';
-import getMoviesAction from './src/redux/actions/getMoviesAction';
-import { getViralAction } from './src/redux/actions/getViralAction';
-import getBusinessAction from './src/redux/actions/getBusinessAction';
-import getTechnologyAction from './src/redux/actions/getTechnologyAction';
-import getReligionAction from './src/redux/actions/getReligionAction';
-import { getCareerAction } from './src/redux/actions/getCareerAction';
-import getPuneAction from './src/redux/actions/getPuneAction';
 import NetInfo from '@react-native-community/netinfo';
-import getNagpurAction from './src/redux/actions/getNagpurAction';
+import Toast from 'react-native-toast-message';
 
 const App = () => {
   const [isConnected, setIsConnected] = useState(null);
@@ -42,35 +26,25 @@ const App = () => {
     store.dispatch(getVideoAction());
     store.dispatch(getPhotoGalleryAction());
     store.dispatch(getTopMenuDataAction());
-    store.dispatch(getIndiaAction());
-    store.dispatch(getMaharashtraAction());
-    store.dispatch(getMumbaiAction());
-    store.dispatch(getWorldAction());
-    store.dispatch(getSportsAction());
-    store.dispatch(getLifestyleAction());
-    store.dispatch(getSpecialAction());
-    store.dispatch(getMoviesAction());
-    store.dispatch(getViralAction());
-    store.dispatch(getBusinessAction());
-    store.dispatch(getAutomobileAction());
-    store.dispatch(getTechnologyAction());
-    store.dispatch(getReligionAction());
-    store.dispatch(getCareerAction());
-    store.dispatch(getPuneAction());
-    store.dispatch(getNagpurAction());
 
     // Subscribe to network state changes
     const unsubscribe = NetInfo.addEventListener(state => {
       const newConnectionType = state.type;
       const newIsConnected = state.isConnected;
 
-      // Handle network change between Wi-Fi and mobile data
       if (!newIsConnected) {
-        Alert.alert('Network Disconnected', 'You have lost internet connection.');
-      } else if (newConnectionType === 'wifi') {
-        Alert.alert('Wi-Fi Connected', 'You are connected to Wi-Fi.');
-      } else if (newConnectionType === 'cellular') {
-        Alert.alert('Mobile Data Connected', 'You are now using mobile data.');
+        // Show toast when network is disconnected
+        Toast.show({
+          type: 'error',
+          text1: 'There seems to be internet issues,',
+          text2: 'Please check your network connection',
+          position: 'bottom',
+          bottomOffset: 40,
+          autoHide: false, // Prevent auto-hiding to keep it visible
+        });
+      } else {
+        // Hide toast when connected
+        Toast.hide();
       }
 
       // Update state to keep track of the connection status
@@ -78,7 +52,6 @@ const App = () => {
       setIsConnected(newIsConnected);
     });
 
-    // Cleanup the NetInfo listener on component unmount
     return () => {
       unsubscribe();
     };
@@ -90,6 +63,7 @@ const App = () => {
       <NavigationContainer>
         <DrawerNavigator />
       </NavigationContainer>
+      <Toast />
     </Provider>
   );
 };

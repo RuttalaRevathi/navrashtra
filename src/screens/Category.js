@@ -21,11 +21,11 @@ const CategoryScreen = ({ item }) => {
       let response = null;
       if (route.params?.isCategoryClicked) {
         response = await fetch(
-          'https://navbharatlive.com/wp-json/navbharatlive/v1/category-posts/' + route.params?.url
+          'https://navarashtra.com/wp-json/navarashtra/v1/category-posts/' + route.params?.url
         );
       } else {
         response = await fetch(
-          'https://navbharatlive.com/wp-json/navbharatlive/v1/category-posts/' + item?.url
+          'https://navarashtra.com/wp-json/navarashtra/v1/category-posts/' + item?.url
         );
       }
       const jsonData = await response.json();
@@ -34,7 +34,6 @@ const CategoryScreen = ({ item }) => {
         setParentData(jsonData?.data);
         setLoading(false);
       } else {
-        console.error('Error from API category: ', jsonData);
       }
     } catch (error) {
       console.error('Error fetching parent data in category: ', error);

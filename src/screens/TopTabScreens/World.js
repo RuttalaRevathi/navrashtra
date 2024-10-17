@@ -8,8 +8,7 @@ import { BaseUrl, CategoryUrl, World } from '../../utilities/urls';
 
 const WorldScreen = ({
     navigation,
-   
-    route,
+       route,
 }: Props) => {
 
     const [worldData, setWorldData] = useState(null);
