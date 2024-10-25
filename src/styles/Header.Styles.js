@@ -45,8 +45,10 @@ export const HeaderStyle = StyleSheet.create({
         width: "100%",
         backgroundColor: whitecolor,
         flexDirection: "row",
-        padding: 10,
-        justifyContent: 'space-between'
+        padding: 5,
+        justifyContent: 'space-between',
+        alignItems:'center',
+        paddingLeft:10
 
     },
     DetailsHeader: {

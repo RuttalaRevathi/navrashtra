@@ -100,7 +100,7 @@ const VideoArticle = ({ navigation, route }: Props) => {
         scrollEnabled={true}>
         <View>
           {/* Title */}
-          <View style={{ margin: 10, }}>
+          <View style={{ paddingLeft: 10, paddingTop: 10 }}>
 
             <Text numberOfLines={3} ellipsizeMode="tail" style={commonstyles.categoryText}>
               {decode(route?.params?.item?.title?.rendered)}
@@ -109,7 +109,7 @@ const VideoArticle = ({ navigation, route }: Props) => {
           </View>
 
           {/* Time */}
-          <View style={{ flexDirection: 'row', paddingLeft: 10, }}>
+          <View style={{ flexDirection: 'row', paddingLeft: 10,paddingBottom:5  }}>
             {/* Author */}
             <View style={{
             }}>

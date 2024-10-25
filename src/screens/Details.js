@@ -40,7 +40,7 @@ const Details = ({ navigation, route }) => {
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   const [currentIndex, setCurrentIndex] = useState(route.params.index || 0);
-  const [fontSize, setFontSize] = useState(16);
+  const [fontSize, setFontSize] = useState(18);
   const [activeSlide, setActiveSlide] = useState(0);
   const [latestNews, setLatestNewsData] = useState(null);
   const [relatedData, setRelatedData] = useState(null);
@@ -230,14 +230,8 @@ const Details = ({ navigation, route }) => {
     if (url.includes('post_id=')) {
       // Extract the post_id from the URL
       let postId = url.split('post_id=')[1];
-      // Navigate to the details screen using deep linking
-      // navigation.navigate('DeeplinkingDetails', {
-      //   postId: postId,
-      // });
-
-      // Update the formatedid to fetch the new article
+    
       setArticleId(postId);
-
       // Prevent the WebView from opening the URL
       return false;
     }
@@ -246,7 +240,7 @@ const Details = ({ navigation, route }) => {
     return true;
   };
   const toggleFontSize = () => {
-    if (fontSize === 16) {
+    if (fontSize === 18) {
       setFontSize(20);
     } else if (fontSize === 20) {
       setFontSize(23);
@@ -336,7 +330,7 @@ const Details = ({ navigation, route }) => {
             </View>
             {/* Time */}
             <View
-              style={{ flexDirection: 'row', paddingLeft: 10, paddingTop: 5 }}>
+              style={{ flexDirection: 'row', paddingLeft: 10,paddingBottom:5 }}>
               {/* Author */}
               <View style={{}}>
                 <Text style={commonstyles.detailauthor}>
@@ -406,7 +400,7 @@ const Details = ({ navigation, route }) => {
       text-align:left;
       margin:5px;
       font-family:'Mandali-Regular';
-      line-height:1.6
+      line-height:2
     }
     h2 a {
       font-size: 18px;

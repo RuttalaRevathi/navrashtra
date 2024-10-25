@@ -115,7 +115,7 @@ const PhotoArticle = ({ navigation, route }: Props) => {
         width:95% !important;
         height:auto !important;
         object-fit:fill;
-        aspect-ratio:10/9;
+        aspect-ratio:10/7;
     }
     `}
               injectedJavaScript={`

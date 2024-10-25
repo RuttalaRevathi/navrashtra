@@ -69,7 +69,7 @@ const BookmarkScreen = () => {
           <TouchableOpacity onPress={() => navigation.goBack()} >
             <Image
               source={require('../Assets/Images/arrow.png')}
-              style={{ width: 25, height: 25 }}
+              style={{ width: 20, height: 20,}}
             />
           </TouchableOpacity>
         </View>

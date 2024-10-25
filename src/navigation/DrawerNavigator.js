@@ -96,7 +96,7 @@ const DrawerNavigator = () => {
               >
                 <Image
                   style={HeaderStyle.HeadTitleImg}
-                  source={require('../Assets/Images/logo1.png')}
+                  source={require('../Assets/Images/nrlogo.png')}
                 />
               </TouchableOpacity>
             </View>

@@ -10,7 +10,7 @@ export const whitecolor = '#ffffff';
 export const graycolor = '#e4e3e3';
 export const Dark_graycolor = '#63666A';
 export const blackcolor = '#000000';
-export const redcolor = '#f93a4f';
+export const redcolor = '#e31e24';
 export const medium_gray = '#D3D3D3';
 export const light_yellow = '#EADF0C';
 export const light_gray = '#cccccc5e';
@@ -224,8 +224,8 @@ paddingRight:15
   detailauthor:{ color: blackcolor,fontFamily: 'Mukta-SemiBold',fontSize:14
   },
   categoryText: {
-    fontSize: 22,
-    color: blackcolor, fontFamily: 'Mukta-SemiBold',
+    fontSize: 23,
+    color: blackcolor, fontFamily: 'Bold',
     width:'100%'
   },
   bookmarkcategoryText: {
@@ -710,8 +710,8 @@ paddingRight:15
     justifyContent: 'center', paddingtop:5
   },
   cateviewImg: { marginRight: 5, marginTop:5 },
-  cateflist: { marginBottom: 20, top: 10, margin: 5 },
-  photoflist: { marginBottom: 50, top: 10, margin: 5 },
+  cateflist: { marginBottom: 20, top: 5, margin: 5 },
+  photoflist: { marginBottom: 50, top: 5, margin: 5 },
 
   videoImg: {
     width: Dimensions.get('window').width * 0.3,
