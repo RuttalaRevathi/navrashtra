@@ -86,11 +86,11 @@ export const HeaderStyle = StyleSheet.create({
     HeadTitleView: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginLeft: -50,
+        marginLeft: -70,
         width: Dimensions.get("window").width - 120,
     },
     HeadTitleImg: {
-        height: 50, width: 120
+        height: 40, width: 100
     },
     headerLeftView: {
         justifyContent: 'center',

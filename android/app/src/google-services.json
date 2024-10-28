@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "66794879611",
+    "project_id": "navarashtra-e2c41",
+    "storage_bucket": "navarashtra-e2c41.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66794879611:android:387686603ef78871f000de",
+        "android_client_info": {
+          "package_name": "com.navarashtra"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMz9sg53DdmljcWTtpX3JHpLjB3Gz28WE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

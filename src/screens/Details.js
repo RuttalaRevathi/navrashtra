@@ -458,6 +458,14 @@ const Details = ({ navigation, route }) => {
   `,
                     baseUrl: 'https://twitter.com',
                   }}
+                  injectedJavaScript={`
+                    document.querySelectorAll('a').forEach(a => {
+                        a.onclick = function(event) {
+                            event.preventDefault();
+                        };
+                    });
+                    true;
+                `}
                   onShouldStartLoadWithRequest={handleWebViewRequest}
                   viewportContent={'width=device-width, user-scalable=no'}
                 />

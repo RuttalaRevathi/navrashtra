@@ -53,7 +53,7 @@ const SideMenu = ({ navigation }: Props) => {
         <View style={sideMenuStyle.logoView}>
           <Image
             style={sideMenuStyle.logoText}
-            source={require('../Assets/Images/nrlogo.png')}
+            source={require('../Assets/Images/nr_logo.png')}
           />
         </View>
       </View>
