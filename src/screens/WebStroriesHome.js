@@ -8,7 +8,8 @@ import {
   SafeAreaView,
   ActivityIndicator,
   TouchableOpacity,
-  Animated
+  Animated,
+  Platform
 } from 'react-native';
 import { BaseUrl, WebstoriesUrl } from '../utilities/urls';
 import InstaStory from 'react-native-insta-story';
@@ -271,7 +272,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     right: 0,
     width: Dimensions.get('window').width + 4,
-    height: Dimensions.get('window').height - 12,
+    height: Platform.OS === 'android' ? Dimensions.get('window').height - 20 : Dimensions.get('window').height - 70,
     top: 0,
     justifyContent: 'flex-end',
   },
@@ -297,6 +298,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 10,
+    marginBottom: 50
   },
 });
 export default WebStoriesHome;

@@ -9,7 +9,6 @@ import { connect, useDispatch } from 'react-redux';
 import getRelatedAction from '../redux/actions/getRelatedAction';
 import AutoHeightWebView from 'react-native-autoheight-webview';
 import { useState } from 'react';
-import LinearGradient from 'react-native-linear-gradient';
 import FastImage from 'react-native-fast-image';
 const screenWidth = Dimensions.get('window').width;
 
