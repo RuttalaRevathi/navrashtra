@@ -5,7 +5,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, Linking, ScrollView, FlatList, Share, Dimensions } from 'react-native';
 import { appThemeColor, blackcolor, commonstyles, Header_text, whitecolor, gllery_background } from '../styles/commonstyles';
 import AutoHeightWebView from 'react-native-autoheight-webview';
-import LinearGradient from 'react-native-linear-gradient';
 import FastImage from 'react-native-fast-image';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { HeaderStyle } from '../styles/Header.Styles';

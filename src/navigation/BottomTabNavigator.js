@@ -2,9 +2,8 @@
 /* eslint-disable prettier/prettier */
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Image, View, Text } from 'react-native';
+import { Image, View, Text, Platform} from 'react-native';
 import { blackcolor, redcolor, whitecolor, } from '../styles/commonstyles';
-import LinearGradient from 'react-native-linear-gradient';
 import ShortsScreen from '../screens/Shorts';
 import TopTabNavigator from './TopTabNavigator';
 import PhotoGallery from '../screens/PhotoGallery';
@@ -31,7 +30,7 @@ const BottomTabNavigator = () => {
         tabBarItemStyle: { width: 100 },
         tabBarStyle: {
           backgroundColor: blackcolor,
-          height: 55,
+          height: Platform.OS === 'android' ? 55 : 85,
           borderTopLeftRadius: 10,
           borderTopRightRadius: 10,
         },
