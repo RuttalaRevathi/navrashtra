@@ -28,15 +28,20 @@ class HomePhotogalleryItemTwo extends React.PureComponent {
       : defaultImage;
 
     const photoCount = this.getPhotoCount(this.props?.item?.content?.rendered);
+    
+      
 
+    
     return (
       <View style={{ paddingRight: 10 }}>
+        
         <TouchableOpacity
           onPress={() => {
             this.props.navigation.navigate('PhotoArticle', {
-              item: this.props.item,
-              detailsData: this.props.videosData?.data,
+              item: this.props?.item,
+              detailsData: this.props?.propsdata,
             });
+           
           }}>
           <View style={{ paddingBottom: 10 }}>
             <View style={{ position: 'relative' }}>

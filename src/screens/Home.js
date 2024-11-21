@@ -58,7 +58,7 @@ const Home = ({ navigation }) => {
   const dispatch = useDispatch();
   const sliderData = useSelector(state => state.sliderReducer.sliderData);
   const videosData = useSelector(state => state.videoReducer.videosData);
-  const photosData = useSelector(state => state.photosGalleryReducer.photosData);
+  const photosData = useSelector(state => state.photosGalleryReducer?.photosData);
 
   const getIndiaAction = async () => {
     try {

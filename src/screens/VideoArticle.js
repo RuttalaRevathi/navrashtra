@@ -21,7 +21,11 @@ const VideoArticle = ({ navigation, route }: Props) => {
   const [videoAvailable, setVideoAvailable] = useState(true);
 
   var source1 = source?.replace('lazyload', 'text/javascript');
+  const [showWebView, setShowWebView] = useState(false);
 
+  useEffect(() => {
+    setTimeout(() => setShowWebView(true), 500);
+  }, []);
   useEffect(() => {
     // Check if source1 contains a <video> or <iframe> element
     const videoOrIframeRegex = /<video|<iframe|blockquote/g;
@@ -141,7 +145,7 @@ const VideoArticle = ({ navigation, route }: Props) => {
           <View style={{
             justifyContent: 'center',
           }}>
-            {videoAvailable ? (
+            {videoAvailable  && showWebView ? (
               <AutoHeightWebView
                 javaScriptEnabled={true}
                 scalesPageToFit={false}

@@ -28,6 +28,11 @@ const PhotoArticle = ({ navigation, route }: Props) => {
   var result = result1?.replace('lazyload', 'text/javascript');
   // Remove all anchor tags
   result = result.replace(/<a[^>]*>/g, "").replace(/<\/a>/g, "");
+  const [showWebView, setShowWebView] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => setShowWebView(true), 500);
+  }, []);
   useEffect(() => {
     dispatch(getRelatedAction());
     setDetailsData(route?.params?.detailsData);
@@ -89,6 +94,7 @@ const PhotoArticle = ({ navigation, route }: Props) => {
             />
           </View>
           <View style={{}}>
+          {showWebView && (
             <AutoHeightWebView
               javaScriptEnabled={true}
               scalesPageToFit={false}
@@ -129,7 +135,7 @@ const PhotoArticle = ({ navigation, route }: Props) => {
               source={{ html: result }}
               viewportContent={'width=device-width, user-scalable=no'}
             />
-
+          )}
           </View>
 
 
