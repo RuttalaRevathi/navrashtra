@@ -145,6 +145,7 @@ const VideoArticle = ({ navigation, route }: Props) => {
                 javaScriptEnabled={true}
                 scalesPageToFit={false}
                 allowsFullscreenVideo={true}
+                scrollEnabled={false}
                 style={{ width: Dimensions.get('window').width, }}
                 customStyle={`
                 iframe[src^="https://www.youtube.com/embed/"] {

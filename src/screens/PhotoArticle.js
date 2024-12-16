@@ -126,6 +126,7 @@ const PhotoArticle = ({ navigation, route }: Props) => {
         true;
     `}
               source={{ html: result }}
+              scrollEnabled={false}
               viewportContent={'width=device-width, user-scalable=no'}
             />
 

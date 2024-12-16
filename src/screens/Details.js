@@ -466,6 +466,7 @@ const Details = ({ navigation, route }) => {
                     });
                     true;
                 `}
+                scrollEnabled={false}
                   onShouldStartLoadWithRequest={handleWebViewRequest}
                   viewportContent={'width=device-width, user-scalable=no'}
                 />
