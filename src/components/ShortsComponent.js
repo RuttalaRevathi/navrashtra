@@ -8,7 +8,8 @@ import {
     Text,
     TouchableOpacity,
     View,
-    ActivityIndicator, // Import ActivityIndicator for loading indicator
+    ActivityIndicator,
+    Dimensions, // Import ActivityIndicator for loading indicator
 } from 'react-native';
 import moment from 'moment';
 import { blackcolor, commonstyles, lightgllery_background, off_white, whitecolor, redcolor } from '../styles/commonstyles';
@@ -80,7 +81,7 @@ class ShortsComponent extends React.PureComponent {
         }
 
         return (
-            <View style={{ backgroundColor: off_white, borderRadius: 20, position: 'relative', height: '100%' }}>
+            <View style={{ backgroundColor: whitecolor, borderRadius: 20, position: 'relative', height: Dimensions.get('screen').height - 210 }}>
                 <ScrollView>
                     <View>
                         {/* Close Button */}
@@ -168,7 +169,7 @@ class ShortsComponent extends React.PureComponent {
                 </ScrollView>
                 {/* Next article */}
 
-                <View style={{ position: 'absolute', left: 0, right: 0, bottom: 110, }}>
+                <View style={{ position: 'absolute', left: 0, right: 0, top: 'auto', bottom: 0 }}>
                     {nextItem?.title?.rendered && (
                         <View
                             style={{

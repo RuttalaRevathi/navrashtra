@@ -86,8 +86,6 @@ export const HeaderStyle = StyleSheet.create({
     HeadTitleView: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginLeft: -70,
-        width: Dimensions.get("window").width - 120,
     },
     HeadTitleImg: {
         height: 40, width: 100
@@ -95,11 +93,10 @@ export const HeaderStyle = StyleSheet.create({
     headerLeftView: {
         justifyContent: 'center',
         alignItems: 'center',
-        // backgroundColor: whitecolor,
-        borderRadius: 50, height: 30,
-        width: 30, marginLeft: 10
+        height: 30,
+        width: 30, marginLeft: 10,
     },
-    headerLeftImg: { height: 20, width: 20 },
+    headerLeftImg: { height: 24, width: 24 },
     HeadRightView: {
         justifyContent: 'center',
         alignItems: 'center',
