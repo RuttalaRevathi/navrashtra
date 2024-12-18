@@ -27,7 +27,7 @@ function SliderUI(props) {
                 {/* LatestNews  text*/}
                 <View style={commonstyles.homeOnetextView}>
                     <View>
-                        <Text style={commonstyles.Category}>दिन की खबरें</Text>
+                        <Text style={commonstyles.Category}>ताज्या बातम्या</Text>
                     </View>
 
                 </View>

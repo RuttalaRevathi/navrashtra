@@ -344,7 +344,7 @@ const Home = ({ navigation }) => {
           <View style={commonstyles.homeVideoview}>
             <View style={commonstyles.homegallerycategoryView}>
               <View>
-                <Text style={commonstyles.homevideocategorytext}>वीडियो</Text>
+                <Text style={commonstyles.homevideocategorytext}>व्हिडिओ</Text>
               </View>
               <View style={{ paddingRight: 5 }}>
                 <TouchableOpacity

@@ -99,7 +99,7 @@ const WebStoriesHome = () => {
       <View style={{ padding: 5 }}>
         <View style={commonstyles.homeOnetextView}>
           <Text style={commonstyles.Category}>
-            वेब स्टोरीज़
+          वेब स्टोरीज 
           </Text>
         </View>
         {loading ? (

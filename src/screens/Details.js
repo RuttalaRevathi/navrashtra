@@ -230,7 +230,7 @@ const Details = ({ navigation, route }) => {
     if (url.includes('post_id=')) {
       // Extract the post_id from the URL
       let postId = url.split('post_id=')[1];
-    
+
       setArticleId(postId);
       // Prevent the WebView from opening the URL
       return false;
@@ -250,7 +250,10 @@ const Details = ({ navigation, route }) => {
       setFontSize(16);
     }
   };
-
+  const handleTouchStart = (e) => {
+    // Prevent the default scroll behavior
+    e.preventDefault();
+  };
   const source = firstArticle?.content?.rendered;
   let source1 = source?.replace('lazyload', 'text/javascript');
 
@@ -330,7 +333,7 @@ const Details = ({ navigation, route }) => {
             </View>
             {/* Time */}
             <View
-              style={{ flexDirection: 'row', paddingLeft: 10,paddingBottom:5 }}>
+              style={{ flexDirection: 'row', paddingLeft: 10, paddingBottom: 5 }}>
               {/* Author */}
               <View style={{}}>
                 <Text style={commonstyles.detailauthor}>
@@ -359,7 +362,7 @@ const Details = ({ navigation, route }) => {
               />
             </View>
             {/* content */}
-           {/* <Text>{source1}</Text> */}
+            {/* <Text>{source1}</Text> */}
             <View
               style={{
                 justifyContent: 'center',
@@ -369,9 +372,10 @@ const Details = ({ navigation, route }) => {
                   javaScriptEnabled={true}
                   scalesPageToFit={false}
                   allowsFullscreenVideo={true}
-
                   style={{ opacity: 0.99 }}
-                  customStyle={`
+                  onTouchStart={handleTouchStart}
+                                    customStyle={`
+                    
                      iframe[src^="https://www.youtube.com/embed/"] {
                                 width:100% !important;
                                 height:225px
@@ -380,6 +384,7 @@ const Details = ({ navigation, route }) => {
     iframe[title]{
       font-size: 16px;
     }
+      
     * {
       font-family: 'Mandali-Bold';
       line-height: 1.5;
@@ -469,6 +474,7 @@ const Details = ({ navigation, route }) => {
                   onShouldStartLoadWithRequest={handleWebViewRequest}
                   viewportContent={'width=device-width, user-scalable=no'}
                 />
+                
               }
             </View>
           </View>
