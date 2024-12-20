@@ -8,7 +8,8 @@ import {
   SafeAreaView,
   ActivityIndicator,
   TouchableOpacity,
-  Animated
+  Animated,
+  Platform
 } from 'react-native';
 import { BaseUrl, WebstoriesUrl } from '../utilities/urls';
 import InstaStory from 'react-native-insta-story';
@@ -117,7 +118,7 @@ const WebStoriesHome = () => {
                   width: '100%',
                   height: 210,
                   borderRadius: 10,
-                  objectFit: 'fill',
+                  objectFit: 'fill'
                 }}
                 avatarWrapperStyle={{
                   width: 150,
@@ -130,17 +131,17 @@ const WebStoriesHome = () => {
                 }}
                 avatarTextStyle={{
                   position: 'absolute',
-                  left: 2,
+                  left: 0,
                   bottom: 2,
+                  right: 0,
                   backgroundColor: 'rgba(0,0,0,0.75)',
                   color: '#FFFFFF',
-                  fontSize: 16,
+                  fontSize: 15,
                   zIndex: 9,
-                  width: 146,
+                  width: '100%',
                   padding: 5,
-                  borderBottomLeftRadius: 10,
-                  borderBottomRightRadius: 10,
-                  marginHorizontal: -3,
+                  borderRadius: 8,
+                  overflow: 'hidden',
                   fontFamily: 'Mukta-Bold'
 
                 }}
@@ -271,7 +272,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     right: 0,
     width: Dimensions.get('window').width + 4,
-    height: Dimensions.get('window').height - 12,
+    height: Platform.OS === 'android' ? Dimensions.get('window').height - 20 : Dimensions.get('window').height - 55,
     top: 0,
     justifyContent: 'flex-end',
   },
@@ -297,6 +298,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 10,
+    marginBottom: 25
   },
 });
 export default WebStoriesHome;

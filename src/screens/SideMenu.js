@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import getTopMenuDataAction from '../redux/actions/getTopMenuDataAction';
 import { sideMenuStyle } from '../styles/SideMenuStyles';
 import { graycolor } from '../styles/commonstyles';
+import { TouchableNativeFeedback } from 'react-native';
 
 const SideMenu = ({ navigation }: Props) => {
   const [expandedItems, setExpandedItems] = useState({});
@@ -66,6 +67,9 @@ const SideMenu = ({ navigation }: Props) => {
             renderItem={({ item }) => (
               <View>
                 <DrawerItem
+                onPress={() => {
+                  handleNavigation(item.title);
+                }}
                   style={{
                     borderTopColor: graycolor,
                     borderTopWidth: 1,
@@ -79,16 +83,11 @@ const SideMenu = ({ navigation }: Props) => {
                     />
                   )}
                   label={() => (
-                    <TouchableOpacity
-                      onPress={() => {
-                        handleNavigation(item.title);
-                      }}
-                    >
+                    
                       <Text style={sideMenuStyle.text}>{item.title}</Text>
-                    </TouchableOpacity>
+                    
                   )}
                   labelStyle={sideMenuStyle.text}
-                  onPress={() => { }}
                 />
               </View>
             )}

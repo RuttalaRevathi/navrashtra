@@ -10,7 +10,7 @@ import {
   Easing,
 } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
-import { blackcolor, commonstyles, graycolor, whitecolor } from '../styles/commonstyles';
+import { blackcolor, commonstyles, graycolor, off_white, whitecolor } from '../styles/commonstyles';
 import ShortsComponent from '../components/ShortsComponent';
 import { useSelector } from 'react-redux';
 import { BaseUrl, LatestUrl } from '../utilities/urls';
@@ -43,9 +43,9 @@ const ShortsScreen = ({ navigation }) => {
   const newlatestdata = Array.isArray(latestNews?.data) ? latestNews?.data : [];
 
   return (
-    <SafeAreaView style={{}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: off_white}}>
      
-      <View style={{borderRadius:40,}}>
+      <View style={{padding: 12, backgroundColor: off_white}}>
       <Carousel
         data={newlatestdata}
         renderItem={renderItemOne}

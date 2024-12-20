@@ -74,17 +74,18 @@ const DrawerNavigator = () => {
             </View>
           ),
           headerLeft: () => (
-            <View style={HeaderStyle.headerLeftView}>
               <TouchableOpacity
+              style={HeaderStyle.headerLeftView}
                 onPress={() => {
                   navigation.toggleDrawer();
                 }}>
+                  <View>
                 <Image
                   style={HeaderStyle.HeadRightImg}
                   source={require('../Assets/Images/menu.png')}
                 />
+                </View>
               </TouchableOpacity>
-            </View>
           ),
           headerTitle: () => (
             <View
