@@ -36,7 +36,6 @@ const Details = ({ navigation, route }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [isHomeIcon, setIsHomeIcon] = useState(false);
   const Scrollref = useRef();
-  const [bookmarked, setBookmarked] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   const [currentIndex, setCurrentIndex] = useState(route.params.index || 0);
@@ -136,23 +135,10 @@ const Details = ({ navigation, route }) => {
     if (route?.params?.detailsData) {
       setDetailsData(route.params.detailsData);
     }
-    checkBookmarkStatus();
+
   }, [route?.params?.detailsData]);
 
-  const checkBookmarkStatus = async () => {
-    try {
-      const storedArticles = await AsyncStorage.getItem('bookmarkedArticles');
-      if (storedArticles) {
-        const bookmarkedArticles = JSON.parse(storedArticles);
-        const isBookmarked = bookmarkedArticles.some(
-          article => article.id === firstArticle.id,
-        );
-        setBookmarked(isBookmarked);
-      }
-    } catch (error) {
-      console.error('Error checking bookmark status:', error);
-    }
-  };
+
 
   const sharecall = () => {
     const Link_Url = firstArticle?.link;
@@ -163,60 +149,10 @@ const Details = ({ navigation, route }) => {
       .catch(error => console.log(error));
   };
 
-  const handleBookmark = async () => {
-    try {
-      const storedArticles = await AsyncStorage.getItem('bookmarkedArticles');
-      let bookmarkedArticles = storedArticles ? JSON.parse(storedArticles) : [];
 
-      const isBookmarked = bookmarkedArticles.some(
-        article => article.id === firstArticle.id,
-      );
-
-      if (!isBookmarked) {
-        bookmarkedArticles.push(firstArticle);
-        await AsyncStorage.setItem(
-          'bookmarkedArticles',
-          JSON.stringify(bookmarkedArticles),
-        );
-        setBookmarked(true);
-        setToastMessage('News added to favorites');
-        setShowToast(true);
-      } else {
-        bookmarkedArticles = bookmarkedArticles.filter(
-          article => article.id !== firstArticle.id,
-        );
-        await AsyncStorage.setItem(
-          'bookmarkedArticles',
-          JSON.stringify(bookmarkedArticles),
-        );
-        setBookmarked(false);
-        setToastMessage('News removed from favorites');
-        setShowToast(true);
-      }
-    } catch (error) {
-      console.error('Error bookmarking article:', error);
-      setToastMessage('An error occurred. Please try again later.');
-      setShowToast(true);
-    }
-  };
-
-  const now = moment.utc();
-  const date = moment.utc(firstArticle?.date_gmt || now);
-  const diffSeconds = now.diff(date, 'seconds');
-  const diffMinutes = now.diff(date, 'minutes');
-  const diffHours = now.diff(date, 'hours');
-  const diffDays = now.diff(date, 'days');
-
-  let formattedDate;
-  if (diffSeconds < 60) {
-    formattedDate = `${diffSeconds} सेकंड पहले`;
-  } else if (diffMinutes < 60) {
-    formattedDate = `${diffMinutes} मिनट पहले`;
-  } else if (diffHours < 24) {
-    formattedDate = `${diffHours} घंटे पहले`;
-  } else {
-    formattedDate = `${diffDays} दिन पहले`;
-  }
+  // Date and time 
+  const apiDate = firstArticle?.date;
+  const formattedDate = moment(apiDate).format("MMM DD, YYYY | hh:mm A");
 
   const defaultImage = require('../Assets/Images/no_image.jpeg');
   const imageUrl = firstArticle?.web_featured_image
@@ -254,6 +190,13 @@ const Details = ({ navigation, route }) => {
     // Prevent the default scroll behavior
     e.preventDefault();
   };
+  const handleGoBack = () => {
+    if (route.params?.screenName === 'Shorts') {
+        navigation.navigate('Shorts');
+    } else {
+        navigation.goBack(); // Default back behavior
+    }
+};
   const source = firstArticle?.content?.rendered;
   let source1 = source?.replace('lazyload', 'text/javascript');
 
@@ -262,8 +205,8 @@ const Details = ({ navigation, route }) => {
       <View>
         <View style={HeaderStyle.DetailsHeader}>
           <View style={{ display: 'flex', alignItems: 'center', width: '10%' }}>
-            <TouchableOpacity
-              onPress={() => navigation.goBack()}
+          <TouchableOpacity
+                onPress={handleGoBack}
               style={{ zIndex: 999 }}>
               <Image
                 source={require('../Assets/Images/arrow.png')}
@@ -276,28 +219,16 @@ const Details = ({ navigation, route }) => {
             style={{
               display: 'flex',
               alignItems: 'center',
-              width: '20%',
+              width: '15%',
               justifyContent: 'space-between',
               flexDirection: 'row',
-              width: 100,
+
             }}>
             <View style={{ display: 'flex', alignItems: 'center' }}>
               <TouchableOpacity onPress={toggleFontSize}>
                 <Image
                   style={{ width: 20, height: 20 }}
                   source={require('../Assets/Images/font.png')}
-                />
-              </TouchableOpacity>
-            </View>
-            <View style={{ display: 'flex', alignItems: 'center' }}>
-              <TouchableOpacity onPress={handleBookmark}>
-                <Image
-                  style={{ width: 20, height: 20 }}
-                  source={
-                    bookmarked
-                      ? require('../Assets/Images/bookmark_filledblack.png')
-                      : require('../Assets/Images/bookmark-black.png')
-                  }
                 />
               </TouchableOpacity>
             </View>
@@ -321,7 +252,7 @@ const Details = ({ navigation, route }) => {
               paddingBottom: 5,
             }}>
             {/* Tittle */}
-            <View style={{ paddingLeft: 10, paddingTop: 10 }}>
+            <View style={{ paddingLeft: 10, paddingTop: 10, paddingBottom: 5 }}>
               <Text
                 numberOfLines={3}
                 ellipsizeMode="tail"
@@ -329,27 +260,21 @@ const Details = ({ navigation, route }) => {
                 {decode(firstArticle?.title?.rendered)}
 
               </Text>
-              {/* <Text>{firstArticle?.id}</Text> */}
             </View>
-            {/* Time */}
+            {/* Author and Time */}
             <View
-              style={{ flexDirection: 'row', paddingLeft: 10, paddingBottom: 5 }}>
+              style={commonstyles.DetailTimeMainView}>
               {/* Author */}
+              {/* <TouchableOpacity onPress={() => navigation.navigate('Author')}> */}
               <View style={{}}>
                 <Text style={commonstyles.detailauthor}>
-                  {firstArticle?.author_name}
+                  BY {firstArticle?.author_name}
                 </Text>
               </View>
-              {/* category name */}
-              <View style={{}}>
-                <Text style={commonstyles.detailsCateName}>
-                  {' '}
-                  | {firstArticle?.category_name}
-                </Text>
-              </View>
+              {/* </TouchableOpacity> */}
               {/* Time */}
               <View style={{}}>
-                <Text style={commonstyles.detailTime}> | {formattedDate}</Text>
+                <Text style={commonstyles.detailTime}>Updated on: {formattedDate}</Text>
               </View>
             </View>
 
@@ -374,7 +299,7 @@ const Details = ({ navigation, route }) => {
                   allowsFullscreenVideo={true}
                   style={{ opacity: 0.99 }}
                   onTouchStart={handleTouchStart}
-                                    customStyle={`
+                  customStyle={`
                     
                      iframe[src^="https://www.youtube.com/embed/"] {
                                 width:100% !important;
@@ -474,7 +399,7 @@ const Details = ({ navigation, route }) => {
                   onShouldStartLoadWithRequest={handleWebViewRequest}
                   viewportContent={'width=device-width, user-scalable=no'}
                 />
-                
+
               }
             </View>
           </View>

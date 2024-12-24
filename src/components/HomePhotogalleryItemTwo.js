@@ -10,6 +10,7 @@ import {
   commonstyles,
   light_yellow,
   redcolor,
+  whitecolor,
 } from '../styles/commonstyles';
 
 class HomePhotogalleryItemTwo extends React.PureComponent {
@@ -28,20 +29,20 @@ class HomePhotogalleryItemTwo extends React.PureComponent {
       : defaultImage;
 
     const photoCount = this.getPhotoCount(this.props?.item?.content?.rendered);
-    
-      
 
-    
+
+
+
     return (
       <View style={{ paddingRight: 10 }}>
-        
+
         <TouchableOpacity
           onPress={() => {
             this.props.navigation.navigate('PhotoArticle', {
               item: this.props?.item,
               detailsData: this.props?.propsdata,
             });
-           
+
           }}>
           <View style={{ paddingBottom: 10 }}>
             <View style={{ position: 'relative' }}>
@@ -51,41 +52,28 @@ class HomePhotogalleryItemTwo extends React.PureComponent {
               />
               <View style={{
                 bottom: 6,
-                left: 30,
+                right: 10,
                 position: 'absolute',
               }}>
-                <View style={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '50%',
-                  transform: [{ translateX: -25 }, { translateY: -25 }],
-                  padding: 5,
-                  backgroundColor: redcolor,
+                <View style={{ flexDirection: 'row', top: 3 }}>
+                  <View>
+                    <Image
+                      source={require('../Assets/Images/gallery.png')}
+                      style={{ height: 15, width: 15, tintColor: whitecolor, }} />
+                  </View>
+                  <View>
+                    <Text style={{
+                      color: whitecolor,
+                      fontSize: 14,
+                      bottom: 4,
+                      left: 3
+                    }}>
+                      {`${photoCount}`}
+                    </Text>
+                  </View>
 
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  borderRadius:5,
-
-                }}>
-                    <View style={{flexDirection:'row',top:3}}>
-                                 
-                                 <View> 
-                                     <Image
-                                     source={require('../Assets/Images/gallery.png')}
-                                     style={{ height: 15, width: 15, }}/>
-                                   </View>
-                                    <View>
-                                     <Text style={{
-                                       color: 'black',
-                                       fontSize: 14,
-                                       bottom: 4,left:3
-                                     }}>
-                                       { `${  photoCount}`}
-                                     </Text>
-                                   </View>
-                                  
-                                 </View>
                 </View>
+
               </View>
             </View>
             <View style={commonstyles.homephotosliderTextView}>

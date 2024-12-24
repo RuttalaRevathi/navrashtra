@@ -20,7 +20,7 @@ import {
 } from 'react-native';
 
 import {
-  commonstyles,
+  commonstyles, whitecolor
 } from '../styles/commonstyles';
 import HomeUI from '../components/HomeUI';
 import SliderUI from '../components/SliderUI';
@@ -204,7 +204,7 @@ const Home = ({ navigation }) => {
       console.error('Error fetching getCareerAction data:', error);
     }
   };
- 
+
 
   const onRefresh = () => {
     setRefreshing(true);
@@ -292,7 +292,7 @@ const Home = ({ navigation }) => {
 
 
           {/* Slider */}
-          <View style={{ paddingLeft: 5 ,paddingTop:5}}>
+          <View style={{ paddingLeft: 5, paddingTop: 5 }}>
             <SliderUI data={newsliderdata} navigation={navigation} />
           </View>
           {/* Webstories */}
@@ -307,17 +307,18 @@ const Home = ({ navigation }) => {
           />
           {/* Photo Gallery */}
           {/* photo gallery  Cards*/}
+
           <View style={commonstyles.homeVideoview}>
             <View style={commonstyles.homegallerycategoryView}>
-              <View>
+              <View style={commonstyles.gallerytextView}>
                 <Text style={commonstyles.homevideocategorytext}>फोटो</Text>
               </View>
-              <View style={{ paddingRight: 5, }}>
+              <View style={{}}>
                 <TouchableOpacity
                   onPress={() => {
                     navigation.navigate('Photos');
                   }}>
-                  <Image style={{ width: 25, height: 25 }} source={require('../Assets/Images/next_white.png')} />
+                  <Image style={commonstyles.galleryImage} source={require('../Assets/Images/next.png')} />
                 </TouchableOpacity>
               </View>
             </View>
@@ -343,15 +344,15 @@ const Home = ({ navigation }) => {
           {/* videos gallery  text */}
           <View style={commonstyles.homeVideoview}>
             <View style={commonstyles.homegallerycategoryView}>
-              <View>
+              <View style={commonstyles.gallerytextView}>
                 <Text style={commonstyles.homevideocategorytext}>व्हिडिओ</Text>
               </View>
-              <View style={{ paddingRight: 5 }}>
+              <View style={{}}>
                 <TouchableOpacity
                   onPress={() => {
                     navigation.navigate('Videos');
                   }}>
-                  <Image style={{ width: 25, height: 25 }} source={require('../Assets/Images/next_white.png')} />
+                  <Image style={commonstyles.galleryImage} source={require('../Assets/Images/next.png')} />
                 </TouchableOpacity>
               </View>
             </View>
@@ -474,7 +475,7 @@ const Home = ({ navigation }) => {
             navigationScreen="career"
             navigation={navigation}
           />
-          
+
         </View>
       </ScrollView>
     </SafeAreaView>

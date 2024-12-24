@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import SubHeader from '../components/SubHeader';
-import { blackcolor, commonstyles, whitecolor, redcolor } from '../styles/commonstyles';
+import { blackcolor, commonstyles, whitecolor, redcolor, graycolor, Dark_Gray } from '../styles/commonstyles';
 import getVideoAction from '../redux/actions/getVideoAction';
 
 const Videos = ({
@@ -47,36 +47,26 @@ const Videos = ({
                                         navigation.navigate('VideoArticle', {
                                             item: item,
                                             detailsData: videosData?.data,
-                                            screenName:"Videos"
+                                            screenName: "Videos"
                                         });
                                     }}>
                                         <View style={{}}>
-                                            <View style={{ paddingBottom:15 }}>
+                                            <View style={{ paddingBottom: 15 }}>
                                                 <View >
                                                     {typeof item?.web_featured_image === 'string' && item?.web_featured_image.trim() !== '' ? (
-                                                        <View style={{ position: 'relative' }}>
+                                                        <View style={{paddingLeft:5,}}>
                                                             <Image style={commonstyles.VideoimgTag}
                                                                 source={{ uri: item?.web_featured_image }} />
-                                                            <View style={{
-                                                                position: 'absolute',
-                                                                top: '50%',
-                                                                left: '50%',
-                                                                transform: [{ translateX: -25 }, { translateY: -25 }],
-                                                                width: 50,
-                                                                height: 40,
-                                                                backgroundColor: redcolor,
-                                                                justifyContent: 'center',
-                                                                alignItems: 'center',
-                                                            }}>
-                                                                <Text style={{
-                                                                    color: 'black',
-                                                                    fontSize: 30,
-                                                                    fontWeight: 'bold',
-                                                                    bottom:3
-                                                                }}>
-                                                                    ▶
-                                                                </Text>
-                                                            </View>
+                                                           <View style={{
+                                                                           bottom: 15,
+                                                                           right: 15,
+                                                                           position: 'absolute',
+                                                                         }}>
+                                                                           <Image
+                                                                             source={require('../Assets/Images/video.png')}
+                                                                             style={{ tintColor: whitecolor }}
+                                                                           />
+                                                                         </View>
                                                         </View>
                                                     ) : null}
                                                 </View>

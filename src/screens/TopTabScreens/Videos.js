@@ -32,19 +32,7 @@ const Videos = ({
     
     return (
         <SafeAreaView styles={[commonstyles.container]}>
-            {/* <SubHeader
-                title={'Videos'}
-                isMenu={false}
-                isBook={false}
-                isShare={true}
-                leftBtnClick={() => navigation.goBack()}
-                ShareClick={() => {
-                    this.sharecall();
-                }}
-                BookClick={() => {
-                    alert('BookMark   Clicked');
-                }}
-            /> */}
+            
             <ScrollView style={commonstyles.cateflist}>
                 <View>
                     <View>

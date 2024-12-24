@@ -7,7 +7,7 @@ import { black } from 'react-native-paper/lib/typescript/styles/themes/v2/colors
 export const appThemeColor = '#000000';
 export const off_white = '#F6F6F6'
 export const whitecolor = '#ffffff';
-export const graycolor = '#e4e3e3';
+export const graycolor = '#808080';
 export const Dark_graycolor = '#63666A';
 export const blackcolor = '#000000';
 export const redcolor = '#e31e24';
@@ -53,8 +53,10 @@ export const commonstyles = StyleSheet.create({
   },
   homevideocategorytext: {
     color: whitecolor,
-    fontFamily: 'Mukta-SemiBold',
+    fontFamily: 'Mukta',
     fontSize: 22,
+    fontWeight: 'bold',
+    left: 10
   },
   homeVideoview: {
     backgroundColor: gllery_background,
@@ -104,20 +106,20 @@ export const commonstyles = StyleSheet.create({
   HomephotosliderImg: {
     height: 100,
     width: ITEM_WIDTH - 180,
-    objectFit:'cover'
+    objectFit: 'cover'
   },
   HomeVideoImg: {
     height: 250,
     width: ITEM_WIDTH - 30,
     borderRadius: 10,
     marginBottom: 5,
-    objectFit:'fill'
+    objectFit: 'fill'
   },
   HomeVideosliderImg: {
     height: 100,
     width: ITEM_WIDTH - 220,
     borderRadius: 5,
-    objectFit:'fill'
+    objectFit: 'fill'
 
   },
 
@@ -133,7 +135,7 @@ export const commonstyles = StyleSheet.create({
     // padding: 5, borderBottomColor: graycolor,
     // borderBottomWidth: 1,
     paddingBottom: 10,
-   
+
     position: 'relative',
   },
   HomeCategoryImg: {
@@ -152,8 +154,8 @@ export const commonstyles = StyleSheet.create({
     position: 'relative',
     paddingTop: 10,
     width: ITEM_WIDTH,
-    paddingLeft:5,
-paddingRight:15
+    paddingLeft: 5,
+    paddingRight: 15
 
   },
   HomeThreeCategorytext: {
@@ -188,16 +190,16 @@ paddingRight:15
     paddingRight: 10,
   },
   DetailsCompOneView: {
-      paddingRight: 10,
+    paddingRight: 10,
   },
   categoryoneTextView: {
-    width: ITEM_WIDTH - 20,
+    width: ITEM_WIDTH - 10,
   },
   CategoryOnetext: {
     color: blackcolor,
     fontFamily: 'Mukta-SemiBold',
     fontSize: 18,
-    marginLeft: 10,
+    marginLeft: 5,
     marginRight: 10,
     lineHeight: 25,
     position: 'relative',
@@ -206,10 +208,19 @@ paddingRight:15
   homecategoryTextView: {
     width: ITEM_WIDTH - 30,
   },
-  homeOnetextView:{
-    borderLeftColor: redcolor, borderLeftWidth: 6, 
+  homeOnetextView: {
+    borderLeftColor: redcolor, borderLeftWidth: 6,
     left: 5,
-    
+  },
+  gallerytextView: {
+    borderLeftColor: redcolor, borderLeftWidth: 6,
+  },
+  galleryImage:{ width: 25, height: 25, tintColor: whitecolor,right:5 },
+
+  DetailTimeMainView: {
+    flexDirection: 'row', paddingLeft: 5, paddingRight: 5, marginLeft: 10, margingRight: 10, paddingBottom: 5,
+    borderLeftColor: redcolor,
+    borderLeftWidth: 6, bottom: 5, justifyContent: 'space-between',
   },
   // new styles
   DetailsShareimage: { width: 30, height: 30 },
@@ -221,17 +232,15 @@ paddingRight:15
 
 
   },
-  detailauthor:{ color: blackcolor,fontFamily: 'Mukta-SemiBold',fontSize:14
+  detailauthor: {
+    color: blackcolor, fontFamily: 'Mukta-SemiBold', fontSize: 14
   },
   categoryText: {
     fontSize: 23,
-    color: blackcolor, fontFamily: 'Bold',
-    width:'100%'
+    color: blackcolor, fontWeight: 'bold',
+    width: '100%', fontFamily: 'Mukta'
   },
-  bookmarkcategoryText: {
-    fontSize: 16,
-    color: blackcolor, fontFamily: 'Mukta-SemiBold'
-  },
+ 
   morevideos: {
     width: '100%',
     height: 200,
@@ -269,9 +278,9 @@ paddingRight:15
     width: ITEM_WIDTH - 30,
     borderRadius: 15,
   },
-  categorytwoText:{ color: blackcolor,fontSize:16,fontFamily:'Mukta-SemiBold' },
+  categorytwoText: { color: blackcolor, fontSize: 16, fontFamily: 'Mukta-SemiBold' },
   catecomp2mainView: { borderBottomColor: medium_gray, borderBottomWidth: 2 },
-  catecomp2Tochable: { flexDirection: 'row',display:'flex' },
+  catecomp2Tochable: { flexDirection: 'row', display: 'flex' },
 
   cateview: { marginTop: 7, flex: 0.7 },
   CategoryOneview: {
@@ -280,6 +289,8 @@ paddingRight:15
   CategoryOneImg: {
     height: 200,
     width: '100%',
+    borderRadius:10,
+    
   },
   HomeComp2DotView: {
     flexDirection: 'row',
@@ -358,33 +369,34 @@ paddingRight:15
 
   },
   VideoimgTag: {
-    width: ITEM_WIDTH - 10,
+    width: ITEM_WIDTH - 20,
     height: 200,
     borderRadius: 5,
   },
   PhotoimgTag: {
-    width: ITEM_WIDTH - 10,
+    width: ITEM_WIDTH - 20,
     height: 200,
     borderRadius: 5,
     paddingTop: 10,
+  
   },
   HomeVideoCategoryview: {
     padding: 5,
     paddingBottom: 15,
   },
-  galleryArticlecategorytext:{
+  galleryArticlecategorytext: {
     color: blackcolor, fontSize: 20, paddingLeft: 10,
-    fontFamily: 'Mukta-Bold', paddingTop: 10,fontWeight:'bold'
+    fontFamily: 'Mukta', paddingTop: 10, fontWeight: 'bold'
   },
   latestTxtTag: {
     color: blackcolor, fontFamily: 'Mukta-SemiBold',
     fontSize: 16, lineHeight: 25, left: 5, right: 2, paddingRight: 20, top: 5, paddingBottom: 10
   },
   slidercard: {
-    width: ITEM_WIDTH-150,
+    width: ITEM_WIDTH - 150,
     height: 200,
     borderRadius: 5,
-    objectFit:'coverd'
+    objectFit: 'coverd'
   },
   photocard: {
     height: Dimensions.get('window').height * 0.32,
@@ -445,9 +457,9 @@ paddingRight:15
     backgroundColor: '#000000', filter: 'blur({10}px)',
   },
   HomeonesliderGradient: {
-    width: '100%', bottom: 20,left: 0,right: 0,
-    position: 'absolute', height: 110, paddingRight:10  
-    ,paddingTop:10,paddingBottom:20,
+    width: '100%', bottom: 20, left: 0, right: 0,
+    position: 'absolute', height: 110, paddingRight: 10
+    , paddingTop: 10, paddingBottom: 20,
   },
   linearGradient: {
     alignItems: 'center',
@@ -473,17 +485,17 @@ paddingRight:15
   },
   Category: {
     color: blackcolor,
-    fontFamily: 'Mukta-Bold',
+    fontFamily: 'Mukta',
     fontSize: 22,
-       left: 10,
-    // fontWeight: '400'
+    left: 10,
+    fontWeight: 'bold'
 
   },
   RelatedCategory: {
     color: blackcolor,
     fontFamily: 'Mukta-Bold',
     fontSize: 22,
-       left: 10,
+    left: 10,
     fontWeight: '700'
 
   },
@@ -518,11 +530,11 @@ paddingRight:15
   cateImage: { width: 120, height: 70, borderRadius: 5 },
   latestText: {
     color: blackcolor, fontFamily: 'Mukta-SemiBold', fontSize: 16, lineHeight: 25,
-     justifyContent: 'center',paddingTop:5,
+    justifyContent: 'center', paddingTop: 5,
   },
   latesttime: { color: whitecolor, fontSize: 12, fontFamily: 'Mukta-Regular' },
   HomeTwotime: { color: Dark_graycolor, fontSize: 12, fontFamily: 'Mukta-Regular' },
-  CategoryOnetime: { color: blackcolor, fontSize: 12, fontFamily: 'Mukta-Regular' },
+  CategoryOnetime: { color: blackcolor, fontSize: 12, fontFamily: 'Mukta-Regular', paddingLeft: 10 },
   CategoryOnetimeview: {
     flexDirection: 'row',
     paddingLeft: 7,
@@ -691,7 +703,7 @@ paddingRight:15
   },
   detailsCateName: {
     color: Dark_graycolor,
-    fontFamily: 'Mukta-Regular',fontSize:14
+    fontFamily: 'Mukta-Regular', fontSize: 14
 
 
   },
@@ -700,16 +712,16 @@ paddingRight:15
     top: -5,
   },
   detailTime: {
-    color: Dark_graycolor,
-    fontFamily: 'Mukta-Regular',fontSize:14
+    color: blackcolor,
+    fontFamily: 'Mukta-Regular', fontSize: 11
 
   },
   cateviewText: {
     flex: 1.9,
     fontFamily: 'Mandali-Regular', fontSize: 18, lineHeight: 25,
-    justifyContent: 'center', paddingtop:5
+    justifyContent: 'center', paddingtop: 5
   },
-  cateviewImg: { marginRight: 5, marginTop:5 },
+  cateviewImg: { marginRight: 5, marginTop: 5 },
   cateflist: { marginBottom: 20, top: 5, margin: 5 },
   photoflist: { marginBottom: 50, top: 5, margin: 5 },
 

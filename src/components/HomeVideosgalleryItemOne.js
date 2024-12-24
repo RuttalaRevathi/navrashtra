@@ -7,7 +7,7 @@ import {
   Image,
 } from 'react-native';
 
-import { commonstyles, redcolor } from '../styles/commonstyles';
+import { commonstyles, graycolor, redcolor, whitecolor } from '../styles/commonstyles';
 import moment from 'moment';
 
 class HomeVideosgalleryItemOne extends React.PureComponent {
@@ -47,31 +47,14 @@ class HomeVideosgalleryItemOne extends React.PureComponent {
                 style={commonstyles.HomeVideoImg}
               />
               <View style={{
-                bottom: 25,
-                right: 38,
+                bottom: 15,
+                right: 15,
                 position: 'absolute',
               }}>
-                <View style={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '50%',
-                  transform: [{ translateX: -25 }, { translateY: -25 }],
-                  width: 50,
-                  height: 40,
-                  backgroundColor: redcolor,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-
-                }}>
-                  <Text style={{
-                    color: 'black',
-                    fontSize: 30,
-                    fontWeight: 'bold',
-                    bottom: 3
-                  }}>
-                    ▶
-                  </Text>
-                </View>
+                <Image
+                  source={require('../Assets/Images/video.png')}
+                  style={{ tintColor: whitecolor }}
+                />
               </View>
             </View>
             <View style={commonstyles.homeVideoTextView}>

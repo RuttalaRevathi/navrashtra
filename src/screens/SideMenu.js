@@ -93,7 +93,7 @@ const SideMenu = ({ navigation }: Props) => {
               </View>
             )}
           />
-          <DrawerItem
+          {/* <DrawerItem
             style={sideMenuStyle.item}
             icon={({ color, size }) => (
               <Image
@@ -101,12 +101,12 @@ const SideMenu = ({ navigation }: Props) => {
                 style={sideMenuStyle.icon}
               />
             )}
-            label="पसंदीदा"
+            label="Te"
             labelStyle={sideMenuStyle.text}
             onPress={() => {
               navigation.navigate('Bookmark');
             }}
-          />
+          /> */}
         </View>
       </ScrollView>
     </SafeAreaView>

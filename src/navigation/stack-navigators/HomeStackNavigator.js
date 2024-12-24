@@ -7,13 +7,12 @@ import PhotoArticle from '../../screens/PhotoArticle';
 import VideoArticle from '../../screens/VideoArticle';
 import EmptyScreen from '../../components/EmptyScreen';
 import CategoryScreen from '../../screens/Category';
-import BookmarkScreen from '../../screens/Bookmark';
 import getTopMenuDataAction from '../../redux/actions/getTopMenuDataAction';
 import PhotoGallery from '../../screens/PhotoGallery';
 import Videos from '../../screens/Videos';
 import TopTabNavigator from '../TopTabNavigator';
-import DeeplinkingDetails from '../../screens/DeeplinkingDetails';
 import Webstories from '../../screens/Webstories';
+import AuthorScreen from '../../screens/Author';
 
 const Stack = createStackNavigator();
 
@@ -65,14 +64,14 @@ const HomeStackNavigator = ({ menuData }: Props) => {
         <Stack.Screen name="EmptyScreen" component={EmptyScreen} />
       )}
       <Stack.Screen name="Details" component={Details} />
-      <Stack.Screen name="DeeplinkingDetails" component={DeeplinkingDetails} />
       {/* <Stack.Screen name="CategoryScreen" component={CategoryScreen} /> */}
       <Stack.Screen name="PhotoArticle" component={PhotoArticle} />
       <Stack.Screen name="VideoArticle" component={VideoArticle} />
-      <Stack.Screen name="Bookmark" component={BookmarkScreen} />
       <Stack.Screen name="Webstories" component={Webstories} />
       <Stack.Screen name="Photos" component={PhotoGallery} />
       <Stack.Screen name="Videos" component={Videos} />
+      <Stack.Screen name="Author" component={AuthorScreen} />
+
 
     </Stack.Navigator>
   );
