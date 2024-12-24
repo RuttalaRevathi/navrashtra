@@ -8,7 +8,7 @@ import {
   SafeAreaView,
   Image,
 } from 'react-native';
-import {commonstyles } from '../styles/commonstyles';
+import { commonstyles } from '../styles/commonstyles';
 import HomeComponentOne from '../components/HomeComponentOne';
 import HomeComponentTwo from './HomeComponentTwo';
 

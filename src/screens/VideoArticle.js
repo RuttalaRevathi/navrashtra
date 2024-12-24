@@ -49,35 +49,22 @@ const VideoArticle = ({ navigation, route }: Props) => {
       .then((error) => console.log(error));
   };
   const decode = require('html-entities-decoder');
-  const now = moment.utc();
-  const date = moment.utc(route?.params?.item?.date_gmt || now);
-  const diffSeconds = now.diff(date, 'seconds');
-  const diffMinutes = now.diff(date, 'minutes');
-  const diffHours = now.diff(date, 'hours');
-  const diffDays = now.diff(date, 'days');
+  // Date and time 
+  const apiDate = route?.params?.item?.date;
+  const formattedDate = moment(apiDate).format("MMM DD, YYYY | hh:mm A");
 
-  let formattedDate;
-  if (diffSeconds < 60) {
-    formattedDate = `${diffSeconds} सेकंड पहले`;
-  } else if (diffMinutes < 60) {
-    formattedDate = `${diffMinutes} मिनट पहले`;
-  } else if (diffHours < 24) {
-    formattedDate = `${diffHours} घंटे पहले`;
-  } else {
-    formattedDate = `${diffDays} दिन पहले`;
-  }
   // Image url
   const defaultImage = require('../Assets/Images/no_image.jpeg');
   const imageUrl = route?.params?.item?.web_featured_image
-  ? { uri: route?.params?.item?.web_featured_image }
-  : defaultImage;
+    ? { uri: route?.params?.item?.web_featured_image }
+    : defaultImage;
   return (
     <View style={{ backgroundColor: whitecolor, flex: 1 }}>
       <View>
         <View style={HeaderStyle.subHeaderviewHeight}>
           <View style={{}}>
             <TouchableOpacity onPress={() => {
-              navigation.navigate(route.params.screenName==="Videos"?"Videos":"Home");
+              navigation.navigate(route.params.screenName === "Videos" ? "Videos" : "Home");
             }} >
               <Image
                 source={require('../Assets/Images/arrow.png')}
@@ -110,33 +97,30 @@ const VideoArticle = ({ navigation, route }: Props) => {
             </Text>
 
           </View>
-
-          {/* Time */}
-          <View style={{ flexDirection: 'row', paddingLeft: 10,paddingBottom:5  }}>
+          {/* Author and Time */}
+          <View
+            style={commonstyles.DetailTimeMainView}>
             {/* Author */}
-            <View style={{
-            }}>
+            {/* <TouchableOpacity onPress={() => navigation.navigate('Author')}> */}
+            <View style={{}}>
               <Text style={commonstyles.detailauthor}>
-                {route?.params?.item?.author_name}
+                BY {route?.params?.item?.author_name}
               </Text>
             </View>
-            {/* category name */}
-            <View style={{}}>
-              <Text style={commonstyles.detailsCateName}> | {route?.params?.item?.category_name}</Text>
-            </View>
+            {/* </TouchableOpacity> */}
             {/* Time */}
             <View style={{}}>
-              <Text style={commonstyles.detailTime}> | {formattedDate}</Text>
+              <Text style={commonstyles.detailTime}>Updated on: {formattedDate}</Text>
             </View>
           </View>
           {/* Image */}
           <View style={{ width: '100%' }}>
-              <FastImage
-                source={imageUrl}
-                style={commonstyles.Detailslargecard}
-                resizeMode={FastImage.resizeMode.cover}
-              />
-            </View>
+            <FastImage
+              source={imageUrl}
+              style={commonstyles.Detailslargecard}
+              resizeMode={FastImage.resizeMode.cover}
+            />
+          </View>
           {/* Content */}
           <Text>
 
@@ -144,7 +128,7 @@ const VideoArticle = ({ navigation, route }: Props) => {
           <View style={{
             justifyContent: 'center',
           }}>
-            {videoAvailable  && showWebView ? (
+            {videoAvailable && showWebView ? (
               <AutoHeightWebView
                 javaScriptEnabled={true}
                 scalesPageToFit={false}

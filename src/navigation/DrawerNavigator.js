@@ -90,16 +90,16 @@ const DrawerNavigator = () => {
           headerTitle: () => (
             <View
               style={HeaderStyle.HeadTitleView}>
-              <TouchableOpacity
+              {/* <TouchableOpacity
                 onPress={() => {
                   navigation.navigate('TopTabs', { screen: 'Home' });
                 }}
-              >
+              > */}
                 <Image
                   style={HeaderStyle.HeadTitleImg}
                   source={require('../Assets/Images/nrlogo.png')}
                 />
-              </TouchableOpacity>
+              {/* </TouchableOpacity> */}
             </View>
           ),
         })}

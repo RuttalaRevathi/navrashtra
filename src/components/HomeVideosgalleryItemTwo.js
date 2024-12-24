@@ -9,7 +9,10 @@ import {
 } from 'react-native';
 import {
     commonstyles,
+    Dark_Gray,
+    graycolor,
     redcolor,
+    whitecolor,
 } from '../styles/commonstyles';
 import moment from 'moment/moment';
 
@@ -50,38 +53,21 @@ class HomeVideosgalleryItemTwo extends React.PureComponent {
                                 style={commonstyles.HomeVideosliderImg}
                             />
                             <View style={{
-                bottom: 3,
-                right: 10,
-                position: 'absolute',
-              }}>
-                <View style={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '50%',
-                  transform: [{ translateX: -25 }, { translateY: -25 }],
-                  width: 30,
-                  height: 20,
-                  backgroundColor: redcolor,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-
-                }}>
-                  <Text style={{
-                    color: 'black',
-                    fontSize: 15,
-                    fontWeight: 'bold',
-                    bottom: 2
-                  }}>
-                    ▶
-                  </Text>
-                </View>
-              </View>
+                                bottom: 3,
+                                right: 10,
+                                position: 'absolute',
+                            }}>
+                                <Image
+                                    source={require('../Assets/Images/video.png')}
+                                    style={{ tintColor: whitecolor,height:20,width:20 }}
+                                />
+                            </View>
                         </View>
                         <View style={commonstyles.homeVideosliderTextView}>
                             <Text numberOfLines={2} style={commonstyles.homeVideosliderText}>
                                 {decode(this.props?.item?.title?.rendered)}                        </Text>
                         </View>
-                       
+
                     </View>
                 </TouchableOpacity>
             </View>

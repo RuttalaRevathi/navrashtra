@@ -13,8 +13,9 @@ import {
   View,
 } from 'react-native';
 import getPhotoGalleryAction from '../redux/actions/getPhotoGalleryAction';
-import { appThemeColor, blackcolor, commonstyles, graycolor, light_gray, light_yellow, redcolor } from '../styles/commonstyles';
+import { appThemeColor, blackcolor, commonstyles, Dark_Gray, Dark_graycolor, graycolor, light_gray, light_yellow, redcolor, whitecolor } from '../styles/commonstyles';
 import FastImage from 'react-native-fast-image';
+import { DarkTheme } from '@react-navigation/native';
 
 const PhotoGallery = ({
   navigation,
@@ -48,7 +49,7 @@ const PhotoGallery = ({
               style={commonstyles.photoflist}
               data={photosData?.data}
               numColumns={1}
-                      renderItem={({ item }) => {
+              renderItem={({ item }) => {
                 const photoCount = getPhotoCount(item?.content?.rendered);
                 return (
                   <View style={{ flex: 1 }}>
@@ -56,11 +57,11 @@ const PhotoGallery = ({
                       navigation.navigate('PhotoArticle', {
                         item: item,
                         detailsData: photosData?.data,
-                        screenName:"Photos"
+                        screenName: "Photos"
                       });
                     }}>
-                      <View style={{ paddingBottom: 15 }}>
-                        <View>
+                      <View style={{ paddingBottom: 15,}}>
+                        <View style={{paddingLeft: 5,}}>
                           {typeof item?.web_featured_image === 'string' && item?.web_featured_image.trim() !== '' ? (
                             <FastImage
                               style={commonstyles.PhotoimgTag}
@@ -70,39 +71,28 @@ const PhotoGallery = ({
                           ) : null}
                           <View style={{
                             bottom: 10,
-                            left: 30,
+                            right: 20,
                             position: 'absolute',
                           }}>
-                            <View style={{
-                              position: 'absolute',
-                              top: '50%',
-                              left: '50%',
-                              transform: [{ translateX: -25 }, { translateY: -25 }],
-                              padding: 5,
-                              backgroundColor: redcolor,
-                              justifyContent: 'center',
-                              alignItems: 'center', borderRadius: 5
-                            }}>
-                              <View style={{ flexDirection: 'row', top: 3 }}>
-
-                                <View>
-                                  <Image
-                                    source={require('../Assets/Images/gallery.png')}
-                                    style={{ height: 15, width: 15, }} />
-                                </View>
-                                <View>
-                                  <Text style={{
-                                    color: 'black',
-                                    fontSize: 14,
-                                    bottom: 4,
-                                    left: 3
-                                  }}>
-                                    {`${photoCount}`}
-                                  </Text>
-                                </View>
-
+                            <View style={{ flexDirection: 'row', top: 3 }}>
+                              <View>
+                                <Image
+                                  source={require('../Assets/Images/gallery.png')}
+                                  style={{ height: 15, width: 15, tintColor: whitecolor, }} />
                               </View>
+                              <View>
+                                <Text style={{
+                                  color: whitecolor,
+                                  fontSize: 14,
+                                  bottom: 4,
+                                  left: 3
+                                }}>
+                                  {`${photoCount}`}
+                                </Text>
+                              </View>
+
                             </View>
+
                           </View>
                         </View>
                         <View style={{ borderBottomColor: graycolor, borderBottomWidth: 1, }}>

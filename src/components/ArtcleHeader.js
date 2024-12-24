@@ -44,12 +44,7 @@ export default function ArticleHeader(props) {
                             props.BookClick();
                         }}
                         style={{ zIndex: 999 }}>
-                        <MaterialIcons
-                            name="bookmark-outline"
-                            size={30}
-                            color={appThemeColor}
-                            style={{ left: 20, top: 2 }}
-                        />
+                       
                     </TouchableOpacity>
                 </View>
             )}

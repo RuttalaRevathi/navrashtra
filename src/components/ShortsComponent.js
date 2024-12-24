@@ -42,26 +42,12 @@ class ShortsComponent extends React.PureComponent {
                 .then((result) => console.log(result))
                 .catch((error) => console.log(error));
         };
+    
+       // Date and time 
+         const apiDate = item?.date;
+         const formattedDate = moment(apiDate).format("MMM DD, YYYY | hh:mm A");
 
-        let decode = require('html-entities-decoder');
-        const now = moment.utc();
-        const date = moment.utc(item?.date_gmt || now);
-        const diffSeconds = now.diff(date, 'seconds');
-        const diffMinutes = now.diff(date, 'minutes');
-        const diffHours = now.diff(date, 'hours');
-        const diffDays = now.diff(date, 'days');
-
-        let formattedDate;
-        if (diffSeconds < 60) {
-            formattedDate = `${diffSeconds} seconds ago`;
-        } else if (diffMinutes < 60) {
-            formattedDate = `${diffMinutes} minutes ago`;
-        } else if (diffHours < 24) {
-            formattedDate = `${diffHours} hours ago`;
-        } else {
-            formattedDate = `${diffDays} days ago`;
-        }
-
+         let decode = require('html-entities-decoder');
         const defaultImage = require('../Assets/Images/home.png');
         const imageUrl = item?.web_featured_image
             ? { uri: item?.web_featured_image }
@@ -152,6 +138,7 @@ class ShortsComponent extends React.PureComponent {
                                 navigation.navigate('Details', {
                                     item: item,
                                     detailsData: propsdata,
+                                    screenName: "Shorts"
                                 });
                             }}>
                             <View style={{
