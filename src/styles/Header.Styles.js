@@ -49,6 +49,7 @@ export const HeaderStyle = StyleSheet.create({
         paddingVertical: 10,
         justifyContent: 'space-between',
         alignItems:'center',
+        borderBottomColor: graycolor, borderBottomWidth: 1
 
     },
     DetailsHeader: {

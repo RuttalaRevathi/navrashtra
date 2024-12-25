@@ -320,13 +320,13 @@ const Home = ({ navigation }) => {
             </View>
             {/* photo gallery  Cards*/}
             <View style={{ paddingLeft: 12 }}>
-              <FlatList
+              {photosData?.data?.length > 0 ? <FlatList
                 persistentScrollbar
                 data={photosData?.data}
                 showsHorizontalScrollIndicator={true}
                 horizontal={true}
                 renderItem={photoGalleryItemTwo}
-              />
+              /> : <ActivityIndicator size={'large'} style={{paddingVertical: 12}} />}
             </View>
           </View>
           {/* Maharashtra */}
@@ -352,7 +352,8 @@ const Home = ({ navigation }) => {
             </View>
 
             {/* videos gallery  Cards*/}
-                <FlatList
+            {videosData?.data?.length ? <>
+              <FlatList
                   data={videosData?.data?.slice(0, 1)}
                   showsHorizontalScrollIndicator={false}
                   renderItem={videoGalleryitemOne}
@@ -366,6 +367,8 @@ const Home = ({ navigation }) => {
                   renderItem={videoGalleryitemTwo}
                 />
               </View>
+            </> : <ActivityIndicator size={"large"} style={{paddingVertical: 12}} />}
+                
           </View>
           {/* Mumbai */}
           <View style={{paddingVertical: 6}}></View>

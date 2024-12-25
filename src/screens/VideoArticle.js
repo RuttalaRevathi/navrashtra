@@ -81,7 +81,7 @@ const VideoArticle = ({ navigation, route }: Props) => {
         scrollEnabled={true}>
         <View>
           {/* Title */}
-          <View style={{ paddingHorizontal: 12, paddingTop: 4 }}>
+          <View style={{ paddingHorizontal: 12, paddingTop: 12 }}>
             <Text numberOfLines={3} ellipsizeMode="tail" style={commonstyles.categoryText}>
               {decode(route?.params?.item?.title?.rendered)}
             </Text>

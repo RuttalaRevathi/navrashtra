@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   ScrollView,
   View,
+  Text,
 } from 'react-native';
 import { commonstyles } from '../styles/commonstyles';
 import CategoryComponentTwo from '../components/CategoryComponentTwo';
@@ -18,7 +19,7 @@ const LatestNews = ({ navigation, route }: Props) => {
   const [loading, setLoading] = useState(false); // State to handle the loader
 
   const getLatestNewsAction = async () => {
-    setLoading(false);
+    setLoading(true);
     try {
       const response = await fetch(BaseUrl + LatestUrl);
       const responseJson = await response.json();
@@ -55,10 +56,12 @@ const LatestNews = ({ navigation, route }: Props) => {
     <SafeAreaView style={commonstyles.container}>
       {loading ? ( 
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <ActivityIndicator size="large" color="#000000" />
+        <ActivityIndicator size="large" />
         </View>
       ) : (
-        <ScrollView style={commonstyles.scroll}>
+        <>
+        <Text style={commonstyles.galleryArticlecategorytext}>ताज्या बातम्या</Text>
+      <ScrollView style={commonstyles.scroll}>
             <View style={{ padding: 12 }}>
               <FlatList
                 style={commonstyles.cateflist}
@@ -67,6 +70,7 @@ const LatestNews = ({ navigation, route }: Props) => {
               />
             </View>
         </ScrollView>
+        </>
       )}
     </SafeAreaView>
   );

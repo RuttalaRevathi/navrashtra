@@ -39,7 +39,7 @@ const PhotoGallery = ({
         <Text style={commonstyles.galleryArticlecategorytext}>
           फोटो गैलरी
         </Text>
-        {photosData?.data?.length !== 0 ? (
+        {photosData?.data?.length > 0 ? (
             <FlatList
               style={commonstyles.photoflist}
               data={photosData?.data}

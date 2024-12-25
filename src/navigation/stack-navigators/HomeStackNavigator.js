@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useDispatch, useSelector } from 'react-redux';
 import Details from '../../screens/Details';
-import PhotoArticle from '../../screens/PhotoArticle';
 import VideoArticle from '../../screens/VideoArticle';
 import EmptyScreen from '../../components/EmptyScreen';
 import CategoryScreen from '../../screens/Category';
@@ -64,12 +63,7 @@ const HomeStackNavigator = ({ menuData }: Props) => {
         <Stack.Screen name="EmptyScreen" component={EmptyScreen} />
       )}
       <Stack.Screen name="Details" component={Details} />
-      {/* <Stack.Screen name="CategoryScreen" component={CategoryScreen} /> */}
-      <Stack.Screen name="PhotoArticle" component={PhotoArticle} />
-      <Stack.Screen name="VideoArticle" component={VideoArticle} />
       <Stack.Screen name="Webstories" component={Webstories} />
-      <Stack.Screen name="Photos" component={PhotoGallery} />
-      <Stack.Screen name="Videos" component={Videos} />
       <Stack.Screen name="Author" component={AuthorScreen} />
 
 

@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
   Image,
+  ActivityIndicator,
 } from 'react-native';
 import { commonstyles } from '../styles/commonstyles';
 import HomeComponentFour from './HomeComponentFour';
@@ -55,7 +56,7 @@ function HomeUINew(props) {
             </TouchableOpacity>
         </View>
         
-        <View style={commonstyles.homeCategoryflatView}>
+        {newdata.length > 0 ? <View style={commonstyles.homeCategoryflatView}>
           <FlatList
             data={newdata.slice(0, 1)}
             showsHorizontalScrollIndicator={false}
@@ -82,7 +83,7 @@ function HomeUINew(props) {
             })}
             renderItem={renderItemTwo}
           />
-        </View>
+        </View> : <ActivityIndicator size={'large'} style={{paddingVertical: 12}} />}
       </View>
     </SafeAreaView>
   );
