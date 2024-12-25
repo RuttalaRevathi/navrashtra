@@ -40,8 +40,7 @@ const HomeComponentOne = ({ item, navigation, propsdata }) => {
     : defaultImage;
 
   return (
-    <View>
-      <View>
+    <>
         <TouchableOpacity
           onPress={() => {
             navigation.navigate('Details', {
@@ -50,54 +49,37 @@ const HomeComponentOne = ({ item, navigation, propsdata }) => {
             });
           }}>
           <View style={commonstyles.HomeoneCategoryview}>
-
             <FastImage
-              resizeMode={FastImage.resizeMode.contain}
+              resizeMode={FastImage.resizeMode.cover}
               source={imageUrl}
               style={commonstyles.HomeCategoryImg}
             />
 
             <LinearGradient
-              colors={['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0.6)', 'rgba(0, 0, 0, 1)']}
+              colors={['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0.75)', 'rgba(0, 0, 0, 1)']}
               style={commonstyles.HomeonesliderGradient}>
-              <View style={{}}>
                 <Text numberOfLines={2} style={commonstyles.HomeCategorytext}>
                   {decode(item?.title?.rendered)}
                 </Text>
-              </View>
               {/* Time View */}
-              <View style={{
-                flexDirection: 'row', justifyContent: 'space-between',
-                paddingTop: 5, paddingLeft: 5
+              <View style={{flexDirection: 'row', justifyContent: 'space-between',
               }}>
-
-
                 {/* Time */}
-                <View style={{}}>
-                  <Text style={commonstyles.latesttime}>{formattedDate}</Text>
-                </View>
-
-                <View style={{ justifyContent: 'space-between', flexDirection: 'row' }}>
-
-                  
-                  <View>
+                <Text style={commonstyles.latesttime}>{formattedDate}</Text>
                     <TouchableOpacity
                       onPress={() => {
                         sharecall();
                       }}>
                       <Image
-                        style={{ width: 15, height: 15, right: 20 }}
+                        style={{ width: 16, height: 16,}}
                         source={require('../Assets/Images/share_white.png')}
                       />
                     </TouchableOpacity>
-                  </View>
-                </View>
               </View>
             </LinearGradient>
           </View>
         </TouchableOpacity>
-      </View>
-    </View>
+    </>
   );
 };
 

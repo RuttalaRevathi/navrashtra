@@ -5,6 +5,7 @@ import {
     View,
     FlatList,
     SafeAreaView,
+    ActivityIndicator,
 } from 'react-native';
 import { commonstyles } from '../styles/commonstyles';
 import HomeSliderComponent from './HomeSliderComponent';
@@ -23,19 +24,12 @@ function SliderUI(props) {
 
     return (
         <SafeAreaView styles={commonstyles.container}>
-            <View>
                 {/* LatestNews  text*/}
                 <View style={commonstyles.homeOnetextView}>
-                    <View>
-                        <Text style={commonstyles.Category}>ताज्या बातम्या</Text>
-                    </View>
-
+                    <Text style={commonstyles.Category}>ताज्या बातम्या</Text>
                 </View>
-
-                {/* flatlist for Latest News */}
-                <View>
                     <View style={commonstyles.SliderflatView}>
-                        <FlatList
+                        {newdata.length > 0 ? <FlatList
                             data={newdata}
                             showsHorizontalScrollIndicator={true}
                             horizontal={true}
@@ -46,11 +40,8 @@ function SliderUI(props) {
                                 index,
                             })}
                             renderItem={renderItemOne}
-                        />
-
+                        /> : <ActivityIndicator  size={'large'} />}
                     </View>
-                </View>
-            </View>
         </SafeAreaView>
     );
 }

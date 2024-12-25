@@ -55,44 +55,33 @@ const PhotoArticle = ({ navigation, route }: Props) => {
   return (
 
     <View style={commonstyles.container}>
-      <View >
         <View style={HeaderStyle.subHeaderviewHeight}>
-          <View style={{}}>
           <TouchableOpacity onPress={() => {
               navigation.navigate(route.params.screenName==="Photos"?"Photos":"Home");
             }} >
-            
               <Image
                 source={require('../Assets/Images/arrow.png')}
-                style={{ width: 20, height: 20 }}
+                style={{ width: 22, height: 22 }}
               />
             </TouchableOpacity>
-          </View>
-          <View
-            style={{
-
-            }}>
             <TouchableOpacity style={{}}
               onPress={() => { sharecall() }}>
               <Image
                 source={require('../Assets/Images/share_black.png')}
-                style={{ width: 20, height: 20 }}
+                style={{ width: 22, height: 22 }}
               />
             </TouchableOpacity>
-          </View>
         </View>
-      </View>
       <ScrollView ref={scrollViewRef}
         style={{ backgroundColor: gllery_background, }}
       >
-        <View>
-          <View style={{ margin: 10, flex: 1, }}>
+          <View style={{ padding: 12, flex: 1, }}>
             <HTMLView
               value={'<p>' + route?.params?.item?.title?.rendered + '</p>'}
               stylesheet={headerStyles}
             />
           </View>
-          <View style={{}}>
+          <View>
           {showWebView && (
             <AutoHeightWebView
               javaScriptEnabled={true}
@@ -111,16 +100,16 @@ const PhotoArticle = ({ navigation, route }: Props) => {
   .wp-caption-text {
         font-family: 'Mandali', sans-serif;
         color:#fff;
-        padding:10px 10px 0px 10px;
+        padding:10px 12px 0px 12px;
         text-align:left;
       
     }
    
     .gallery img{
-        width:95% !important;
+        width:92% !important;
         height:auto !important;
-        object-fit:fill;
-        aspect-ratio:10/7;
+        object-fit: cover;
+        aspect-ratio:10/8;
     }
     `}
               injectedJavaScript={`
@@ -137,13 +126,7 @@ const PhotoArticle = ({ navigation, route }: Props) => {
             />
           )}
           </View>
-
-
-        </View>
-
-
       </ScrollView >
-
     </View >
   );
 };
@@ -156,7 +139,7 @@ const styles = StyleSheet.create({
   },
 });
 const headerStyles = StyleSheet.create({
-  p: { color: whitecolor, fontSize: 22, fontFamily: 'Mandali-Bold', lineHeight: 29, },
+  p: { color: whitecolor, fontSize: 22, fontFamily: 'Mandali-Bold', lineHeight: 28,},
 
 });
 

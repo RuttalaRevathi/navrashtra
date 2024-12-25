@@ -97,7 +97,7 @@ const WebStoriesHome = () => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ padding: 5 }}>
+      <View style={{ paddingHorizontal: 12, paddingVertical: 16 }}>
         <View style={commonstyles.homeOnetextView}>
           <Text style={commonstyles.Category}>
           वेब स्टोरीज 

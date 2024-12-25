@@ -11,7 +11,7 @@ import {commonstyles } from '../styles/commonstyles';
 import CategoryComponentTwo from './CategoryComponentTwo';
 import CategoryComponentOne from './CategoryComponentOne';
 
-function CategoryUI({ navigation, data }) {
+function CategoryUI({ navigation, data, title }) {
   const renderItemOne = ({ item }) => (
     <CategoryComponentOne
       item={item}
@@ -31,23 +31,26 @@ function CategoryUI({ navigation, data }) {
   return (
     <SafeAreaView styles={commonstyles.container}>
       <ScrollView style={commonstyles.scroll}>
-        <View>
-         
-          <View style={{ position: 'relative' }}>
+          <View style={{ padding: 12 }}>
+          <View style={commonstyles.homeOnetextView}>
+                    <Text style={commonstyles.Category}>{title}</Text>
+                </View>
             <FlatList
               showsHorizontalScrollIndicator={false}
               data={data?.slice(0, 1)}
               renderItem={renderItemOne}
               keyExtractor={(item) => item.id.toString()}
+              scrollEnabled={false}
+              style={{marginTop: 12}}
             />
             <FlatList
               style={commonstyles.cateflist}
               data={data?.slice(1, -1)}
               renderItem={renderItemTwo}
               keyExtractor={(item) => item.id.toString()}
+              scrollEnabled={false}
             />
           </View>
-        </View>
       </ScrollView>
     </SafeAreaView>
   );

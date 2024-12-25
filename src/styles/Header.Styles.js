@@ -45,17 +45,17 @@ export const HeaderStyle = StyleSheet.create({
         width: "100%",
         backgroundColor: whitecolor,
         flexDirection: "row",
-        padding: 5,
+        paddingHorizontal: 12,
+        paddingVertical: 10,
         justifyContent: 'space-between',
         alignItems:'center',
-        paddingLeft:10
 
     },
     DetailsHeader: {
         width: "100%",
         backgroundColor: whitecolor,
         flexDirection: "row",
-        padding: 10,
+        padding: 12,
         justifyContent: 'space-between',
         borderBottomColor: graycolor, borderBottomWidth: 1
     },

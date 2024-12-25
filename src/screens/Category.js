@@ -43,15 +43,14 @@ const CategoryScreen = ({ item }) => {
   };
 
   return (
-    <>{loading? <View style={commonstyles.spinnerView}>
-    <ActivityIndicator color={blackcolor} size="large" />
-    <Text style={commonstyles.spinnerText}>. . . Loading . . .</Text>
-  </View>: <CategoryUI
+    <>{!loading && parentData.length > 0 ? <CategoryUI
       data={parentData}
       navigation={navigation}
       title={item?.title}
       categoryName={item?.title}
-    />} 
+    />: <View style={commonstyles.spinnerView}>
+    <ActivityIndicator color={blackcolor} size="large" />
+  </View>} 
     </>
     
   );

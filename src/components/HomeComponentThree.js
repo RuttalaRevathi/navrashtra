@@ -36,8 +36,7 @@ class HomeComponentThree extends React.PureComponent {
       ? { uri: this.props?.item?.web_featured_image }
       : defaultImage;
     return (
-      <View>
-        <View>
+        <>
           <TouchableOpacity
             onPress={() => {
               this.props.navigation.navigate('Details', {
@@ -46,24 +45,19 @@ class HomeComponentThree extends React.PureComponent {
               });
             }}>
             <View style={commonstyles.HomeThreeCategoryview}>
-              <View>
                 <FastImage
-                  resizeMode={FastImage.resizeMode.contain}
+                  resizeMode={FastImage.resizeMode.cover}
                   source={imageUrl}
                   style={commonstyles.HomeCategoryImg}
                 />
-              </View>
               <View style={commonstyles.homecategoryTextView}>
                 <Text numberOfLines={2} style={commonstyles.HomeThreeCategorytext}>
                   {decode(this.props?.item?.title?.rendered)}
                 </Text>
               </View>
-            
             </View>
-
           </TouchableOpacity>
-        </View>
-      </View>
+        </>
     );
   }
 }

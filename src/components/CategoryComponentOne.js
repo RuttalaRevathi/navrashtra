@@ -33,7 +33,7 @@ const CategoryComponentOne = ({ item, navigation, propsdata }) => {
   };
 
   return (
-    <View style={{ borderBottomColor: medium_gray, borderBottomWidth: 2, paddingBottom: 10 }}>
+    <View style={{ borderBottomColor: medium_gray, borderBottomWidth: 2, paddingBottom: 12 }}>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate('Details', {
@@ -42,13 +42,11 @@ const CategoryComponentOne = ({ item, navigation, propsdata }) => {
           });
         }}>
         <View style={commonstyles.CategoryOneview}>
-          <View style={{padding:5,}}>
             <FastImage
-              resizeMode={FastImage.resizeMode.contain}
+              resizeMode={FastImage.resizeMode.cover}
               source={imageUrl}
               style={commonstyles.CategoryOneImg}
             />
-          </View>
           <View style={commonstyles.categoryoneTextView}>
             <Text numberOfLines={3} style={commonstyles.CategoryOnetext}>
               {decode(item?.title?.rendered)}
@@ -58,26 +56,17 @@ const CategoryComponentOne = ({ item, navigation, propsdata }) => {
       </TouchableOpacity>
 
       {/* time view */}
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', }}>
-        <View style={{}}>
-          <Text style={commonstyles.CategoryOnetime}>{formattedDate}</Text>
-        </View>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          
-          <View>
-            <TouchableOpacity
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 8 }}>
+      <Text style={commonstyles.CategoryOnetime}>{formattedDate}</Text>
+      <TouchableOpacity
               onPress={() => {
                 sharecall();
               }}>
               <Image
-                style={{ width: 15, height: 15, right: 20 }}
+                style={{ width: 16, height: 16, marginRight: 6 }}
                 source={require('../Assets/Images/share_black.png')}
               />
             </TouchableOpacity>
-
-
-          </View>
-        </View>
       </View>
 
     </View>

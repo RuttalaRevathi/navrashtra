@@ -202,19 +202,15 @@ const Details = ({ navigation, route }) => {
 
   return (
     <View style={commonstyles.container}>
-      <View>
         <View style={HeaderStyle.DetailsHeader}>
-          <View style={{ display: 'flex', alignItems: 'center', width: '10%' }}>
-          <TouchableOpacity
+        <TouchableOpacity
                 onPress={handleGoBack}
               style={{ zIndex: 999 }}>
               <Image
                 source={require('../Assets/Images/arrow.png')}
-                style={{ width: 25, height: 25 }}
+                style={{ width: 22, height: 22 }}
               />
             </TouchableOpacity>
-          </View>
-
           <View
             style={{
               display: 'flex',
@@ -224,25 +220,20 @@ const Details = ({ navigation, route }) => {
               flexDirection: 'row',
 
             }}>
-            <View style={{ display: 'flex', alignItems: 'center' }}>
-              <TouchableOpacity onPress={toggleFontSize}>
+            <TouchableOpacity onPress={toggleFontSize}>
                 <Image
-                  style={{ width: 20, height: 20 }}
+                  style={{ width: 22, height: 22 }}
                   source={require('../Assets/Images/font.png')}
                 />
               </TouchableOpacity>
-            </View>
-            <View style={{ display: 'flex', alignItems: 'center' }}>
               <TouchableOpacity onPress={sharecall}>
                 <Image
-                  style={{ width: 20, height: 20 }}
+                  style={{ width: 22, height: 22 }}
                   source={require('../Assets/Images/share_black.png')}
                 />
               </TouchableOpacity>
-            </View>
           </View>
         </View>
-      </View>
       <ScrollView ref={Scrollref}>
         <View>
           <View
@@ -252,46 +243,32 @@ const Details = ({ navigation, route }) => {
               paddingBottom: 5,
             }}>
             {/* Tittle */}
-            <View style={{ paddingLeft: 10, paddingTop: 10, paddingBottom: 5 }}>
+            <View style={{ paddingHorizontal: 12, paddingTop: 10}}>
               <Text
                 numberOfLines={3}
                 ellipsizeMode="tail"
                 style={commonstyles.categoryText}>
                 {decode(firstArticle?.title?.rendered)}
-
               </Text>
             </View>
             {/* Author and Time */}
             <View
               style={commonstyles.DetailTimeMainView}>
-              {/* Author */}
-              {/* <TouchableOpacity onPress={() => navigation.navigate('Author')}> */}
-              <View style={{}}>
-                <Text style={commonstyles.detailauthor}>
+              <Text style={commonstyles.detailauthor}>
                   BY {firstArticle?.author_name}
                 </Text>
-              </View>
-              {/* </TouchableOpacity> */}
-              {/* Time */}
-              <View style={{}}>
                 <Text style={commonstyles.detailTime}>Updated on: {formattedDate}</Text>
-              </View>
             </View>
 
             {/* image */}
-            <View style={{ width: '100%' }}>
-              <FastImage
+            <FastImage
                 source={imageUrl}
                 style={commonstyles.Detailslargecard}
                 resizeMode={FastImage.resizeMode.cover}
               />
-            </View>
             {/* content */}
             {/* <Text>{source1}</Text> */}
-            <View
-              style={{
-                justifyContent: 'center',
-              }}>
+            <View>
               {renderWebView &&
                 <AutoHeightWebView
                   javaScriptEnabled={true}
@@ -414,7 +391,7 @@ const Details = ({ navigation, route }) => {
               <Text style={commonstyles.RelatedCategory}>Next Articles</Text>
             </View>
             {detailsData.length > 0 ? (
-              <View style={{ paddingLeft: 10 }}>
+              <View style={{ paddingLeft: 12 }}>
                 <FlatList
                   showsHorizontalScrollIndicator={true}
                   persistentScrollbar={false}
@@ -438,11 +415,10 @@ const Details = ({ navigation, route }) => {
           </View>
 
           {/* Related News */}
-          <View>
             <View style={commonstyles.DetailsLatestView}>
               <Text style={commonstyles.RelatedCategory}>सम्बंधित ख़बरें</Text>
             </View>
-            <View style={{ paddingLeft: 10 }}>
+            <View style={{ paddingHorizontal: 12 }}>
               <FlatList
                 data={relatedData?.data}
                 renderItem={renderItemTwo}
@@ -452,7 +428,6 @@ const Details = ({ navigation, route }) => {
                 windowSize={10}
               />
             </View>
-          </View>
         </View>
       </ScrollView>
     </View>

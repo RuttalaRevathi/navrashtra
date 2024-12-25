@@ -27,7 +27,7 @@ const DetailsComponentTwo = ({ item, navigation, propsdata }) => {
     : defaultImage;
 
   return (
-    <View>
+    <>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate('Details', {
@@ -37,37 +37,29 @@ const DetailsComponentTwo = ({ item, navigation, propsdata }) => {
         }}>
         <View style={commonstyles.HomeComp2DotView}>
           <View style={commonstyles.cateviewText}>
-            <View>
               <Text
                 numberOfLines={2}
                 ellipsizeMode="tail"
                 style={commonstyles.latestText}>
                 {decode(item?.title?.rendered)}
               </Text>
-            </View>
             {/* Time View */}
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-end', }}>
-              
-              <View>
+            <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingTop: 10 }}>
                 <TouchableOpacity
                   onPress={sharecall}>
                   <Image
-                    style={{ width: 15, height: 15, marginRight: 10 }}
+                    style={{ width: 15, height: 15, marginRight: 4 }}
                     source={require('../Assets/Images/share_black.png')}
                   />
                 </TouchableOpacity>
-              </View>
             </View>
           </View>
-          <View style={commonstyles.cateviewImg}>
           <FastImage
-            resizeMode={FastImage.resizeMode.contain}
+            resizeMode={FastImage.resizeMode.cover}
              source={imageUrl} style={commonstyles.cateImage} />
-          </View>
         </View>
       </TouchableOpacity>
-      
-    </View>
+    </>
   );
 };
 

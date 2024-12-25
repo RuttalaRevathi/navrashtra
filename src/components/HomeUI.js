@@ -34,13 +34,12 @@ function HomeUI(props) {
 
   return (
     <SafeAreaView styles={commonstyles.container}>
-      <View style={{ padding: 5 }}>
+      <View style={{ paddingHorizontal: 12 }}>
         {/* Ctegory  text*/}
         <View style={commonstyles.homecategoryView}>
           <View style={commonstyles.homeOnetextView}>
             <Text style={commonstyles.Category}>{props?.categoryName}</Text>
           </View>
-          <View>
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate(props?.categoryName, {
@@ -51,17 +50,15 @@ function HomeUI(props) {
               }}>
               <Image style={commonstyles.homeNextImage} source={require('../Assets/Images/next.png')} />
             </TouchableOpacity>
-          </View>
         </View>
 
-        {/* flatlist */}
-        <View>
           <View style={commonstyles.homeCategoryflatView}>
             <FlatList
               data={newdata?.slice(0, 1)}
               showsHorizontalScrollIndicator={false}
               persistentScrollbar={false}
               numColumns={2}
+              style={{borderRadius: 6, overflow: 'hidden'}}
               onEndReachedThreshold={50}
               getItemLayout={(data, index) => ({
                 length: 40,
@@ -70,7 +67,6 @@ function HomeUI(props) {
               })}
               renderItem={renderItemOne}
             />
-            <View>
               <FlatList
                 showsHorizontalScrollIndicator={false}
                 persistentScrollbar={false}
@@ -83,9 +79,7 @@ function HomeUI(props) {
                 })}
                 renderItem={renderItemTwo}
               />
-            </View>
           </View>
-        </View>
       </View>
     </SafeAreaView>
   );

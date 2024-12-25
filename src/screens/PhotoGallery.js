@@ -36,15 +36,10 @@ const PhotoGallery = ({
 
   return (
     <SafeAreaView style={commonstyles.container}>
-      {/* <ScrollView style={commonstyles.scroll}> */}
-      <View>
         <Text style={commonstyles.galleryArticlecategorytext}>
           फोटो गैलरी
         </Text>
-      </View>
-      <View>
         {photosData?.data?.length !== 0 ? (
-          <View>
             <FlatList
               style={commonstyles.photoflist}
               data={photosData?.data}
@@ -52,7 +47,7 @@ const PhotoGallery = ({
               renderItem={({ item }) => {
                 const photoCount = getPhotoCount(item?.content?.rendered);
                 return (
-                  <View style={{ flex: 1 }}>
+                  <View style={{ flex: 1}}>
                     <TouchableOpacity onPress={() => {
                       navigation.navigate('PhotoArticle', {
                         item: item,
@@ -60,8 +55,8 @@ const PhotoGallery = ({
                         screenName: "Photos"
                       });
                     }}>
-                      <View style={{ paddingBottom: 15,}}>
-                        <View style={{paddingLeft: 5,}}>
+                      <View style={{ padding: 12}}>
+                        <View>
                           {typeof item?.web_featured_image === 'string' && item?.web_featured_image.trim() !== '' ? (
                             <FastImage
                               style={commonstyles.PhotoimgTag}
@@ -75,12 +70,9 @@ const PhotoGallery = ({
                             position: 'absolute',
                           }}>
                             <View style={{ flexDirection: 'row', top: 3 }}>
-                              <View>
                                 <Image
                                   source={require('../Assets/Images/gallery.png')}
                                   style={{ height: 15, width: 15, tintColor: whitecolor, }} />
-                              </View>
-                              <View>
                                 <Text style={{
                                   color: whitecolor,
                                   fontSize: 14,
@@ -89,10 +81,7 @@ const PhotoGallery = ({
                                 }}>
                                   {`${photoCount}`}
                                 </Text>
-                              </View>
-
                             </View>
-
                           </View>
                         </View>
                         <View style={{ borderBottomColor: graycolor, borderBottomWidth: 1, }}>
@@ -106,15 +95,11 @@ const PhotoGallery = ({
                 );
               }}
             />
-          </View>
         ) : (
           <View style={commonstyles.spinnerView}>
             <ActivityIndicator color={appThemeColor} size='large' />
-            <Text style={commonstyles.spinnerText}>. . . Loading . . .</Text>
           </View>
         )}
-      </View>
-      {/* </ScrollView> */}
     </SafeAreaView>
   );
 };

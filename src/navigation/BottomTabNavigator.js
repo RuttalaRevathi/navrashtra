@@ -115,14 +115,15 @@ const BottomTabNavigator = () => {
                 transform: [{ rotate: '45deg' }],
                 width: 40,
                 height: 40,
+                padding: 2,
                 justifyContent: 'center',
                 alignItems: 'center',
               }}>
                 <View
 
                   style={{
-                    width: 41,
-                    height: 41,
+                    width: 44,
+                    height: 44,
                     borderRadius: 5,
                     alignItems: 'center',
                     justifyContent: 'center',

@@ -32,7 +32,7 @@ class HomeVideosgalleryItemOne extends React.PureComponent {
       formattedDate = `${diffHours} hours ago`;
     }
     return (
-      <View style={{ marginRight: 5, marginLeft: 10, }}>
+      <View style={{ paddingHorizontal: 12 }}>
         <TouchableOpacity
           onPress={() => {
             this.props.navigation.navigate('VideoArticle', {
@@ -45,6 +45,7 @@ class HomeVideosgalleryItemOne extends React.PureComponent {
               <Image
                 source={{ uri: this.props.item?.web_featured_image }}
                 style={commonstyles.HomeVideoImg}
+                resizeMode='cover'
               />
               <View style={{
                 bottom: 15,
@@ -62,9 +63,7 @@ class HomeVideosgalleryItemOne extends React.PureComponent {
                 {decode(this.props?.item?.title?.rendered)}
               </Text>
             </View>
-
           </View>
-
         </TouchableOpacity>
       </View>
     );

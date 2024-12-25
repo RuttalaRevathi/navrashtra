@@ -38,7 +38,7 @@ class HomeVideosgalleryItemTwo extends React.PureComponent {
             ? { uri: this.props?.item?.web_featured_image }
             : defaultImage;
         return (
-            <View style={{ paddingRight: 10 }}>
+            <View style={{ paddingRight: 12 }}>
                 <TouchableOpacity
                     onPress={() => {
                         this.props.navigation.navigate('VideoArticle', {
@@ -46,14 +46,13 @@ class HomeVideosgalleryItemTwo extends React.PureComponent {
                             detailsData: this.props.videosData?.data,
                         });
                     }}>
-                    <View style={{ paddingBottom: 10 }}>
                         <View style={{ position: 'relative' }}>
                             <Image
                                 source={imageUrl}
                                 style={commonstyles.HomeVideosliderImg}
                             />
                             <View style={{
-                                bottom: 3,
+                                bottom: 8,
                                 right: 10,
                                 position: 'absolute',
                             }}>
@@ -67,8 +66,6 @@ class HomeVideosgalleryItemTwo extends React.PureComponent {
                             <Text numberOfLines={2} style={commonstyles.homeVideosliderText}>
                                 {decode(this.props?.item?.title?.rendered)}                        </Text>
                         </View>
-
-                    </View>
                 </TouchableOpacity>
             </View>
         );

@@ -286,13 +286,11 @@ const Home = ({ navigation }) => {
           {/* Spinner */}
           <Spinner
             visible={loading}
-            textContent={'Loading...'}
-            textStyle={{ color: '#FFF' }}
           />
 
 
           {/* Slider */}
-          <View style={{ paddingLeft: 5, paddingTop: 5 }}>
+          <View style={{ paddingLeft: 12, paddingTop: 10 }}>
             <SliderUI data={newsliderdata} navigation={navigation} />
           </View>
           {/* Webstories */}
@@ -313,17 +311,15 @@ const Home = ({ navigation }) => {
               <View style={commonstyles.gallerytextView}>
                 <Text style={commonstyles.homevideocategorytext}>फोटो</Text>
               </View>
-              <View style={{}}>
-                <TouchableOpacity
+              <TouchableOpacity
                   onPress={() => {
                     navigation.navigate('Photos');
                   }}>
                   <Image style={commonstyles.galleryImage} source={require('../Assets/Images/next.png')} />
-                </TouchableOpacity>
-              </View>
+              </TouchableOpacity>
             </View>
             {/* photo gallery  Cards*/}
-            <View style={{ paddingLeft: 10 }}>
+            <View style={{ paddingLeft: 12 }}>
               <FlatList
                 persistentScrollbar
                 data={photosData?.data}
@@ -347,26 +343,21 @@ const Home = ({ navigation }) => {
               <View style={commonstyles.gallerytextView}>
                 <Text style={commonstyles.homevideocategorytext}>व्हिडिओ</Text>
               </View>
-              <View style={{}}>
-                <TouchableOpacity
+              <TouchableOpacity
                   onPress={() => {
                     navigation.navigate('Videos');
                   }}>
                   <Image style={commonstyles.galleryImage} source={require('../Assets/Images/next.png')} />
                 </TouchableOpacity>
-              </View>
             </View>
 
             {/* videos gallery  Cards*/}
-            <View>
-              <View>
                 <FlatList
                   data={videosData?.data?.slice(0, 1)}
                   showsHorizontalScrollIndicator={false}
                   renderItem={videoGalleryitemOne}
                 />
-              </View>
-              <View style={{ paddingLeft: 10 }}>
+              <View style={{ paddingLeft: 12, paddingBottom: 12 }}>
                 <FlatList
                   persistentScrollbar
                   data={videosData?.data?.slice(1, 10)}
@@ -375,9 +366,9 @@ const Home = ({ navigation }) => {
                   renderItem={videoGalleryitemTwo}
                 />
               </View>
-            </View>
           </View>
           {/* Mumbai */}
+          <View style={{paddingVertical: 6}}></View>
           <HomeUI
             categoryName="मुंबई"
             data={mumbaiData?.data || []}
@@ -427,6 +418,7 @@ const Home = ({ navigation }) => {
             navigation={navigation}
           />
           {/* Movies */}
+          <View style={{paddingVertical: 6}}></View>
           <HomeUI
             categoryName="मनोरंजन"
             data={moviesData?.data}

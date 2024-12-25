@@ -18,21 +18,10 @@ import FastImage from 'react-native-fast-image';
 class ShortsComponent extends React.PureComponent {
     constructor(props) {
         super(props);
-        this.state = {
-            isLoading: true, // State to track loading status
-        };
-    }
-
-    componentDidMount() {
-        // Simulate loading time, you can replace this with your actual data fetching logic
-        setTimeout(() => {
-            this.setState({ isLoading: false });
-        }, 1000); // Simulate a 1 second loading time
     }
 
     render() {
         const { item, index, propsdata, navigation } = this.props;
-        const { isLoading } = this.state;
 
         const sharecall = () => {
             const Link_Url = item?.link;
@@ -57,20 +46,10 @@ class ShortsComponent extends React.PureComponent {
 
         const nextItem = propsdata[index + 1] || {};
 
-        if (isLoading) {
-            return (
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                    <ActivityIndicator size="large" color={blackcolor} />
-                    <Text style={{ color: blackcolor, fontSize: 18 }}>Loading...</Text>
-                </View>
-            );
-        }
-
         return (
             <View style={{ backgroundColor: whitecolor, borderRadius: 20, position: 'relative', height: Dimensions.get('screen').height - 210 }}>
                 <ScrollView>
                     <View>
-                        {/* Close Button */}
                         <TouchableOpacity
                             style={{
                                 position: 'absolute',
@@ -87,8 +66,6 @@ class ShortsComponent extends React.PureComponent {
                                 style={{ width: 40, height: 40 }}
                             />
                         </TouchableOpacity>
-                        {/* Image */}
-                        <View>
                             <Image
                                 source={imageUrl}
                                 style={{
@@ -100,35 +77,35 @@ class ShortsComponent extends React.PureComponent {
                                     objectFit:'fill'
                                 }}
                             />
-                        </View>
                         {/* Title */}
-                        <View style={{ paddingLeft: 10, paddingRight: 10, paddingTop: 5 }}>
+                        <View style={{ paddingHorizontal: 12, paddingTop: 12 }}>
                             <Text style={{
                                 color: blackcolor,
                                 fontSize: 20,
                                 fontFamily: 'Faustina-Bold',
-                                lineHeight: 27,
+                                lineHeight: 26,
+                                fontWeight: 'bold'
                             }}>
                                 {decode(item?.title?.rendered)}
                             </Text>
                         </View>
                         {/* Time and Share View */}
                         <View style={{
-                            paddingTop: 5, flexDirection: 'row',
-                            justifyContent: 'space-between', paddingLeft: 10, paddingRight: 20,
+                            paddingTop: 6, flexDirection: 'row',
+                            justifyContent: 'space-between', paddingHorizontal: 12
                         }}>
                             <Text style={commonstyles.shortsTime}>{formattedDate}</Text>
                             <TouchableOpacity onPress={sharecall}>
                                 <Image
-                                    style={{ width: 18, height: 18 }}
+                                    style={{ width: 20, height: 20 }}
                                     source={require('../Assets/Images/share_black.png')}
                                 />
                             </TouchableOpacity>
                         </View>
                         {/* Description */}
-                        <View style={{ justifyContent: 'center', padding: 10 }}>
-                            <Text numberOfLines={5}
-                                ellipsizeMode="tail" style={{ color: blackcolor, fontSize: 18, lineHeight: 27, fontFamily: 'Mukta-Regular' }}>
+                        <View style={{ padding: 12 }}>
+                            <Text numberOfLines={10}
+                                ellipsizeMode="tail" style={{ color: blackcolor, fontSize: 16, lineHeight: 26, fontFamily: 'Mukta-Regular' }}>
                                 {source1}
                             </Text>
                         </View>
@@ -143,41 +120,16 @@ class ShortsComponent extends React.PureComponent {
                             }}>
                             <View style={{
                                 padding: 10, borderRadius: 20, backgroundColor: redcolor,
-                                justifyContent: 'flex-end', width: 150, marginRight: 20,
-                                alignSelf: 'flex-end',
+                                 width: 150, marginTop: 30,
+                                alignSelf: 'center',
                             }}>
                                 <Text style={{ color: whitecolor, alignSelf: 'center', fontFamily: 'Mukta-Bold',fontWeight:'700' }}>
                                     Read full Article
                                 </Text>
                             </View>
                         </TouchableOpacity>
-
                     </View>
                 </ScrollView>
-                {/* Next article */}
-
-                <View style={{ position: 'absolute', left: 0, right: 0, top: 'auto', bottom: 0 }}>
-                    {nextItem?.title?.rendered && (
-                        <View
-                            style={{
-                                padding: 10,
-                                borderRadius: 10, // Added borderRadius for better appearance
-                                marginTop: 10,
-                                backgroundColor: lightgllery_background,
-                            }}
-                        >
-                            <Text numberOfLines={2}
-                                ellipsizeMode="tail" style={{
-                                    color: whitecolor,
-                                    fontSize: 18,
-                                    fontFamily: 'Mukta-Bold',
-                                }}>
-
-                                {decode(nextItem?.title?.rendered)}
-                            </Text>
-                        </View>
-                    )}
-                </View>
             </View>
         );
     }

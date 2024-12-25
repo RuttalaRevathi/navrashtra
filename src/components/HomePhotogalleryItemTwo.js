@@ -34,17 +34,15 @@ class HomePhotogalleryItemTwo extends React.PureComponent {
 
 
     return (
-      <View style={{ paddingRight: 10 }}>
-
+      <View style={{ marginRight: 12 }}>
         <TouchableOpacity
           onPress={() => {
             this.props.navigation.navigate('PhotoArticle', {
               item: this.props?.item,
               detailsData: this.props?.propsdata,
             });
-
           }}>
-          <View style={{ paddingBottom: 10 }}>
+          <View style={{ paddingBottom: 12 }}>
             <View style={{ position: 'relative' }}>
               <Image
                 source={imageUrl}
@@ -52,28 +50,21 @@ class HomePhotogalleryItemTwo extends React.PureComponent {
               />
               <View style={{
                 bottom: 6,
-                right: 10,
+                right: 12,
                 position: 'absolute',
               }}>
-                <View style={{ flexDirection: 'row', top: 3 }}>
-                  <View>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <Image
                       source={require('../Assets/Images/gallery.png')}
                       style={{ height: 15, width: 15, tintColor: whitecolor, }} />
-                  </View>
-                  <View>
                     <Text style={{
                       color: whitecolor,
                       fontSize: 14,
-                      bottom: 4,
-                      left: 3
+                      left: 4
                     }}>
                       {`${photoCount}`}
                     </Text>
-                  </View>
-
                 </View>
-
               </View>
             </View>
             <View style={commonstyles.homephotosliderTextView}>
