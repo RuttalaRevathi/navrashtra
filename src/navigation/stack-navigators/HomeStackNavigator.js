@@ -12,6 +12,7 @@ import Videos from '../../screens/Videos';
 import TopTabNavigator from '../TopTabNavigator';
 import Webstories from '../../screens/Webstories';
 import AuthorScreen from '../../screens/Author';
+import PhotoArticle from '../../screens/PhotoArticle';
 
 const Stack = createStackNavigator();
 
@@ -65,6 +66,10 @@ const HomeStackNavigator = ({ menuData }: Props) => {
       <Stack.Screen name="Details" component={Details} />
       <Stack.Screen name="Webstories" component={Webstories} />
       <Stack.Screen name="Author" component={AuthorScreen} />
+      <Stack.Screen name="Videos" component={Videos} />
+      <Stack.Screen name="VideoArticle" component={VideoArticle} />
+      <Stack.Screen name="Photos" component={PhotoGallery} />
+      <Stack.Screen name="PhotoArticle" component={PhotoArticle} />
 
 
     </Stack.Navigator>

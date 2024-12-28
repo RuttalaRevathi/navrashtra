@@ -48,7 +48,6 @@ class ShortsComponent extends React.PureComponent {
 
         return (
             <View style={{ backgroundColor: whitecolor, borderRadius: 20, position: 'relative', height: Dimensions.get('screen').height - 210 }}>
-                <ScrollView>
                     <View>
                         <TouchableOpacity
                             style={{
@@ -104,7 +103,7 @@ class ShortsComponent extends React.PureComponent {
                         </View>
                         {/* Description */}
                         <View style={{ padding: 12 }}>
-                            <Text numberOfLines={10}
+                            <Text numberOfLines={8}
                                 ellipsizeMode="tail" style={{ color: blackcolor, fontSize: 16, lineHeight: 26, fontFamily: 'Mukta-Regular' }}>
                                 {source1}
                             </Text>
@@ -120,7 +119,7 @@ class ShortsComponent extends React.PureComponent {
                             }}>
                             <View style={{
                                 padding: 10, borderRadius: 20, backgroundColor: redcolor,
-                                 width: 150, marginTop: 30,
+                                 width: 150, marginTop: 12,
                                 alignSelf: 'center',
                             }}>
                                 <Text style={{ color: whitecolor, alignSelf: 'center', fontFamily: 'Mukta-Bold',fontWeight:'700' }}>
@@ -129,7 +128,6 @@ class ShortsComponent extends React.PureComponent {
                             </View>
                         </TouchableOpacity>
                     </View>
-                </ScrollView>
             </View>
         );
     }
