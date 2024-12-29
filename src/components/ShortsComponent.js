@@ -9,7 +9,8 @@ import {
     TouchableOpacity,
     View,
     ActivityIndicator,
-    Dimensions, // Import ActivityIndicator for loading indicator
+    Dimensions,
+    StyleSheet, // Import ActivityIndicator for loading indicator
 } from 'react-native';
 import moment from 'moment';
 import { blackcolor, commonstyles, lightgllery_background, off_white, whitecolor, redcolor } from '../styles/commonstyles';
@@ -22,6 +23,7 @@ class ShortsComponent extends React.PureComponent {
 
     render() {
         const { item, index, propsdata, navigation } = this.props;
+        console.log(propsdata.length, index)
 
         const sharecall = () => {
             const Link_Url = item?.link;
@@ -47,7 +49,7 @@ class ShortsComponent extends React.PureComponent {
         const nextItem = propsdata[index + 1] || {};
 
         return (
-            <View style={{ backgroundColor: whitecolor, borderRadius: 20, position: 'relative', height: Dimensions.get('screen').height - 210 }}>
+            <View style={styles.wrapper}>
                     <View>
                         <TouchableOpacity
                             style={{
@@ -62,7 +64,7 @@ class ShortsComponent extends React.PureComponent {
                         >
                             <Image
                                 source={require('../Assets/Images/cancel.png')} // Your close button image
-                                style={{ width: 40, height: 40 }}
+                                style={{ width: 30, height: 30 }}
                             />
                         </TouchableOpacity>
                             <Image
@@ -71,8 +73,8 @@ class ShortsComponent extends React.PureComponent {
                                     width: '100%',
                                     minHeight: 200,
                                     maxHeight: 250,
-                                    borderTopLeftRadius: 20,
-                                    borderTopRightRadius: 20,
+                                    borderTopLeftRadius: 10,
+                                    borderTopRightRadius: 10,
                                     objectFit:'fill'
                                 }}
                             />
@@ -107,9 +109,7 @@ class ShortsComponent extends React.PureComponent {
                                 ellipsizeMode="tail" style={{ color: blackcolor, fontSize: 16, lineHeight: 26, fontFamily: 'Mukta-Regular' }}>
                                 {source1}
                             </Text>
-                        </View>
-                        {/* Read full article */}
-                        <TouchableOpacity
+                            <TouchableOpacity
                             onPress={() => {
                                 navigation.navigate('Details', {
                                     item: item,
@@ -118,16 +118,27 @@ class ShortsComponent extends React.PureComponent {
                                 });
                             }}>
                             <View style={{
-                                padding: 10, borderRadius: 20, backgroundColor: redcolor,
+                                padding: 6, borderRadius: 20, backgroundColor: redcolor,
                                  width: 150, marginTop: 12,
-                                alignSelf: 'center',
+                                alignSelf: 'flex-start',
                             }}>
-                                <Text style={{ color: whitecolor, alignSelf: 'center', fontFamily: 'Mukta-Bold',fontWeight:'700' }}>
-                                    Read full Article
+                                <Text style={{ fontSize: 14, color: whitecolor, alignSelf: 'center', fontFamily: 'Mukta-Bold',fontWeight:'700' }}>
+                                    Read Full Article
                                 </Text>
                             </View>
                         </TouchableOpacity>
+                        </View>
                     </View>
+                    
+                    {(index < 3) && <View style={styles.swipeupWrapper}>
+                    <Image
+                        style={styles.swipeUpImg}
+                        resizeMode='contain'
+                        source={require('../Assets/Images/swipeup.png')}
+                                />
+                    <Text style={styles.swipeUpText}>Swipe up for next shorts</Text>
+                    </View>}
+                    {index + 1 === propsdata.length && <Text style={styles.noMoreSwipes}>No More Shorts to Swipe</Text>}
             </View>
         );
     }
@@ -137,5 +148,33 @@ ShortsComponent.defaultProps = {
     items: [], // Ensure items is at least an empty array
     index: 0,  // Default index to 0
 };
+
+const styles = StyleSheet.create({
+    wrapper: {
+        backgroundColor: whitecolor, borderRadius: 10, position: 'relative', 
+        height: Dimensions.get('screen').height - 210,
+        shadowColor: "#000",
+shadowOffset: {
+	width: 0,
+	height: 2,
+},
+shadowOpacity: 0.25,
+shadowRadius: 3.84,
+
+elevation: 5,
+    },
+    swipeupWrapper: {
+        position: 'absolute', bottom: 10, flexDirection: 'row', alignItems: 'center', alignSelf: 'center'
+    },
+    swipeUpText: {
+        fontSize: 10, fontStyle: 'italic'
+    },
+    swipeUpImg: {
+        width: 16, height: 16, marginRight: 4
+    },
+    noMoreSwipes: {
+        position: 'absolute', bottom: 10, fontSize: 10, fontStyle: 'italic', alignSelf: 'center'
+    }
+})
 
 export default ShortsComponent;

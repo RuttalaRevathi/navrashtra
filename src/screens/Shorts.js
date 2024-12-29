@@ -54,10 +54,11 @@ console.log(newlatestdata)
                     <ActivityIndicator size="large" color={blackcolor} />
                 </View> : 
                 <View style={{padding: 12, backgroundColor: off_white}}><Carousel
+                layout={'stack'} layoutCardOffset={`5`}
         data={newlatestdata}
         renderItem={renderItemOne}
-        sliderHeight={windowHeight}
-        itemHeight={windowHeight}
+        sliderHeight={windowHeight - 80}
+        itemHeight={windowHeight - 80}
         currentIndex={currentIndex}
                 vertical={true}
         onSnapToItem={(index) => setCurrentIndex(index)}
