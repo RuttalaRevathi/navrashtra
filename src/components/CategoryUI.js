@@ -1,17 +1,20 @@
 /* eslint-disable prettier/prettier */
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   Text,
   View,
   FlatList,
    ScrollView,
   SafeAreaView,
+  TouchableOpacity,
+  Image
 } from 'react-native';
 import {commonstyles } from '../styles/commonstyles';
 import CategoryComponentTwo from './CategoryComponentTwo';
 import CategoryComponentOne from './CategoryComponentOne';
+import { HeaderStyle } from '../styles/Header.Styles';
 
-function CategoryUI({ navigation, data, title }) {
+function CategoryUI({ navigation, data, title, isTopNavigation }) {
   const renderItemOne = ({ item }) => (
     <CategoryComponentOne
       item={item}
@@ -30,6 +33,19 @@ function CategoryUI({ navigation, data, title }) {
  
   return (
     <SafeAreaView styles={commonstyles.container}>
+            {!isTopNavigation && <View style={HeaderStyle.subHeaderviewHeight}>
+          <TouchableOpacity onPress={() => {
+               navigation.reset({
+                index: 0,
+                routes: [{ name: 'TopTabs', params: { screen: 'Home' } }],
+              });
+            }} >
+              <Image
+                source={require('../Assets/Images/arrow.png')}
+                style={{ width: 22, height: 22 }}
+              />
+            </TouchableOpacity>
+        </View>}
       <ScrollView style={commonstyles.scroll}>
           <View style={{ padding: 12 }}>
           <View style={commonstyles.homeOnetextView}>

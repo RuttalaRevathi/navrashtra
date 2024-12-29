@@ -6,7 +6,7 @@ import getTopMenuDataAction from '../redux/actions/getTopMenuDataAction';
 import CategoryScreen from '../screens/Category';
 import EmptyScreen from '../components/EmptyScreen';
 import Home from '../screens/Home';
-import { blackcolor, whitecolor } from '../styles/commonstyles';
+import { whitecolor, redcolor } from '../styles/commonstyles';
 import PhotoGallery from '../screens/PhotoGallery';
 import Videos from '../screens/Videos';
 import Webstories from '../screens/Webstories';
@@ -46,10 +46,10 @@ const TopTabNavigator = ({ navigation }: Props) => {
       initialRouteName="Home"
       screenOptions={{
         tabBarScrollEnabled: true,
-        tabBarIndicatorStyle: { backgroundColor: blackcolor },
-        tabBarActiveTintColor: blackcolor,
+        tabBarIndicatorStyle: { backgroundColor: redcolor },
+        tabBarActiveTintColor: redcolor,
         tabBarInactiveTintColor: 'black',
-        tabBarLabelStyle: { fontSize: 16, fontFamily: 'Mandali-Bold' },
+        tabBarLabelStyle: { fontSize: 16, fontFamily: 'Mandali-Bold', fontWeight: '500' },
         tabBarStyle: {
           backgroundColor: whitecolor,
           height: 50,
@@ -90,7 +90,7 @@ const TopTabNavigator = ({ navigation }: Props) => {
                 ? PhotoGallery:
                 item.title ==='वेब स्टोरीज'
                 ? Webstories
-                : () => <CategoryScreen item={item} />
+                : () => <CategoryScreen isTopNavigation={true} item={item} />
                 
                 
             }

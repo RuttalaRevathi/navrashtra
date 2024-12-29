@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import CategoryUI from '../components/CategoryUI';
 import { useRoute, useNavigation } from '@react-navigation/native';
-import { View, Text, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 import { blackcolor, commonstyles } from '../styles/commonstyles';
 
-const CategoryScreen = ({ item }) => {
+const CategoryScreen = ({ item, isTopNavigation }) => {
   const navigation = useNavigation();
   const route = useRoute();
 
@@ -48,6 +48,7 @@ const CategoryScreen = ({ item }) => {
       navigation={navigation}
       title={item?.title}
       categoryName={item?.title}
+      isTopNavigation={isTopNavigation}
     />: <View style={commonstyles.spinnerView}>
     <ActivityIndicator color={blackcolor} size="large" />
   </View>} 
