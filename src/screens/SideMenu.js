@@ -37,9 +37,9 @@ const SideMenu = ({ navigation }: Props) => {
 
   const handleNavigation = (title) => {
     if (title === 'व्हिडिओ') {
-      navigation.navigate('Videos');
+      navigation.navigate('VDStack');
     } else if (title === 'फोटो') {
-      navigation.navigate('Photos');
+      navigation.navigate('PTStack');
     }
     else if (title === 'वेब स्टोरीज') {
       navigation.navigate('Webstories');
