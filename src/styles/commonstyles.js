@@ -149,7 +149,7 @@ export const commonstyles = StyleSheet.create({
     paddingRight: 10,
   },
   categoryoneTextView: {
-    width: ITEM_WIDTH,
+    width: ITEM_WIDTH-20,
   },
   CategoryOnetext: {
     color: blackcolor,
@@ -157,6 +157,7 @@ export const commonstyles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 24,
     paddingTop: 10,
+    
   },
   homecategoryTextView: {
     width: Dimensions.get('screen').width - 24,
