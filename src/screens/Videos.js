@@ -31,7 +31,10 @@ const Videos = ({
     // share function
     return (
         <SafeAreaView style={commonstyles.container}>
-                <Text style={commonstyles.galleryArticlecategorytext}>वीडियो गैलरी</Text>
+                 <View style={{ padding: 12 }}>
+                          <View style={commonstyles.gallerycategoryView}>
+                                    <Text style={commonstyles.galleryArticlecategorytext}>वीडियो गैलरी</Text>
+                                    </View>
                     <FlatList
                         style={commonstyles.cateflist}
                         data={videosData?.data}
@@ -45,7 +48,7 @@ const Videos = ({
                                             screenName: "Videos"
                                         });
                                     }}>
-                                        <View style={{paddingHorizontal: 12, paddingTop: 12}}>
+                                        <View style={{paddingBottom: 5,paddingTop:5}}>
                                                 <>
                                                     {typeof item?.web_featured_image === 'string' && item?.web_featured_image.trim() !== '' ? (
                                                         <View>
@@ -72,6 +75,7 @@ const Videos = ({
                             </View>
                         )}
                     />
+                    </View>
         </SafeAreaView>
     );
 };

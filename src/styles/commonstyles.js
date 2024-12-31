@@ -165,6 +165,9 @@ export const commonstyles = StyleSheet.create({
   homeOnetextView: {
     borderLeftColor: redcolor, borderLeftWidth: 6,
   },
+  gallerycategoryView: {
+    borderLeftColor: redcolor, borderLeftWidth: 6,marginBottom:5
+  },
   gallerytextView: {
     borderLeftColor: redcolor, borderLeftWidth: 6,
   },
@@ -191,6 +194,9 @@ export const commonstyles = StyleSheet.create({
   },
   detailauthor: {
     color: blackcolor, fontFamily: 'Mukta-SemiBold', fontSize: 14,
+  },
+  detailauthorgallery: {
+    color: whitecolor, fontFamily: 'Mukta-SemiBold', fontSize: 14,
   },
   categoryText: {
     fontSize: 22,
@@ -339,7 +345,7 @@ export const commonstyles = StyleSheet.create({
   },
   galleryArticlecategorytext: {
     color: blackcolor, fontSize: 20, paddingLeft: 12,
-    fontFamily: 'Mukta', paddingTop: 10, fontWeight: 'bold'
+    fontFamily: 'Mukta', paddingTop: 5, fontWeight: 'bold'
   },
   latestTxtTag: {
     color: blackcolor, fontFamily: 'Mukta-SemiBold',
@@ -662,6 +668,11 @@ export const commonstyles = StyleSheet.create({
   },
   detailTime: {
     color: blackcolor,
+    fontFamily: 'Mukta-Regular', fontSize: 11
+
+  },
+  detailTimegallery: {
+    color: whitecolor,
     fontFamily: 'Mukta-Regular', fontSize: 11
 
   },

@@ -43,6 +43,10 @@ const PhotoArticle = ({ navigation, route }: Props) => {
     );
     return index + 1;
   };
+  // Date and time 
+    const apiDate = route?.params?.item?.date;
+    const formattedDate = moment(apiDate).format("MMM DD, YYYY | hh:mm A");
+  
   const sharecall = (name) => {
     const Link_Url = route?.params?.item?.link;
     Share.share({
@@ -75,12 +79,21 @@ const PhotoArticle = ({ navigation, route }: Props) => {
       <ScrollView ref={scrollViewRef}
         style={{ backgroundColor: gllery_background, }}
       >
+        {/* Tittle */}
           <View style={{ padding: 12, flex: 1, }}>
             <HTMLView
               value={'<p>' + route?.params?.item?.title?.rendered + '</p>'}
               stylesheet={headerStyles}
             />
           </View>
+          {/* time */}
+                    <View
+                      style={commonstyles.DetailTimeMainView}>
+                        <Text style={commonstyles.detailauthorgallery}>
+                          BY {route?.params?.item?.author_name}
+                        </Text>
+                        <Text style={commonstyles.detailTimegallery}>Updated on: {formattedDate}</Text>
+                    </View>
           <View>
           {showWebView && (
             <AutoHeightWebView

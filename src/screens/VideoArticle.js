@@ -86,6 +86,7 @@ const VideoArticle = ({ navigation, route }: Props) => {
               {decode(route?.params?.item?.title?.rendered)}
             </Text>
           </View>
+          {/* time */}
           <View
             style={commonstyles.DetailTimeMainView}>
               <Text style={commonstyles.detailauthor}>

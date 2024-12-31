@@ -60,9 +60,13 @@ const LatestNews = ({ navigation, route }: Props) => {
         </View>
       ) : (
         <>
-        <Text style={commonstyles.galleryArticlecategorytext}>ताज्या बातम्या</Text>
+        <View style={{ padding: 12 }}>
+                                  <View style={commonstyles.gallerycategoryView}>
+                                            <Text style={commonstyles.galleryArticlecategorytext}>
+        ताज्या बातम्या</Text>
+        </View>
       <ScrollView style={commonstyles.scroll}>
-            <View style={{ padding: 12 }}>
+            <View style={{  }}>
               <FlatList
                 style={commonstyles.cateflist}
                 data={latestNews?.data}
@@ -70,6 +74,7 @@ const LatestNews = ({ navigation, route }: Props) => {
               />
             </View>
         </ScrollView>
+        </View>
         </>
       )}
     </SafeAreaView>

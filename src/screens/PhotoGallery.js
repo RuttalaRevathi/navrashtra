@@ -36,9 +36,12 @@ const PhotoGallery = ({
 
   return (
     <SafeAreaView style={commonstyles.container}>
-        <Text style={commonstyles.galleryArticlecategorytext}>
+ <View style={{ padding: 12 }}>
+          <View style={commonstyles.gallerycategoryView}>
+                    <Text style={commonstyles.galleryArticlecategorytext}>
           फोटो गैलरी
         </Text>
+        </View>
         {photosData?.data?.length > 0 ? (
             <FlatList
               style={commonstyles.photoflist}
@@ -55,7 +58,7 @@ const PhotoGallery = ({
                         screenName: "Photos"
                       });
                     }}>
-                      <View style={{ padding: 12}}>
+                      <View style={{ paddingBottom: 5,paddingTop:5}}>
                         <View>
                           {typeof item?.web_featured_image === 'string' && item?.web_featured_image.trim() !== '' ? (
                             <FastImage
@@ -100,6 +103,7 @@ const PhotoGallery = ({
             <ActivityIndicator color={appThemeColor} size='large' />
           </View>
         )}
+        </View>
     </SafeAreaView>
   );
 };
