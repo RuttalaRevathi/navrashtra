@@ -4,44 +4,29 @@ import {
   Text,
   TouchableOpacity,
   Image,
-  Linking,
   ScrollView,
   Share,
-  Dimensions,
   FlatList,
+  Platform,
 } from 'react-native';
 import {
   blackcolor,
   commonstyles,
-  Dark_graycolor,
   graycolor,
-  redcolor,
 } from '../styles/commonstyles';
 import AutoHeightWebView from 'react-native-autoheight-webview';
 import { HeaderStyle } from '../styles/Header.Styles';
 import moment from 'moment';
-import { useDispatch, useSelector } from 'react-redux';
 import DetailsComponentTwo from '../components/DetailsComponentTwo';
 import DetailsComponentOne from '../components/DetailsComponentOne';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { BaseUrl, DetailsUrl, LatestUrl, RelatedUrl } from '../utilities/urls';
 import FastImage from 'react-native-fast-image';
 import { decode } from 'html-entities';
 
-const screenWidth = Dimensions.get('window').width;
-
 const Details = ({ navigation, route }) => {
-  const dispatch = useDispatch();
   const [detailsData, setDetailsData] = useState([]);
-  const [modalVisible, setModalVisible] = useState(false);
-  const [isHomeIcon, setIsHomeIcon] = useState(false);
   const Scrollref = useRef();
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(route.params.index || 0);
   const [fontSize, setFontSize] = useState(18);
-  const [activeSlide, setActiveSlide] = useState(0);
-  const [latestNews, setLatestNewsData] = useState(null);
   const [relatedData, setRelatedData] = useState(null);
   const [detailArticleData, setDetailArticleData] = useState(null);
   const [renderWebView, setRenderWebView] = useState(false);
@@ -363,7 +348,7 @@ const Details = ({ navigation, route }) => {
       p, li { font-family: 'Faustina', sans-serif; line-height: 1.4; padding: 0px 8px; color: #000; font-weight: 500; font-size: ${fontSize}px; }
     </style>
   `,
-                    baseUrl: 'https://twitter.com',
+                    baseUrl: Platform.OS === "android" ? 'https://twitter.com' : '',
                   }}
                   injectedJavaScript={`
                     document.querySelectorAll('a').forEach(a => {

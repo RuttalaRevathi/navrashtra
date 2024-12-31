@@ -47,7 +47,7 @@ function CategoryUI({ navigation, data, title, isTopNavigation }) {
             </TouchableOpacity>
         </View>}
       <ScrollView style={commonstyles.scroll}>
-          <View style={{ padding: 12 }}>
+        <View style={{padding: 12}}>
           <View style={commonstyles.homeOnetextView}>
                     <Text style={commonstyles.Category}>{title}</Text>
                 </View>
@@ -60,13 +60,13 @@ function CategoryUI({ navigation, data, title, isTopNavigation }) {
               style={{marginTop: 12}}
             />
             <FlatList
-              style={commonstyles.cateflist}
               data={data?.slice(1, -1)}
               renderItem={renderItemTwo}
               keyExtractor={(item) => item.id.toString()}
               scrollEnabled={false}
+              style={{paddingBottom: isTopNavigation ? 0 : 30}}
             />
-          </View>
+            </View>
       </ScrollView>
     </SafeAreaView>
   );

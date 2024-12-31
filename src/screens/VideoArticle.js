@@ -1,21 +1,15 @@
 /* eslint-disable prettier/prettier */
-import React, { useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, Linking, ScrollView, FlatList, Share, Dimensions } from 'react-native';
-import { appThemeColor, blackcolor, commonstyles, Header_text, red_color, whitecolor, redcolor } from '../styles/commonstyles';
+import React, { useEffect } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, Share, Dimensions } from 'react-native';
+import { blackcolor, commonstyles, whitecolor } from '../styles/commonstyles';
 import { HeaderStyle } from '../styles/Header.Styles';
-import HTMLView from 'react-native-htmlview';
 import moment from 'moment';
-import { connect, useDispatch } from 'react-redux';
-import getRelatedAction from '../redux/actions/getRelatedAction';
 import AutoHeightWebView from 'react-native-autoheight-webview';
 import { useState } from 'react';
 import FastImage from 'react-native-fast-image';
-const screenWidth = Dimensions.get('window').width;
 
 const VideoArticle = ({ navigation, route }: Props) => {
   const [detailsData, setDetailsData] = useState([]);
-  const scrollViewRef = useRef(null);
-  const dispatch = useDispatch();
   const source = route?.params?.item?.content?.rendered;
   const [videoAvailable, setVideoAvailable] = useState(true);
 
