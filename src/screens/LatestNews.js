@@ -43,38 +43,29 @@ const LatestNews = ({ navigation, route }: Props) => {
       navigation={navigation}
     />
   );
-
-  const renderItemOne = ({ item }) => (
-    <CategoryComponentOne
-      item={item}
-      propsdata={latestNews?.data}
-      navigation={navigation}
-    />
-  );
-
   return (
     <SafeAreaView style={commonstyles.container}>
-      {loading ? ( 
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <ActivityIndicator size="large" />
+      {loading ? (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <ActivityIndicator size="large" />
         </View>
       ) : (
         <>
-        <View style={{ padding: 12 }}>
-                                  <View style={commonstyles.gallerycategoryView}>
-                                            <Text style={commonstyles.galleryArticlecategorytext}>
-        ताज्या बातम्या</Text>
-        </View>
-      <ScrollView style={commonstyles.scroll}>
-            <View style={{  }}>
-              <FlatList
-                style={commonstyles.cateflist}
-                data={latestNews?.data}
-                renderItem={renderItemTwo}
-              />
+          <View style={{ padding: 12 }}>
+            <View style={commonstyles.gallerycategoryView}>
+              <Text style={commonstyles.galleryArticlecategorytext}>
+                ताज्या बातम्या</Text>
             </View>
-        </ScrollView>
-        </View>
+            <ScrollView style={commonstyles.scroll}>
+              <View style={{}}>
+                <FlatList
+                  style={commonstyles.cateflist}
+                  data={latestNews?.data}
+                  renderItem={renderItemTwo}
+                />
+              </View>
+            </ScrollView>
+          </View>
         </>
       )}
     </SafeAreaView>

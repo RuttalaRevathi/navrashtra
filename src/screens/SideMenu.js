@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, Image, FlatList, SafeAreaView, ScrollView
 import { useDispatch, useSelector } from 'react-redux';
 import getTopMenuDataAction from '../redux/actions/getTopMenuDataAction';
 import { sideMenuStyle } from '../styles/SideMenuStyles';
-import { graycolor } from '../styles/commonstyles';
+import { Dark_Gray, graycolor } from '../styles/commonstyles';
 import { TouchableNativeFeedback } from 'react-native';
 
 const SideMenu = ({ navigation }: Props) => {
@@ -92,20 +92,30 @@ const SideMenu = ({ navigation }: Props) => {
               </View>
             )}
           />
-          {/* <DrawerItem
+          <DrawerItem
             style={sideMenuStyle.item}
             icon={({ color, size }) => (
               <Image
-                source={require('../Assets/Images/star.png')}
+                source={require('../Assets/Images/settings.png')}
                 style={sideMenuStyle.icon}
               />
             )}
-            label="Te"
+            label="Settings"
             labelStyle={sideMenuStyle.text}
             onPress={() => {
-              navigation.navigate('Bookmark');
+              navigation.navigate('Settings');
             }}
-          /> */}
+          />
+          <DrawerItem
+            style={sideMenuStyle.item}
+                       label="App Version 1.0.0"
+            labelStyle={{ color:Dark_Gray,
+                fontSize: 16,
+                fontWeight:'bold',
+              
+            }}
+            
+          />
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -27,6 +27,10 @@ export const SLIDER_WIDTH = Dimensions.get('window').width;
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH);
 
 export const commonstyles = StyleSheet.create({
+  noMoreText: {
+    textAlign: 'center',
+    marginTop: 10,
+  },
   HomeThreeCategoryview: {
     borderBottomColor: graycolor, borderBottomWidth: 1,
     width: '100%', flex: 1
@@ -225,11 +229,17 @@ export const commonstyles = StyleSheet.create({
   shareview: { marginRight: 15 },
   sharetext: { color: Dark_Gray, fontSize: 16, fontWeight: '500' },
   settingview: {
-    paddingHorizontal: 10, marginTop: 20, flexDirection: 'row',
-    borderBottomColor: graycolor, borderBottomWidth: 1, height: 40
+    paddingHorizontal: 5, marginTop: 10, flexDirection: 'row',marginLeft:5,
+    borderBottomColor: light_gray, borderBottomWidth: 1, height: 30
   },
-  settingimg: { width: 20, height: 20, color: blackcolor },
-  settingtext: { color: blackcolor, fontSize: 16, marginLeft: 10 },
+  settingimg: { width: 15, height: 15, color: blackcolor },
+  settingtext: { color: blackcolor, fontSize: 14, marginLeft: 10,fontWeight:'500' },
+  settingmediaview: {
+    paddingHorizontal: 5, marginTop: 10, flexDirection: 'row',height: 40,marginLeft:5
+    // borderBottomColor: light_gray, borderBottomWidth: 1, 
+  },
+  settingmediaimg: { width: 25, height: 25,},
+  settingmediatext: { color: blackcolor, fontSize: 14, marginLeft: 10,fontWeight:'500' },
   scroll: { backgroundColor: whitecolor },
   TextView: {
     flexDirection: 'row', flex: 2,

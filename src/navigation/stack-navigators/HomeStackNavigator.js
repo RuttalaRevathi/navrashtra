@@ -13,6 +13,11 @@ import TopTabNavigator from '../TopTabNavigator';
 import Webstories from '../../screens/Webstories';
 import AuthorScreen from '../../screens/Author';
 import PhotoArticle from '../../screens/PhotoArticle';
+import Settings from '../../screens/Settings';
+import AboutUs from '../../screens/contactScreens/AboutUs';
+import ContactUs from '../../screens/contactScreens/ContactUs';
+import PrivacyPolicy from '../../screens/contactScreens/PrivacyPolicy';
+import Terms from '../../screens/contactScreens/Terms';
 
 const Stack = createStackNavigator();
 
@@ -70,6 +75,12 @@ const HomeStackNavigator = ({ menuData }: Props) => {
       <Stack.Screen name="VideoArticle" component={VideoArticle} />
       <Stack.Screen name="Photos" component={PhotoGallery} />
       <Stack.Screen name="PhotoArticle" component={PhotoArticle} />
+      <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen name="About" component={AboutUs} />
+      <Stack.Screen name="Contact" component={ContactUs} />
+      <Stack.Screen name="Privacy" component={PrivacyPolicy} />
+      <Stack.Screen name="Terms" component={Terms} />
+
 
 
     </Stack.Navigator>

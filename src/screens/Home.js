@@ -80,7 +80,7 @@ const Home = ({ navigation }) => {
   };
   const getMumbaiAction = async () => {
     try {
-      const response = await fetch(BaseUrl + CategoryUrl + Mumbai);
+      const response = await fetch(BaseUrl + CategoryUrl + Mumbai );
       const responseJson = await response.json();
       setMumbaiData(responseJson);
     } catch (error) {

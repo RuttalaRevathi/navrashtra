@@ -45,11 +45,11 @@ export const HeaderStyle = StyleSheet.create({
         width: "100%",
         backgroundColor: whitecolor,
         flexDirection: "row",
-        paddingHorizontal: 12,
-        paddingVertical: 10,
+        padding: 12,
+        // paddingVertical: 10,
         justifyContent: 'space-between',
         alignItems:'center',
-        borderBottomColor: graycolor, borderBottomWidth: 1
+        // borderBottomColor: graycolor, borderBottomWidth: 1
 
     },
     DetailsHeader: {
@@ -81,7 +81,8 @@ export const HeaderStyle = StyleSheet.create({
         fontSize: 20,
         flexWrap: 'wrap',
         textAlign: 'center',
-       fontWeight:'bold'
+       fontWeight:'bold',
+       alignItems:'center'
 
     },
     HeadTitleView: {

@@ -12,10 +12,10 @@ export default function SubHeader(props) {
           onPress={() => {
             props.leftBtnClick();
           }}
-          style={{zIndex: 999,}}>
+          style={{zIndex:999}}>
             <Image
-                source={require('../Assets/Images/arrow_white.png')}
-                style={{ }}
+                source={require('../Assets/Images/arrow.png')}
+                style={{ width:25,height:25,}}
               />
         
 
@@ -24,23 +24,9 @@ export default function SubHeader(props) {
       <View style={{}}>
         <Text style={[HeaderStyle.subHeaderheading]}>{props.title}</Text>
       </View>
-
-      {props.isLive != null && props.isLive === true && (
-        <View style={{}}>
-          <TouchableOpacity
-           onPress={() => {
-            props.rightBtnClick();
-          }}>
-              <Image
-                source={require('../Assets/Images/tv_small.png')}
-                style={{ height:25,width:25}}
-              />
-          
-          </TouchableOpacity>
-        </View>
-      )}
+   
       {props.isBook != null && props.isBook === true && (
-        <View style={{flex: 0.3}}>
+        <View style={{}}>
           <TouchableOpacity
             onPress={() => {
               props.BookClick();
