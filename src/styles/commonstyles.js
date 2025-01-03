@@ -229,17 +229,17 @@ export const commonstyles = StyleSheet.create({
   shareview: { marginRight: 15 },
   sharetext: { color: Dark_Gray, fontSize: 16, fontWeight: '500' },
   settingview: {
-    paddingHorizontal: 5, marginTop: 10, flexDirection: 'row',marginLeft:5,
-    borderBottomColor: light_gray, borderBottomWidth: 1, height: 30
+    paddingVertical: 12, flexDirection: 'row', alignItems: 'center',
+    borderBottomColor: light_gray, borderBottomWidth: 1,
   },
-  settingimg: { width: 15, height: 15, color: blackcolor },
-  settingtext: { color: blackcolor, fontSize: 14, marginLeft: 10,fontWeight:'500' },
+  settingimg: { width: 18, height: 18, color: blackcolor },
+  settingtext: { color: blackcolor, fontSize: 16, marginLeft: 16,fontWeight:'500' },
   settingmediaview: {
-    paddingHorizontal: 5, marginTop: 10, flexDirection: 'row',height: 40,marginLeft:5
+    paddingVertical: 10, flexDirection: 'row', alignItems: 'center'
     // borderBottomColor: light_gray, borderBottomWidth: 1, 
   },
   settingmediaimg: { width: 25, height: 25,},
-  settingmediatext: { color: blackcolor, fontSize: 14, marginLeft: 10,fontWeight:'500' },
+  settingmediatext: { color: blackcolor, fontSize: 16, marginLeft: 16,fontWeight:'500' },
   scroll: { backgroundColor: whitecolor },
   TextView: {
     flexDirection: 'row', flex: 2,

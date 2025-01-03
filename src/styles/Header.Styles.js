@@ -46,11 +46,8 @@ export const HeaderStyle = StyleSheet.create({
         backgroundColor: whitecolor,
         flexDirection: "row",
         padding: 12,
-        // paddingVertical: 10,
         justifyContent: 'space-between',
         alignItems:'center',
-        // borderBottomColor: graycolor, borderBottomWidth: 1
-
     },
     DetailsHeader: {
         width: "100%",

@@ -9,13 +9,14 @@ import {
   TouchableOpacity,
   Image,
   ActivityIndicator,
+  StyleSheet,
 } from 'react-native';
 import { appThemeColor, commonstyles, Dark_Gray, whitecolor } from '../styles/commonstyles';
 import CategoryComponentTwo from './CategoryComponentTwo';
 import CategoryComponentOne from './CategoryComponentOne';
 import { HeaderStyle } from '../styles/Header.Styles';
 
-function CategoryUI({ navigation, data, title, isTopNavigation, loading,
+function CategoryUI({ navigation, data, title, isTopNavigation, loadingMore,
   hasMore,
   loadMore, }) {
   const renderItemOne = ({ item }) => (
@@ -35,8 +36,8 @@ function CategoryUI({ navigation, data, title, isTopNavigation, loading,
   );
 
   const renderLoadMoreButton = () => {
-    if (loading) {
-      return <ActivityIndicator size="small" color={appThemeColor} />;  // Spinner only for Load More button
+    if (loadingMore) {
+      return <ActivityIndicator style={{marginVertical: 16}} size="small" color={appThemeColor} />;  // Spinner only for Load More button
     }
 
     if (!hasMore) {
@@ -44,17 +45,8 @@ function CategoryUI({ navigation, data, title, isTopNavigation, loading,
     }
 
     return (
-      <TouchableOpacity style={{ alignSelf: 'center', paddingTop: 5 }} onPress={loadMore}>
-        <View
-          style={{
-            padding: 10,
-            backgroundColor: appThemeColor,
-            width: '30%',
-            borderRadius: 30,
-          }}
-        >
-          <Text style={{ color: whitecolor, textAlign: 'center' }}>Load More</Text>
-        </View>
+      <TouchableOpacity style={styles.loadMoreBtn} onPress={loadMore}>
+          <Text style={styles.loreMoreBtnTxt}>Load More</Text>
       </TouchableOpacity>
     );
 };
@@ -94,7 +86,6 @@ function CategoryUI({ navigation, data, title, isTopNavigation, loading,
           />
           {data.length > 0 ? (
             <FlatList
-              style={commonstyles.cateflist}
               data={data?.slice(1)}
               renderItem={renderItemTwo}
               keyExtractor={(item) => item.id.toString()}
@@ -104,7 +95,6 @@ function CategoryUI({ navigation, data, title, isTopNavigation, loading,
           ) : (
             <View style={commonstyles.spinnerView}>
               <ActivityIndicator color={Dark_Gray} size="large" />
-              <Text style={commonstyles.spinnerText}>. . . Loading . . .</Text>
             </View>
           )}
         </View>
@@ -112,5 +102,20 @@ function CategoryUI({ navigation, data, title, isTopNavigation, loading,
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  loadMoreBtn: {
+    alignSelf: 'center', 
+    marginTop: 10,
+    paddingHorizontal: 30,
+    paddingVertical: 8,
+    backgroundColor: appThemeColor,
+    borderRadius: 30,
+  },
+  loreMoreBtnTxt: {
+    color: whitecolor, textAlign: 'center', fontWeight: '500',
+    fontSize: 16
+  }
+})
 
 export default CategoryUI;

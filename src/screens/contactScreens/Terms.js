@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
-
   ScrollView,
   SafeAreaView,
 } from 'react-native';
@@ -11,14 +10,9 @@ import SubHeader from '../../components/SubHeader';
 import {
   commonstyles,
 } from '../../styles/commonstyles';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { blackcolor, ContactStyles } from '../../styles/contactScreenStyles';
+import { ContactStyles } from '../../styles/contactScreenStyles';
 
 export default class Terms extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
   render() {
     return (
       <SafeAreaView styles={commonstyles.container}>
@@ -28,7 +22,6 @@ export default class Terms extends Component {
           isBook={true}
 
         />
-
         <ScrollView>
           <View style={ContactStyles.mainView}>
             <View style={ContactStyles.subView}>
