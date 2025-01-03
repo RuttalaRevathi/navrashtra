@@ -6,21 +6,16 @@ import {
     FlatList,
     Image,
     SafeAreaView,
-    ScrollView,
     Text,
     TouchableOpacity,
     View,
 } from 'react-native';
-import FastImage from 'react-native-fast-image';
-import SubHeader from '../components/SubHeader';
-import { blackcolor, commonstyles, whitecolor, redcolor, graycolor, Dark_Gray } from '../styles/commonstyles';
+import { commonstyles, whitecolor } from '../styles/commonstyles';
 import getVideoAction from '../redux/actions/getVideoAction';
 
 const Videos = ({
     navigation,
     videosData,
-    videosLoading,
-    route,
 }: Props) => {
     const dispatch = useDispatch();
 
@@ -31,8 +26,7 @@ const Videos = ({
     // share function
     return (
         <SafeAreaView style={commonstyles.container}>
-                 <View style={{ padding: 12 }}>
-                          <View style={commonstyles.gallerycategoryView}>
+                          <View style={[commonstyles.gallerycategoryView, {marginLeft: 12, marginTop: 12, marginBottom: 6}]}>
                                     <Text style={commonstyles.galleryArticlecategorytext}>वीडियो गैलरी</Text>
                                     </View>
                     <FlatList
@@ -75,7 +69,6 @@ const Videos = ({
                             </View>
                         )}
                     />
-                    </View>
         </SafeAreaView>
     );
 };

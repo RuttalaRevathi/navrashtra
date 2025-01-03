@@ -1,8 +1,6 @@
 /* eslint-disable prettier/prettier */
-import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch, connect, useSelector } from 'react-redux';
-import FastImage from 'react-native-fast-image';
-import Carousel, { Pagination } from 'react-native-snap-carousel';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 
@@ -14,13 +12,12 @@ import {
   FlatList,
   ScrollView,
   ActivityIndicator,
-  ImageBackground,
   SafeAreaView,
   RefreshControl,
 } from 'react-native';
 
 import {
-  commonstyles, whitecolor
+  commonstyles
 } from '../styles/commonstyles';
 import HomeUI from '../components/HomeUI';
 import SliderUI from '../components/SliderUI';
@@ -30,13 +27,12 @@ import HomeVideosgalleryItemOne from '../components/HomeVideosgalleryItemOne';
 import HomeVideosgalleryItemTwo from '../components/HomeVideosgalleryItemTwo';
 import HomePhotogalleryItemTwo from '../components/HomePhotogalleryItemTwo';
 import getPhotoGalleryAction from '../redux/actions/getPhotoGalleryAction';
-import { Automobile, BaseUrl, Business, Carrer, CategoryUrl, Elections, India, Lifestyle, Maharashtra, Movies, Mumbai, Nagpur, Pune, Religion, Special, Sports, Technology, Travel, Viral, World } from '../utilities/urls';
+import { Automobile, BaseUrl, Business, Carrer, CategoryUrl, India, Lifestyle, Maharashtra, Movies, Mumbai, Nagpur, Pune, Religion, Special, Sports, Technology, Viral, World } from '../utilities/urls';
 import getVideoAction from '../redux/actions/getVideoAction';
 import WebStoriesHome from './WebStroriesHome';
 
 const Home = ({ navigation }) => {
   const [indiaData, setIndiaData] = useState(null);
-  const [loading, setLoading] = useState(null);
   const [maharashtraData, setMaharashtraData] = useState(null);
   const [mumbaiData, setMumbaiData] = useState(null);
   const [worldData, setWorldData] = useState(null);
@@ -282,11 +278,8 @@ const Home = ({ navigation }) => {
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }>
-        <View style={{}}>
+        <View>
           {/* Spinner */}
-          <Spinner
-            visible={loading}
-          />
 
 
           {/* Slider */}

@@ -7,15 +7,13 @@ import {
   FlatList,
   Image,
   SafeAreaView,
-  ScrollView,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 import getPhotoGalleryAction from '../redux/actions/getPhotoGalleryAction';
-import { appThemeColor, blackcolor, commonstyles, Dark_Gray, Dark_graycolor, graycolor, light_gray, light_yellow, redcolor, whitecolor } from '../styles/commonstyles';
+import { appThemeColor, commonstyles, graycolor, whitecolor } from '../styles/commonstyles';
 import FastImage from 'react-native-fast-image';
-import { DarkTheme } from '@react-navigation/native';
 
 const PhotoGallery = ({
   navigation,
@@ -36,8 +34,7 @@ const PhotoGallery = ({
 
   return (
     <SafeAreaView style={commonstyles.container}>
- <View style={{ padding: 12 }}>
-          <View style={commonstyles.gallerycategoryView}>
+          <View style={[commonstyles.gallerycategoryView, {marginLeft: 12, marginTop: 12, marginBottom: 6}]}>
                     <Text style={commonstyles.galleryArticlecategorytext}>
           फोटो गैलरी
         </Text>
@@ -103,7 +100,6 @@ const PhotoGallery = ({
             <ActivityIndicator color={appThemeColor} size='large' />
           </View>
         )}
-        </View>
     </SafeAreaView>
   );
 };

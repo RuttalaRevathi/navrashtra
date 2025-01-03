@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { DrawerItem } from '@react-navigation/drawer';
-import { View, Text, TouchableOpacity, Image, FlatList, SafeAreaView, ScrollView } from 'react-native';
+import { View, Text, Image, FlatList, SafeAreaView, ScrollView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import getTopMenuDataAction from '../redux/actions/getTopMenuDataAction';
 import { sideMenuStyle } from '../styles/SideMenuStyles';
 import { Dark_Gray, graycolor } from '../styles/commonstyles';
-import { TouchableNativeFeedback } from 'react-native';
+
 
 const SideMenu = ({ navigation }: Props) => {
-  const [expandedItems, setExpandedItems] = useState({});
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -59,7 +58,6 @@ const SideMenu = ({ navigation }: Props) => {
         </View>
       </View>
       <ScrollView>
-
         <View>
           <FlatList
             data={mergedArray}
@@ -78,7 +76,6 @@ const SideMenu = ({ navigation }: Props) => {
                   icon={({ color, size }) => (
                     <Image
                       style={sideMenuStyle.listImg}
-                      // source={require('../Assets/Images/list.png')}
                       source={{ uri: item.Image }}
                     />
                   )}

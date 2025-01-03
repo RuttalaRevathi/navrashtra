@@ -299,7 +299,6 @@ export const commonstyles = StyleSheet.create({
     borderRadius: 10, resizeMode: 'contain', margin: 5,
     aspectRatio: 3 / 3,
   },
-  //
   container: {
     width: '100%',
     height: '100%',
@@ -354,8 +353,8 @@ export const commonstyles = StyleSheet.create({
     paddingBottom: 8,
   },
   galleryArticlecategorytext: {
-    color: blackcolor, fontSize: 20, paddingLeft: 12,
-    fontFamily: 'Mukta', paddingTop: 5, fontWeight: 'bold'
+    color: blackcolor, fontSize: 20, paddingLeft: 10,
+    fontFamily: 'Mukta', fontWeight: 'bold'
   },
   latestTxtTag: {
     color: blackcolor, fontFamily: 'Mukta-SemiBold',
@@ -691,8 +690,8 @@ export const commonstyles = StyleSheet.create({
     marginRight: 12,
   },
 
-  cateflist: {},
-  photoflist: {},
+  cateflist: {paddingHorizontal: 12, paddingBottom: 12},
+  photoflist: {paddingHorizontal: 12, paddingBottom: 12},
 
   videoImg: {
     width: Dimensions.get('window').width * 0.3,

@@ -43,6 +43,8 @@ const LatestNews = ({ navigation, route }: Props) => {
       navigation={navigation}
     />
   );
+
+
   return (
     <SafeAreaView style={commonstyles.container}>
       {loading ? (

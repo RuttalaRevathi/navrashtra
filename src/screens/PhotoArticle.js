@@ -2,20 +2,14 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, Linking, ScrollView, FlatList, Share, Dimensions } from 'react-native';
-import { appThemeColor, blackcolor, commonstyles, Header_text, whitecolor, gllery_background } from '../styles/commonstyles';
+import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, Share, ActivityIndicator } from 'react-native';
+import { commonstyles, whitecolor, gllery_background } from '../styles/commonstyles';
 import AutoHeightWebView from 'react-native-autoheight-webview';
-import FastImage from 'react-native-fast-image';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { HeaderStyle } from '../styles/Header.Styles';
 import HTMLView from 'react-native-htmlview';
 import moment from 'moment';
-import { connect, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import getRelatedAction from '../redux/actions/getRelatedAction';
-import { WebView } from 'react-native-webview';
-
-
-const screenWidth = Dimensions.get('window').width;
 
 const PhotoArticle = ({ navigation, route }: Props) => {
   const [detailsData, setDetailsData] = useState([]);
@@ -95,7 +89,7 @@ const PhotoArticle = ({ navigation, route }: Props) => {
                         <Text style={commonstyles.detailTimegallery}>Updated on: {formattedDate}</Text>
                     </View>
           <View>
-          {showWebView && (
+          {showWebView ? (
             <AutoHeightWebView
               javaScriptEnabled={true}
               scalesPageToFit={false}
@@ -137,7 +131,7 @@ const PhotoArticle = ({ navigation, route }: Props) => {
               scrollEnabled={false}
               viewportContent={'width=device-width, user-scalable=no'}
             />
-          )}
+          ) : <View style={{paddingTop: 20}}><ActivityIndicator size={'large'} /></View>}
           </View>
       </ScrollView >
     </View >
