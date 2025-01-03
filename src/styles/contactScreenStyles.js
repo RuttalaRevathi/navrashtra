@@ -47,7 +47,7 @@ export const ContactStyles = StyleSheet.create({
         color: blackcolor, textAlign: 'justify', marginBottom: 10,
         flexWrap: 'wrap',
     },
-    subView: { paddingBottom: 70, margin: 10,},
+    subView: { paddingBottom: 70, paddingHorizontal: 12},
     mainView: {
         backgroundColor: whitecolor,
         height: '100%',

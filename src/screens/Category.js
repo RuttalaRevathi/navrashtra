@@ -10,6 +10,7 @@ const CategoryScreen = ({ item, isTopNavigation }) => {
 
   const [parentData, setParentData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [offset, setOffset] = useState(0);
   const limit = 10; // Define the limit for API calls
@@ -19,9 +20,9 @@ const CategoryScreen = ({ item, isTopNavigation }) => {
   }, []);
 
   const fetchParentData = async () => {
-    if (loading || !hasMore) return;
+    if (loadingMore || !hasMore) return;
 
-    setLoading(true);
+    setLoadingMore(true);
     try {
       const category = route.params?.isCategoryClicked ? route.params?.url : item?.url;
       const url = `https://www.navarashtra.com/wp-json/navarashtra/v1/category-posts?category=${category}&limit=${limit}&offset=${offset}`;
@@ -38,7 +39,7 @@ const CategoryScreen = ({ item, isTopNavigation }) => {
     } catch (error) {
       console.error('Error fetching category data:', error);
     } finally {
-      setLoading(false);
+      setLoadingMore(false);
     }
   };
 
@@ -52,7 +53,7 @@ const CategoryScreen = ({ item, isTopNavigation }) => {
           categoryName={item?.title}
           isTopNavigation={isTopNavigation}
           loadMore={fetchParentData} // Load more function for infinite scroll
-          loading={loading}
+          loadingMore={loadingMore}
           hasMore={hasMore}
         />
       ) : (

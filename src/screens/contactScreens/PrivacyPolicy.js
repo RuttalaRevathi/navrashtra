@@ -3,22 +3,10 @@ import React, { Component } from 'react';
 import { Text, View, ScrollView, SafeAreaView } from 'react-native';
 import SubHeader from '../../components/SubHeader';
 import { commonstyles } from '../../styles/commonstyles';
-import { blackcolor, ContactStyles } from '../../styles/contactScreenStyles';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-
+import { ContactStyles } from '../../styles/contactScreenStyles';
 
 export default class PrivacyPolicy extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        }
-    };
-
-
     render() {
-
-
         return (
             <SafeAreaView styles={commonstyles.container}>
                 <SubHeader title={'Privacy Policy '} isMenu={false} isShare={false}
