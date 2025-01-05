@@ -1,4 +1,4 @@
-import {FlatList, Linking, Share, Text, TouchableOpacity} from 'react-native';
+import {FlatList, Linking, ScrollView, Share, Text, TouchableOpacity} from 'react-native';
 import {View} from 'react-native';
 import {blackcolor, commonstyles} from '../styles/commonstyles';
 import {SafeAreaView} from 'react-native';
@@ -108,11 +108,12 @@ const Settings = ({navigation}: Props) => {
           })}
         isBook={true}
       />
-      <View>
+      <ScrollView>
         <FlatList
           data={data}
           showsHorizontalScrollIndicator={false}
           style={{paddingHorizontal: 12}}
+          scrollEnabled={false}
           renderItem={({item}) => (
             <TouchableOpacity onPress={() => navigateToScreen(item.screen)}>
               <View style={commonstyles.settingview}>
@@ -129,6 +130,7 @@ const Settings = ({navigation}: Props) => {
           <FlatList
             data={mediaData}
             showsHorizontalScrollIndicator={false}
+            scrollEnabled={false}
             renderItem={({item}) => (
               <TouchableOpacity
                 onPress={() => {
@@ -146,7 +148,7 @@ const Settings = ({navigation}: Props) => {
             )}
           />
         </View>
-        </View>
+        </ScrollView>
     </SafeAreaView>
   );
 };
