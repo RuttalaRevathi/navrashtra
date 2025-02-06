@@ -38,9 +38,9 @@ const PhotoArticle = ({ navigation, route }: Props) => {
     return index + 1;
   };
   // Date and time 
-    const apiDate = route?.params?.item?.date;
-    const formattedDate = moment(apiDate).format("MMM DD, YYYY | hh:mm A");
-  
+  const apiDate = route?.params?.item?.date;
+  const formattedDate = moment(apiDate).format("MMM DD, YYYY | hh:mm A");
+
   const sharecall = (name) => {
     const Link_Url = route?.params?.item?.link;
     Share.share({
@@ -53,42 +53,47 @@ const PhotoArticle = ({ navigation, route }: Props) => {
   return (
 
     <View style={commonstyles.container}>
-        <View style={HeaderStyle.subHeaderviewHeight}>
-          <TouchableOpacity onPress={() => {
-              navigation.navigate(route.params.screenName==="Photos"?"Photos":"Home");
-            }} >
-              <Image
-                source={require('../Assets/Images/arrow.png')}
-                style={{ width: 22, height: 22 }}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={{}}
-              onPress={() => { sharecall() }}>
-              <Image
-                source={require('../Assets/Images/share_black.png')}
-                style={{ width: 22, height: 22 }}
-              />
-            </TouchableOpacity>
-        </View>
+      <View style={HeaderStyle.subHeaderviewHeight}>
+        <TouchableOpacity
+          onPress={() => {
+            if (route?.params?.screenName === "Photos") {
+              navigation.navigate("Photos");
+            } else {
+              navigation.navigate("Home");
+            }
+          }}>
+          <Image
+            source={require('../Assets/Images/arrow.png')}
+            style={{ width: 22, height: 22 }}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={{}}
+          onPress={() => { sharecall() }}>
+          <Image
+            source={require('../Assets/Images/share_black.png')}
+            style={{ width: 22, height: 22 }}
+          />
+        </TouchableOpacity>
+      </View>
       <ScrollView ref={scrollViewRef}
         style={{ backgroundColor: gllery_background, }}
       >
         {/* Tittle */}
-          <View style={{ padding: 12, flex: 1, }}>
-            <HTMLView
-              value={'<p>' + route?.params?.item?.title?.rendered + '</p>'}
-              stylesheet={headerStyles}
-            />
-          </View>
-          {/* time */}
-                    <View
-                      style={commonstyles.DetailTimeMainView}>
-                        <Text style={commonstyles.detailauthorgallery}>
-                          BY {route?.params?.item?.author_name}
-                        </Text>
-                        <Text style={commonstyles.detailTimegallery}>Updated on: {formattedDate}</Text>
-                    </View>
-          <View>
+        <View style={{ padding: 12, flex: 1, }}>
+          <HTMLView
+            value={'<p>' + route?.params?.item?.title?.rendered + '</p>'}
+            stylesheet={headerStyles}
+          />
+        </View>
+        {/* time */}
+        <View
+          style={commonstyles.DetailTimeMainView}>
+          <Text style={commonstyles.detailauthorgallery}>
+            BY {route?.params?.item?.author_name}
+          </Text>
+          <Text style={commonstyles.detailTimegallery}>Updated on: {formattedDate}</Text>
+        </View>
+        <View>
           {showWebView ? (
             <AutoHeightWebView
               javaScriptEnabled={true}
@@ -131,8 +136,8 @@ const PhotoArticle = ({ navigation, route }: Props) => {
               scrollEnabled={false}
               viewportContent={'width=device-width, user-scalable=no'}
             />
-          ) : <View style={{paddingTop: 20}}><ActivityIndicator size={'large'} /></View>}
-          </View>
+          ) : <View style={{ paddingTop: 20 }}><ActivityIndicator size={'large'} /></View>}
+        </View>
       </ScrollView >
     </View >
   );
@@ -146,7 +151,7 @@ const styles = StyleSheet.create({
   },
 });
 const headerStyles = StyleSheet.create({
-  p: { color: whitecolor, fontSize: 22, fontFamily: 'Mandali-Bold', lineHeight: 28,},
+  p: { color: whitecolor, fontSize: 22, fontFamily: 'Mandali-Bold', lineHeight: 28, },
 
 });
 

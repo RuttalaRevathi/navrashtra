@@ -49,7 +49,7 @@ const TopTabNavigator = ({ navigation }: Props) => {
         tabBarIndicatorStyle: { backgroundColor: redcolor },
         tabBarActiveTintColor: redcolor,
         tabBarInactiveTintColor: 'black',
-        tabBarLabelStyle: { fontSize: 16, fontFamily: 'Mandali-Bold', fontWeight: '500' },
+        tabBarLabelStyle: { fontSize: 16, fontFamily: 'Mandali-Bold', fontWeight: '700' },
         tabBarStyle: {
           backgroundColor: whitecolor,
           height: 50,
@@ -57,6 +57,7 @@ const TopTabNavigator = ({ navigation }: Props) => {
         tabBarItemStyle: {
           width: 'auto',
           alignItems: 'flex-start',
+          paddingHorizontal: 5,
         },
       }}
     >

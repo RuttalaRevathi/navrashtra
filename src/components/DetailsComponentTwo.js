@@ -25,16 +25,25 @@ const DetailsComponentTwo = ({ item, navigation, propsdata }) => {
   const imageUrl = item?.web_featured_image
     ? { uri: item?.web_featured_image }
     : defaultImage;
+console.log(item.category_name,"category_name");
 
   return (
     <>
       <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('Details', {
-            item,
-            detailsData: propsdata,
-          });
-        }}>
+  onPress={() => {
+    // if (item?.category_name === 'फोटो') {
+    //   navigation.navigate('PhotoArticle', {
+    //     item: item,
+    //     detailsData: propsdata,
+    //     screenName: "Details"
+    //   });
+    // } else {
+      navigation.navigate('Details', {
+        item,
+        detailsData: propsdata,
+      });
+    // }
+  }}>
         <View style={commonstyles.HomeComp2DotView}>
           <View style={commonstyles.cateviewText}>
               <Text

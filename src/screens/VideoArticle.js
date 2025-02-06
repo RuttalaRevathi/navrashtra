@@ -14,11 +14,8 @@ const VideoArticle = ({ navigation, route }: Props) => {
   const [videoAvailable, setVideoAvailable] = useState(true);
 
   var source1 = source?.replace('lazyload', 'text/javascript');
-  const [showWebView, setShowWebView] = useState(false);
 
-  useEffect(() => {
-    setTimeout(() => setShowWebView(true), 500);
-  }, []);
+
   useEffect(() => {
     // Check if source1 contains a <video> or <iframe> element
     const videoOrIframeRegex = /<video|<iframe|blockquote/g;
@@ -28,12 +25,7 @@ const VideoArticle = ({ navigation, route }: Props) => {
     setDetailsData(route?.params?.detailsData);
 
   }, [source1]);
-  const getIndex = () => {
-    var index = detailsData.findIndex(
-      x => x.id === route?.params?.item?.id,
-    );
-    return index + 1;
-  };
+ 
   const sharecall = (name) => {
     const Link_Url = route?.params?.item?.link;
     Share.share({
@@ -54,23 +46,23 @@ const VideoArticle = ({ navigation, route }: Props) => {
     : defaultImage;
   return (
     <View style={{ backgroundColor: whitecolor, flex: 1 }}>
-        <View style={HeaderStyle.subHeaderviewHeight}>
-            <TouchableOpacity onPress={() => {
-              navigation.navigate(route.params.screenName === "Videos" ? "Videos" : "Home");
-            }} >
-              <Image
-                source={require('../Assets/Images/arrow.png')}
-                style={{ width: 20, height: 20 }}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={{}}
-              onPress={() => { sharecall() }}>
-              <Image
-                source={require('../Assets/Images/share_black.png')}
-                style={{ width: 20, height: 20 }}
-              />
-            </TouchableOpacity>
-        </View>
+      <View style={HeaderStyle.subHeaderviewHeight}>
+        <TouchableOpacity onPress={() => {
+          navigation.navigate(route.params.screenName === "Videos" ? "Videos" : "Home");
+        }} >
+          <Image
+            source={require('../Assets/Images/arrow.png')}
+            style={{ width: 20, height: 20 }}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={{}}
+          onPress={() => { sharecall() }}>
+          <Image
+            source={require('../Assets/Images/share_black.png')}
+            style={{ width: 20, height: 20 }}
+          />
+        </TouchableOpacity>
+      </View>
       <ScrollView style={styles.scrollView}
         scrollEnabled={true}>
         <View>
@@ -83,32 +75,35 @@ const VideoArticle = ({ navigation, route }: Props) => {
           {/* time */}
           <View
             style={commonstyles.DetailTimeMainView}>
-              <Text style={commonstyles.detailauthor}>
-                BY {route?.params?.item?.author_name}
-              </Text>
-              <Text style={commonstyles.detailTime}>Updated on: {formattedDate}</Text>
+            <Text style={commonstyles.detailauthor}>
+              BY {route?.params?.item?.author_name}
+            </Text>
+            <Text style={commonstyles.detailTime}>Updated on: {formattedDate}</Text>
           </View>
 
-            <FastImage
-              source={imageUrl}
-              style={commonstyles.Detailslargecard}
-              resizeMode={FastImage.resizeMode.cover}
-            />
+          <FastImage
+            source={imageUrl}
+            style={commonstyles.Detailslargecard}
+            resizeMode={FastImage.resizeMode.cover}
+          />
           <View style={{
             justifyContent: 'center',
           }}>
-            {videoAvailable && showWebView ? (
+            {videoAvailable ? (
               <AutoHeightWebView
                 javaScriptEnabled={true}
                 scalesPageToFit={false}
                 allowsFullscreenVideo={true}
                 scrollEnabled={false}
+                mixedContentMode="always"
+                mediaPlaybackRequiresUserAction={false}
                 style={{ width: Dimensions.get('window').width, }}
                 customStyle={`
                 iframe[src^="https://www.youtube.com/embed/"] {
                                 width:100%;
                                 height:225px;
                                 padding-bottom:12px;
+                                 allowfullscreen: true;
                                  
                              
                     }
@@ -179,13 +174,13 @@ const VideoArticle = ({ navigation, route }: Props) => {
               />
             ) : (
               <>
-                  <Text style={{ color: blackcolor, fontWeight: 'bold', fontSize: 18 }}>
-                    {route?.params?.item?.title?.rendered}
-                  </Text>
-                  <Text style={{
-                    fontSize: 20, fontWeight: 'bold',
-                    color: blackcolor
-                  }}>Video not available</Text>
+                <Text style={{ color: blackcolor, fontWeight: 'bold', fontSize: 18 }}>
+                  {route?.params?.item?.title?.rendered}
+                </Text>
+                <Text style={{
+                  fontSize: 20, fontWeight: 'bold',
+                  color: blackcolor
+                }}>Video not available</Text>
               </>
             )}
           </View>

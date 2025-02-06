@@ -177,48 +177,48 @@ const Details = ({ navigation, route }) => {
   };
   const handleGoBack = () => {
     if (route.params?.screenName === 'Shorts') {
-        navigation.navigate('Shorts');
+      navigation.navigate('Shorts');
     } else {
-        navigation.goBack(); // Default back behavior
+      navigation.goBack(); // Default back behavior
     }
-};
+  };
   const source = firstArticle?.content?.rendered;
   let source1 = source?.replace('lazyload', 'text/javascript');
 
   return (
     <View style={commonstyles.container}>
-        <View style={HeaderStyle.DetailsHeader}>
+      <View style={HeaderStyle.DetailsHeader}>
         <TouchableOpacity
-                onPress={handleGoBack}
-              style={{ zIndex: 999 }}>
-              <Image
-                source={require('../Assets/Images/arrow.png')}
-                style={{ width: 22, height: 22 }}
-              />
-            </TouchableOpacity>
-          <View
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              width: '15%',
-              justifyContent: 'space-between',
-              flexDirection: 'row',
+          onPress={handleGoBack}
+          style={{ zIndex: 999 }}>
+          <Image
+            source={require('../Assets/Images/arrow.png')}
+            style={{ width: 22, height: 22 }}
+          />
+        </TouchableOpacity>
+        <View
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            width: '15%',
+            justifyContent: 'space-between',
+            flexDirection: 'row',
 
-            }}>
-            <TouchableOpacity onPress={toggleFontSize}>
-                <Image
-                  style={{ width: 22, height: 22 }}
-                  source={require('../Assets/Images/font.png')}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={sharecall}>
-                <Image
-                  style={{ width: 22, height: 22 }}
-                  source={require('../Assets/Images/share_black.png')}
-                />
-              </TouchableOpacity>
-          </View>
+          }}>
+          <TouchableOpacity onPress={toggleFontSize}>
+            <Image
+              style={{ width: 22, height: 22 }}
+              source={require('../Assets/Images/font.png')}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={sharecall}>
+            <Image
+              style={{ width: 22, height: 22 }}
+              source={require('../Assets/Images/share_black.png')}
+            />
+          </TouchableOpacity>
         </View>
+      </View>
       <ScrollView ref={Scrollref}>
         <View>
           <View
@@ -228,7 +228,7 @@ const Details = ({ navigation, route }) => {
               paddingBottom: 5,
             }}>
             {/* Tittle */}
-            <View style={{ paddingHorizontal: 12, paddingTop: 10}}>
+            <View style={{ paddingHorizontal: 12, paddingTop: 10 }}>
               <Text
                 numberOfLines={3}
                 ellipsizeMode="tail"
@@ -240,17 +240,17 @@ const Details = ({ navigation, route }) => {
             <View
               style={commonstyles.DetailTimeMainView}>
               <Text style={commonstyles.detailauthor}>
-                  BY {firstArticle?.author_name}
-                </Text>
-                <Text style={commonstyles.detailTime}>Updated on: {formattedDate}</Text>
+                BY {firstArticle?.author_name}
+              </Text>
+              <Text style={commonstyles.detailTime}>Updated on: {formattedDate}</Text>
             </View>
 
             {/* image */}
             <FastImage
-                source={imageUrl}
-                style={commonstyles.Detailslargecard}
-                resizeMode={FastImage.resizeMode.cover}
-              />
+              source={imageUrl}
+              style={commonstyles.Detailslargecard}
+              resizeMode={FastImage.resizeMode.cover}
+            />
             {/* content */}
             {/* <Text>{source1}</Text> */}
             <View>
@@ -338,6 +338,27 @@ const Details = ({ navigation, route }) => {
       font-family:'Mandali-Regular';
       line-height:1.6
       }
+          .responsive-table {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+      .responsive-table table {
+        width: 100%;
+       
+        border-collapse: collapse;
+    }
+     .responsive-table th, .responsive-table td {
+        padding: 3px !important;
+        text-align: center;
+        border: 1px solid #ddd;
+        font-size: 12px;
+        line-height: 20px;
+    }
+            .responsive-table th, .responsive-table td {
+        padding: 8px;
+        border: 1px solid #ddd;
+    }
+
   `}
                   source={{
                     html: `
@@ -358,7 +379,7 @@ const Details = ({ navigation, route }) => {
                     });
                     true;
                 `}
-                scrollEnabled={false}
+                  scrollEnabled={false}
                   onShouldStartLoadWithRequest={handleWebViewRequest}
                   viewportContent={'width=device-width, user-scalable=no'}
                 />
@@ -400,19 +421,19 @@ const Details = ({ navigation, route }) => {
           </View>
 
           {/* Related News */}
-            <View style={commonstyles.DetailsLatestView}>
-              <Text style={commonstyles.RelatedCategory}>सम्बंधित ख़बरें</Text>
-            </View>
-            <View style={{ paddingHorizontal: 12 }}>
-              <FlatList
-                data={relatedData?.data}
-                renderItem={renderItemTwo}
-                // keyExtractor={item => item.id.toString()}
-                initialNumToRender={5}
-                maxToRenderPerBatch={10}
-                windowSize={10}
-              />
-            </View>
+          <View style={commonstyles.DetailsLatestView}>
+            <Text style={commonstyles.RelatedCategory}>सम्बंधित ख़बरें</Text>
+          </View>
+          <View style={{ paddingHorizontal: 12 }}>
+            <FlatList
+              data={relatedData?.data}
+              renderItem={renderItemTwo}
+              // keyExtractor={item => item.id.toString()}
+              initialNumToRender={5}
+              maxToRenderPerBatch={10}
+              windowSize={10}
+            />
+          </View>
         </View>
       </ScrollView>
     </View>
