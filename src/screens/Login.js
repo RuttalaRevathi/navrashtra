@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react';
+import React,{useEffect} from 'react';
 import {
   GoogleSignin,
 } from '@react-native-google-signin/google-signin';
@@ -33,7 +33,6 @@ export const Login = ({loginUserData}) => {
     // Get the users ID token
     const signInResult = await GoogleSignin.signIn();
     
-    console.log(signInResult);
     // Create a Google credential with the token
     const googleCredential = auth.GoogleAuthProvider.credential(
       signInResult.data.idToken,
@@ -51,13 +50,24 @@ export const Login = ({loginUserData}) => {
         />
       </View>
       <View style={styles.box}>
-        <Text style={styles.welcomeText}>Welcome</Text>
+      <Image
+          style={{width: 240, height: 240, marginBottom: 16, alignSelf: 'center'}}
+          resizeMode='contain'
+          source={require('../Assets/Images/loginimage.jpg')}
+        />
+        <Text style={styles.welcomeText}>Hey! Welcome</Text>
+        <Text style={styles.paraText}>Navarashtra is a reliable and popular Marathi news app that offers you quick, and authentic news updates</Text>
+        <View style={styles.continueLoginWith}>
+          <View style={styles.line}></View>
+          <Text style={styles.continueLoginWithText}>Continue login with</Text>
+          <View style={styles.line}></View>
+        </View>
         <TouchableOpacity style={styles.loginBtn} onPress={onGoogleButtonPress}>
           <Image
             style={styles.btnIcon}
             source={require('../Assets/Images/google.png')}
           />
-          <Text style={styles.btnText}>Sign In with Google</Text>
+          <Text style={styles.btnText}>Google</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -79,23 +89,26 @@ const styles = StyleSheet.create({
     backgroundColor: whitecolor,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 30,
+    marginBottom: -50,
+    zIndex: 1
   },
   nrlogo: {
     width: 50,
     height: 50,
   },
   box: {
+    width: '100%',
     backgroundColor: whitecolor,
     borderRadius: 16,
-    padding: 30,
+    padding: 24,
+    paddingTop: 50
   },
   welcomeText: {
     fontSize: 28,
     fontWeight: '600',
     color: blackcolor,
     textAlign: 'center',
-    marginBottom: 30,
+    marginBottom: 12,
   },
   loginBtn: {
     paddingHorizontal: 16,
@@ -105,19 +118,45 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 2,
-    borderColor: redcolor,
+    borderWidth: 1,
+    borderColor: '#bcbcbc',
+    marginTop: 16
   },
   btnIcon: {
     width: 24,
     height: 24,
-    marginRight: 12,
+    marginRight: 16,
   },
   btnText: {
     fontSize: 18,
     fontWeight: '600',
-    color: redcolor,
+    color: blackcolor,
+    flex: 1,
+    textAlign: 'center'
   },
+  paraText: {
+    fontSize: 16,
+    color: blackcolor,
+    lineHeight: 24,
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  continueLoginWith: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 30
+  },
+  line: {
+    borderTopWidth: 1, borderColor: '#bcbcbc', flex: 1
+  },
+  continueLoginWithText: {
+    fontSize: 12,
+    color: blackcolor,
+    textAlign: 'center',
+    marginHorizontal: 16,
+    lineHeight: 18
+  }
 });
 
 

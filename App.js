@@ -18,6 +18,7 @@ import {Login} from './src/screens/Login';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {createStackNavigator} from '@react-navigation/stack';
 
+import { useNavigation } from '@react-navigation/native';
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log('Registered screens:', Stack.Navigator);
     const fetchLoingUser = async () => {
       const data = await AsyncStorage.getItem('loginUserData');
       setLoginData(JSON.parse(data));
@@ -75,22 +77,21 @@ const App = () => {
     setLoginData(data);
     await AsyncStorage.setItem('loginUserData', JSON.stringify(data));
   };
-  console.log('login data', loginData);
+
   return (
     <Provider store={store}>
       <StatusBar barStyle="dark-content" backgroundColor={off_white} />
       <NavigationContainer>
-        {loading ? (
-          <ActivityIndicator size={'large'} />
+      <RootStackNavigator loginData={loginData} onGoogleButtonPress={onGoogleButtonPress} />
+        {/* {loading ? (
+          <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <ActivityIndicator size={'large'} />
+          </View>
         ) : (
           <>
-            {loginData?.type === 'success' ? (
-              <DrawerNavigator />
-            ) : (
-              <LoginStack onGoogleButtonPress={onGoogleButtonPress} />
-            )}
+            
           </>
-        )}
+        )} */}
       </NavigationContainer>
       <Toast />
     </Provider>
@@ -99,12 +100,25 @@ const App = () => {
 
 export default App;
 
-export const LoginStack = ({onGoogleButtonPress}) => {
+export const RootStackNavigator = ({loginData, onGoogleButtonPress}) => {
+  const isLoggedIn = loginData?.type === 'success';
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    console.log('Navigation State:', navigation.getState());
+  }, [navigation]);
+
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Login" options={{headerShown: false}}>
-        {props => <Login loginUserData={onGoogleButtonPress} {...props} />}
-      </Stack.Screen>
+    <Stack.Navigator initialRouteName="Login">
+      {isLoggedIn ? (
+        <Stack.Screen name="DrawerNavigator" options={{headerShown: false}} component={DrawerNavigator} />
+        ) : (
+          <Stack.Screen name="Login" options={{headerShown: false}} 
+          children={(props)=>
+            <Login {...props} loginUserData={onGoogleButtonPress} />
+          } 
+          />
+      )}
     </Stack.Navigator>
-  );
-};
+  )
+}

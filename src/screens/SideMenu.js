@@ -5,18 +5,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import getTopMenuDataAction from '../redux/actions/getTopMenuDataAction';
 import { sideMenuStyle } from '../styles/SideMenuStyles';
 import { Dark_Gray, graycolor } from '../styles/commonstyles';
-
+import auth from '@react-native-firebase/auth';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { CommonActions } from '@react-navigation/native';
 
 const SideMenu = ({ navigation }: Props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log('Navigation State:', navigation.getState());
     dispatch(getTopMenuDataAction());
   }, [dispatch]);
 
   let menuData = useSelector((state) => state.topMenuDataReducer.topMenuData) || [];
 
-  const mergedArray = [];
+  const mergedArray = [];CommonActions
   menuData.forEach((item) => {
     if (item.subItems) {
       // Add the main item
@@ -46,6 +50,29 @@ const SideMenu = ({ navigation }: Props) => {
       navigation.navigate(title);
     }
   };
+
+  const logout = async (navigation) => {
+    try {
+      // Sign out and clear login data
+      await auth().signOut();
+      await AsyncStorage.removeItem('loginUserData');
+      await GoogleSignin.revokeAccess();
+  
+      // Reset navigation stack to the login screen
+      navigation.reset({
+        index: 0,
+        routes: [
+          { key: 'some-unique-key', name: "Login", params: undefined },
+        ],
+      })
+    } catch (error) {
+      console.error('Error during logout:', error);
+    }
+  };
+                
+              
+          
+  
 
   return (
     <SafeAreaView style={sideMenuStyle.areaView}>
@@ -102,6 +129,11 @@ const SideMenu = ({ navigation }: Props) => {
             onPress={() => {
               navigation.navigate('Settings');
             }}
+          />
+          <DrawerItem
+          style={sideMenuStyle.item}
+            label="Logout" 
+            onPress={() => logout(navigation)} 
           />
           <DrawerItem
             style={sideMenuStyle.item}

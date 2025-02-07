@@ -42,7 +42,7 @@ const Settings = ({navigation}: Props) => {
     {
       id: 1,
       text: 'Google News',
-      img: require('../Assets/Images/google.png'),
+      img: require('../Assets/Images/googlenews.png'),
       screen:
         'https://news.google.com/publications/CAAqBwgKMLbanwsww-S3Aw?hl=en-IN&gl=IN&ceid=IN%3Aen',
     },

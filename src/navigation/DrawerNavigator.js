@@ -11,7 +11,7 @@ import BottomTabNavigator from './BottomTabNavigator';
 
 const Drawer = createDrawerNavigator();
 
-const DrawerNavigator = () => {
+const DrawerNavigator = ({navigation}) => {
   const [notificationImage, setNotificationImage] = React.useState(require('../Assets/Images/notification_white.png'));
 
   // Assuming you have access to sliderData from your Redux store
@@ -32,7 +32,7 @@ const DrawerNavigator = () => {
   return (
     <Drawer.Navigator
 
-      drawerContent={props => <SideMenu {...props} />} useLegacyImplementation={false}>
+      drawerContent={props => <SideMenu navigation={navigation} {...props} />} useLegacyImplementation={false}>
       <Drawer.Screen
         name="Home"
         component={BottomTabNavigator}
