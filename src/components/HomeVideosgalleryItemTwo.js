@@ -62,10 +62,9 @@ class HomeVideosgalleryItemTwo extends React.PureComponent {
                                 />
                             </View>
                         </View>
-                        <View style={commonstyles.homeVideosliderTextView}>
-                            <Text numberOfLines={2} style={commonstyles.homeVideosliderText}>
-                                {decode(this.props?.item?.title?.rendered)}                        </Text>
-                        </View>
+                        <Text numberOfLines={2} style={commonstyles.homeVideosliderText}>
+                                {decode(this.props?.item?.title?.rendered)}
+                            </Text>
                 </TouchableOpacity>
             </View>
         );

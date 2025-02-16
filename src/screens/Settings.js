@@ -1,11 +1,18 @@
-import {FlatList, Linking, ScrollView, Share, Text, TouchableOpacity} from 'react-native';
+import {
+  FlatList,
+  Linking,
+  ScrollView,
+  Share,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 import {View} from 'react-native';
 import {blackcolor, commonstyles} from '../styles/commonstyles';
 import {SafeAreaView} from 'react-native';
 import {Image} from 'react-native';
 import SubHeader from '../components/SubHeader';
 
-const Settings = ({navigation}: Props) => {
+const Settings = ({navigation}) => {
   const data = [
     {
       id: 1,
@@ -102,10 +109,12 @@ const Settings = ({navigation}: Props) => {
     <SafeAreaView style={commonstyles.container}>
       <SubHeader
         title={'Settings'}
-        leftBtnClick={() => navigation.reset({
+        leftBtnClick={() =>
+          navigation.reset({
             index: 0,
-            routes: [{ name: 'TopTabs', params: { screen: 'Home' } }],
-          })}
+            routes: [{name: 'TopTabs', params: {screen: 'Home'}}],
+          })
+        }
         isBook={true}
       />
       <ScrollView>
@@ -124,7 +133,13 @@ const Settings = ({navigation}: Props) => {
           )}
         />
         <View style={{paddingHorizontal: 12, marginTop: 30}}>
-            <Text style={{color: blackcolor, fontSize: 18, fontWeight: 'bold', marginBottom: 10}}>
+          <Text
+            style={{
+              color: blackcolor,
+              fontSize: 18,
+              fontWeight: 'bold',
+              marginBottom: 10,
+            }}>
             Follow Us
           </Text>
           <FlatList
@@ -148,7 +163,7 @@ const Settings = ({navigation}: Props) => {
             )}
           />
         </View>
-        </ScrollView>
+      </ScrollView>
     </SafeAreaView>
   );
 };

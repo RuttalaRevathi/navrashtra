@@ -66,11 +66,8 @@ export const commonstyles = StyleSheet.create({
     paddingVertical: 10,
     fontWeight: '600'
   },
-  homeVideosliderTextView: {
-    width: ITEM_WIDTH - 220,
-  },
   homephotosliderTextView: {
-    width: ITEM_WIDTH - 200,
+    width: '100%',
   },
   homeVideosliderText: {
     color: whitecolor,
@@ -90,8 +87,8 @@ export const commonstyles = StyleSheet.create({
   },
 
   HomephotosliderImg: {
-    height: 120,
-    width: ITEM_WIDTH - 200,
+    height: 100,
+    width: '100%',
     objectFit: 'cover',
     borderRadius: 6
   },
@@ -104,10 +101,9 @@ export const commonstyles = StyleSheet.create({
   },
   HomeVideosliderImg: {
     height: 100,
-    width: ITEM_WIDTH - 220,
+    width: '100%',
     borderRadius: 6,
-    objectFit: 'cover'
-
+    objectFit:'cover'
   },
 
   DetailsLatestView: {
@@ -118,7 +114,7 @@ export const commonstyles = StyleSheet.create({
     position: 'relative',
   },
   HomeCategoryImg: {
-    width: Dimensions.get('screen').width - 24,
+    width: '100%',
     height: 230,
     borderRadius: 6,
     overflow: 'hidden'
@@ -147,10 +143,11 @@ export const commonstyles = StyleSheet.create({
     paddingTop: 8
   },
   HomeFourcategoryView: {
-    paddingTop: 12
+    marginTop: 12, width: 180
   },
   DetailsCompOneView: {
-    paddingRight: 10,
+    marginRight: 12,
+    width: 200,
   },
   categoryoneTextView: {
     width: ITEM_WIDTH-20,
@@ -341,12 +338,12 @@ export const commonstyles = StyleSheet.create({
   VideoimgTag: {
     width: '100%',
     height: 200,
-    borderRadius: 5,
+    borderRadius: 6,
   },
   PhotoimgTag: {
     width: '100%',
     height: 200,
-    borderRadius: 5
+    borderRadius: 6
   
   },
   HomeVideoCategoryview: {
@@ -429,6 +426,8 @@ export const commonstyles = StyleSheet.create({
     position: 'absolute',
     padding: 12,
     paddingTop: 30,
+    borderBottomLeftRadius: 6,
+    borderBottomRightRadius: 6,
   },
   linearGradient: {
     alignItems: 'center',
@@ -786,5 +785,13 @@ export const commonstyles = StyleSheet.create({
     fontFamily: 'RobotoCondensed-Regular',
     fontSize: 18, color: appThemeColor,
   },
-
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  noMoreText: {
+    fontSize: 14,
+    color: blackcolor
+  }
 });

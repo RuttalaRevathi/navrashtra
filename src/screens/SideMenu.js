@@ -1,29 +1,36 @@
-import React, { useEffect } from 'react';
-import { DrawerItem } from '@react-navigation/drawer';
-import { View, Text, Image, FlatList, SafeAreaView, ScrollView } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useEffect} from 'react';
+import {DrawerItem} from '@react-navigation/drawer';
+import {
+  View,
+  Text,
+  Image,
+  FlatList,
+  SafeAreaView,
+  ScrollView,
+} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import getTopMenuDataAction from '../redux/actions/getTopMenuDataAction';
-import { sideMenuStyle } from '../styles/SideMenuStyles';
-import { Dark_Gray, graycolor } from '../styles/commonstyles';
+import {sideMenuStyle} from '../styles/SideMenuStyles';
+import {blackcolor, Dark_Gray, graycolor} from '../styles/commonstyles';
 
-
-const SideMenu = ({ navigation }: Props) => {
+const SideMenu = ({navigation}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getTopMenuDataAction());
   }, [dispatch]);
 
-  let menuData = useSelector((state) => state.topMenuDataReducer.topMenuData) || [];
+  let menuData =
+    useSelector(state => state.topMenuDataReducer.topMenuData) || [];
 
   const mergedArray = [];
-  menuData.forEach((item) => {
+  menuData.forEach(item => {
     if (item.subItems) {
       // Add the main item
       mergedArray.push(item);
 
       // Add each subItem as a separate item
-      item.subItems.forEach((subItem) => {
+      item.subItems.forEach(subItem => {
         mergedArray.push({
           ...subItem, // Include the parent title for reference
         });
@@ -34,13 +41,12 @@ const SideMenu = ({ navigation }: Props) => {
     }
   });
 
-  const handleNavigation = (title) => {
+  const handleNavigation = title => {
     if (title === 'व्हिडिओ') {
       navigation.navigate('VDStack');
     } else if (title === 'फोटो') {
       navigation.navigate('PTStack');
-    }
-    else if (title === 'वेब स्टोरीज') {
+    } else if (title === 'वेब स्टोरीज') {
       navigation.navigate('Webstories');
     } else {
       navigation.navigate(title);
@@ -62,27 +68,25 @@ const SideMenu = ({ navigation }: Props) => {
           <FlatList
             data={mergedArray}
             ItemSeparatorComponent={() => <View style={{}} />}
-            renderItem={({ item }) => (
+            renderItem={({item}) => (
               <View>
                 <DrawerItem
-                onPress={() => {
-                  handleNavigation(item.title);
-                }}
+                  onPress={() => {
+                    handleNavigation(item.title);
+                  }}
                   style={{
                     borderTopColor: graycolor,
                     borderTopWidth: 1,
                     marginVertical: -2,
                   }}
-                  icon={({ color, size }) => (
+                  icon={() => (
                     <Image
                       style={sideMenuStyle.listImg}
-                      source={{ uri: item.Image }}
+                      source={{uri: item.Image}}
                     />
                   )}
                   label={() => (
-                    
-                      <Text style={sideMenuStyle.text}>{item.title}</Text>
-                    
+                    <Text style={sideMenuStyle.text}>{item.title}</Text>
                   )}
                   labelStyle={sideMenuStyle.text}
                 />
@@ -91,7 +95,7 @@ const SideMenu = ({ navigation }: Props) => {
           />
           <DrawerItem
             style={sideMenuStyle.item}
-            icon={({ color, size }) => (
+            icon={() => (
               <Image
                 source={require('../Assets/Images/settings.png')}
                 style={sideMenuStyle.icon}
@@ -100,28 +104,18 @@ const SideMenu = ({ navigation }: Props) => {
             label="Settings"
             labelStyle={sideMenuStyle.text}
             onPress={() => {
-              navigation.navigate('Settings');
+              handleNavigation('Settings');
             }}
           />
           <DrawerItem
             style={sideMenuStyle.item}
-                       label="App Version 1.0.0"
-            labelStyle={{ color:Dark_Gray,
-                fontSize: 16,
-                fontWeight:'bold',
-              
-            }}
-            
+            label="App Version 1.0.0"
+            labelStyle={{color: blackcolor, fontSize: 12}}
           />
         </View>
       </ScrollView>
     </SafeAreaView>
   );
-};
-
-type Props = {
-  menuData: Function,
-  loading: Boolean,
 };
 
 export default SideMenu;

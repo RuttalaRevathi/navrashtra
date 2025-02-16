@@ -38,16 +38,13 @@ export const HeaderStyle = StyleSheet.create({
         textAlign: 'center',
         fontSize: 33,
         color: Header_text,
-        // fontWeight:'bold',
-        // top:20
     },
     subHeaderviewHeight: {
-        width: "100%",
         backgroundColor: whitecolor,
         flexDirection: "row",
-        paddingLeft: 12,paddingTop:10,paddingBottom:3,
+        padding: 12,
         justifyContent: 'space-between',
-        alignItems:'center',
+        alignItems: 'center'
     },
     DetailsHeader: {
         width: "100%",

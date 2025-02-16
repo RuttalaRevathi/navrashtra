@@ -1,97 +1,107 @@
 /* eslint-disable no-return-assign */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
-import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, Share, ActivityIndicator } from 'react-native';
-import { commonstyles, whitecolor, gllery_background } from '../styles/commonstyles';
+import React, {useEffect, useRef, useState} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  Share,
+  ActivityIndicator,
+} from 'react-native';
+import {
+  commonstyles,
+  whitecolor,
+  gllery_background,
+} from '../styles/commonstyles';
 import AutoHeightWebView from 'react-native-autoheight-webview';
-import { HeaderStyle } from '../styles/Header.Styles';
+import {HeaderStyle} from '../styles/Header.Styles';
 import HTMLView from 'react-native-htmlview';
 import moment from 'moment';
-import { useDispatch } from 'react-redux';
+import {useDispatch} from 'react-redux';
 import getRelatedAction from '../redux/actions/getRelatedAction';
 
-const PhotoArticle = ({ navigation, route }: Props) => {
+const PhotoArticle = ({navigation, route}) => {
   const [detailsData, setDetailsData] = useState([]);
   const scrollViewRef = useRef(null);
   const dispatch = useDispatch();
 
-
   const result1 = route?.params?.item?.content?.rendered;
   var result = result1?.replace('lazyload', 'text/javascript');
-  // Remove all anchor tags
-  result = result.replace(/<a[^>]*>/g, "").replace(/<\/a>/g, "");
+
+  result = result.replace(/<a[^>]*>/g, '').replace(/<\/a>/g, '');
   const [showWebView, setShowWebView] = useState(false);
 
   useEffect(() => {
     setTimeout(() => setShowWebView(true), 500);
   }, []);
+
   useEffect(() => {
     dispatch(getRelatedAction());
     setDetailsData(route?.params?.detailsData);
   }, []);
 
-  const getIndex = () => {
-    var index = detailsData.findIndex(
-      x => x.id === route?.params?.item?.id,
-    );
-    return index + 1;
-  };
-  // Date and time 
+  // Date and time
   const apiDate = route?.params?.item?.date;
-  const formattedDate = moment(apiDate).format("MMM DD, YYYY | hh:mm A");
+  const formattedDate = moment(apiDate).format('MMM DD, YYYY | hh:mm A');
 
-  const sharecall = (name) => {
+  const sharecall = () => {
     const Link_Url = route?.params?.item?.link;
     Share.share({
       message: Link_Url,
     })
-      .then((result) => console.log(result))
-      .then((error) => console.log(error));
+      .then(result => console.log(result))
+      .then(error => console.log(error));
   };
 
   return (
-
     <View style={commonstyles.container}>
       <View style={HeaderStyle.subHeaderviewHeight}>
         <TouchableOpacity
           onPress={() => {
-            if (route?.params?.screenName === "Photos") {
-              navigation.navigate("Photos");
+            if (route?.params?.screenName === 'Photos') {
+              navigation.navigate('Photos');
             } else {
-              navigation.navigate("Home");
+              navigation.navigate('Home');
             }
           }}>
           <Image
             source={require('../Assets/Images/arrow.png')}
-            style={{ width: 22, height: 22 }}
+            style={{width: 22, height: 22}}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={{}}
-          onPress={() => { sharecall() }}>
+        <TouchableOpacity
+          style={{}}
+          onPress={() => {
+            sharecall();
+          }}>
           <Image
             source={require('../Assets/Images/share_black.png')}
-            style={{ width: 22, height: 22 }}
+            style={{width: 22, height: 22}}
           />
         </TouchableOpacity>
       </View>
-      <ScrollView ref={scrollViewRef}
-        style={{ backgroundColor: gllery_background, }}
-      >
+      <ScrollView
+        ref={scrollViewRef}
+        style={{backgroundColor: gllery_background}}>
         {/* Tittle */}
-        <View style={{ padding: 12, flex: 1, }}>
+        <View style={{padding: 12, flex: 1}}>
           <HTMLView
             value={'<p>' + route?.params?.item?.title?.rendered + '</p>'}
             stylesheet={headerStyles}
           />
         </View>
         {/* time */}
-        <View
-          style={commonstyles.DetailTimeMainView}>
+        <View style={commonstyles.DetailTimeMainView}>
           <Text style={commonstyles.detailauthorgallery}>
             BY {route?.params?.item?.author_name}
           </Text>
-          <Text style={commonstyles.detailTimegallery}>Updated on: {formattedDate}</Text>
+          <Text style={commonstyles.detailTimegallery}>
+            Updated on: {formattedDate}
+          </Text>
         </View>
         <View>
           {showWebView ? (
@@ -120,8 +130,7 @@ const PhotoArticle = ({ navigation, route }: Props) => {
     .gallery img{
         width:92% !important;
         height:auto !important;
-        object-fit: cover;
-        aspect-ratio:10/8;
+        object-fit: contain;
     }
     `}
               injectedJavaScript={`
@@ -132,28 +141,30 @@ const PhotoArticle = ({ navigation, route }: Props) => {
         });
         true;
     `}
-              source={{ html: result }}
+              source={{html: result}}
               scrollEnabled={false}
               viewportContent={'width=device-width, user-scalable=no'}
             />
-          ) : <View style={{ paddingTop: 20 }}><ActivityIndicator size={'large'} /></View>}
+          ) : (
+            <View style={{paddingTop: 20}}>
+              <ActivityIndicator size={'large'} />
+            </View>
+          )}
         </View>
-      </ScrollView >
-    </View >
+      </ScrollView>
+    </View>
   );
 };
-const styles = StyleSheet.create({
+
+const headerStyles = StyleSheet.create({
   p: {
-    color: '#000',
-    fontSize: 22,
-    fontFamily: 'Mandali-Regular',
-    lineHeight: 30,
+    color: whitecolor,
+    fontSize: 20,
+    fontFamily: 'Mandali-Bold',
+    lineHeight: 28,
+    marginBottom: 0,
+    fontWeight: '600',
   },
 });
-const headerStyles = StyleSheet.create({
-  p: { color: whitecolor, fontSize: 22, fontFamily: 'Mandali-Bold', lineHeight: 28, },
-
-});
-
 
 export default PhotoArticle;

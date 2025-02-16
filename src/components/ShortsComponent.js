@@ -152,7 +152,7 @@ ShortsComponent.defaultProps = {
 const styles = StyleSheet.create({
     wrapper: {
         backgroundColor: whitecolor, borderRadius: 10, position: 'relative',
-        height: Dimensions.get('screen').height - 210,
+        height: Dimensions.get('screen').height - 220,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,

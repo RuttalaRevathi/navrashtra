@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
-import React, { useEffect } from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useEffect} from 'react';
+import {createStackNavigator} from '@react-navigation/stack';
+import {useDispatch, useSelector} from 'react-redux';
 import Details from '../../screens/Details';
 import VideoArticle from '../../screens/VideoArticle';
 import EmptyScreen from '../../components/EmptyScreen';
@@ -21,23 +21,23 @@ import Terms from '../../screens/contactScreens/Terms';
 
 const Stack = createStackNavigator();
 
-const HomeStackNavigator = ({ menuData }: Props) => {
+const HomeStackNavigator = ({menuData}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getTopMenuDataAction());
   }, [dispatch]);
 
-  menuData = useSelector((state) => state.topMenuDataReducer.topMenuData) || [];
+  menuData = useSelector(state => state.topMenuDataReducer.topMenuData) || [];
 
   const mergedArray = [];
-  menuData.forEach((item) => {
+  menuData.forEach(item => {
     if (item.subItems) {
       // Add the main item
       mergedArray.push(item);
 
       // Add each subItem as a separate item
-      item.subItems.forEach((subItem) => {
+      item.subItems.forEach(subItem => {
         mergedArray.push({
           ...subItem, // Include the parent title for reference
         });
@@ -53,17 +53,18 @@ const HomeStackNavigator = ({ menuData }: Props) => {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="Home"
-    >
-    
+      initialRouteName="Home">
       {mergedArray.length > 0 ? (
         mergedArray.map((item, index) => (
           <Stack.Screen
             key={item.title}
             name={index === 0 ? 'Home' : item.title}
-            component={index === 0 ? TopTabNavigator : () => <CategoryScreen item={item} />}
+            component={
+              index === 0
+                ? TopTabNavigator
+                : () => <CategoryScreen item={item} />
+            }
           />
-          
         ))
       ) : (
         <Stack.Screen name="EmptyScreen" component={EmptyScreen} />
@@ -80,16 +81,8 @@ const HomeStackNavigator = ({ menuData }: Props) => {
       <Stack.Screen name="Contact" component={ContactUs} />
       <Stack.Screen name="Privacy" component={PrivacyPolicy} />
       <Stack.Screen name="Terms" component={Terms} />
-
-
-
     </Stack.Navigator>
   );
-};
-
-type Props = {
-  menuData: Function,
-  loading: Boolean,
 };
 
 export default HomeStackNavigator;

@@ -279,9 +279,6 @@ const Home = ({ navigation }) => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }>
         <View>
-          {/* Spinner */}
-
-
           {/* Slider */}
           <View style={{ paddingLeft: 12, paddingTop: 10 }}>
             <SliderUI data={newsliderdata} navigation={navigation} />
@@ -297,8 +294,6 @@ const Home = ({ navigation }) => {
             navigation={navigation}
           />
           {/* Photo Gallery */}
-          {/* photo gallery  Cards*/}
-
           <View style={commonstyles.homeVideoview}>
             <View style={commonstyles.homegallerycategoryView}>
               <View style={commonstyles.gallerytextView}>
@@ -469,15 +464,5 @@ const Home = ({ navigation }) => {
     </SafeAreaView>
   );
 };
-
-type Props = {
-  sliderData: Function,
-  loading: Boolean,
-  indiaData: Function,
-  maharashtraData: Function,
-  videosData: Function,
-  photosData: Function
-
-}
 
 export default Home;

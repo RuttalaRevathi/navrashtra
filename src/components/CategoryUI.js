@@ -57,12 +57,7 @@ function CategoryUI({ navigation, data, title, isTopNavigation, loadingMore,
       {!isTopNavigation && (
         <View style={HeaderStyle.subHeaderviewHeight}>
           <TouchableOpacity
-            onPress={() =>
-              navigation.reset({
-                index: 0,
-                routes: [{ name: 'TopTabs', params: { screen: 'Home' } }],
-              })
-            }
+           onPress={() => navigation.goBack()}
           >
             <Image
               source={require('../Assets/Images/arrow.png')}

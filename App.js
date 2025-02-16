@@ -20,6 +20,7 @@ const App = () => {
   const [connectionType, setConnectionType] = useState(null);
 
   useEffect(() => {
+    SplashScreen.hide();
     // Dispatch actions to fetch data
     store.dispatch(getSliderAction());
     store.dispatch(getLatestNewsAction());

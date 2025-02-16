@@ -1,13 +1,9 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {
-   Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 
-import { commonstyles } from '../styles/commonstyles';
+import {commonstyles} from '../styles/commonstyles';
 import moment from 'moment';
 import FastImage from 'react-native-fast-image';
 
@@ -33,31 +29,33 @@ class HomeComponentThree extends React.PureComponent {
     }
     const defaultImage = require('../Assets/Images/no_image.jpeg');
     const imageUrl = this.props?.item?.web_featured_image
-      ? { uri: this.props?.item?.web_featured_image }
+      ? {uri: this.props?.item?.web_featured_image}
       : defaultImage;
     return (
-        <>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('Details', {
-                item: this.props.item,
-                detailsData: this.props?.propsdata,
-              });
-            }}>
-            <View style={commonstyles.HomeThreeCategoryview}>
-                <FastImage
-                  resizeMode={FastImage.resizeMode.cover}
-                  source={imageUrl}
-                  style={commonstyles.HomeCategoryImg}
-                />
-              <View style={commonstyles.homecategoryTextView}>
-                <Text numberOfLines={2} style={commonstyles.HomeThreeCategorytext}>
-                  {decode(this.props?.item?.title?.rendered)}
-                </Text>
-              </View>
+      <>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('Details', {
+              item: this.props.item,
+              detailsData: this.props?.propsdata,
+            });
+          }}>
+          <View style={commonstyles.HomeThreeCategoryview}>
+            <FastImage
+              resizeMode={FastImage.resizeMode.cover}
+              source={imageUrl}
+              style={commonstyles.HomeCategoryImg}
+            />
+            <View style={commonstyles.homecategoryTextView}>
+              <Text
+                numberOfLines={2}
+                style={commonstyles.HomeThreeCategorytext}>
+                {decode(this.props?.item?.title?.rendered)}
+              </Text>
             </View>
-          </TouchableOpacity>
-        </>
+          </View>
+        </TouchableOpacity>
+      </>
     );
   }
 }

@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
   FlatList,
@@ -9,12 +9,12 @@ import {
   View,
   Text,
 } from 'react-native';
-import { commonstyles } from '../styles/commonstyles';
+import {commonstyles} from '../styles/commonstyles';
 import CategoryComponentTwo from '../components/CategoryComponentTwo';
 import CategoryComponentOne from '../components/CategoryComponentOne';
-import { BaseUrl, LatestUrl } from '../utilities/urls';
+import {BaseUrl, LatestUrl} from '../utilities/urls';
 
-const LatestNews = ({ navigation, route }: Props) => {
+const LatestNews = ({navigation, route}: Props) => {
   const [latestNews, setLatestNewsData] = useState(null);
   const [loading, setLoading] = useState(false); // State to handle the loader
 
@@ -36,7 +36,7 @@ const LatestNews = ({ navigation, route }: Props) => {
     getLatestNewsAction();
   }, []);
 
-  const renderItemTwo = ({ item }) => (
+  const renderItemTwo = ({item}) => (
     <CategoryComponentTwo
       item={item}
       propsdata={latestNews?.data}
@@ -44,27 +44,29 @@ const LatestNews = ({ navigation, route }: Props) => {
     />
   );
 
-
   return (
     <SafeAreaView style={commonstyles.container}>
       {loading ? (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
           <ActivityIndicator size="large" />
         </View>
       ) : (
-          <>
-            <View style={[commonstyles.gallerycategoryView, {marginLeft: 12, marginTop: 12}]}>
-              <Text style={commonstyles.galleryArticlecategorytext}>
-                ताज्या बातम्या</Text>
-            </View>
-            <ScrollView style={commonstyles.scroll}>
-                <FlatList
-                  style={commonstyles.cateflist}
-                  data={latestNews?.data}
-                  renderItem={renderItemTwo}
-                />
-            </ScrollView>
-          </>
+        <>
+          <View
+            style={[
+              commonstyles.gallerycategoryView,
+              {marginLeft: 12, marginTop: 12},
+            ]}>
+            <Text style={commonstyles.galleryArticlecategorytext}>
+              ताज्या बातम्या
+            </Text>
+          </View>
+          <FlatList
+            style={commonstyles.cateflist}
+            data={latestNews?.data}
+            renderItem={renderItemTwo}
+          />
+        </>
       )}
     </SafeAreaView>
   );

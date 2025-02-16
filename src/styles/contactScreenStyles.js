@@ -29,25 +29,20 @@ export const ContactStyles = StyleSheet.create({
 
     text: { color: dark_blue, fontSize: 16, fontWeight: '600', marginStart: 7, lineHeight: 30 },
     text1: {
-        color: red_color, fontSize: 16, fontWeight: 'normal',
-        left: 5, lineHeight: 30, textDecorationLine: 'Underline',
+        color: blackcolor, fontSize: 16, fontWeight: 'normal', lineHeight: 24, marginBottom: 8
     },
+
     title: {
-        fontFamily: 'RobotoCondensed-Regular', fontSize: 17,
-        color: blackcolor, fontWeight: '800', marginBottom: 10,
-    },
-    underlinetitle: {
-        fontFamily: 'RobotoCondensed-Regular', fontSize: 17,
-        color: blackcolor, fontWeight: '800', marginBottom: 10,textDecorationLine: 'underline',
+        fontFamily: 'RobotoCondensed-Regular', fontSize: 16,
+        color: blackcolor, fontWeight: '700', marginBottom: 8,
     },
     heading: { fontSize: 24, fontWeight: '600', color: blackcolor },
     headingview:{marginBottom:10},
     content: {
-        fontSize: 16, fontWeight: '400',
-        color: blackcolor, textAlign: 'justify', marginBottom: 10,
-        flexWrap: 'wrap',
+        fontSize: 16, fontWeight: '400', lineHeight: 22,
+        color: blackcolor, marginBottom: 12,
     },
-    subView: { paddingBottom: 70, paddingHorizontal: 12},
+    subView: { padding: 12, paddingBottom: 50},
     mainView: {
         backgroundColor: whitecolor,
         height: '100%',

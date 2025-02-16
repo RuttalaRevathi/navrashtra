@@ -8,6 +8,7 @@ import {
   Share,
   FlatList,
   Platform,
+  Dimensions,
 } from 'react-native';
 import {
   blackcolor,
@@ -19,7 +20,7 @@ import { HeaderStyle } from '../styles/Header.Styles';
 import moment from 'moment';
 import DetailsComponentTwo from '../components/DetailsComponentTwo';
 import DetailsComponentOne from '../components/DetailsComponentOne';
-import { BaseUrl, DetailsUrl, LatestUrl, RelatedUrl } from '../utilities/urls';
+import { BaseUrl, DetailsUrl, RelatedUrl } from '../utilities/urls';
 import FastImage from 'react-native-fast-image';
 import { decode } from 'html-entities';
 
@@ -33,7 +34,6 @@ const Details = ({ navigation, route }) => {
   const [firstArticle, setFirstArticle] = useState(null);
   const [articleId, setArticleId] = useState(route.params?.item?.id);
 
-  // Fetch the article when the formatedid changes
   useEffect(() => {
     getDetailArticleAction(articleId);
     getRelatedAction(articleId);
@@ -61,11 +61,9 @@ const Details = ({ navigation, route }) => {
     setFirstArticle(articleObj);
   }
 
-  // Function to fetch the details of the article
   const getDetailArticleAction = async artId => {
     try {
       const response = await fetch(BaseUrl + DetailsUrl + '?id=' + artId);
-
       const responseJson = await response.json();
       setDetailArticleData(responseJson);
     } catch (error) {
@@ -104,9 +102,9 @@ const Details = ({ navigation, route }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setRenderWebView(true);
-    }, 500); // Delay rendering by 0.5 seconds
+    }, 500);
 
-    return () => clearTimeout(timer); // Clean up the timer on unmount
+    return () => clearTimeout(timer);
   }, []);
 
   const goToTop = () => {
@@ -134,8 +132,6 @@ const Details = ({ navigation, route }) => {
       .catch(error => console.log(error));
   };
 
-
-  // Date and time 
   const apiDate = firstArticle?.date;
   const formattedDate = moment(apiDate).format("MMM DD, YYYY | hh:mm A");
 
@@ -144,7 +140,6 @@ const Details = ({ navigation, route }) => {
     ? { uri: firstArticle?.web_featured_image }
     : defaultImage;
 
-  // Handle "Read Also" link clicks
   const handleWebViewRequest = request => {
     const url = request?.url;
 
@@ -172,14 +167,13 @@ const Details = ({ navigation, route }) => {
     }
   };
   const handleTouchStart = (e) => {
-    // Prevent the default scroll behavior
     e.preventDefault();
   };
   const handleGoBack = () => {
     if (route.params?.screenName === 'Shorts') {
       navigation.navigate('Shorts');
     } else {
-      navigation.goBack(); // Default back behavior
+      navigation.goBack();
     }
   };
   const source = firstArticle?.content?.rendered;
@@ -198,12 +192,8 @@ const Details = ({ navigation, route }) => {
         </TouchableOpacity>
         <View
           style={{
-            display: 'flex',
             alignItems: 'center',
-            width: '15%',
-            justifyContent: 'space-between',
             flexDirection: 'row',
-
           }}>
           <TouchableOpacity onPress={toggleFontSize}>
             <Image
@@ -211,7 +201,7 @@ const Details = ({ navigation, route }) => {
               source={require('../Assets/Images/font.png')}
             />
           </TouchableOpacity>
-          <TouchableOpacity onPress={sharecall}>
+          <TouchableOpacity onPress={sharecall} style={{ marginLeft: 16 }}>
             <Image
               style={{ width: 22, height: 22 }}
               source={require('../Assets/Images/share_black.png')}
@@ -259,19 +249,12 @@ const Details = ({ navigation, route }) => {
                   javaScriptEnabled={true}
                   scalesPageToFit={false}
                   allowsFullscreenVideo={true}
-                  style={{ opacity: 0.99 }}
+                  style={{ marginHorizontal: 12, width: Dimensions.get('window').width - 24 }}
                   onTouchStart={handleTouchStart}
                   customStyle={`
-                    
-                     iframe[src^="https://www.youtube.com/embed/"] {
-                                width:100% !important;
-                                height:225px
-                             
-                    }
-    iframe[title]{
+                 iframe[title]{
       font-size: 16px;
     }
-      
     * {
       font-family: 'Mandali-Bold';
       line-height: 1.5;
@@ -279,32 +262,29 @@ const Details = ({ navigation, route }) => {
       -webkit-touch-callout: default; 
     }
     h4 {
-      margin:5px;
+      margin:5px 0px;
     }
-      h2 {
-      padding-left:15px
-      }
     p strong {
       font-size: 18px;
     }
     p, h4 a {
       font-size: 14px;
       text-align:left;
-      margin:5px;
+      margin:5px 0px;
       font-family:'Mandali-Regular';
-      line-height:2
+      line-height:1.6
     }
     h2 a {
       font-size: 18px;
       text-align:left;
-      margin:5px;
+      margin:5px 0px;
       font-family:'Mandali-Regular';
       line-height:1.6
     }
     h1{
       font-size: 18px;
       text-align:left;
-      margin:5px;
+      margin: 5px 0px;
       font-family:'Mandali-Regular';
       line-height:1.6
     }
@@ -324,41 +304,10 @@ const Details = ({ navigation, route }) => {
       max-width:100%!important;
       height:inherit
     }
-      h3{
-      padding-left:10px;
-      }
       p a{
       width:100%;
       height:inherit
       }
-      div[dir="auto"]{
-      font-size: 14px;
-      text-align:left;
-      margin:5px;
-      font-family:'Mandali-Regular';
-      line-height:1.6
-      }
-          .responsive-table {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-      .responsive-table table {
-        width: 100%;
-       
-        border-collapse: collapse;
-    }
-     .responsive-table th, .responsive-table td {
-        padding: 3px !important;
-        text-align: center;
-        border: 1px solid #ddd;
-        font-size: 12px;
-        line-height: 20px;
-    }
-            .responsive-table th, .responsive-table td {
-        padding: 8px;
-        border: 1px solid #ddd;
-    }
-
   `}
                   source={{
                     html: `
@@ -366,7 +315,7 @@ const Details = ({ navigation, route }) => {
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Faustina&display=swap');
       p strong, span, p span { font-family: 'Faustina', sans-serif; }
-      p, li { font-family: 'Faustina', sans-serif; line-height: 1.4; padding: 0px 8px; color: #000; font-weight: 500; font-size: ${fontSize}px; }
+      p, li { font-family: 'Faustina', sans-serif; line-height: 1.4; padding: 0px; color: #000; font-weight: 500; font-size: ${fontSize}px; }
     </style>
   `,
                     baseUrl: Platform.OS === "android" ? 'https://twitter.com' : '',
@@ -383,7 +332,6 @@ const Details = ({ navigation, route }) => {
                   onShouldStartLoadWithRequest={handleWebViewRequest}
                   viewportContent={'width=device-width, user-scalable=no'}
                 />
-
               }
             </View>
           </View>
@@ -397,9 +345,9 @@ const Details = ({ navigation, route }) => {
               <Text style={commonstyles.RelatedCategory}>Next Articles</Text>
             </View>
             {detailsData.length > 0 ? (
-              <View style={{ paddingLeft: 12 }}>
+              <View style={{ paddingLeft: 12, flex: 1, alignItems: 'flex-start'  }}>
                 <FlatList
-                  showsHorizontalScrollIndicator={true}
+                  showsHorizontalScrollIndicator={false}
                   persistentScrollbar={false}
                   horizontal={true}
                   data={detailsData?.slice(getIndex(), getIndex() + 5)}
@@ -414,7 +362,7 @@ const Details = ({ navigation, route }) => {
                     color: blackcolor,
                     textAlign: 'center',
                   }}>
-                  No Next Articles{' '}
+                  No Next Articles
                 </Text>
               </View>
             )}
@@ -428,7 +376,7 @@ const Details = ({ navigation, route }) => {
             <FlatList
               data={relatedData?.data}
               renderItem={renderItemTwo}
-              // keyExtractor={item => item.id.toString()}
+              keyExtractor={item => item.id.toString()}
               initialNumToRender={5}
               maxToRenderPerBatch={10}
               windowSize={10}

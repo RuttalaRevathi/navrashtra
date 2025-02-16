@@ -45,11 +45,9 @@ class DetailsComponentOne extends React.PureComponent {
                 style={commonstyles.HomeVideosliderImg}
               />
             </View>
-            <View style={commonstyles.homeVideosliderTextView}>
-              <Text numberOfLines={2} style={commonstyles.homeFoursliderText}>
+            <Text numberOfLines={2} style={commonstyles.homeFoursliderText}>
                 {decode(this.props?.item?.title?.rendered)}
               </Text>
-            </View>
             <View style={commonstyles.timeview}>
               <Text style={commonstyles.latesttime}>{formattedDate}</Text>
             </View>

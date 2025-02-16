@@ -9,14 +9,14 @@ import {
   Image,
   ActivityIndicator,
 } from 'react-native';
-import { commonstyles } from '../styles/commonstyles';
+import {commonstyles} from '../styles/commonstyles';
 import HomeComponentFour from './HomeComponentFour';
 import HomeComponentThree from './HomeComponentThree';
 
 function HomeUINew(props) {
-  const { navigation } = props;
+  const {navigation} = props;
 
-  const renderItemOne = ({ item }) => (
+  const renderItemOne = ({item}) => (
     <HomeComponentThree
       item={item}
       propsdata={props?.data}
@@ -24,7 +24,7 @@ function HomeUINew(props) {
     />
   );
 
-  const renderItemTwo = ({ item }) => (
+  const renderItemTwo = ({item}) => (
     <HomeComponentFour
       item={item}
       propsdata={props?.data}
@@ -37,53 +37,55 @@ function HomeUINew(props) {
 
   return (
     <SafeAreaView styles={commonstyles.container}>
-      <View style={{ padding: 12 }}>
+      <View style={{padding: 12}}>
         <View style={commonstyles.homecategoryView}>
           <View style={commonstyles.homeOnetextView}>
             <Text style={commonstyles.Category}>{props?.categoryName}</Text>
           </View>
           <TouchableOpacity
-              onPress={() => {
-                navigation.navigate(props?.categoryName, {
-                  url: props?.navigationScreen,
-                  title: props?.categoryName,
-                  isCategoryClicked: true
-                })
-              }}>
-              <Image
-                source={require('../Assets/Images/next.png')}
-              />
-            </TouchableOpacity>
+            onPress={() => {
+              navigation.navigate(props?.categoryName, {
+                url: props?.navigationScreen,
+                title: props?.categoryName,
+                isCategoryClicked: true,
+              });
+            }}>
+            <Image source={require('../Assets/Images/next.png')} />
+          </TouchableOpacity>
         </View>
-        
-        {newdata.length > 0 ? <View style={commonstyles.homeCategoryflatView}>
-          <FlatList
-            data={newdata.slice(0, 1)}
-            showsHorizontalScrollIndicator={false}
-            persistentScrollbar={false}
-            numColumns={2}
-            style={{borderRadius: 6, overflow: 'hidden'}}
-            onEndReachedThreshold={50}
-            getItemLayout={(data, index) => ({
-              length: 40,
-              offset: 40 * index,
-              index,
-            })}
-            renderItem={renderItemOne}
-          />
-          <FlatList
-            showsHorizontalScrollIndicator={true}
-            persistentScrollbar={false}
-            horizontal={true}
-            data={newdata.slice(1, 10)}
-            getItemLayout={(data, index) => ({
-              length: 40,
-              offset: 40 * index,
-              index,
-            })}
-            renderItem={renderItemTwo}
-          />
-        </View> : <ActivityIndicator size={'large'} style={{paddingVertical: 12}} />}
+
+        {newdata.length > 0 ? (
+          <View style={commonstyles.homeCategoryflatView}>
+            <FlatList
+              data={newdata.slice(0, 1)}
+              showsHorizontalScrollIndicator={false}
+              persistentScrollbar={false}
+              numColumns={1}
+              style={{borderRadius: 6, overflow: 'hidden'}}
+              onEndReachedThreshold={50}
+              getItemLayout={index => ({
+                length: 40,
+                offset: 40 * index,
+                index,
+              })}
+              renderItem={renderItemOne}
+            />
+            <FlatList
+              showsHorizontalScrollIndicator={true}
+              persistentScrollbar={false}
+              horizontal={true}
+              data={newdata.slice(1, 10)}
+              getItemLayout={index => ({
+                length: 40,
+                offset: 40 * index,
+                index,
+              })}
+              renderItem={renderItemTwo}
+            />
+          </View>
+        ) : (
+          <ActivityIndicator size={'large'} style={{paddingVertical: 12}} />
+        )}
       </View>
     </SafeAreaView>
   );

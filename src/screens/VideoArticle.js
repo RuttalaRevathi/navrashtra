@@ -8,7 +8,7 @@ import AutoHeightWebView from 'react-native-autoheight-webview';
 import { useState } from 'react';
 import FastImage from 'react-native-fast-image';
 
-const VideoArticle = ({ navigation, route }: Props) => {
+const VideoArticle = ({ navigation, route }) => {
   const [detailsData, setDetailsData] = useState([]);
   const source = route?.params?.item?.content?.rendered;
   const [videoAvailable, setVideoAvailable] = useState(true);
@@ -190,12 +190,10 @@ const VideoArticle = ({ navigation, route }: Props) => {
   );
 };
 
-
-export default VideoArticle;
 const styles = StyleSheet.create({
   scrollView: { flexGrow: 1, },
   webview: {
     width: '100%',
-    // Adjust width as needed
   },
 });
+export default VideoArticle;
