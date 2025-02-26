@@ -23,6 +23,7 @@ import DetailsComponentOne from '../components/DetailsComponentOne';
 import { BaseUrl, DetailsUrl, RelatedUrl } from '../utilities/urls';
 import FastImage from 'react-native-fast-image';
 import { decode } from 'html-entities';
+import { TopicItems } from '../components/TopicItems';
 
 const Details = ({ navigation, route }) => {
   const [detailsData, setDetailsData] = useState([]);
@@ -33,6 +34,7 @@ const Details = ({ navigation, route }) => {
   const [renderWebView, setRenderWebView] = useState(false);
   const [firstArticle, setFirstArticle] = useState(null);
   const [articleId, setArticleId] = useState(route.params?.item?.id);
+  const [tags, setTags] = useState([]);
 
   useEffect(() => {
     getDetailArticleAction(articleId);
@@ -51,6 +53,7 @@ const Details = ({ navigation, route }) => {
     ) {
       const firstArticleData = detailArticleData.data[0];
       setFirstArticle(firstArticleData);
+      setTags(firstArticleData?.tags);
     }
   }, [detailArticleData]);
 
@@ -59,6 +62,7 @@ const Details = ({ navigation, route }) => {
       item => item.id === route.params?.item?.id,
     )[0];
     setFirstArticle(articleObj);
+    setTags(articleObj?.tags);
   }
 
   const getDetailArticleAction = async artId => {
@@ -178,7 +182,7 @@ const Details = ({ navigation, route }) => {
   };
   const source = firstArticle?.content?.rendered;
   let source1 = source?.replace('lazyload', 'text/javascript');
-
+  const authorName = firstArticle?.author_slug;
   return (
     <View style={commonstyles.container}>
       <View style={HeaderStyle.DetailsHeader}>
@@ -229,9 +233,15 @@ const Details = ({ navigation, route }) => {
             {/* Author and Time */}
             <View
               style={commonstyles.DetailTimeMainView}>
+                <TouchableOpacity onPress={() => {
+                navigation.navigate('Author', {
+                  url: authorName
+                })
+              }}>
               <Text style={commonstyles.detailauthor}>
                 BY {firstArticle?.author_name}
               </Text>
+              </TouchableOpacity>
               <Text style={commonstyles.detailTime}>Updated on: {formattedDate}</Text>
             </View>
 
@@ -335,6 +345,8 @@ const Details = ({ navigation, route }) => {
               }
             </View>
           </View>
+           {/* Topics */}
+        <TopicItems navigation={navigation} tags={tags} categoryName={firstArticle?.category_name} />
           {/* Next Article */}
           <View
             style={{
@@ -380,6 +392,7 @@ const Details = ({ navigation, route }) => {
               initialNumToRender={5}
               maxToRenderPerBatch={10}
               windowSize={10}
+              scrollEnabled={false}
             />
           </View>
         </View>

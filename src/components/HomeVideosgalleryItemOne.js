@@ -36,7 +36,7 @@ class HomeVideosgalleryItemOne extends React.PureComponent {
         <TouchableOpacity
           onPress={() => {
             this.props.navigation.navigate('VideoArticle', {
-              item: this.props.item,
+              item: this.props?.item,
               detailsData: this.props.videosData?.data,
             });
           }}>

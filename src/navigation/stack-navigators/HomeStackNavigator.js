@@ -18,6 +18,7 @@ import AboutUs from '../../screens/contactScreens/AboutUs';
 import ContactUs from '../../screens/contactScreens/ContactUs';
 import PrivacyPolicy from '../../screens/contactScreens/PrivacyPolicy';
 import Terms from '../../screens/contactScreens/Terms';
+import { Topics } from '../../screens/Topics';
 
 const Stack = createStackNavigator();
 
@@ -81,6 +82,7 @@ const HomeStackNavigator = ({menuData}) => {
       <Stack.Screen name="Contact" component={ContactUs} />
       <Stack.Screen name="Privacy" component={PrivacyPolicy} />
       <Stack.Screen name="Terms" component={Terms} />
+      <Stack.Screen name="Topics" component={Topics} />
     </Stack.Navigator>
   );
 };

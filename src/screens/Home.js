@@ -1,9 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Spinner from 'react-native-loading-spinner-overlay';
-
-
 import {
   View,
   Text,
@@ -30,6 +27,7 @@ import getPhotoGalleryAction from '../redux/actions/getPhotoGalleryAction';
 import { Automobile, BaseUrl, Business, Carrer, CategoryUrl, India, Lifestyle, Maharashtra, Movies, Mumbai, Nagpur, Pune, Religion, Special, Sports, Technology, Viral, World } from '../utilities/urls';
 import getVideoAction from '../redux/actions/getVideoAction';
 import WebStoriesHome from './WebStroriesHome';
+import TopNews from '../components/TopNews';
 
 const Home = ({ navigation }) => {
   const [indiaData, setIndiaData] = useState(null);
@@ -279,6 +277,8 @@ const Home = ({ navigation }) => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }>
         <View>
+          {/* Breaking News */}
+          <TopNews navigation={navigation} />
           {/* Slider */}
           <View style={{ paddingLeft: 12, paddingTop: 10 }}>
             <SliderUI data={newsliderdata} navigation={navigation} />

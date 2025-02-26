@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Dimensions, StyleSheet } from "react-native";
-import { appThemeColor, blackcolor, graycolor, whitecolor, Header_BG_Color, Header_text, dark_blue } from "../styles/commonstyles";
+import { appThemeColor, blackcolor, graycolor, whitecolor, Header_BG_Color, Header_text, dark_blue, light_gray } from "../styles/commonstyles";
 
 export const HeaderStyle = StyleSheet.create({
     viewHeight: {
@@ -52,7 +52,7 @@ export const HeaderStyle = StyleSheet.create({
         flexDirection: "row",
         padding: 12,
         justifyContent: 'space-between',
-        borderBottomColor: graycolor, borderBottomWidth: 1
+        borderBottomColor: light_gray, borderBottomWidth: 1
     },
     subHeadercustom: {
         // height: 50,

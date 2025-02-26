@@ -1,72 +1,94 @@
-/* eslint-disable prettier/prettier */
-import React, { useState } from 'react';
+import React from 'react';
+import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {
-  Image,
-  Share,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import moment from 'moment';
-import { commonstyles } from '../styles/commonstyles';
-import FastImage from 'react-native-fast-image';
+  blackcolor,
+  graycolor,
+  light_gray,
+  whitecolor,
+} from '../styles/commonstyles';
+import {Linking} from 'react-native';
 
-const AuthorComponent = ({ item, navigation, propsdata }) => {
+const AuthorComponent = ({authorData}) => {
+  if (!authorData) return null; // Don't render if there's no author data
 
-  // Share functionality
-  const sharecall = () => {
-    const Link_Url = item?.link || 'No Link Available';
-    Share.share({
-      message: Link_Url,
-    })
-      .then((result) => console.log(result))
-      .catch((error) => console.log(error));
+  const renderSocialLinks = links => {
+    const socialPlatforms = {
+      facebook: require('../Assets/Images/facebook.png'),
+      instagram: require('../Assets/Images/instagram.png'),
+      twitter: require('../Assets/Images/twitter.png'),
+    };
+
+    return Object.entries(socialPlatforms).map(([key, icon]) => {
+      if (links[key]) {
+        return (
+          <TouchableOpacity
+            key={key}
+            onPress={() => Linking.openURL(links[key])} // Open social media link
+            style={styles.socialButton}>
+            <Image source={icon} style={styles.socialIcon} />
+          </TouchableOpacity>
+        );
+      }
+      return null;
+    });
   };
-
-  // Fallback image if no URL is provided
-  const defaultImage = require('../Assets/Images/noimage.png');
-  const imageUrl = item?.web_featured_image
-    ? { uri: item?.web_featured_image }
-    : defaultImage;
-
-  // Decode HTML entities
-  const decode = require('html-entities-decoder');
-
-console.log(item,"content");
-
-  
   return (
-    <View>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('Details', {
-            item,
-            detailsData: propsdata,
-          });
-        }}>
-        <View style={commonstyles.HomeComp2DotView}>
-          {/* Article Text Section */}
-          <View style={commonstyles.cateviewText}>
-            <Text
-              numberOfLines={2}
-              ellipsizeMode="tail"
-              style={commonstyles.latestText}>
-              {decode(item?.content || 'Untitled')}
-            </Text>
-           
-          </View>
-          {/* Article Image Section */}
-          <View style={commonstyles.cateviewImg}>
-            <FastImage
-              resizeMode={FastImage.resizeMode.contain}
-              source={imageUrl}
-              style={commonstyles.cateImage}
-            />
-          </View>
-        </View>
-      </TouchableOpacity>
+    <View style={styles.authorContainer}>
+      {authorData.avatar && (
+        <Image source={{uri: authorData.avatar}} style={styles.authorImage} />
+      )}
+      <Text style={styles.authorName}>{authorData.name}</Text>
+      <Text style={styles.authorRole}>{authorData.roles}</Text>
+      <View style={styles.socialLinks}>
+        {renderSocialLinks(authorData.social_links)}
+      </View>
+      <Text style={styles.authorBio}>{authorData.description}</Text>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  authorContainer: {
+    alignItems: 'center',
+    padding: 12,
+    backgroundColor: whitecolor,
+    borderRadius: 8,
+    borderColor: light_gray,
+    borderWidth: 1,
+    marginTop: 10,
+  },
+  authorImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    marginBottom: 10,
+  },
+  authorName: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: blackcolor,
+  },
+  authorRole: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: blackcolor,
+  },
+  authorBio: {
+    textAlign: 'center',
+    color: blackcolor,
+    fontSize: 14,
+    lineHeight: 20,
+    fontWeight: '500',
+  },
+  socialLinks: {
+    flexDirection: 'row', // Align icons horizontally
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 10,
+  },
+  socialButton: {
+    marginHorizontal: 10, // Add spacing between buttons
+  },
+});
 
 export default AuthorComponent;

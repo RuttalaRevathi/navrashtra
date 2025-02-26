@@ -1,11 +1,7 @@
 /* eslint-disable prettier/prettier */
-import { relative } from 'patch-package/dist/path';
-import { StyleSheet, Dimensions } from 'react-native';
-import { black } from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
-// export const appThemeColor = "#337DFF"
-//3349FF,339fff
+import {StyleSheet, Dimensions} from 'react-native';
 export const appThemeColor = '#000000';
-export const off_white = '#F6F6F6'
+export const off_white = '#F6F6F6';
 export const whitecolor = '#ffffff';
 export const graycolor = '#808080';
 export const Dark_graycolor = '#63666A';
@@ -17,11 +13,9 @@ export const light_gray = '#cccccc5e';
 export const gllery_background = '#2c2c2c';
 export const lightgllery_background = '#656565';
 
-
 // export const Dark_Gray ="#63666A"
 export const Dark_Gray = '#A9A9A9';
 
-const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 export const SLIDER_WIDTH = Dimensions.get('window').width;
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH);
@@ -32,18 +26,23 @@ export const commonstyles = StyleSheet.create({
     marginTop: 10,
   },
   HomeThreeCategoryview: {
-    borderBottomColor: graycolor, borderBottomWidth: 1,
-    width: '100%', flex: 1
+    borderBottomColor: graycolor,
+    borderBottomWidth: 1,
+    width: '100%',
+    flex: 1,
   },
   homecategoryView: {
-    justifyContent: 'space-between', flex: 1, flexDirection: 'row',
-    alignItems: 'center', marginRight: 4
+    justifyContent: 'space-between',
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginRight: 4,
   },
   homegallerycategoryView: {
-    flexDirection: 'row', justifyContent: 'space-between', 
-    padding: 12, 
-    alignItems: 'center'
-
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 12,
+    alignItems: 'center',
   },
   homeVideoTextView: {
     width: ITEM_WIDTH,
@@ -53,7 +52,7 @@ export const commonstyles = StyleSheet.create({
     fontFamily: 'Mukta',
     fontSize: 22,
     fontWeight: 'bold',
-    left: 10
+    left: 10,
   },
   homeVideoview: {
     backgroundColor: gllery_background,
@@ -64,7 +63,7 @@ export const commonstyles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 26,
     paddingVertical: 10,
-    fontWeight: '600'
+    fontWeight: '600',
   },
   homephotosliderTextView: {
     width: '100%',
@@ -83,32 +82,34 @@ export const commonstyles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     fontWeight: '400',
-    marginTop: 8
+    marginTop: 8,
   },
 
   HomephotosliderImg: {
     height: 100,
     width: '100%',
     objectFit: 'cover',
-    borderRadius: 6
+    borderRadius: 6,
   },
   HomeVideoImg: {
     height: 250,
     width: ITEM_WIDTH - 26,
     borderRadius: 6,
     marginBottom: 4,
-    objectFit: 'cover'
+    objectFit: 'cover',
   },
   HomeVideosliderImg: {
     height: 100,
     width: '100%',
     borderRadius: 6,
-    objectFit:'cover'
+    objectFit: 'cover',
   },
 
   DetailsLatestView: {
-    justifyContent: 'space-between', flex: 1, flexDirection: 'row',
- paddingVertical: 10
+    justifyContent: 'space-between',
+    flex: 1,
+    flexDirection: 'row',
+    paddingVertical: 10,
   },
   HomeoneCategoryview: {
     position: 'relative',
@@ -117,22 +118,21 @@ export const commonstyles = StyleSheet.create({
     width: '100%',
     height: 230,
     borderRadius: 6,
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   HomeCategorytext: {
     color: whitecolor,
     fontFamily: 'Mukta-Bold',
     fontSize: 20,
     lineHeight: 26,
-    marginBottom: 10
+    marginBottom: 10,
   },
   HomeThreeCategorytext: {
     color: blackcolor,
     fontFamily: 'Mukta-SemiBold',
     fontSize: 16,
     lineHeight: 24,
-    paddingVertical: 10
-
+    paddingVertical: 10,
   },
   homeFoursliderText: {
     color: blackcolor,
@@ -140,17 +140,18 @@ export const commonstyles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     fontWeight: '500',
-    paddingTop: 8
+    paddingTop: 8,
   },
   HomeFourcategoryView: {
-    marginTop: 12, width: 180
+    marginTop: 12,
+    width: 180,
   },
   DetailsCompOneView: {
     marginRight: 12,
     width: 200,
   },
   categoryoneTextView: {
-    width: ITEM_WIDTH-20,
+    width: ITEM_WIDTH - 20,
   },
   CategoryOnetext: {
     color: blackcolor,
@@ -158,89 +159,120 @@ export const commonstyles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 24,
     paddingTop: 10,
-    
   },
   homecategoryTextView: {
     width: Dimensions.get('screen').width - 24,
   },
   homeOnetextView: {
-    borderLeftColor: redcolor, borderLeftWidth: 6,
+    borderLeftColor: redcolor,
+    borderLeftWidth: 6,
   },
   gallerycategoryView: {
-    borderLeftColor: redcolor, borderLeftWidth: 6,marginBottom:5
+    borderLeftColor: redcolor,
+    borderLeftWidth: 6,
+    marginBottom: 5,
   },
   gallerytextView: {
-    borderLeftColor: redcolor, borderLeftWidth: 6,
+    borderLeftColor: redcolor,
+    borderLeftWidth: 6,
   },
-  galleryImage:{ width: 24, height: 24, tintColor: whitecolor,},
+  galleryImage: {width: 24, height: 24, tintColor: whitecolor},
 
   DetailTimeMainView: {
-    flexDirection: 'row', 
+    flexDirection: 'row',
     borderLeftColor: redcolor,
-    borderLeftWidth: 6, justifyContent: 'space-between',
+    borderLeftWidth: 6,
+    justifyContent: 'space-between',
     marginHorizontal: 12,
     marginBottom: 10,
     paddingLeft: 6,
-    alignItems: 'center'
+    alignItems: 'center',
   },
-  // new styles
-  DetailsShareimage: { width: 30, height: 30 },
+
+  DetailsShareimage: {width: 30, height: 30},
   DetailsShareview: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: medium_gray,
-    flex: 1, alignItems: 'center'
-
-
+    flex: 1,
+    alignItems: 'center',
   },
   detailauthor: {
-    color: blackcolor, fontFamily: 'Mukta-SemiBold', fontSize: 14,
+    color: blackcolor,
+    fontFamily: 'Mukta-SemiBold',
+    fontSize: 14,
   },
   detailauthorgallery: {
-    color: whitecolor, fontFamily: 'Mukta-SemiBold', fontSize: 14,
+    color: whitecolor,
+    fontFamily: 'Mukta-SemiBold',
+    fontSize: 14,
   },
   categoryText: {
     fontSize: 22,
     lineHeight: 28,
     marginBottom: 10,
-    color: blackcolor, fontWeight: 'bold',
-    width: '100%', fontFamily: 'Mukta'
+    color: blackcolor,
+    fontWeight: 'bold',
+    width: '100%',
+    fontFamily: 'Mukta',
   },
- 
+
   morevideos: {
     width: '100%',
     height: 200,
     resizeMode: 'cover',
-
   },
   THighliet: {
     width: 80,
     marginLeft: 'auto',
   },
   shareMview: {
-    flexDirection: 'row', justifyContent: 'flex-end', flex: 1,
-    marginTop: 10, marginBottom: 10, width: 80, marginLeft: 'auto'
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    flex: 1,
+    marginTop: 10,
+    marginBottom: 10,
+    width: 80,
+    marginLeft: 'auto',
   },
-  imgview: { marginRight: 8, marginTop: 4 },
-  shareimage: { height: 18, width: 18, color: Dark_Gray, resizeMode: 'contain' },
-  shareview: { marginRight: 15 },
-  sharetext: { color: Dark_Gray, fontSize: 16, fontWeight: '500' },
+  imgview: {marginRight: 8, marginTop: 4},
+  shareimage: {height: 18, width: 18, color: Dark_Gray, resizeMode: 'contain'},
+  shareview: {marginRight: 15},
+  sharetext: {color: Dark_Gray, fontSize: 16, fontWeight: '500'},
   settingview: {
-    paddingVertical: 12, flexDirection: 'row', alignItems: 'center',
-    borderBottomColor: light_gray, borderBottomWidth: 1,
+    paddingVertical: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderBottomColor: light_gray,
+    borderBottomWidth: 1,
   },
-  settingimg: { width: 18, height: 18, color: blackcolor },
-  settingtext: { color: blackcolor, fontSize: 16, marginLeft: 16,fontWeight:'500' },
+  settingimg: {width: 18, height: 18, color: blackcolor},
+  settingtext: {
+    color: blackcolor,
+    fontSize: 16,
+    marginLeft: 16,
+    fontWeight: '500',
+  },
   settingmediaview: {
-    paddingVertical: 10, flexDirection: 'row', alignItems: 'center'
-    // borderBottomColor: light_gray, borderBottomWidth: 1, 
+    paddingVertical: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
-  settingmediaimg: { width: 25, height: 25,},
-  settingmediatext: { color: blackcolor, fontSize: 16, marginLeft: 16,fontWeight:'500' },
-  scroll: { backgroundColor: whitecolor },
+  settingmediaimg: {width: 25, height: 25},
+  settingmediatext: {
+    color: blackcolor,
+    fontSize: 16,
+    marginLeft: 16,
+    fontWeight: '500',
+  },
+  scroll: {backgroundColor: whitecolor},
   TextView: {
-    flexDirection: 'row', flex: 2,
-    fontFamily: 'Mandali-Regular', fontSize: 20, lineHeight: 33, justifyContent: 'center',
+    flexDirection: 'row',
+    flex: 2,
+    fontFamily: 'Mandali-Regular',
+    fontSize: 20,
+    lineHeight: 33,
+    justifyContent: 'center',
   },
   Textdot: {
     marginTop: 10,
@@ -250,13 +282,16 @@ export const commonstyles = StyleSheet.create({
     width: ITEM_WIDTH - 30,
     borderRadius: 15,
   },
-  categorytwoText: { color: blackcolor, fontSize: 16, fontFamily: 'Mukta-SemiBold' },
-  catecomp2mainView: { borderBottomColor: medium_gray, borderBottomWidth: 2 },
-  catecomp2Tochable: { flexDirection: 'row', display: 'flex' },
-
-  cateview: { marginTop: 7, flex: 0.7 },
-  CategoryOneview: {
+  categorytwoText: {
+    color: blackcolor,
+    fontSize: 16,
+    fontFamily: 'Mukta-SemiBold',
   },
+  catecomp2mainView: {borderBottomColor: medium_gray, borderBottomWidth: 2},
+  catecomp2Tochable: {flexDirection: 'row', display: 'flex'},
+
+  cateview: {marginTop: 7, flex: 0.7},
+  CategoryOneview: {},
   CategoryOneImg: {
     height: 200,
     width: '100%',
@@ -267,7 +302,7 @@ export const commonstyles = StyleSheet.create({
     alignItems: 'flex-start',
     borderBottomColor: medium_gray,
     borderBottomWidth: 1.5,
-    paddingVertical: 12
+    paddingVertical: 12,
   },
   HomeComp2MainView: {
     flexDirection: 'column',
@@ -282,18 +317,24 @@ export const commonstyles = StyleSheet.create({
     justifyContent: 'center',
   },
   Homecartoonimg: {
-    width: Dimensions.get('window').height * 0.40,
-    borderRadius: 10, resizeMode: 'contain', margin: 5,
+    width: Dimensions.get('window').height * 0.4,
+    borderRadius: 10,
+    resizeMode: 'contain',
+    margin: 5,
     aspectRatio: 3 / 4,
   },
   HomePhotoimgOne: {
-    width: Dimensions.get('window').height * 0.40,
-    borderRadius: 10, resizeMode: 'contain', margin: 5,
+    width: Dimensions.get('window').height * 0.4,
+    borderRadius: 10,
+    resizeMode: 'contain',
+    margin: 5,
     height: Dimensions.get('window').height - 500,
   },
   HomePhotoimgTwo: {
-    width: Dimensions.get('window').height * 0.20,
-    borderRadius: 10, resizeMode: 'contain', margin: 5,
+    width: Dimensions.get('window').height * 0.2,
+    borderRadius: 10,
+    resizeMode: 'contain',
+    margin: 5,
     aspectRatio: 3 / 3,
   },
   container: {
@@ -301,8 +342,8 @@ export const commonstyles = StyleSheet.create({
     height: '100%',
     backgroundColor: whitecolor,
   },
-  spinnerView: { justifyContent: 'center', alignItems: 'center', flex: 1, },
-  spinnerText: { fontSize: 16, textAlign: 'center', color: blackcolor },
+  spinnerView: {justifyContent: 'center', alignItems: 'center', flex: 1},
+  spinnerText: {fontSize: 16, textAlign: 'center', color: blackcolor},
   loader: {
     marginTop: 10,
     alignItems: 'center',
@@ -314,26 +355,23 @@ export const commonstyles = StyleSheet.create({
     flex: 2,
   },
   menuview: {
-    // backgroundColor: appThemeColor,
     alignItems: 'center',
     marginRight: 10,
     left: 20,
   },
   menutext: {
-    // backgroundColor: whitecolor,
     paddingHorizontal: 10,
     textAlign: 'center',
     textAlignVertical: 'center',
     color: blackcolor,
     fontSize: 22,
     fontFamily: 'Mandali-Bold',
-    // fontWeight: '500'
   },
-  latestMainView: { width: Dimensions.get('window').width, margin: 5 },
+  latestMainView: {width: Dimensions.get('window').width, margin: 5},
   latestsubView: {
     backgroundColor: whitecolor,
-    height: 155, borderRadius: 10,
-
+    height: 155,
+    borderRadius: 10,
   },
   VideoimgTag: {
     width: '100%',
@@ -343,43 +381,46 @@ export const commonstyles = StyleSheet.create({
   PhotoimgTag: {
     width: '100%',
     height: 200,
-    borderRadius: 6
-  
+    borderRadius: 6,
   },
   HomeVideoCategoryview: {
     paddingBottom: 8,
   },
   galleryArticlecategorytext: {
-    color: blackcolor, fontSize: 20, paddingLeft: 10,
-    fontFamily: 'Mukta', fontWeight: 'bold'
+    color: blackcolor,
+    fontSize: 20,
+    paddingLeft: 10,
+    fontFamily: 'Mukta',
+    fontWeight: 'bold',
   },
   latestTxtTag: {
-    color: blackcolor, fontFamily: 'Mukta-SemiBold',
-    fontSize: 16, lineHeight: 24, paddingTop: 6, paddingBottom: 8
+    color: blackcolor,
+    fontFamily: 'Mukta-SemiBold',
+    fontSize: 16,
+    lineHeight: 24,
+    paddingTop: 6,
+    paddingBottom: 8,
   },
   slidercard: {
     width: ITEM_WIDTH - 150,
     height: 200,
     borderRadius: 6,
-    objectFit: 'coverd'
+    objectFit: 'coverd',
   },
   photocard: {
     height: Dimensions.get('window').height * 0.32,
     resizeMode: 'contain',
     aspectRatio: 9 / 9,
     borderRadius: 5,
-
   },
   videocard: {
     height: Dimensions.get('window').height * 0.32,
     resizeMode: 'contain',
     aspectRatio: 10 / 9,
     borderRadius: 5,
-
   },
   pagination: {
     position: 'relative',
-    // top: -20,
   },
   slidertext: {
     color: whitecolor,
@@ -390,20 +431,29 @@ export const commonstyles = StyleSheet.create({
     lineHeight: 20,
     bottom: 10,
     position: 'absolute',
-    paddingTop: 10
+    paddingTop: 10,
   },
   photoview: {
     backgroundColor: graycolor,
-    borderRadius: 10, margin: 5,
-    width: '97%', paddingBottom: 10, marginTop: 10, paddingTop: 10,
+    borderRadius: 10,
+    margin: 5,
+    width: '97%',
+    paddingBottom: 10,
+    marginTop: 10,
+    paddingTop: 10,
   },
   phototextview: {
-    flexDirection: 'row', paddingLeft: 10,
-    paddingRight: 10, paddingTop: 10, flex: 1,
+    flexDirection: 'row',
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 10,
+    flex: 1,
   },
   ptext: {
-    color: whitecolor, fontSize: 25,
-    marginEnd: 5, fontFamily: 'Mandali-Bold',
+    color: whitecolor,
+    fontSize: 25,
+    marginEnd: 5,
+    fontFamily: 'Mandali-Bold',
   },
   phototext: {
     color: blackcolor,
@@ -416,13 +466,21 @@ export const commonstyles = StyleSheet.create({
     top: 25,
   },
   sliderGradient: {
-    width: ITEM_WIDTH - 150, borderBottomLeftRadius: 6,
+    width: ITEM_WIDTH - 150,
+    borderBottomLeftRadius: 6,
     borderBottomRightRadius: 6,
-    position: 'absolute', height: 60, bottom: 0,
-    backgroundColor: '#000000', filter: 'blur({10}px)',
+    position: 'absolute',
+    height: 60,
+    bottom: 0,
+    backgroundColor: '#000000',
+    filter: 'blur({10}px)',
   },
   HomeonesliderGradient: {
-    width: '100%', top: 'auto', bottom: 0, left: 0, right: 0,
+    width: '100%',
+    top: 'auto',
+    bottom: 0,
+    left: 0,
+    right: 0,
     position: 'absolute',
     padding: 12,
     paddingTop: 30,
@@ -440,7 +498,6 @@ export const commonstyles = StyleSheet.create({
     flex: 1,
     borderBottomLeftRadius: 15,
     borderBottomRightRadius: 15,
-
   },
   SlidercategoryView: {
     justifyContent: 'space-between',
@@ -448,15 +505,14 @@ export const commonstyles = StyleSheet.create({
   SliderflatView: {
     justifyContent: 'center',
     display: 'flex',
-    marginTop: 10
+    marginTop: 10,
   },
   Category: {
     color: blackcolor,
     fontFamily: 'Mukta',
     fontSize: 22,
     left: 10,
-    fontWeight: 'bold'
-
+    fontWeight: 'bold',
   },
   RelatedCategory: {
     color: blackcolor,
@@ -464,40 +520,57 @@ export const commonstyles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '700',
     marginLeft: 12,
-
   },
   sliderView: {
-    position: 'relative', backgroundColor: 'transparent',
+    position: 'relative',
+    backgroundColor: 'transparent',
   },
   dot: {
-    marginTop: 22, marginLeft: 15,
+    marginTop: 22,
+    marginLeft: 15,
   },
   latestCard: {
     backgroundColor: '#fff',
     padding: 5,
     elevation: 5,
     margin: 5,
-    // height:120,
     borderRadius: 10,
     flexDirection: 'row',
     flex: 1,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.7,
     shadowRadius: 2,
   },
   latestImage: {
-    width: '100%', height: screenHeight * 0.12,
+    width: '100%',
+    height: screenHeight * 0.12,
     borderRadius: 10,
   },
-  cateView: { flexDirection: 'row', marginLeft: 5, width: '100%' },
-  cateImage: { width: 120, height: 80, borderRadius: 6 },
+  cateView: {flexDirection: 'row', marginLeft: 5, width: '100%'},
+  cateImage: {width: 120, height: 80, borderRadius: 6},
   latestText: {
-    color: blackcolor, fontFamily: 'Mukta-SemiBold', fontSize: 16, lineHeight: 24,
+    color: blackcolor,
+    fontFamily: 'Mukta-SemiBold',
+    fontSize: 16,
+    lineHeight: 24,
   },
-  latesttime: { color: whitecolor, fontSize: 12, fontFamily: 'Mukta-Regular', flex: 1 },
-  HomeTwotime: { color: Dark_graycolor, fontSize: 12, fontFamily: 'Mukta-Regular' },
-  CategoryOnetime: { color: blackcolor, fontSize: 12, fontFamily: 'Mukta-Regular'},
+  latesttime: {
+    color: whitecolor,
+    fontSize: 12,
+    fontFamily: 'Mukta-Regular',
+    flex: 1,
+  },
+  HomeTwotime: {
+    color: Dark_graycolor,
+    fontSize: 12,
+    fontFamily: 'Mukta-Regular',
+  },
+  CategoryOnetime: {
+    color: blackcolor,
+    fontSize: 12,
+    fontFamily: 'Mukta-Regular',
+  },
   CategoryOnetimeview: {
     flexDirection: 'row',
     paddingLeft: 7,
@@ -507,12 +580,11 @@ export const commonstyles = StyleSheet.create({
     padding: 3,
     elevation: 5,
     margin: 5,
-    // height:120,
     borderRadius: 10,
     flexDirection: 'row',
     flex: 1,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.7,
     shadowRadius: 2,
   },
@@ -521,17 +593,19 @@ export const commonstyles = StyleSheet.create({
     padding: 3,
     elevation: 5,
     margin: 5,
-    // height:120,
     borderRadius: 10,
     flexDirection: 'row',
     flex: 1,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.7,
     shadowRadius: 2,
-    borderBottomColor: graycolor, borderBottomWidth: 2,
-    borderLeftColor: graycolor, borderLeftWidth: 1,
-    borderRightColor: graycolor, borderRightWidth: 1,
+    borderBottomColor: graycolor,
+    borderBottomWidth: 2,
+    borderLeftColor: graycolor,
+    borderLeftWidth: 1,
+    borderRightColor: graycolor,
+    borderRightWidth: 1,
   },
   latestViewcard: {
     backgroundColor: whitecolor,
@@ -539,37 +613,36 @@ export const commonstyles = StyleSheet.create({
     elevation: 5,
     margin: 5,
     width: '100%',
-    // height:120,
     borderRadius: 10,
-    // flexDirection: 'row',
-    // flex: 1,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.7,
     shadowRadius: 2,
-
   },
   cardViewHome: {
     backgroundColor: whitecolor,
     padding: 5,
     elevation: 5,
     margin: 5,
-    // height:120,
     borderRadius: 10,
     flexDirection: 'row',
     flex: 1,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.7,
     shadowRadius: 2,
-    borderBottomColor: graycolor, borderBottomWidth: 2,
-    borderLeftColor: graycolor, borderLeftWidth: 1,
-    borderRightColor: graycolor, borderRightWidth: 1,
-
+    borderBottomColor: graycolor,
+    borderBottomWidth: 2,
+    borderLeftColor: graycolor,
+    borderLeftWidth: 1,
+    borderRightColor: graycolor,
+    borderRightWidth: 1,
   },
   cinemaText: {
-    // color: blackcolor, fontFamily: 'JIMS', fontSize: 22, lineHeight: 29,
-    color: blackcolor, fontFamily: 'JIMS', fontSize: 22, lineHeight: 30,
+    color: blackcolor,
+    fontFamily: 'JIMS',
+    fontSize: 22,
+    lineHeight: 30,
   },
   SportCard: {
     flex: 1,
@@ -578,13 +651,13 @@ export const commonstyles = StyleSheet.create({
     margin: 5,
     borderRadius: 5,
     height: 170,
-    // height: Dimensions.get('window').height * 0.12,
     flexDirection: 'row',
   },
 
   sportimage: {
     height: Dimensions.get('window').height * 0.12,
-    borderRadius: 10, resizeMode: 'center',
+    borderRadius: 10,
+    resizeMode: 'center',
   },
   CartoonCard: {
     width: '95%',
@@ -599,7 +672,6 @@ export const commonstyles = StyleSheet.create({
     paddingRight: 10,
   },
   pcard: {
-    // flex: 1,
     width: '95%',
     backgroundColor: '#fff',
     elevation: 1,
@@ -609,7 +681,6 @@ export const commonstyles = StyleSheet.create({
     flexDirection: 'row',
   },
   vcard: {
-    // flex: 1,
     width: '95%',
     backgroundColor: whitecolor,
     elevation: 1,
@@ -619,20 +690,24 @@ export const commonstyles = StyleSheet.create({
     flexDirection: 'row',
   },
   pimg: {
-    width: '98%', height: 180,
-    borderRadius: 10, resizeMode: 'contain', margin: 5,
-    // width: '100%', height: 280, resizeMode: "contain",
-
+    width: '98%',
+    height: 180,
+    borderRadius: 10,
+    resizeMode: 'contain',
+    margin: 5,
   },
   vimg: {
-    width: '96%', height: 180,
-    borderRadius: 10, resizeMode: 'contain', margin: 5,
-    // width: '100%', height: 280, resizeMode: "contain",
-
+    width: '96%',
+    height: 180,
+    borderRadius: 10,
+    resizeMode: 'contain',
+    margin: 5,
   },
   cartoonimg: {
     width: Dimensions.get('window').height * 0.23,
-    borderRadius: 10, resizeMode: 'contain', margin: 5,
+    borderRadius: 10,
+    resizeMode: 'contain',
+    margin: 5,
     aspectRatio: 3 / 4,
   },
   photoimage: {
@@ -642,33 +717,31 @@ export const commonstyles = StyleSheet.create({
     resizeMode: 'center',
   },
   SportText: {
-    color: blackcolor, fontFamily: 'Mandali-Regular', fontSize: 18,
+    color: blackcolor,
+    fontFamily: 'Mandali-Regular',
+    fontSize: 18,
   },
   Detailslargecardvideo: {
     height: 200,
     marginTop: 10,
     marginBottom: 10,
     width: '100%',
-    // borderRadius: 10,
-    // resizeMode:'contain',
   },
   Detailslargecard: {
     height: 230,
     marginBottom: 6,
     width: '100%',
-    resizeMode: 'contain'
+    resizeMode: 'contain',
   },
   shortsTime: {
     color: blackcolor,
     fontFamily: 'JIMS',
     fontSize: 12,
-
   },
   detailsCateName: {
     color: Dark_graycolor,
-    fontFamily: 'Mukta-Regular', fontSize: 14
-
-
+    fontFamily: 'Mukta-Regular',
+    fontSize: 14,
   },
   timeview: {
     flexDirection: 'row',
@@ -676,13 +749,13 @@ export const commonstyles = StyleSheet.create({
   },
   detailTime: {
     color: blackcolor,
-    fontFamily: 'Mukta-Regular', fontSize: 11
-
+    fontFamily: 'Mukta-Regular',
+    fontSize: 11,
   },
   detailTimegallery: {
     color: whitecolor,
-    fontFamily: 'Mukta-Regular', fontSize: 11
-
+    fontFamily: 'Mukta-Regular',
+    fontSize: 11,
   },
   cateviewText: {
     flex: 1,
@@ -695,53 +768,78 @@ export const commonstyles = StyleSheet.create({
   videoImg: {
     width: Dimensions.get('window').width * 0.3,
     height: Dimensions.get('window').height * 0.2,
-    borderRadius: 10, resizeMode: 'stretch',
+    borderRadius: 10,
+    resizeMode: 'stretch',
   },
-  categoryView: { flex: 1.7, flexDirection: 'row' },
+  categoryView: {flex: 1.7, flexDirection: 'row'},
   homeCategoryflatView: {
     marginTop: 10,
-  }, bgDarkGrey: {
-    width: '100%', backgroundColor: '#85929e', paddingTop: 10,
-    paddingBottom: 10, paddingRight: 3, paddingLeft: 3,
-    borderTopLeftRadius: 8, borderTopRightRadius: 8,
+  },
+  bgDarkGrey: {
+    width: '100%',
+    backgroundColor: '#85929e',
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingRight: 3,
+    paddingLeft: 3,
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
   },
   prevText: {
     color: appThemeColor,
-    textAlign: 'center', fontSize: 18,
+    textAlign: 'center',
+    fontSize: 18,
     fontFamily: 'RobotoCondensed-Regular',
   },
   prevNextMainView: {
-    flexDirection: 'row', flex: 1,
+    flexDirection: 'row',
+    flex: 1,
     justifyContent: 'space-between',
-    marginTop: 5, marginBottom: 5,
+    marginTop: 5,
+    marginBottom: 5,
   },
-  prevView: { flex: 0.25, height: 30, justifyContent: 'center', marginLeft: 10 },
-  nextView: { flex: 0.2, height: 30, justifyContent: 'center', marginRight: 10 },
-  relatedText: { color: '#000', fontSize: 20, fontFamily: 'RobotoCondensed-Regular' },
-  photoflash: { color: whitecolor, fontSize: 20, fontFamily: 'RobotoCondensed-Regular' },
-  nextText: { color: appThemeColor, fontSize: 20, fontFamily: 'RobotoCondensed-Regular' },
+  prevView: {flex: 0.25, height: 30, justifyContent: 'center', marginLeft: 10},
+  nextView: {flex: 0.2, height: 30, justifyContent: 'center', marginRight: 10},
+  relatedText: {
+    color: '#000',
+    fontSize: 20,
+    fontFamily: 'RobotoCondensed-Regular',
+  },
+  photoflash: {
+    color: whitecolor,
+    fontSize: 20,
+    fontFamily: 'RobotoCondensed-Regular',
+  },
+  nextText: {
+    color: appThemeColor,
+    fontSize: 20,
+    fontFamily: 'RobotoCondensed-Regular',
+  },
   flashView: {
     backgroundColor: graycolor,
-    borderRadius: 10, margin: 5,
-    width: '97%', paddingBottom: 10, marginTop: 10, paddingTop: 10,
+    borderRadius: 10,
+    margin: 5,
+    width: '97%',
+    paddingBottom: 10,
+    marginTop: 10,
+    paddingTop: 10,
   },
   flashtext: {
     color: whitecolor,
     fontFamily: 'Mandali-Bold',
-    // fontWeight:'bold',
     fontSize: 22,
-    // marginBottom: 5,
     marginLeft: 10,
     marginRight: 10,
     lineHeight: 29,
     position: 'relative',
     top: 25,
   },
-  categoryMview: { flexDirection: 'row', bottom: 5, flex: 1 },
-  moreview: { alignContent: 'flex-end', alignItems: 'flex-end' },
+  categoryMview: {flexDirection: 'row', bottom: 5, flex: 1},
+  moreview: {alignContent: 'flex-end', alignItems: 'flex-end'},
   moretext: {
     fontFamily: 'RobotoCondensed-Regular',
-    fontSize: 18, color: appThemeColor,
+    fontSize: 18,
+    color: appThemeColor,
   },
   loadingview: {
     flex: 1,
@@ -754,7 +852,6 @@ export const commonstyles = StyleSheet.create({
     textAlign: 'center',
     color: '#000000',
   },
-  // Horoscope new design 17/3 /23
   horoMainView: {
     alignItems: 'flex-start',
     flexWrap: 'wrap',
@@ -765,13 +862,15 @@ export const commonstyles = StyleSheet.create({
   },
   horoimageView: {
     marginRight: 5,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   horoimage: {
-    width: 120, height: 90,
-    borderRadius: 5, resizeMode: 'contain'
+    width: 120,
+    height: 90,
+    borderRadius: 5,
+    resizeMode: 'contain',
   },
-  horotextView: { flex: 2 },
+  horotextView: {flex: 2},
   horotext: {
     color: blackcolor,
     fontFamily: 'Mandali-Bold',
@@ -780,10 +879,15 @@ export const commonstyles = StyleSheet.create({
     marginLeft: 5,
     marginVertical: 20,
   },
-  horomore: { justifyContent: 'flex-end', alignItems: 'flex-end', alignSelf: 'flex-end' },
+  horomore: {
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    alignSelf: 'flex-end',
+  },
   horomoretext: {
     fontFamily: 'RobotoCondensed-Regular',
-    fontSize: 18, color: appThemeColor,
+    fontSize: 18,
+    color: appThemeColor,
   },
   loadingContainer: {
     flex: 1,
@@ -792,6 +896,6 @@ export const commonstyles = StyleSheet.create({
   },
   noMoreText: {
     fontSize: 14,
-    color: blackcolor
-  }
+    color: blackcolor,
+  },
 });
