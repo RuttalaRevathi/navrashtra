@@ -47,7 +47,7 @@ const ShortsScreen = ({ navigation }) => {
     getLatestNewsAction();
   }, []);
   const newlatestdata = Array.isArray(latestNews?.data) ? latestNews?.data : [];
-console.log(newlatestdata)
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: off_white}}>
       {loading ? <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#f4f4f4' }}>

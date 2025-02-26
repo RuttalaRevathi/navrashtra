@@ -46,14 +46,12 @@ const AuthorScreen = ({title}) => {
         Array.isArray(jsonData.posts) &&
         jsonData.posts.length > 0
       ) {
-        console.log('author.posts:', jsonData.posts);
         setParentData(jsonData.posts); // Update state with the fetched posts
       } else {
         setError('No posts available for this author.');
       }
 
       if (jsonData && jsonData.author) {
-        console.log('authorData', jsonData.author);
         setAuthorData(jsonData.author); // Set author data if present
       } else {
         setError('No author data available.');

@@ -32,7 +32,6 @@ const TopNews = ({navigation}) => {
       const response = await fetch(`${BaseUrl}${BreakingNewsUrl}`);
       const data = await response.json();
       let tempData = [];
-      console.log(data[0].items)
       data[0].items?.forEach(item => {
         let obj = {
           id: item.id,
