@@ -69,10 +69,10 @@ const TopNews = ({navigation}) => {
       ) : (
         <>
           <TextTicker
-            scrollSpeed={40}
+            scrollSpeed={34}
             loop={true} // Enable continuous looping
             bounce={false} // Smooth scrolling effect
-            marqueeDelay={100} // Small delay before scrolling starts
+            marqueeDelay={0} // Small delay before scrolling starts
             isInteraction={false} // Helps prevent unwanted restarts
             scroll={paused ? false : true} // Pause and resume based on state
           >

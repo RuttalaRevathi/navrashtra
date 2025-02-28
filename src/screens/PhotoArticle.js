@@ -97,7 +97,7 @@ const PhotoArticle = ({navigation, route}) => {
         {/* time */}
         <View style={commonstyles.DetailTimeMainView}>
           <Text style={commonstyles.detailauthorgallery}>
-            BY {route?.params?.item?.author_name}
+            BY <Text style={{fontWeight: '600'}}>{route?.params?.item?.author_name}</Text>
           </Text>
           <Text style={commonstyles.detailTimegallery}>
             Updated on: {formattedDate}

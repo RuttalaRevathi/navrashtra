@@ -239,7 +239,7 @@ const Details = ({ navigation, route }) => {
                 })
               }}>
               <Text style={commonstyles.detailauthor}>
-                BY {firstArticle?.author_name}
+                BY <Text style={{fontWeight: '700'}}>{firstArticle?.author_name}</Text>
               </Text>
               </TouchableOpacity>
               <Text style={commonstyles.detailTime}>Updated on: {formattedDate}</Text>
