@@ -388,7 +388,7 @@ const Details = ({ navigation, route }) => {
             <FlatList
               data={relatedData?.data}
               renderItem={renderItemTwo}
-              keyExtractor={item => item.id.toString()}
+              keyExtractor={item => item?.id?.toString()}
               initialNumToRender={5}
               maxToRenderPerBatch={10}
               windowSize={10}

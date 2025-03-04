@@ -38,12 +38,13 @@ const VideoArticle = ({ navigation, route }) => {
   // Date and time 
   const apiDate = route?.params?.item?.date;
   const formattedDate = moment(apiDate).format("MMM DD, YYYY | hh:mm A");
-
+  const authorName = route?.params?.item?.author_name;
   // Image url
   const defaultImage = require('../Assets/Images/no_image.jpeg');
   const imageUrl = route?.params?.item?.web_featured_image
     ? { uri: route?.params?.item?.web_featured_image }
     : defaultImage;
+    console.log(source1);
   return (
     <View style={{ backgroundColor: whitecolor, flex: 1 }}>
       <View style={HeaderStyle.subHeaderviewHeight}>
@@ -67,7 +68,7 @@ const VideoArticle = ({ navigation, route }) => {
         scrollEnabled={true}>
         <View>
           {/* Title */}
-          <View style={{ paddingHorizontal: 12, paddingTop: 12 }}>
+          <View style={{ paddingHorizontal: 12, paddingTop: 6 }}>
             <Text numberOfLines={3} ellipsizeMode="tail" style={commonstyles.categoryText}>
               {decode(route?.params?.item?.title?.rendered)}
             </Text>
@@ -75,9 +76,16 @@ const VideoArticle = ({ navigation, route }) => {
           {/* time */}
           <View
             style={commonstyles.DetailTimeMainView}>
+              <TouchableOpacity
+                          onPress={() => {
+                            navigation.navigate('Author', {
+                              url: authorName,
+                            });
+                          }}>
             <Text style={commonstyles.detailauthor}>
               BY <Text style={{fontWeight: '700'}}>{route?.params?.item?.author_name}</Text>
             </Text>
+            </TouchableOpacity>
             <Text style={commonstyles.detailTime}>Updated on: {formattedDate}</Text>
           </View>
 
@@ -125,7 +133,7 @@ const VideoArticle = ({ navigation, route }) => {
                    }
                 p, h4 a {
                   font-size: 14px;
-                  text-align:left; 
+                  text-align:left !important; 
                   margin:5px;
                   font-family:'Mandali-Regular';
                   line-height:1.6;

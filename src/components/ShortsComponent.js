@@ -108,7 +108,7 @@ class ShortsComponent extends React.PureComponent {
           {/* Description */}
           <View style={{padding: 12}}>
             <Text
-              numberOfLines={8}
+              numberOfLines={6}
               ellipsizeMode="tail"
               style={{
                 color: blackcolor,
@@ -132,7 +132,7 @@ class ShortsComponent extends React.PureComponent {
                   borderRadius: 20,
                   backgroundColor: redcolor,
                   width: 150,
-                  marginTop: 12,
+                  marginTop: 8,
                   alignSelf: 'flex-start',
                 }}>
                 <Text

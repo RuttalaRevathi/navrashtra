@@ -57,6 +57,8 @@ const PhotoArticle = ({navigation, route}) => {
       .then(error => console.log(error));
   };
 
+  const authorName = route?.params?.item?.author_name;
+  
   return (
     <View style={commonstyles.container}>
       <View style={HeaderStyle.subHeaderviewHeight}>
@@ -96,9 +98,19 @@ const PhotoArticle = ({navigation, route}) => {
         </View>
         {/* time */}
         <View style={commonstyles.DetailTimeMainView}>
-          <Text style={commonstyles.detailauthorgallery}>
-            BY <Text style={{fontWeight: '600'}}>{route?.params?.item?.author_name}</Text>
-          </Text>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Author', {
+                url: authorName,
+              });
+            }}>
+            <Text style={commonstyles.detailauthorgallery}>
+              BY{' '}
+              <Text style={{fontWeight: '600'}}>
+                {route?.params?.item?.author_name}
+              </Text>
+            </Text>
+          </TouchableOpacity>
           <Text style={commonstyles.detailTimegallery}>
             Updated on: {formattedDate}
           </Text>

@@ -38,7 +38,7 @@ export const TopicItems = ({navigation, tags, categoryName}) => {
       ) : (
         <>
           {tags?.length > 0 ? (
-            <View style={{paddingLeft: 12}}>
+            <View style={{paddingLeft: 12, flex: 1, alignItems: 'flex-start'}}>
               <FlatList
                 showsHorizontalScrollIndicator={false}
                 persistentScrollbar={false}

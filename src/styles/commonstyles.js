@@ -187,6 +187,7 @@ export const commonstyles = StyleSheet.create({
     marginBottom: 10,
     paddingLeft: 6,
     alignItems: 'center',
+    flexWrap: 'wrap'
   },
 
   DetailsShareimage: {width: 30, height: 30},
@@ -201,6 +202,7 @@ export const commonstyles = StyleSheet.create({
     color: blackcolor,
     fontFamily: 'Mukta-SemiBold',
     fontSize: 14,
+    marginRight: 16,
   },
   detailauthorgallery: {
     color: whitecolor,

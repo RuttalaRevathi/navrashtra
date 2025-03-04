@@ -69,14 +69,15 @@ const TopNews = ({navigation}) => {
       ) : (
         <>
           <TextTicker
-            scrollSpeed={34}
+            scrollSpeed={25}
             loop={true} // Enable continuous looping
             bounce={false} // Smooth scrolling effect
             marqueeDelay={0} // Small delay before scrolling starts
             isInteraction={false} // Helps prevent unwanted restarts
-            scroll={paused ? false : true} // Pause and resume based on state
+            delay={0}
+            scroll={!paused} // Pause and resume based on state
           >
-            {topNews?.map(item => (
+            {topNews.length > 0 ? topNews?.map(item => (
               <TouchableWithoutFeedback
                 key={item.id}
                 onPress={() => handleTopNewsPress(item)}
@@ -85,7 +86,7 @@ const TopNews = ({navigation}) => {
                 >
                 <Text style={styles.topNewsTitle}>{decode(item.title)}{' '}{' '}{' '} | {' '}{' '}{' '}</Text>
               </TouchableWithoutFeedback>
-            ))}
+            )) : 'No breaking news available'}
           </TextTicker>
         </>
       )}

@@ -13,6 +13,7 @@ import HomeStackNavigator from './stack-navigators/HomeStackNavigator';
 import {createStackNavigator} from '@react-navigation/stack';
 import PhotoArticle from '../screens/PhotoArticle';
 import VideoArticle from '../screens/VideoArticle';
+import AuthorScreen from '../screens/Author';
 
 const Tab = createBottomTabNavigator();
 const LNStack = createStackNavigator();
@@ -32,6 +33,7 @@ function LNStackScreen() {
         component={Details}
         options={{headerShown: false}}
       />
+      <LNStack.Screen name="Author" component={AuthorScreen} options={{headerShown: false}} />
     </LNStack.Navigator>
   );
 }
@@ -49,6 +51,7 @@ function PhotoStackScreen() {
         component={PhotoArticle}
         options={{headerShown: false}}
       />
+      <PTStack.Screen name="Author" component={AuthorScreen} options={{headerShown: false}} />
     </PTStack.Navigator>
   );
 }
@@ -66,6 +69,7 @@ function VideoStackScreen() {
         component={VideoArticle}
         options={{headerShown: false}}
       />
+      <VDStack.Screen name="Author" component={AuthorScreen} options={{headerShown: false}} />
     </VDStack.Navigator>
   );
 }

@@ -67,7 +67,7 @@ function CategoryUI({ navigation, data, title, isTopNavigation, loadingMore,
         </View>
       )}
       <ScrollView style={commonstyles.scroll}>
-        <View style={{ padding: 12 }}>
+        <View style={{ padding: 12, ...!isTopNavigation && { paddingTop: 0 } }}>
           <View style={commonstyles.homeOnetextView}>
             <Text style={commonstyles.Category}>{title}</Text>
           </View>
