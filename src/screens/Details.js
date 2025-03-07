@@ -9,6 +9,7 @@ import {
   FlatList,
   Platform,
   Dimensions,
+  StyleSheet,
 } from 'react-native';
 import {
   blackcolor,
@@ -224,8 +225,6 @@ const Details = ({ navigation, route }) => {
             {/* Tittle */}
             <View style={{ paddingHorizontal: 12, paddingTop: 10 }}>
               <Text
-                numberOfLines={3}
-                ellipsizeMode="tail"
                 style={commonstyles.categoryText}>
                 {decode(firstArticle?.title?.rendered)}
               </Text>
@@ -357,7 +356,7 @@ const Details = ({ navigation, route }) => {
               <Text style={commonstyles.RelatedCategory}>Next Articles</Text>
             </View>
             {detailsData.length > 0 ? (
-              <View style={{ paddingLeft: 12, flex: 1, alignItems: 'flex-start'  }}>
+              <View style={styles.articleContainer}>
                 <FlatList
                   showsHorizontalScrollIndicator={false}
                   persistentScrollbar={false}
@@ -366,18 +365,10 @@ const Details = ({ navigation, route }) => {
                   renderItem={renderItemOne}
                 />
               </View>
-            ) : (
-              <View style={{}}>
-                <Text
-                  style={{
-                    fontSize: 18,
-                    color: blackcolor,
-                    textAlign: 'center',
-                  }}>
+            ) : (<Text
+                  style={styles.noNextArticles}>
                   No Next Articles
-                </Text>
-              </View>
-            )}
+                </Text>)}
           </View>
 
           {/* Related News */}
@@ -400,5 +391,15 @@ const Details = ({ navigation, route }) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  noNextArticles: {
+    fontSize: 16,
+    color: blackcolor,
+    textAlign: 'center',
+    marginBottom: 13
+  },
+  articleContainer: { paddingLeft: 12, flex: 1, alignItems: 'flex-start' }
+});
 
 export default Details;

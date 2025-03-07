@@ -1,20 +1,27 @@
 /* eslint-disable prettier/prettier */
-import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, Share, Dimensions } from 'react-native';
-import { blackcolor, commonstyles, whitecolor } from '../styles/commonstyles';
-import { HeaderStyle } from '../styles/Header.Styles';
+import React, {useEffect} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  Share,
+  Dimensions,
+} from 'react-native';
+import {blackcolor, commonstyles, whitecolor} from '../styles/commonstyles';
+import {HeaderStyle} from '../styles/Header.Styles';
 import moment from 'moment';
 import AutoHeightWebView from 'react-native-autoheight-webview';
-import { useState } from 'react';
+import {useState} from 'react';
 import FastImage from 'react-native-fast-image';
 
-const VideoArticle = ({ navigation, route }) => {
-  const [detailsData, setDetailsData] = useState([]);
+const VideoArticle = ({navigation, route}) => {
   const source = route?.params?.item?.content?.rendered;
   const [videoAvailable, setVideoAvailable] = useState(true);
 
   var source1 = source?.replace('lazyload', 'text/javascript');
-
 
   useEffect(() => {
     // Check if source1 contains a <video> or <iframe> element
@@ -22,71 +29,75 @@ const VideoArticle = ({ navigation, route }) => {
     if (!videoOrIframeRegex.test(source1)) {
       setVideoAvailable(false);
     }
-    setDetailsData(route?.params?.detailsData);
-
   }, [source1]);
- 
-  const sharecall = (name) => {
+
+  const sharecall = () => {
     const Link_Url = route?.params?.item?.link;
     Share.share({
       message: Link_Url,
     })
-      .then((result) => console.log(result))
-      .then((error) => console.log(error));
+      .then(result => console.log(result))
+      .then(error => console.log(error));
   };
   const decode = require('html-entities-decoder');
-  // Date and time 
+  // Date and time
   const apiDate = route?.params?.item?.date;
-  const formattedDate = moment(apiDate).format("MMM DD, YYYY | hh:mm A");
-  const authorName = route?.params?.item?.author_name;
+  const formattedDate = moment(apiDate).format('MMM DD, YYYY | hh:mm A');
+  const authorName = route?.params?.item?.author_slug;
   // Image url
   const defaultImage = require('../Assets/Images/no_image.jpeg');
   const imageUrl = route?.params?.item?.web_featured_image
-    ? { uri: route?.params?.item?.web_featured_image }
+    ? {uri: route?.params?.item?.web_featured_image}
     : defaultImage;
-    console.log(source1);
+  console.log(source1);
   return (
-    <View style={{ backgroundColor: whitecolor, flex: 1 }}>
+    <View style={{backgroundColor: whitecolor, flex: 1}}>
       <View style={HeaderStyle.subHeaderviewHeight}>
-        <TouchableOpacity onPress={() => {
-          navigation.navigate(route.params.screenName === "Videos" ? "Videos" : "Home");
-        }} >
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}>
           <Image
             source={require('../Assets/Images/arrow.png')}
-            style={{ width: 20, height: 20 }}
+            style={{width: 20, height: 20}}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={{}}
-          onPress={() => { sharecall() }}>
+        <TouchableOpacity
+          style={{}}
+          onPress={() => {
+            sharecall();
+          }}>
           <Image
             source={require('../Assets/Images/share_black.png')}
-            style={{ width: 20, height: 20 }}
+            style={{width: 20, height: 20}}
           />
         </TouchableOpacity>
       </View>
-      <ScrollView style={styles.scrollView}
-        scrollEnabled={true}>
+      <ScrollView style={styles.scrollView} scrollEnabled={true}>
         <View>
           {/* Title */}
-          <View style={{ paddingHorizontal: 12, paddingTop: 6 }}>
-            <Text numberOfLines={3} ellipsizeMode="tail" style={commonstyles.categoryText}>
+          <View style={{paddingHorizontal: 12, paddingTop: 6}}>
+            <Text style={commonstyles.categoryText}>
               {decode(route?.params?.item?.title?.rendered)}
             </Text>
           </View>
           {/* time */}
-          <View
-            style={commonstyles.DetailTimeMainView}>
-              <TouchableOpacity
-                          onPress={() => {
-                            navigation.navigate('Author', {
-                              url: authorName,
-                            });
-                          }}>
-            <Text style={commonstyles.detailauthor}>
-              BY <Text style={{fontWeight: '700'}}>{route?.params?.item?.author_name}</Text>
-            </Text>
+          <View style={commonstyles.DetailTimeMainView}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Author', {
+                  url: authorName,
+                  screenName: 'VideoArticle',
+                });
+              }}>
+              <Text style={commonstyles.detailauthor}>
+                BY{' '}
+                <Text style={{fontWeight: '700'}}>
+                  {route?.params?.item?.author_name}
+                </Text>
+              </Text>
             </TouchableOpacity>
-            <Text style={commonstyles.detailTime}>Updated on: {formattedDate}</Text>
+            <Text style={commonstyles.detailTime}>
+              Updated on: {formattedDate}
+            </Text>
           </View>
 
           <FastImage
@@ -94,9 +105,10 @@ const VideoArticle = ({ navigation, route }) => {
             style={commonstyles.Detailslargecard}
             resizeMode={FastImage.resizeMode.cover}
           />
-          <View style={{
-            justifyContent: 'center',
-          }}>
+          <View
+            style={{
+              justifyContent: 'center',
+            }}>
             {videoAvailable ? (
               <AutoHeightWebView
                 javaScriptEnabled={true}
@@ -105,7 +117,7 @@ const VideoArticle = ({ navigation, route }) => {
                 scrollEnabled={false}
                 mixedContentMode="always"
                 mediaPlaybackRequiresUserAction={false}
-                style={{ width: Dimensions.get('window').width, }}
+                style={{width: Dimensions.get('window').width}}
                 customStyle={`
                 iframe[src^="https://www.youtube.com/embed/"] {
                                 width:100%;
@@ -175,20 +187,24 @@ const VideoArticle = ({ navigation, route }) => {
                                               
                                               
               `}
-
-                source={{ html: source1, baseUrl: 'https://instagram.com', }}
+                source={{html: source1, baseUrl: 'https://instagram.com'}}
                 viewportContent={'width=device-width, user-scalable=yes'}
-                onError={(error) => console.error('WebView Error:', error)}
+                onError={error => console.error('WebView Error:', error)}
               />
             ) : (
               <>
-                <Text style={{ color: blackcolor, fontWeight: 'bold', fontSize: 18 }}>
+                <Text
+                  style={{color: blackcolor, fontWeight: 'bold', fontSize: 18}}>
                   {route?.params?.item?.title?.rendered}
                 </Text>
-                <Text style={{
-                  fontSize: 20, fontWeight: 'bold',
-                  color: blackcolor
-                }}>Video not available</Text>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    fontWeight: 'bold',
+                    color: blackcolor,
+                  }}>
+                  Video not available
+                </Text>
               </>
             )}
           </View>
@@ -199,7 +215,7 @@ const VideoArticle = ({ navigation, route }) => {
 };
 
 const styles = StyleSheet.create({
-  scrollView: { flexGrow: 1, },
+  scrollView: {flexGrow: 1},
   webview: {
     width: '100%',
   },

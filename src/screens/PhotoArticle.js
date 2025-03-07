@@ -25,7 +25,6 @@ import {useDispatch} from 'react-redux';
 import getRelatedAction from '../redux/actions/getRelatedAction';
 
 const PhotoArticle = ({navigation, route}) => {
-  const [detailsData, setDetailsData] = useState([]);
   const scrollViewRef = useRef(null);
   const dispatch = useDispatch();
 
@@ -41,7 +40,6 @@ const PhotoArticle = ({navigation, route}) => {
 
   useEffect(() => {
     dispatch(getRelatedAction());
-    setDetailsData(route?.params?.detailsData);
   }, []);
 
   // Date and time
@@ -57,26 +55,19 @@ const PhotoArticle = ({navigation, route}) => {
       .then(error => console.log(error));
   };
 
-  const authorName = route?.params?.item?.author_name;
+  const authorName = route.params?.item?.author_slug;
   
   return (
     <View style={commonstyles.container}>
       <View style={HeaderStyle.subHeaderviewHeight}>
         <TouchableOpacity
-          onPress={() => {
-            if (route?.params?.screenName === 'Photos') {
-              navigation.navigate('Photos');
-            } else {
-              navigation.navigate('Home');
-            }
-          }}>
+          onPress={() => navigation.goBack()}>
           <Image
             source={require('../Assets/Images/arrow.png')}
             style={{width: 22, height: 22}}
           />
         </TouchableOpacity>
         <TouchableOpacity
-          style={{}}
           onPress={() => {
             sharecall();
           }}>
@@ -102,6 +93,7 @@ const PhotoArticle = ({navigation, route}) => {
             onPress={() => {
               navigation.navigate('Author', {
                 url: authorName,
+                screenName: 'PhotoArticle',
               });
             }}>
             <Text style={commonstyles.detailauthorgallery}>

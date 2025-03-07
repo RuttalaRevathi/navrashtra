@@ -38,10 +38,10 @@ const AuthorComponent = ({authorData}) => {
       )}
       <Text style={styles.authorName}>{authorData.name}</Text>
       <Text style={styles.authorRole}>{authorData.roles}</Text>
-      <View style={styles.socialLinks}>
+      {authorData.social_links?.length > 0 && <View style={styles.socialLinks}>
         {renderSocialLinks(authorData.social_links)}
-      </View>
-      <Text style={styles.authorBio}>{authorData.description}</Text>
+      </View>}
+      {authorData.description && <Text style={styles.authorBio}>{authorData.description}</Text>}
     </View>
   );
 };
@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     color: blackcolor,
+    marginTop: 4,
   },
   authorBio: {
     textAlign: 'center',
@@ -78,6 +79,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 20,
     fontWeight: '500',
+    marginTop: 8,
   },
   socialLinks: {
     flexDirection: 'row', // Align icons horizontally

@@ -6,21 +6,23 @@ import {
   Image,
   TouchableOpacity,
   ActivityIndicator,
-  StyleSheet,
   Text,
 } from 'react-native';
 import CategoryComponentTwo from '../components/CategoryComponentTwo';
 import AuthorComponent from '../components/AuthorComponent';
 import {HeaderStyle} from '../styles/Header.Styles';
 import {blackcolor, commonstyles} from '../styles/commonstyles';
-import { authorUrl, BaseUrl } from '../utilities/urls';
+import {authorUrl, BaseUrl} from '../utilities/urls';
+import VideoAuthorListItem from '../components/VideoAuthorListItem';
+import PhotoAuthorListItem from '../components/PhotoAuthorListItem';
 
 const AuthorScreen = ({title}) => {
   const navigation = useNavigation();
   const route = useRoute();
+  console.log(route.params.url)
   const [parentData, setParentData] = useState([]); // State to hold fetched posts data
   const [authorData, setAuthorData] = useState(null); // State to hold author data
-  const [offset, setOffset] = useState(0);
+  const [offset] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const limit = 10;
@@ -33,12 +35,13 @@ const AuthorScreen = ({title}) => {
   const fetchAuthorData = async () => {
     setLoading(true);
     try {
-      const author = route.params?.url;
+      const author = route.params?.url?.split(' ').join('');
+      console.log(author)
       const url = `${BaseUrl}${authorUrl}?author-name=${author}&limit=${limit}&offset=${offset}`;
-
 
       const response = await fetch(url);
       const jsonData = await response.json();
+      console.log(jsonData.posts)
 
       if (
         jsonData &&
@@ -63,14 +66,37 @@ const AuthorScreen = ({title}) => {
     }
   };
 
-  const renderItemTwo = ({item}) => (
-    <CategoryComponentTwo
-      item={item}
-      propsdata={parentData}
-      navigation={navigation}
-      categoryName={title}
-    />
-  );
+  const renderAuthor = ({item}) => {
+    const {screenName} = route.params;
+    if (screenName === 'PhotoArticle') {
+      return (
+        <PhotoAuthorListItem
+          item={item}
+          propsdata={parentData}
+          navigation={navigation}
+          categoryName={title}
+        />
+      );
+    } else if (screenName === 'VideoArticle') {
+      return (
+        <VideoAuthorListItem
+          item={item}
+          propsdata={parentData}
+          navigation={navigation}
+          categoryName={title}
+        />
+      )
+    } else {
+      return (
+        <CategoryComponentTwo
+          item={item}
+          propsdata={parentData}
+          navigation={navigation}
+          categoryName={title}
+        />
+      );
+    }
+  };
 
   if (loading) {
     return (
@@ -99,7 +125,7 @@ const AuthorScreen = ({title}) => {
               ListHeaderComponent={<AuthorComponent authorData={authorData} />}
               style={{flex: 1, paddingHorizontal: 12}}
               data={parentData}
-              renderItem={renderItemTwo}
+              renderItem={renderAuthor}
               keyExtractor={item =>
                 item.id?.toString() || Math.random().toString()
               }

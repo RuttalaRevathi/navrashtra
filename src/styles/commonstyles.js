@@ -512,14 +512,14 @@ export const commonstyles = StyleSheet.create({
   Category: {
     color: blackcolor,
     fontFamily: 'Mukta',
-    fontSize: 22,
+    fontSize: 20,
     left: 10,
     fontWeight: 'bold',
   },
   RelatedCategory: {
     color: blackcolor,
     fontFamily: 'Mukta-Bold',
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: '700',
     marginLeft: 12,
   },

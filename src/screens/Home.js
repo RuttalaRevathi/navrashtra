@@ -301,7 +301,7 @@ const Home = ({ navigation }) => {
               </View>
               <TouchableOpacity
                   onPress={() => {
-                    navigation.navigate('Photos');
+                    navigation.navigate('PTStack', {screen: 'PhotoGallery'});
                   }}>
                   <Image style={commonstyles.galleryImage} source={require('../Assets/Images/next.png')} />
               </TouchableOpacity>
@@ -333,7 +333,7 @@ const Home = ({ navigation }) => {
               </View>
               <TouchableOpacity
                   onPress={() => {
-                    navigation.navigate('Videos');
+                    navigation.navigate('VDStack', {screen: 'Videos'});
                   }}>
                   <Image style={commonstyles.galleryImage} source={require('../Assets/Images/next.png')} />
                 </TouchableOpacity>

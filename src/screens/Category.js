@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import CategoryUI from '../components/CategoryUI';
-import { useRoute, useNavigation } from '@react-navigation/native';
-import { View, ActivityIndicator } from 'react-native';
-import { blackcolor, commonstyles } from '../styles/commonstyles';
+import {useRoute, useNavigation} from '@react-navigation/native';
+import {View, ActivityIndicator} from 'react-native';
+import {blackcolor, commonstyles} from '../styles/commonstyles';
 
-const CategoryScreen = ({ item, isTopNavigation }) => {
+const CategoryScreen = ({item, isTopNavigation}) => {
   const navigation = useNavigation();
   const route = useRoute();
 
   const [parentData, setParentData] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [offset, setOffset] = useState(0);
@@ -24,15 +23,17 @@ const CategoryScreen = ({ item, isTopNavigation }) => {
 
     setLoadingMore(true);
     try {
-      const category = route.params?.isCategoryClicked ? route.params?.url : item?.url;
+      const category = route.params?.isCategoryClicked
+        ? route.params?.url
+        : item?.url;
       const url = `https://www.navarashtra.com/wp-json/navarashtra/v1/category-posts?category=${category}&limit=${limit}&offset=${offset}`;
 
       const response = await fetch(url);
       const jsonData = await response.json();
 
       if (jsonData.status === 'success' && jsonData.data?.length > 0) {
-        setParentData((prevData) => [...prevData, ...jsonData.data]);
-        setOffset((prevOffset) => prevOffset + limit); // Increment offset for the next fetch
+        setParentData(prevData => [...prevData, ...jsonData.data]);
+        setOffset(prevOffset => prevOffset + limit); // Increment offset for the next fetch
       } else {
         setHasMore(false); // No more data to fetch
       }
@@ -45,7 +46,12 @@ const CategoryScreen = ({ item, isTopNavigation }) => {
 
   return (
     <>
-      {!loading && parentData.length > 0 ? (
+      <React.Suspense
+        fallback={
+          <View style={commonstyles.spinnerView}>
+            <ActivityIndicator color={blackcolor} size="large" />
+          </View>
+        }>
         <CategoryUI
           data={parentData}
           navigation={navigation}
@@ -56,11 +62,7 @@ const CategoryScreen = ({ item, isTopNavigation }) => {
           loadingMore={loadingMore}
           hasMore={hasMore}
         />
-      ) : (
-        <View style={commonstyles.spinnerView}>
-          <ActivityIndicator color={blackcolor} size="large" />
-        </View>
-      )}
+      </React.Suspense>
     </>
   );
 };
