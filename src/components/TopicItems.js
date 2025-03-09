@@ -1,61 +1,40 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React from 'react';
+import {View, Text, FlatList, StyleSheet} from 'react-native';
 import {
-  View,
-  Text,
-  FlatList,
-  StyleSheet,
-  ActivityIndicator,
-} from 'react-native';
-import {commonstyles, graycolor, blackcolor, light_gray} from '../styles/commonstyles';
-import HandlePressable from './HandlePressable';
+  commonstyles,
+  graycolor,
+  blackcolor,
+  light_gray,
+} from '../styles/commonstyles';
+import Ripple from 'react-native-material-ripple';
 
-export const TopicItems = ({navigation, tags, categoryName}) => {
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
-
-  const handleNavToTopics = useCallback((item) => {
-    navigation.navigate('Topics', {item, categoryName});
-  }, [navigation, categoryName]);
-
-  const renderTopicItem = ({item}) => {
-    return (
-      <HandlePressable
-        style={styles.tagItem}
-        onPress={()=>handleNavToTopics(item)}>
-        <Text style={styles.tagItemText}>{item.name}</Text>
-      </HandlePressable>
-    );
-  };
-
+const TopicItems = ({navigation, tags = [], categoryName}) => {
   return (
     <View style={styles.tagContainer}>
       <View style={[commonstyles.DetailsLatestView]}>
         <Text style={commonstyles.Category}>Topics</Text>
       </View>
-      {loading ? (
-        <ActivityIndicator size="small" color={blackcolor} />
+      {tags?.length > 0 ? (
+        <View style={{paddingLeft: 12, flex: 1, alignItems: 'flex-start'}}>
+          <FlatList
+            showsHorizontalScrollIndicator={false}
+            persistentScrollbar={false}
+            horizontal={true}
+            data={tags}
+            renderItem={({item}) => (
+              <Ripple
+                style={styles.tagItem}
+                onPress={() =>
+                  navigation.navigate('Topics', {item, categoryName})
+                }>
+                <Text style={styles.tagItemText}>{item.name}</Text>
+              </Ripple>
+            )}
+            keyExtractor={item => item.id?.toString()}
+          />
+        </View>
       ) : (
-        <>
-          {tags?.length > 0 ? (
-            <View style={{paddingLeft: 12, flex: 1, alignItems: 'flex-start'}}>
-              <FlatList
-                showsHorizontalScrollIndicator={false}
-                persistentScrollbar={false}
-                horizontal={true}
-                data={tags}
-                renderItem={renderTopicItem}
-                keyExtractor={item => item.id?.toString()}
-              />
-            </View>
-          ) : (
-            <Text style={styles.noTagsText}>No Tags</Text>
-          )}
-        </>
+        <Text style={styles.noTagsText}>No Tags</Text>
       )}
     </View>
   );
@@ -86,3 +65,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
+
+export default TopicItems;

@@ -24,8 +24,7 @@ import DetailsComponentOne from '../components/DetailsComponentOne';
 import { BaseUrl, DetailsUrl, RelatedUrl } from '../utilities/urls';
 import FastImage from 'react-native-fast-image';
 import { decode } from 'html-entities';
-import { TopicItems } from '../components/TopicItems';
-import HandlePressable from '../components/HandlePressable';
+import TopicItems from '../components/TopicItems';
 import Ripple from 'react-native-material-ripple';
 
 const Details = ({ navigation, route }) => {

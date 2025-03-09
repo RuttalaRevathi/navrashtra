@@ -21,10 +21,8 @@ const Topics = ({navigation, route}) => {
   const tag = item.link?.split('/')[tagLen - 1];
 
   useEffect(() => {
-    if (tag) {
-      fetchTopics();
-    }
-  }, [tag]);
+    fetchTopics();
+  }, []);
 
   const fetchTopics = async () => {
     setLoading(true);
@@ -77,7 +75,7 @@ const Topics = ({navigation, route}) => {
       <FlatList
         style={commonstyles.cateflist}
         data={tags}
-        keyExtractor={(item, index) => item?.id?.toString() || index.toString()}
+        keyExtractor={(item, index) => item?.id?.toString()}
         renderItem={renderItemTwo}
       />
     </View>

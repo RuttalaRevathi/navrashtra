@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import {commonstyles, whitecolor, appThemeColor, graycolor} from '../styles/commonstyles';
 import getVideoAction from '../redux/actions/getVideoAction';
-import HandlePressable from '../components/HandlePressable';
+import Ripple from 'react-native-material-ripple';
 
 const Videos = ({navigation, videosData, videosLoading}) => {
   const dispatch = useDispatch();
@@ -45,8 +45,7 @@ const Videos = ({navigation, videosData, videosLoading}) => {
           numColumns={1}
           keyExtractor={item => item.id?.toString()}
           renderItem={({item, index}) => (
-            <View style={{flex: 1}}>
-              <HandlePressable
+              <Ripple
                 onPress={() => {
                   navigation.navigate('VideoArticle', {
                     item: item,
@@ -80,8 +79,7 @@ const Videos = ({navigation, videosData, videosLoading}) => {
                     {item?.title?.rendered}
                   </Text>
                 </View>
-              </HandlePressable>
-            </View>
+              </Ripple>
           )}
         />
       </SafeAreaView>
@@ -94,6 +92,7 @@ const styles = StyleSheet.create({
       borderBottomColor: graycolor,
       borderBottomWidth: 1,
       paddingTop: 12,
+      overflow: 'hidden'
     },
     videoIconAbs: {
       bottom: 12,
