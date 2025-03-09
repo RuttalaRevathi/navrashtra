@@ -11,6 +11,8 @@ import {blackcolor, commonstyles} from '../styles/commonstyles';
 import {FlatList} from 'react-native-gesture-handler';
 import CategoryComponentTwo from '../components/CategoryComponentTwo';
 import {HeaderStyle} from '../styles/Header.Styles';
+import HandlePressable from '../components/HandlePressable';
+import Ripple from 'react-native-material-ripple';
 
 export const Topics = ({navigation, route}) => {
   const [tags, setTags] = useState([]);
@@ -57,12 +59,12 @@ export const Topics = ({navigation, route}) => {
   return (
     <View style={commonstyles.container}>
       <View style={HeaderStyle.DetailsHeader}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Ripple style={commonstyles.iconRipple} onPress={() => navigation.goBack()}>
           <Image
             source={require('../Assets/Images/arrow.png')}
             style={{width: 22, height: 22}}
           />
-        </TouchableOpacity>
+        </Ripple>
       </View>
       <View
         style={[

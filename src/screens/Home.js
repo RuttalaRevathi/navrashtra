@@ -28,6 +28,7 @@ import { Automobile, BaseUrl, Business, Carrer, CategoryUrl, India, Lifestyle, M
 import getVideoAction from '../redux/actions/getVideoAction';
 import WebStoriesHome from './WebStroriesHome';
 import TopNews from '../components/TopNews';
+import Ripple from 'react-native-material-ripple';
 
 const Home = ({ navigation }) => {
   const [indiaData, setIndiaData] = useState(null);
@@ -299,12 +300,12 @@ const Home = ({ navigation }) => {
               <View style={commonstyles.gallerytextView}>
                 <Text style={commonstyles.homevideocategorytext}>फोटो</Text>
               </View>
-              <TouchableOpacity
+              <Ripple
                   onPress={() => {
                     navigation.navigate('PTStack', {screen: 'PhotoGallery'});
                   }}>
                   <Image style={commonstyles.galleryImage} source={require('../Assets/Images/next.png')} />
-              </TouchableOpacity>
+              </Ripple>
             </View>
             {/* photo gallery  Cards*/}
             <View style={{ paddingLeft: 12 }}>
@@ -331,15 +332,14 @@ const Home = ({ navigation }) => {
               <View style={commonstyles.gallerytextView}>
                 <Text style={commonstyles.homevideocategorytext}>व्हिडिओ</Text>
               </View>
-              <TouchableOpacity
+              <Ripple
                   onPress={() => {
                     navigation.navigate('VDStack', {screen: 'Videos'});
                   }}>
                   <Image style={commonstyles.galleryImage} source={require('../Assets/Images/next.png')} />
-                </TouchableOpacity>
+                </Ripple>
             </View>
 
-            {/* videos gallery  Cards*/}
             {videosData?.data?.length ? <>
               <FlatList
                   data={videosData?.data?.slice(0, 1)}

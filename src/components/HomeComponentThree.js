@@ -6,34 +6,18 @@ import {Text, TouchableOpacity, View} from 'react-native';
 import {commonstyles} from '../styles/commonstyles';
 import moment from 'moment';
 import FastImage from 'react-native-fast-image';
+import HandlePressable from './HandlePressable';
 
 class HomeComponentThree extends React.PureComponent {
   render() {
     let decode = require('html-entities-decoder');
-    const now = moment.utc();
-    const date = moment.utc(this.props?.item?.date_gmt || now);
-    const diffSeconds = now.diff(date, 'seconds');
-    const diffMinutes = now.diff(date, 'minutes');
-    const diffHours = now.diff(date, 'hours');
-    const diffDays = now.diff(date, 'days');
-
-    let formattedDate;
-    if (diffSeconds < 60) {
-      formattedDate = `${diffSeconds} seconds ago`;
-    } else if (diffMinutes < 60) {
-      formattedDate = `${diffMinutes} minutes ago`;
-    } else if (diffHours < 24) {
-      formattedDate = `${diffHours} hours ago`;
-    } else {
-      formattedDate = `${diffDays} days ago`;
-    }
     const defaultImage = require('../Assets/Images/no_image.jpeg');
     const imageUrl = this.props?.item?.web_featured_image
       ? {uri: this.props?.item?.web_featured_image}
       : defaultImage;
     return (
       <>
-        <TouchableOpacity
+        <HandlePressable
           onPress={() => {
             this.props.navigation.navigate('Details', {
               item: this.props.item,
@@ -54,7 +38,7 @@ class HomeComponentThree extends React.PureComponent {
               </Text>
             </View>
           </View>
-        </TouchableOpacity>
+        </HandlePressable>
       </>
     );
   }

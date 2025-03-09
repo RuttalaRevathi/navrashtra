@@ -45,7 +45,7 @@ export const commonstyles = StyleSheet.create({
     alignItems: 'center',
   },
   homeVideoTextView: {
-    width: ITEM_WIDTH,
+    width: '100%',
   },
   homevideocategorytext: {
     color: whitecolor,
@@ -141,13 +141,13 @@ export const commonstyles = StyleSheet.create({
     lineHeight: 24,
     fontWeight: '500',
     paddingTop: 8,
+    marginBottom: 12
   },
   HomeFourcategoryView: {
     marginTop: 12,
     width: 180,
   },
   DetailsCompOneView: {
-    marginRight: 12,
     width: 200,
   },
   categoryoneTextView: {
@@ -900,4 +900,9 @@ export const commonstyles = StyleSheet.create({
     fontSize: 14,
     color: blackcolor,
   },
+  iconRipple: {
+    padding: 12,
+    borderRadius: 24,
+    overflow: 'hidden'
+  }
 });

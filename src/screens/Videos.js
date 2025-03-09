@@ -7,13 +7,13 @@ import {
   Image,
   SafeAreaView,
   Text,
-  TouchableOpacity,
   View,
   ActivityIndicator,
   StyleSheet,
 } from 'react-native';
 import {commonstyles, whitecolor, appThemeColor, graycolor} from '../styles/commonstyles';
 import getVideoAction from '../redux/actions/getVideoAction';
+import HandlePressable from '../components/HandlePressable';
 
 const Videos = ({navigation, videosData, videosLoading}) => {
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ const Videos = ({navigation, videosData, videosLoading}) => {
           numColumns={1}
           renderItem={({item, index}) => (
             <View style={{flex: 1}}>
-              <TouchableOpacity
+              <HandlePressable
                 onPress={() => {
                   navigation.navigate('VideoArticle', {
                     item: item,
@@ -79,7 +79,7 @@ const Videos = ({navigation, videosData, videosLoading}) => {
                     {item?.title?.rendered}
                   </Text>
                 </View>
-              </TouchableOpacity>
+              </HandlePressable>
             </View>
           )}
         />

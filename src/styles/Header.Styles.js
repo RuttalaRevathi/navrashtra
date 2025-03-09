@@ -42,7 +42,6 @@ export const HeaderStyle = StyleSheet.create({
     subHeaderviewHeight: {
         backgroundColor: whitecolor,
         flexDirection: "row",
-        padding: 12,
         justifyContent: 'space-between',
         alignItems: 'center'
     },
@@ -50,7 +49,6 @@ export const HeaderStyle = StyleSheet.create({
         width: "100%",
         backgroundColor: whitecolor,
         flexDirection: "row",
-        padding: 12,
         justifyContent: 'space-between',
         borderBottomColor: light_gray, borderBottomWidth: 1
     },

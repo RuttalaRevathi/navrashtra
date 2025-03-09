@@ -4,7 +4,6 @@ import {
   Text,
   View,
   FlatList,
-  TouchableOpacity,
   SafeAreaView,
   Image,
   ActivityIndicator,
@@ -12,6 +11,7 @@ import {
 import {commonstyles} from '../styles/commonstyles';
 import HomeComponentOne from '../components/HomeComponentOne';
 import HomeComponentTwo from './HomeComponentTwo';
+import HandlePressable from './HandlePressable';
 
 function HomeUI(props) {
   const {navigation} = props;
@@ -32,18 +32,16 @@ function HomeUI(props) {
     />
   );
 
-  // Check if data is available and is an array
   const newdata = Array.isArray(props?.data) ? props.data : [];
 
   return (
     <SafeAreaView styles={commonstyles.container}>
       <View style={{paddingHorizontal: 12}}>
-        {/* Ctegory  text*/}
         <View style={commonstyles.homecategoryView}>
           <View style={commonstyles.homeOnetextView}>
             <Text style={commonstyles.Category}>{props?.categoryName}</Text>
           </View>
-          <TouchableOpacity
+          <HandlePressable
             onPress={() => {
               navigation.navigate(props?.categoryName, {
                 url: props?.navigationScreen,
@@ -55,7 +53,7 @@ function HomeUI(props) {
               style={commonstyles.homeNextImage}
               source={require('../Assets/Images/next.png')}
             />
-          </TouchableOpacity>
+          </HandlePressable>
         </View>
 
         {newdata.length > 0 ? (
@@ -66,24 +64,12 @@ function HomeUI(props) {
               persistentScrollbar={false}
               numColumns={1}
               style={{borderRadius: 6, overflow: 'hidden'}}
-              onEndReachedThreshold={50}
-              getItemLayout={(data, index) => ({
-                length: 40,
-                offset: 40 * index,
-                index,
-              })}
               renderItem={renderItemOne}
             />
             <FlatList
               showsHorizontalScrollIndicator={false}
               persistentScrollbar={false}
               data={newdata?.slice(1, 6)}
-              onEndReachedThreshold={50}
-              getItemLayout={(data, index) => ({
-                length: 40,
-                offset: 40 * index,
-                index,
-              })}
               renderItem={renderItemTwo}
             />
           </View>

@@ -8,7 +8,6 @@ import {
   Image,
   SafeAreaView,
   Text,
-  TouchableOpacity,
   View,
   StyleSheet,
 } from 'react-native';
@@ -20,6 +19,7 @@ import {
   whitecolor,
 } from '../styles/commonstyles';
 import FastImage from 'react-native-fast-image';
+import HandlePressable from '../components/HandlePressable';
 
 const PhotoGallery = ({navigation, photosData, photosLoading}) => {
   const dispatch = useDispatch();
@@ -60,7 +60,7 @@ const PhotoGallery = ({navigation, photosData, photosLoading}) => {
             renderItem={({item, index}) => {
               const photoCount = getPhotoCount(item?.content?.rendered);
               return (
-                <TouchableOpacity
+                <HandlePressable
                   onPress={() => {
                     navigation.navigate('PhotoArticle', {
                       item: item,
@@ -99,7 +99,7 @@ const PhotoGallery = ({navigation, photosData, photosLoading}) => {
                       {item?.title?.rendered}
                     </Text>
                   </View>
-                </TouchableOpacity>
+                </HandlePressable>
               );
             }}
           />

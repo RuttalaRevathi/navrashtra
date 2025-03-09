@@ -1,7 +1,8 @@
 import React from 'react';
-import {Text, TouchableOpacity, View, StyleSheet, Image} from 'react-native';
+import {Text, View, StyleSheet, Image} from 'react-native';
 import {commonstyles, whitecolor} from '../styles/commonstyles';
 import FastImage from 'react-native-fast-image';
+import HandlePressable from '../components/HandlePressable';
 
 const PhotoAuthorListItem = ({item, navigation, propsdata}) => {
   const defaultImage = require('../Assets/Images/noimage.png');
@@ -17,12 +18,11 @@ const PhotoAuthorListItem = ({item, navigation, propsdata}) => {
   };
   const photoCount = getPhotoCount(item?.content?.rendered);
   return (
-    <TouchableOpacity
+    <HandlePressable
       onPress={() => {
         navigation.navigate(`${item.post_format === 'gallery' ? 'PhotoArticle': 'Details'}`, {
           item: item,
           detailsData: propsdata?.data,
-          //screenName: 'Photos',
         });
       }}>
       <View style={commonstyles.HomeComp2DotView}>
@@ -51,7 +51,7 @@ const PhotoAuthorListItem = ({item, navigation, propsdata}) => {
           </View>}
         </View>
       </View>
-    </TouchableOpacity>
+    </HandlePressable>
   );
 };
 

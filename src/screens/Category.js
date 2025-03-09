@@ -12,7 +12,7 @@ const CategoryScreen = ({item, isTopNavigation}) => {
   const [loadingMore, setLoadingMore] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [offset, setOffset] = useState(0);
-  const limit = 10; // Define the limit for API calls
+  const limit = 10;
 
   useEffect(() => {
     fetchParentData();

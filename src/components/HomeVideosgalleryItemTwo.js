@@ -6,32 +6,18 @@ import {
   commonstyles,
   whitecolor,
 } from '../styles/commonstyles';
-import moment from 'moment/moment';
+import HandlePressable from './HandlePressable';
 
 class HomeVideosgalleryItemTwo extends React.PureComponent {
   render() {
     let decode = require('html-entities-decoder');
-    const now = moment.utc();
-    const date = moment.utc(this.props?.item?.date_gmt || now);
-    const diffSeconds = now.diff(date, 'seconds');
-    const diffMinutes = now.diff(date, 'minutes');
-    const diffHours = now.diff(date, 'hours');
-
-    let formattedDate;
-    if (diffSeconds < 60) {
-      formattedDate = `${diffSeconds} seconds ago`;
-    } else if (diffMinutes < 60) {
-      formattedDate = `${diffMinutes} minutes ago`;
-    } else {
-      formattedDate = `${diffHours} hours ago`;
-    }
     const defaultImage = require('../Assets/Images/no_image.jpeg');
     const imageUrl = this.props?.item?.web_featured_image
       ? {uri: this.props?.item?.web_featured_image}
       : defaultImage;
     return (
       <View style={{marginRight: 12, width: 190}}>
-        <TouchableOpacity
+        <HandlePressable color='rgba(0,0,0,0.15)'
           onPress={() => {
             this.props.navigation.navigate('VideoArticle', {
               item: this.props?.item,
@@ -55,7 +41,7 @@ class HomeVideosgalleryItemTwo extends React.PureComponent {
           <Text numberOfLines={2} style={commonstyles.homeVideosliderText}>
             {decode(this.props?.item?.title?.rendered)}
           </Text>
-        </TouchableOpacity>
+        </HandlePressable>
       </View>
     );
   }

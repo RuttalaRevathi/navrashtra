@@ -63,57 +63,53 @@ const SideMenu = ({navigation}) => {
           />
         </View>
       </View>
-      <ScrollView>
-        <View>
-          <FlatList
-            data={mergedArray}
-            ItemSeparatorComponent={() => <View style={{}} />}
-            renderItem={({item}) => (
-              <View>
-                <DrawerItem
-                  onPress={() => {
-                    handleNavigation(item.title);
-                  }}
-                  style={{
-                    borderTopColor: graycolor,
-                    borderTopWidth: 1,
-                    marginVertical: -2,
-                  }}
-                  icon={() => (
-                    <Image
-                      style={sideMenuStyle.listImg}
-                      source={{uri: item.Image}}
-                    />
-                  )}
-                  label={() => (
-                    <Text style={sideMenuStyle.text}>{item.title}</Text>
-                  )}
-                  labelStyle={sideMenuStyle.text}
+      <FlatList
+        data={mergedArray}
+        ItemSeparatorComponent={() => <View />}
+        renderItem={({item}) => (
+            <DrawerItem
+              onPress={() => {
+                handleNavigation(item.title);
+              }}
+              style={{
+                borderTopColor: graycolor,
+                borderTopWidth: 1,
+                marginVertical: 0,
+              }}
+              icon={() => (
+                <Image
+                  style={sideMenuStyle.listImg}
+                  source={{uri: item.Image}}
                 />
-              </View>
-            )}
-          />
-          <DrawerItem
-            style={sideMenuStyle.item}
-            icon={() => (
-              <Image
-                source={require('../Assets/Images/settings.png')}
-                style={sideMenuStyle.icon}
-              />
-            )}
-            label="Settings"
-            labelStyle={sideMenuStyle.text}
-            onPress={() => {
-              handleNavigation('Settings');
-            }}
-          />
-          <DrawerItem
-            style={sideMenuStyle.item}
-            label="App Version 1.0.0"
-            labelStyle={{color: blackcolor, fontSize: 12}}
-          />
-        </View>
-      </ScrollView>
+              )}
+              label={() => <Text style={sideMenuStyle.text}>{item.title}</Text>}
+              labelStyle={sideMenuStyle.text}
+            />
+        )}
+        ListFooterComponent={() => (
+          <>
+            <DrawerItem
+              style={sideMenuStyle.item}
+              icon={() => (
+                <Image
+                  source={require('../Assets/Images/settings.png')}
+                  style={sideMenuStyle.icon}
+                />
+              )}
+              label="Settings"
+              labelStyle={sideMenuStyle.text}
+              onPress={() => {
+                handleNavigation('Settings');
+              }}
+            />
+            <DrawerItem
+              style={sideMenuStyle.item}
+              label="App Version 1.0.0"
+              labelStyle={{color: blackcolor, fontSize: 12}}
+            />
+          </>
+        )}
+      />
     </SafeAreaView>
   );
 };

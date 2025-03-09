@@ -1,10 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {Text, TouchableOpacity, View, Image} from 'react-native';
+import {Text, View, Image} from 'react-native';
 import {
   commonstyles,
   whitecolor,
 } from '../styles/commonstyles';
+import HandlePressable from './HandlePressable';
 
 class HomePhotogalleryItemTwo extends React.PureComponent {
   getPhotoCount = content => {
@@ -25,7 +26,8 @@ class HomePhotogalleryItemTwo extends React.PureComponent {
 
     return (
       <View style={{ marginRight: 12, width: 200 }}>
-        <TouchableOpacity
+        <HandlePressable
+        color={'rgba(0,0,0,0.15)'}
           onPress={() => {
             this.props.navigation.navigate('PhotoArticle', {
               item: this.props?.item,
@@ -66,7 +68,7 @@ class HomePhotogalleryItemTwo extends React.PureComponent {
               </Text>
             </View>
           </View>
-        </TouchableOpacity>
+        </HandlePressable>
       </View>
     );
   }

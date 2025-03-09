@@ -2,12 +2,11 @@ import * as React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { View, Text, Image, TouchableOpacity, Linking } from 'react-native';
 import { HeaderStyle } from '../styles/Header.Styles';
-import { blackcolor, dark_blue, off_white, red_color, whitecolor } from '../styles/commonstyles';
+import { blackcolor, off_white } from '../styles/commonstyles';
 import SideMenu from '../screens/SideMenu';
-import TopTabNavigator from './TopTabNavigator';
 import { useSelector } from 'react-redux';
-import HomeStackNavigator from './stack-navigators/HomeStackNavigator';
 import BottomTabNavigator from './BottomTabNavigator';
+import HandlePressable from '../components/HandlePressable';
 
 const Drawer = createDrawerNavigator();
 
@@ -31,7 +30,6 @@ const DrawerNavigator = () => {
 
   return (
     <Drawer.Navigator
-
       drawerContent={props => <SideMenu {...props} />} useLegacyImplementation={false}>
       <Drawer.Screen
         name="Home"
@@ -42,7 +40,7 @@ const DrawerNavigator = () => {
           },
           headerRight: () => (
             <View style={{ flexDirection: 'row', marginRight: 10, }}>
-              <TouchableOpacity
+              <HandlePressable
                 style={{
                   flexDirection: 'row', marginRight: 10, borderColor: blackcolor,
                   borderWidth: 1.5, borderRadius: 5, width: 70, justifyContent: 'center',
@@ -60,11 +58,11 @@ const DrawerNavigator = () => {
                   fontFamily: 'Mukta-SemiBold',
                   textAlign: 'center'
                 }}>ई-पेपर</Text>
-              </TouchableOpacity>
+              </HandlePressable>
             </View>
           ),
           headerLeft: () => (
-              <TouchableOpacity
+              <HandlePressable
               style={HeaderStyle.headerLeftView}
                 onPress={() => {
                   navigation.toggleDrawer();
@@ -75,7 +73,7 @@ const DrawerNavigator = () => {
                   source={require('../Assets/Images/menu.png')}
                 />
                 </View>
-              </TouchableOpacity>
+              </HandlePressable>
           ),
           headerTitle: () => (
             <View

@@ -1,20 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { useEffect, useState } from 'react';
-import { Alert, Text, TouchableOpacity, View, Image, Share } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React from 'react';
+import { Text, TouchableOpacity, View, Image, Share } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { commonstyles, medium_gray } from '../styles/commonstyles';
 import moment from 'moment';
-
+import HandlePressable from './HandlePressable';
 
 const CategoryComponentOne = ({ item, navigation, propsdata }) => {
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState('');
-
- 
-
   const decode = require('html-entities-decoder');
-  // Date and time 
   const apiDate = item?.date;
   const formattedDate = moment(apiDate).format("MMM DD, YYYY | hh:mm A");
 
@@ -34,7 +27,7 @@ const CategoryComponentOne = ({ item, navigation, propsdata }) => {
 
   return (
     <View style={{ borderBottomColor: medium_gray, borderBottomWidth: 2, paddingBottom: 12 }}>
-      <TouchableOpacity
+      <HandlePressable
         onPress={() => {
           navigation.navigate('Details', {
             item: item,
@@ -53,20 +46,20 @@ const CategoryComponentOne = ({ item, navigation, propsdata }) => {
             </Text>
           </View>
         </View>
-      </TouchableOpacity>
+      </HandlePressable>
 
       {/* time view */}
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 8 }}>
       <Text style={commonstyles.CategoryOnetime}>{formattedDate}</Text>
-      <TouchableOpacity
+      <HandlePressable
               onPress={() => {
                 sharecall();
               }}>
               <Image
-                style={{ width: 16, height: 16, marginRight: 6 }}
+                style={{ width: 16, height: 16, marginRight: 4 }}
                 source={require('../Assets/Images/share_black.png')}
               />
-            </TouchableOpacity>
+            </HandlePressable>
       </View>
 
     </View>

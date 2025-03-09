@@ -13,7 +13,7 @@ import Webstories from '../screens/Webstories';
 
 const TopTab = createMaterialTopTabNavigator();
 
-const TopTabNavigator = ({ navigation }: Props) => {
+const TopTabNavigator = () => {
   const dispatch = useDispatch();
   const menuData = useSelector((state) => state.topMenuDataReducer.topMenuData) || [];
 
@@ -21,25 +21,19 @@ const TopTabNavigator = ({ navigation }: Props) => {
     dispatch(getTopMenuDataAction());
   }, [dispatch]);
 
-  // Flatten menu data with subItems included
   const mergedArray = [];
   menuData.forEach(item => {
     if (item.subItems) {
-      // Add the main item
       mergedArray.push(item);
-
-      // Add each subItem as a separate item
       item.subItems.forEach(subItem => {
         mergedArray.push({
-          ...subItem, // Include the parent title for reference
+          ...subItem,
         });
       });
     } else {
-      // If no subItems, add the main item as is
       mergedArray.push(item);
     }
   });
-
 
   return (
     <TopTab.Navigator
@@ -67,7 +61,7 @@ const TopTabNavigator = ({ navigation }: Props) => {
         name="Home"
         component={Home}
         options={{
-          tabBarLabel: '', // No label for the Home tab
+          tabBarLabel: '',
           tabBarIcon: () => (
             <Image
               source={require('../Assets/Images/home.png')} 
@@ -80,7 +74,6 @@ const TopTabNavigator = ({ navigation }: Props) => {
       {/* Other Tabs */}
       {mergedArray.length > 0 ? (
         mergedArray.map((item) => (
-          
           <TopTab.Screen
             key={item.title}
             name={item.title}
@@ -92,10 +85,7 @@ const TopTabNavigator = ({ navigation }: Props) => {
                 item.title ==='वेब स्टोरीज'
                 ? Webstories
                 : () => <CategoryScreen isTopNavigation={true} item={item} />
-                
-                
             }
-            
             options={{
               tabBarLabel: item.title,
             }}
@@ -117,10 +107,6 @@ const TopTabNavigator = ({ navigation }: Props) => {
       )}
     </TopTab.Navigator>
   );
-};
-
-type Props = {
-  navigation: any, // Define type if using TypeScript
 };
 
 export default TopTabNavigator;

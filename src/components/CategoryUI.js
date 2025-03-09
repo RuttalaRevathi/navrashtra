@@ -15,6 +15,7 @@ import { appThemeColor, commonstyles, Dark_Gray, whitecolor } from '../styles/co
 import CategoryComponentTwo from './CategoryComponentTwo';
 import CategoryComponentOne from './CategoryComponentOne';
 import { HeaderStyle } from '../styles/Header.Styles';
+import Ripple from 'react-native-material-ripple';
 
 function CategoryUI({ navigation, data, title, isTopNavigation, loadingMore,
   hasMore,
@@ -45,9 +46,9 @@ function CategoryUI({ navigation, data, title, isTopNavigation, loadingMore,
     }
 
     return (
-      <TouchableOpacity style={styles.loadMoreBtn} onPress={loadMore}>
+      <Ripple style={styles.loadMoreBtn} onPress={loadMore}>
           <Text style={styles.loreMoreBtnTxt}>Load More</Text>
-      </TouchableOpacity>
+      </Ripple>
     );
 };
 
@@ -56,14 +57,15 @@ function CategoryUI({ navigation, data, title, isTopNavigation, loadingMore,
     <SafeAreaView style={commonstyles.container}>
       {!isTopNavigation && (
         <View style={HeaderStyle.subHeaderviewHeight}>
-          <TouchableOpacity
+          <Ripple
+            style={commonstyles.iconRipple}
            onPress={() => navigation.goBack()}
           >
             <Image
               source={require('../Assets/Images/arrow.png')}
-              style={{ width: 22, height: 22 }}
+              style={styles.topActionIcon}
             />
-          </TouchableOpacity>
+          </Ripple>
         </View>
       )}
       <ScrollView style={commonstyles.scroll}>
@@ -110,7 +112,8 @@ const styles = StyleSheet.create({
   loreMoreBtnTxt: {
     color: whitecolor, textAlign: 'center', fontWeight: '500',
     fontSize: 16
-  }
+  },
+  topActionIcon: { width: 22, height: 22 }
 })
 
 export default CategoryUI;

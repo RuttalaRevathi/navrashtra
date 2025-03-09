@@ -4,10 +4,10 @@ import {
   Text,
   FlatList,
   StyleSheet,
-  TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
 import {commonstyles, graycolor, blackcolor, light_gray} from '../styles/commonstyles';
+import HandlePressable from './HandlePressable';
 
 export const TopicItems = ({navigation, tags, categoryName}) => {
   const [loading, setLoading] = useState(false);
@@ -20,11 +20,11 @@ export const TopicItems = ({navigation, tags, categoryName}) => {
 
   const renderTopicItem = ({item}) => {
     return (
-      <TouchableOpacity
+      <HandlePressable
         style={styles.tagItem}
         onPress={() => navigation.navigate('Topics', {item, categoryName})}>
         <Text style={styles.tagItemText}>{item.name}</Text>
-      </TouchableOpacity>
+      </HandlePressable>
     );
   };
 

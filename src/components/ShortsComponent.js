@@ -17,6 +17,8 @@ import {
   whitecolor,
   redcolor,
 } from '../styles/commonstyles';
+import Ripple from 'react-native-material-ripple';
+import HandlePressable from './HandlePressable';
 
 class ShortsComponent extends React.PureComponent {
   constructor(props) {
@@ -50,7 +52,7 @@ class ShortsComponent extends React.PureComponent {
     return (
       <View style={styles.wrapper}>
         <View>
-          <TouchableOpacity
+          <Ripple
             style={{
               position: 'absolute',
               top: 10,
@@ -64,7 +66,7 @@ class ShortsComponent extends React.PureComponent {
               source={require('../Assets/Images/cancel.png')} // Your close button image
               style={{width: 30, height: 30}}
             />
-          </TouchableOpacity>
+          </Ripple>
           <Image
             source={imageUrl}
             style={{
@@ -98,12 +100,12 @@ class ShortsComponent extends React.PureComponent {
               paddingHorizontal: 12,
             }}>
             <Text style={commonstyles.shortsTime}>{formattedDate}</Text>
-            <TouchableOpacity onPress={sharecall}>
+            <HandlePressable onPress={sharecall}>
               <Image
                 style={{width: 20, height: 20}}
                 source={require('../Assets/Images/share_black.png')}
               />
-            </TouchableOpacity>
+            </HandlePressable>
           </View>
           {/* Description */}
           <View style={{padding: 12}}>
@@ -118,7 +120,16 @@ class ShortsComponent extends React.PureComponent {
               }}>
               {source1}
             </Text>
-            <TouchableOpacity
+                  <Ripple
+                   style={{
+                    padding: 8,
+                    borderRadius: 20,
+                    backgroundColor: redcolor,
+                    width: 150,
+                    marginTop: 8,
+                    alignSelf: 'flex-start',
+                    overflow: 'hidden'
+                  }}
               onPress={() => {
                 navigation.navigate('Details', {
                   item: item,
@@ -126,15 +137,6 @@ class ShortsComponent extends React.PureComponent {
                   screenName: 'Shorts',
                 });
               }}>
-              <View
-                style={{
-                  padding: 6,
-                  borderRadius: 20,
-                  backgroundColor: redcolor,
-                  width: 150,
-                  marginTop: 8,
-                  alignSelf: 'flex-start',
-                }}>
                 <Text
                   style={{
                     fontSize: 14,
@@ -145,8 +147,7 @@ class ShortsComponent extends React.PureComponent {
                   }}>
                   Read Full Article
                 </Text>
-              </View>
-            </TouchableOpacity>
+                </Ripple>
           </View>
         </View>
 

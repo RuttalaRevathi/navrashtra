@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import {useEffect, useLayoutEffect, useRef, useState } from 'react';
 import {
   Dimensions,
   Text,
@@ -7,7 +7,6 @@ import {
   StyleSheet,
   SafeAreaView,
   ActivityIndicator,
-  TouchableOpacity,
   Animated,
   Platform
 } from 'react-native';
@@ -17,6 +16,7 @@ import { decode } from 'html-entities';
 import { blackcolor, commonstyles, redcolor } from '../styles/commonstyles';
 import LinearGradient from 'react-native-linear-gradient';
 import { Share } from 'react-native';
+import Ripple from 'react-native-material-ripple';
 
 const WebStoriesHome = () => {
   const [storiesData, setStoriesData] = useState([]);
@@ -44,7 +44,6 @@ const WebStoriesHome = () => {
               story_caption: item.caption,
               story_content: item.content,
               stroy_link: item.link,
-
               swipeText: null,
             };
             return slideObj;
@@ -59,7 +58,7 @@ const WebStoriesHome = () => {
     }
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getWebstoriesAction();
   }, []);
 
@@ -149,24 +148,18 @@ const WebStoriesHome = () => {
                 pressedAvatarTextColor={'#FFFFFF'}
                 renderCloseComponent={({ onPress, item }) => (
                   <View style={{ flexDirection: 'row' }}>
-                    <TouchableOpacity onPress={() => sharecall(item)}>
-
-                      <View style={styles.storyShare}>
+                    <Ripple style={styles.storyShare} onPress={() => sharecall(item)}>
                         <Image
                           source={require('../Assets/Images/share_filled.png')}
                           style={styles.shareIcon}
                         />
-                      </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={onPress}>
-
-                      <View style={styles.storyClose}>
+                    </Ripple>
+                    <Ripple style={styles.storyClose} onPress={onPress}>
                         <Image
                           source={require('../Assets/Images/cancel.png')}
                           style={styles.closeIcon}
                         />
-                      </View>
-                    </TouchableOpacity>
+                    </Ripple>
                   </View>
                 )}
                 renderTextComponent={({ item }) => (

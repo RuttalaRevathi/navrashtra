@@ -2,20 +2,19 @@
 /* eslint-disable prettier/prettier */
 import * as React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Image, View, Text, Platform, StyleSheet, ActivityIndicator} from 'react-native';
-import {blackcolor, commonstyles, redcolor, whitecolor} from '../styles/commonstyles';
+import {Image, View, Text, Platform, StyleSheet} from 'react-native';
+import {blackcolor, redcolor, whitecolor} from '../styles/commonstyles';
 import HomeStackNavigator from './stack-navigators/HomeStackNavigator';
 import {createStackNavigator} from '@react-navigation/stack';
 import { Topics } from '../screens/Topics';
-
-const ShortsScreen = React.lazy(() => import('../screens/Shorts'));
-const PhotoGallery = React.lazy(() => import('../screens/PhotoGallery'));
-const Videos = React.lazy(() => import('../screens/Videos'));
-const LatestNews = React.lazy(() => import('../screens/LatestNews'));
-const PhotoArticle = React.lazy(() => import('../screens/PhotoArticle'));
-const VideoArticle = React.lazy(() => import('../screens/VideoArticle'));
-const AuthorScreen = React.lazy(() => import('../screens/Author'));
-const Details = React.lazy(() => import('../screens/Details'));
+import ShortsScreen from '../screens/Shorts';
+import PhotoGallery from '../screens/PhotoGallery';
+import Videos from '../screens/Videos';
+import LatestNews from '../screens/LatestNews';
+import PhotoArticle from '../screens/PhotoArticle';
+import VideoArticle from '../screens/VideoArticle';
+import AuthorScreen from '../screens/Author';
+import Details from '../screens/Details';
 
 const Tab = createBottomTabNavigator();
 const LNStack = createStackNavigator();
@@ -26,9 +25,9 @@ function LNStackScreen() {
   return (
     <LNStack.Navigator>
       <LNStack.Screen name="Latest" component={LatestNews} options={{headerShown: false}} />
-      <LNStack.Screen name="Author" component={(props)=><React.Suspense fallback={<View style={commonstyles.loadingContainer}><ActivityIndicator color={blackcolor} size={'large'} /></View>}><AuthorScreen {...props} /></React.Suspense>} options={{headerShown: false}} />
-      <LNStack.Screen name="Details" component={(props)=><React.Suspense fallback={<View style={commonstyles.loadingContainer}><ActivityIndicator color={blackcolor} size={'large'} /></View>}><Details {...props} /></React.Suspense>} options={{headerShown: false}} />
-      <LNStack.Screen name="Topics" component={(props)=><React.Suspense fallback={<View style={commonstyles.loadingContainer}><ActivityIndicator color={blackcolor} size={'large'} /></View>}><Topics {...props} /></React.Suspense>} options={{headerShown: false}} />
+      <LNStack.Screen name="Author" component={AuthorScreen} options={{headerShown: false}} />
+      <LNStack.Screen name="Details" component={Details} options={{headerShown: false}} />
+      <LNStack.Screen name="Topics" component={Topics} options={{headerShown: false}} />
     </LNStack.Navigator>
   );
 }
@@ -38,9 +37,9 @@ function PhotoStackScreen() {
     <PTStack.Navigator>
       <PTStack.Screen name="Photos" component={PhotoGallery} options={{headerShown: false}} />
       <PTStack.Screen name="PhotoArticle" component={PhotoArticle} options={{headerShown: false}} />
-      <PTStack.Screen name="Author" component={(props)=><React.Suspense fallback={<View style={commonstyles.loadingContainer}><ActivityIndicator color={blackcolor} size={'large'} /></View>}><AuthorScreen {...props} /></React.Suspense>} options={{headerShown: false}} />
-      <PTStack.Screen name="Details" component={(props)=><React.Suspense fallback={<View style={commonstyles.loadingContainer}><ActivityIndicator color={blackcolor} size={'large'} /></View>}><Details {...props} /></React.Suspense>} options={{headerShown: false}} />
-      <PTStack.Screen name="Topics" component={(props)=><React.Suspense fallback={<View style={commonstyles.loadingContainer}><ActivityIndicator color={blackcolor} size={'large'} /></View>}><Topics {...props} /></React.Suspense>} options={{headerShown: false}} />
+      <PTStack.Screen name="Author" component={AuthorScreen} options={{headerShown: false}} />
+      <PTStack.Screen name="Details" component={Details} options={{headerShown: false}} />
+      <PTStack.Screen name="Topics" component={Topics} options={{headerShown: false}} />
     </PTStack.Navigator>
   );
 }
@@ -50,9 +49,9 @@ function VideoStackScreen() {
     <VDStack.Navigator>
       <VDStack.Screen name="Videos" component={Videos} options={{headerShown: false}} />
       <VDStack.Screen name="VideoArticle" component={VideoArticle} options={{headerShown: false}} />
-      <VDStack.Screen name="Author" component={(props)=><React.Suspense fallback={<View style={commonstyles.loadingContainer}><ActivityIndicator color={blackcolor} size={'large'} /></View>}><AuthorScreen {...props} /></React.Suspense>} options={{headerShown: false}} />
-      <VDStack.Screen name="Details" component={(props)=><React.Suspense fallback={<View style={commonstyles.loadingContainer}><ActivityIndicator color={blackcolor} size={'large'} /></View>}><Details {...props} /></React.Suspense>} options={{headerShown: false}} />
-      <VDStack.Screen name="Topics" component={(props)=><React.Suspense fallback={<View style={commonstyles.loadingContainer}><ActivityIndicator color={blackcolor} size={'large'} /></View>}><Topics {...props} /></React.Suspense>} options={{headerShown: false}} />
+      <VDStack.Screen name="Author" component={AuthorScreen} options={{headerShown: false}} />
+      <VDStack.Screen name="Details" component={Details} options={{headerShown: false}} />
+      <VDStack.Screen name="Topics" component={Topics} options={{headerShown: false}} />
     </VDStack.Navigator>
   );
 }

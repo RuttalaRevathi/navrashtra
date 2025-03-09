@@ -15,11 +15,11 @@ import {blackcolor, commonstyles} from '../styles/commonstyles';
 import {authorUrl, BaseUrl} from '../utilities/urls';
 import VideoAuthorListItem from '../components/VideoAuthorListItem';
 import PhotoAuthorListItem from '../components/PhotoAuthorListItem';
+import Ripple from 'react-native-material-ripple';
 
 const AuthorScreen = ({title}) => {
   const navigation = useNavigation();
   const route = useRoute();
-  console.log(route.params.url)
   const [parentData, setParentData] = useState([]); // State to hold fetched posts data
   const [authorData, setAuthorData] = useState(null); // State to hold author data
   const [offset] = useState(0);
@@ -31,17 +31,14 @@ const AuthorScreen = ({title}) => {
     fetchAuthorData();
   }, [route]);
 
-  // Function to fetch data for authors
   const fetchAuthorData = async () => {
     setLoading(true);
     try {
       const author = route.params?.url?.split(' ').join('');
-      console.log(author)
       const url = `${BaseUrl}${authorUrl}?author-name=${author}&limit=${limit}&offset=${offset}`;
 
       const response = await fetch(url);
       const jsonData = await response.json();
-      console.log(jsonData.posts)
 
       if (
         jsonData &&
@@ -108,12 +105,12 @@ const AuthorScreen = ({title}) => {
     return (
       <>
         <View style={HeaderStyle.DetailsHeader}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Ripple style={commonstyles.iconRipple} onPress={() => navigation.goBack()}>
             <Image
               source={require('../Assets/Images/arrow.png')}
               style={{width: 22, height: 22}}
             />
-          </TouchableOpacity>
+          </Ripple>
         </View>
         <>
           {error !== null ? (

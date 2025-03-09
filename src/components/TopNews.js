@@ -4,7 +4,6 @@ import {
   Text,
   StyleSheet,
   ActivityIndicator,
-  TouchableWithoutFeedback,
 } from 'react-native';
 import {
   redcolor,
@@ -15,6 +14,7 @@ import {
 import TextTicker from 'react-native-text-ticker';
 import { BaseUrl, BreakingNewsUrl } from '../utilities/urls';
 import { decode } from 'html-entities';
+import Ripple from 'react-native-material-ripple';
 
 const TopNews = ({navigation}) => {
   const [topNews, setTopNews] = useState([]);
@@ -78,14 +78,14 @@ const TopNews = ({navigation}) => {
             scroll={!paused} // Pause and resume based on state
           >
             {topNews.length > 0 ? topNews?.map(item => (
-              <TouchableWithoutFeedback
+              <Ripple
                 key={item.id}
                 onPress={() => handleTopNewsPress(item)}
                 onPressIn={() => setPaused(true)}
                 onPressOut={() => setPaused(false)}
                 >
                 <Text style={styles.topNewsTitle}>{decode(item.title)}{' '}{' '}{' '} | {' '}{' '}{' '}</Text>
-              </TouchableWithoutFeedback>
+              </Ripple>
             )) : 'No breaking news available'}
           </TextTicker>
         </>

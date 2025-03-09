@@ -36,7 +36,7 @@ export const sideMenuStyle = StyleSheet.create({
   cross:{top: 5, alignSelf: 'flex-end', justifyContent: 'center'},
   areaView:{ flex: 1 },
   MainView:{ backgroundColor: whitecolor},
-  logoView:{ justifyContent: 'center', alignItems: 'center',},
+  logoView:{ justifyContent: 'center', alignItems: 'center',paddingVertical: 4},
   logoText:{ width: '50%', resizeMode:'contain',padding:10},
   titleView:{
     flexDirection: 'row',

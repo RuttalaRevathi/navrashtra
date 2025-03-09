@@ -25,6 +25,8 @@ import { BaseUrl, DetailsUrl, RelatedUrl } from '../utilities/urls';
 import FastImage from 'react-native-fast-image';
 import { decode } from 'html-entities';
 import { TopicItems } from '../components/TopicItems';
+import HandlePressable from '../components/HandlePressable';
+import Ripple from 'react-native-material-ripple';
 
 const Details = ({ navigation, route }) => {
   const [detailsData, setDetailsData] = useState([]);
@@ -187,31 +189,31 @@ const Details = ({ navigation, route }) => {
   return (
     <View style={commonstyles.container}>
       <View style={HeaderStyle.DetailsHeader}>
-        <TouchableOpacity
-          onPress={handleGoBack}
-          style={{ zIndex: 999 }}>
+        <Ripple
+          style={commonstyles.iconRipple}
+          onPress={handleGoBack}>
           <Image
             source={require('../Assets/Images/arrow.png')}
-            style={{ width: 22, height: 22 }}
+            style={styles.iconSize}
           />
-        </TouchableOpacity>
+        </Ripple>
         <View
           style={{
             alignItems: 'center',
             flexDirection: 'row',
           }}>
-          <TouchableOpacity onPress={toggleFontSize}>
+          <Ripple onPress={toggleFontSize} style={commonstyles.iconRipple}>
             <Image
-              style={{ width: 22, height: 22 }}
+              style={styles.iconSize}
               source={require('../Assets/Images/font.png')}
             />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={sharecall} style={{ marginLeft: 16 }}>
+          </Ripple>
+          <Ripple onPress={sharecall} style={commonstyles.iconRipple}>
             <Image
-              style={{ width: 22, height: 22 }}
+              style={styles.iconSize}
               source={require('../Assets/Images/share_black.png')}
             />
-          </TouchableOpacity>
+          </Ripple>
         </View>
       </View>
       <ScrollView ref={Scrollref}>
@@ -232,7 +234,7 @@ const Details = ({ navigation, route }) => {
             {/* Author and Time */}
             <View
               style={commonstyles.DetailTimeMainView}>
-                <TouchableOpacity onPress={() => {
+                <Ripple onPress={() => {
                 navigation.navigate('Author', {
                   url: authorName
                 })
@@ -240,7 +242,7 @@ const Details = ({ navigation, route }) => {
               <Text style={commonstyles.detailauthor}>
                 BY <Text style={{fontWeight: '700'}}>{firstArticle?.author_name}</Text>
               </Text>
-              </TouchableOpacity>
+              </Ripple>
               <Text style={commonstyles.detailTime}>Updated on: {formattedDate}</Text>
             </View>
 
@@ -399,7 +401,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 13
   },
-  articleContainer: { paddingLeft: 12, flex: 1, alignItems: 'flex-start' }
+  articleContainer: { paddingLeft: 12, flex: 1, alignItems: 'flex-start' },
+  iconSize: { width: 22, height: 22 },
 });
 
 export default Details;

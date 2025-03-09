@@ -1,9 +1,10 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {Text, TouchableOpacity, View, Image, Share} from 'react-native';
+import {Text, TouchableOpacity, View, Image, Share, StyleSheet} from 'react-native';
 import {commonstyles} from '../styles/commonstyles';
 import {decode} from 'html-entities';
 import FastImage from 'react-native-fast-image';
+import HandlePressable from './HandlePressable';
 
 const DetailsComponentTwo = ({item, navigation, propsdata}) => {
 
@@ -22,8 +23,7 @@ const DetailsComponentTwo = ({item, navigation, propsdata}) => {
     : defaultImage;
 
   return (
-    <>
-      <TouchableOpacity
+      <HandlePressable
         onPress={() => {
           navigation.navigate('Details', {
             item,
@@ -38,19 +38,18 @@ const DetailsComponentTwo = ({item, navigation, propsdata}) => {
               style={commonstyles.latestText}>
               {decode(item?.title?.rendered)}
             </Text>
-            {/* Time View */}
             <View
               style={{
                 flexDirection: 'row',
                 justifyContent: 'flex-end',
-                paddingTop: 10,
+                paddingTop: 8,
               }}>
-              <TouchableOpacity onPress={sharecall}>
+              <HandlePressable onPress={sharecall} style={styles.sharePress}>
                 <Image
-                  style={{width: 15, height: 15, marginRight: 4}}
+                  style={styles.shareIcon}
                   source={require('../Assets/Images/share_black.png')}
                 />
-              </TouchableOpacity>
+              </HandlePressable>
             </View>
           </View>
           <FastImage
@@ -59,9 +58,13 @@ const DetailsComponentTwo = ({item, navigation, propsdata}) => {
             style={commonstyles.cateImage}
           />
         </View>
-      </TouchableOpacity>
-    </>
+      </HandlePressable>
   );
 };
+
+const styles = StyleSheet.create({
+  shareIcon: {width: 16, height: 16},
+  sharePress: {padding: 4, borderRadius: 12}
+})
 
 export default DetailsComponentTwo;

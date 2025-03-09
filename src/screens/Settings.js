@@ -11,6 +11,7 @@ import {blackcolor, commonstyles} from '../styles/commonstyles';
 import {SafeAreaView} from 'react-native';
 import {Image} from 'react-native';
 import SubHeader from '../components/SubHeader';
+import HandlePressable from '../components/HandlePressable';
 
 const Settings = ({navigation}) => {
   const data = [
@@ -117,19 +118,19 @@ const Settings = ({navigation}) => {
         }
         isBook={true}
       />
-      <ScrollView>
+      <ScrollView scrollEnabled={false}>
         <FlatList
           data={data}
           showsHorizontalScrollIndicator={false}
           style={{paddingHorizontal: 12}}
           scrollEnabled={false}
           renderItem={({item}) => (
-            <TouchableOpacity onPress={() => navigateToScreen(item.screen)}>
+            <HandlePressable onPress={() => navigateToScreen(item.screen)}>
               <View style={commonstyles.settingview}>
                 <Image source={item.img} style={commonstyles.settingimg} />
                 <Text style={commonstyles.settingtext}>{item.text}</Text>
               </View>
-            </TouchableOpacity>
+            </HandlePressable>
           )}
         />
         <View style={{paddingHorizontal: 12, marginTop: 30}}>
@@ -147,7 +148,7 @@ const Settings = ({navigation}) => {
             showsHorizontalScrollIndicator={false}
             scrollEnabled={false}
             renderItem={({item}) => (
-              <TouchableOpacity
+              <HandlePressable
                 onPress={() => {
                   Linking.openURL(item.screen);
                 }}>
@@ -159,7 +160,7 @@ const Settings = ({navigation}) => {
                   />
                   <Text style={commonstyles.settingmediatext}>{item.text}</Text>
                 </View>
-              </TouchableOpacity>
+              </HandlePressable>
             )}
           />
         </View>

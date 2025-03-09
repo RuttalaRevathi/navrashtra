@@ -23,6 +23,8 @@ import HTMLView from 'react-native-htmlview';
 import moment from 'moment';
 import {useDispatch} from 'react-redux';
 import getRelatedAction from '../redux/actions/getRelatedAction';
+import Ripple from 'react-native-material-ripple';
+import HandlePressable from '../components/HandlePressable';
 
 const PhotoArticle = ({navigation, route}) => {
   const scrollViewRef = useRef(null);
@@ -60,22 +62,24 @@ const PhotoArticle = ({navigation, route}) => {
   return (
     <View style={commonstyles.container}>
       <View style={HeaderStyle.subHeaderviewHeight}>
-        <TouchableOpacity
+        <Ripple
+          style={commonstyles.iconRipple}
           onPress={() => navigation.goBack()}>
           <Image
             source={require('../Assets/Images/arrow.png')}
-            style={{width: 22, height: 22}}
+            style={headerStyles.topActionIcon}
           />
-        </TouchableOpacity>
-        <TouchableOpacity
+        </Ripple>
+        <HandlePressable
+        style={commonstyles.iconRipple}
           onPress={() => {
             sharecall();
           }}>
           <Image
             source={require('../Assets/Images/share_black.png')}
-            style={{width: 22, height: 22}}
+            style={headerStyles.topActionIcon}
           />
-        </TouchableOpacity>
+        </HandlePressable>
       </View>
       <ScrollView
         ref={scrollViewRef}
@@ -89,7 +93,7 @@ const PhotoArticle = ({navigation, route}) => {
         </View>
         {/* time */}
         <View style={commonstyles.DetailTimeMainView}>
-          <TouchableOpacity
+          <Ripple
             onPress={() => {
               navigation.navigate('Author', {
                 url: authorName,
@@ -102,7 +106,7 @@ const PhotoArticle = ({navigation, route}) => {
                 {route?.params?.item?.author_name}
               </Text>
             </Text>
-          </TouchableOpacity>
+          </Ripple>
           <Text style={commonstyles.detailTimegallery}>
             Updated on: {formattedDate}
           </Text>
@@ -169,6 +173,7 @@ const headerStyles = StyleSheet.create({
     marginBottom: 0,
     fontWeight: '600',
   },
+  topActionIcon: {width: 22, height: 22}
 });
 
 export default PhotoArticle;

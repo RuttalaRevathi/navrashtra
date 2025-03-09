@@ -1,12 +1,12 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {Image, Share, Text, TouchableOpacity, View} from 'react-native';
-
+import {Image, Share, Text, View} from 'react-native';
 import {commonstyles} from '../styles/commonstyles';
 import moment from 'moment';
 import LinearGradient from 'react-native-linear-gradient';
 import FastImage from 'react-native-fast-image';
+import HandlePressable from './HandlePressable';
 
 const HomeComponentOne = ({item, navigation, propsdata}) => {
   const sharecall = () => {
@@ -19,7 +19,6 @@ const HomeComponentOne = ({item, navigation, propsdata}) => {
   };
   let decode = require('html-entities-decoder');
 
-  // Date and time
   const apiDate = item?.date;
   const formattedDate = moment(apiDate).format('MMM DD, YYYY | hh:mm A');
 
@@ -30,7 +29,7 @@ const HomeComponentOne = ({item, navigation, propsdata}) => {
 
   return (
     <>
-      <TouchableOpacity
+      <HandlePressable
         onPress={() => {
           navigation.navigate('Details', {
             item,
@@ -43,7 +42,6 @@ const HomeComponentOne = ({item, navigation, propsdata}) => {
             source={imageUrl}
             style={commonstyles.HomeCategoryImg}
           />
-
           <LinearGradient
             colors={[
               'rgba(0, 0, 0, 0)',
@@ -54,12 +52,10 @@ const HomeComponentOne = ({item, navigation, propsdata}) => {
             <Text numberOfLines={2} style={commonstyles.HomeCategorytext}>
               {decode(item?.title?.rendered)}
             </Text>
-            {/* Time View */}
             <View
               style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-              {/* Time */}
               <Text style={commonstyles.latesttime}>{formattedDate}</Text>
-              <TouchableOpacity
+              <HandlePressable
                 onPress={() => {
                   sharecall();
                 }}>
@@ -67,11 +63,11 @@ const HomeComponentOne = ({item, navigation, propsdata}) => {
                   style={{width: 16, height: 16}}
                   source={require('../Assets/Images/share_white.png')}
                 />
-              </TouchableOpacity>
+              </HandlePressable>
             </View>
           </LinearGradient>
         </View>
-      </TouchableOpacity>
+      </HandlePressable>
     </>
   );
 };

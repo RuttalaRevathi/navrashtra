@@ -4,7 +4,6 @@ import {
   Text,
   View,
   FlatList,
-  TouchableOpacity,
   SafeAreaView,
   Image,
   ActivityIndicator,
@@ -12,6 +11,7 @@ import {
 import {commonstyles} from '../styles/commonstyles';
 import HomeComponentFour from './HomeComponentFour';
 import HomeComponentThree from './HomeComponentThree';
+import HandlePressable from './HandlePressable';
 
 function HomeUINew(props) {
   const {navigation} = props;
@@ -42,7 +42,7 @@ function HomeUINew(props) {
           <View style={commonstyles.homeOnetextView}>
             <Text style={commonstyles.Category}>{props?.categoryName}</Text>
           </View>
-          <TouchableOpacity
+          <HandlePressable
             onPress={() => {
               navigation.navigate(props?.categoryName, {
                 url: props?.navigationScreen,
@@ -51,7 +51,7 @@ function HomeUINew(props) {
               });
             }}>
             <Image source={require('../Assets/Images/next.png')} />
-          </TouchableOpacity>
+          </HandlePressable>
         </View>
 
         {newdata.length > 0 ? (
@@ -62,12 +62,6 @@ function HomeUINew(props) {
               persistentScrollbar={false}
               numColumns={1}
               style={{borderRadius: 6, overflow: 'hidden'}}
-              onEndReachedThreshold={50}
-              getItemLayout={index => ({
-                length: 40,
-                offset: 40 * index,
-                index,
-              })}
               renderItem={renderItemOne}
             />
             <FlatList
@@ -75,11 +69,6 @@ function HomeUINew(props) {
               persistentScrollbar={false}
               horizontal={true}
               data={newdata.slice(1, 10)}
-              getItemLayout={index => ({
-                length: 40,
-                offset: 40 * index,
-                index,
-              })}
               renderItem={renderItemTwo}
             />
           </View>

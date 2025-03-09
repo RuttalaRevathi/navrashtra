@@ -16,6 +16,8 @@ import moment from 'moment';
 import AutoHeightWebView from 'react-native-autoheight-webview';
 import {useState} from 'react';
 import FastImage from 'react-native-fast-image';
+import Ripple from 'react-native-material-ripple';
+import HandlePressable from '../components/HandlePressable';
 
 const VideoArticle = ({navigation, route}) => {
   const source = route?.params?.item?.content?.rendered;
@@ -53,35 +55,34 @@ const VideoArticle = ({navigation, route}) => {
   return (
     <View style={{backgroundColor: whitecolor, flex: 1}}>
       <View style={HeaderStyle.subHeaderviewHeight}>
-        <TouchableOpacity
+        <Ripple
+          style={commonstyles.iconRipple}
           onPress={() => navigation.goBack()}>
           <Image
             source={require('../Assets/Images/arrow.png')}
-            style={{width: 20, height: 20}}
+            style={styles.topActionIcon}
           />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{}}
+        </Ripple>
+        <HandlePressable
+          style={commonstyles.iconRipple}
           onPress={() => {
             sharecall();
           }}>
           <Image
             source={require('../Assets/Images/share_black.png')}
-            style={{width: 20, height: 20}}
+            style={styles.topActionIcon}
           />
-        </TouchableOpacity>
+        </HandlePressable>
       </View>
       <ScrollView style={styles.scrollView} scrollEnabled={true}>
         <View>
-          {/* Title */}
           <View style={{paddingHorizontal: 12, paddingTop: 6}}>
             <Text style={commonstyles.categoryText}>
               {decode(route?.params?.item?.title?.rendered)}
             </Text>
           </View>
-          {/* time */}
           <View style={commonstyles.DetailTimeMainView}>
-            <TouchableOpacity
+            <Ripple
               onPress={() => {
                 navigation.navigate('Author', {
                   url: authorName,
@@ -94,7 +95,7 @@ const VideoArticle = ({navigation, route}) => {
                   {route?.params?.item?.author_name}
                 </Text>
               </Text>
-            </TouchableOpacity>
+            </Ripple>
             <Text style={commonstyles.detailTime}>
               Updated on: {formattedDate}
             </Text>
@@ -219,5 +220,6 @@ const styles = StyleSheet.create({
   webview: {
     width: '100%',
   },
+  topActionIcon: {width: 22, height: 22}
 });
 export default VideoArticle;

@@ -1,7 +1,8 @@
 import React from 'react';
-import {Text, TouchableOpacity, View, Image, StyleSheet} from 'react-native';
+import {Text, View, Image, StyleSheet} from 'react-native';
 import {commonstyles, whitecolor} from '../styles/commonstyles';
 import FastImage from 'react-native-fast-image';
+import HandlePressable from '../components/HandlePressable';
 
 const VideoAuthorListItem = ({item, navigation, propsdata}) => {
   const defaultImage = require('../Assets/Images/noimage.png');
@@ -10,7 +11,7 @@ const VideoAuthorListItem = ({item, navigation, propsdata}) => {
     : defaultImage;
   const decode = require('html-entities-decoder');
   return (
-    <TouchableOpacity
+    <HandlePressable
       onPress={() => {
         navigation.navigate(`${item.post_format === "video" ? 'VideoArticle' : 'Details'}`, {
           item,
@@ -41,7 +42,7 @@ const VideoAuthorListItem = ({item, navigation, propsdata}) => {
           </View>}
         </View>
       </View>
-    </TouchableOpacity>
+    </HandlePressable>
   );
 };
 
