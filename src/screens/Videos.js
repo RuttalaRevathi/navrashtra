@@ -43,6 +43,7 @@ const Videos = ({navigation, videosData, videosLoading}) => {
           style={commonstyles.cateflist}
           data={videosData?.data}
           numColumns={1}
+          keyExtractor={item => item.id?.toString()}
           renderItem={({item, index}) => (
             <View style={{flex: 1}}>
               <HandlePressable

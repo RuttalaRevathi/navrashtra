@@ -91,7 +91,7 @@ android {
             keyPassword 'android'
         }
         release {
-        storeFile file('D:/Revathi/ReactNative/navrashtra/nr.keystore')                     
+        storeFile file('D:/mobileapp/navrashtra/nr.keystore')                     
       storePassword '@123@123'
       keyAlias 'nr'
       keyPassword '@123@123'

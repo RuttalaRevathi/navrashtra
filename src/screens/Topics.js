@@ -11,10 +11,9 @@ import {blackcolor, commonstyles} from '../styles/commonstyles';
 import {FlatList} from 'react-native-gesture-handler';
 import CategoryComponentTwo from '../components/CategoryComponentTwo';
 import {HeaderStyle} from '../styles/Header.Styles';
-import HandlePressable from '../components/HandlePressable';
 import Ripple from 'react-native-material-ripple';
 
-export const Topics = ({navigation, route}) => {
+const Topics = ({navigation, route}) => {
   const [tags, setTags] = useState([]);
   const [loading, setLoading] = useState(false);
   const {item, categoryName} = route.params;
@@ -22,8 +21,10 @@ export const Topics = ({navigation, route}) => {
   const tag = item.link?.split('/')[tagLen - 1];
 
   useEffect(() => {
-    fetchTopics();
-  }, []);
+    if (tag) {
+      fetchTopics();
+    }
+  }, [tag]);
 
   const fetchTopics = async () => {
     setLoading(true);
@@ -32,7 +33,7 @@ export const Topics = ({navigation, route}) => {
         `${BaseUrl}${TagsUrl}?tag_name=${tag}&limit=10&offset=0`,
       );
       const tagsData = await response.json();
-      setTags(tagsData?.data);
+      setTags(Array.isArray(tagsData?.data) ? tagsData.data : []);
     } catch (error) {
       console.log(error);
     } finally {
@@ -76,9 +77,11 @@ export const Topics = ({navigation, route}) => {
       <FlatList
         style={commonstyles.cateflist}
         data={tags}
-        keyExtractor={item => item.id.toString()}
+        keyExtractor={(item, index) => item?.id?.toString() || index.toString()}
         renderItem={renderItemTwo}
       />
     </View>
   );
 };
+
+export default Topics;

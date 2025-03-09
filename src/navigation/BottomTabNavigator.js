@@ -6,7 +6,7 @@ import {Image, View, Text, Platform, StyleSheet} from 'react-native';
 import {blackcolor, redcolor, whitecolor} from '../styles/commonstyles';
 import HomeStackNavigator from './stack-navigators/HomeStackNavigator';
 import {createStackNavigator} from '@react-navigation/stack';
-import { Topics } from '../screens/Topics';
+import Topics from '../screens/Topics';
 import ShortsScreen from '../screens/Shorts';
 import PhotoGallery from '../screens/PhotoGallery';
 import Videos from '../screens/Videos';

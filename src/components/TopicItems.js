@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -18,11 +18,15 @@ export const TopicItems = ({navigation, tags, categoryName}) => {
     }, 2000);
   }, []);
 
+  const handleNavToTopics = useCallback((item) => {
+    navigation.navigate('Topics', {item, categoryName});
+  }, [navigation, categoryName]);
+
   const renderTopicItem = ({item}) => {
     return (
       <HandlePressable
         style={styles.tagItem}
-        onPress={() => navigation.navigate('Topics', {item, categoryName})}>
+        onPress={()=>handleNavToTopics(item)}>
         <Text style={styles.tagItemText}>{item.name}</Text>
       </HandlePressable>
     );
@@ -45,7 +49,7 @@ export const TopicItems = ({navigation, tags, categoryName}) => {
                 horizontal={true}
                 data={tags}
                 renderItem={renderTopicItem}
-                keyExtractor={item => item.id.toString()}
+                keyExtractor={item => item.id?.toString()}
               />
             </View>
           ) : (

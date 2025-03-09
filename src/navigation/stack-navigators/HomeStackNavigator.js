@@ -18,7 +18,7 @@ import AboutUs from '../../screens/contactScreens/AboutUs';
 import ContactUs from '../../screens/contactScreens/ContactUs';
 import PrivacyPolicy from '../../screens/contactScreens/PrivacyPolicy';
 import Terms from '../../screens/contactScreens/Terms';
-import { Topics } from '../../screens/Topics';
+import Topics from '../../screens/Topics';
 
 const Stack = createStackNavigator();
 
@@ -53,6 +53,7 @@ const HomeStackNavigator = ({menuData}) => {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
+        gestureDirection: 'horizontal'
       }}
       initialRouteName="Home">
       {mergedArray.length > 0 ? (
