@@ -10,6 +10,7 @@ import {
   Text,
   View,
   StyleSheet,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import getPhotoGalleryAction from '../redux/actions/getPhotoGalleryAction';
 import {
@@ -19,7 +20,6 @@ import {
   whitecolor,
 } from '../styles/commonstyles';
 import FastImage from 'react-native-fast-image';
-import HandlePressable from '../components/HandlePressable';
 
 const PhotoGallery = ({navigation, photosData, photosLoading}) => {
   const dispatch = useDispatch();
@@ -60,9 +60,9 @@ const PhotoGallery = ({navigation, photosData, photosLoading}) => {
             renderItem={({item, index}) => {
               const photoCount = getPhotoCount(item?.content?.rendered);
               return (
-                <HandlePressable
+                <TouchableWithoutFeedback
                   onPress={() => {
-                    navigation.navigate('PhotoArticle', {
+                    navigation.push('PhotoArticle', {
                       item: item,
                       detailsData: photosData?.data,
                       screenName: 'Photos',
@@ -99,7 +99,7 @@ const PhotoGallery = ({navigation, photosData, photosLoading}) => {
                       {item?.title?.rendered}
                     </Text>
                   </View>
-                </HandlePressable>
+                </TouchableWithoutFeedback>
               );
             }}
           />

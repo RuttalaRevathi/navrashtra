@@ -6,7 +6,6 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
   Image,
   ScrollView,
   Share,
@@ -95,7 +94,7 @@ const PhotoArticle = ({navigation, route}) => {
         <View style={commonstyles.DetailTimeMainView}>
           <Ripple
             onPress={() => {
-              navigation.navigate('Author', {
+              navigation.push('Author', {
                 url: authorName,
                 screenName: 'PhotoArticle',
               });

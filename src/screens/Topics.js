@@ -3,7 +3,6 @@ import {
   ActivityIndicator,
   View,
   Image,
-  TouchableOpacity,
   Text,
 } from 'react-native';
 import {BaseUrl, TagsUrl} from '../utilities/urls';
@@ -21,8 +20,10 @@ const Topics = ({navigation, route}) => {
   const tag = item.link?.split('/')[tagLen - 1];
 
   useEffect(() => {
-    fetchTopics();
-  }, []);
+    if(tag){
+      fetchTopics();
+    }
+  }, [tag]);
 
   const fetchTopics = async () => {
     setLoading(true);
@@ -53,33 +54,34 @@ const Topics = ({navigation, route}) => {
       <View style={commonstyles.loadingContainer}>
         <ActivityIndicator size={'large'} color={blackcolor} />
       </View>
-    );
+    )
+  } else {
+    return (
+      <View style={commonstyles.container}>
+        <View style={HeaderStyle.DetailsHeader}>
+          <Ripple style={commonstyles.iconRipple} onPress={() => navigation.goBack()}>
+            <Image
+              source={require('../Assets/Images/arrow.png')}
+              style={{width: 22, height: 22}}
+            />
+          </Ripple>
+        </View>
+        <View
+          style={[
+            commonstyles.homeOnetextView,
+            {marginLeft: 12, marginTop: 10, marginBottom: 4},
+          ]}>
+          <Text style={commonstyles.galleryArticlecategorytext}>{item.name}</Text>
+        </View>
+        <FlatList
+          style={commonstyles.cateflist}
+          data={tags}
+          keyExtractor={(item) => item?.id?.toString()}
+          renderItem={renderItemTwo}
+        />
+      </View>
+    )
   }
-  return (
-    <View style={commonstyles.container}>
-      <View style={HeaderStyle.DetailsHeader}>
-        <Ripple style={commonstyles.iconRipple} onPress={() => navigation.goBack()}>
-          <Image
-            source={require('../Assets/Images/arrow.png')}
-            style={{width: 22, height: 22}}
-          />
-        </Ripple>
-      </View>
-      <View
-        style={[
-          commonstyles.homeOnetextView,
-          {marginLeft: 12, marginTop: 10, marginBottom: 4},
-        ]}>
-        <Text style={commonstyles.galleryArticlecategorytext}>{item.name}</Text>
-      </View>
-      <FlatList
-        style={commonstyles.cateflist}
-        data={tags}
-        keyExtractor={(item, index) => item?.id?.toString()}
-        renderItem={renderItemTwo}
-      />
-    </View>
-  );
 };
 
 export default Topics;

@@ -13,7 +13,7 @@ const VideoAuthorListItem = ({item, navigation, propsdata}) => {
   return (
     <HandlePressable
       onPress={() => {
-        navigation.navigate(`${item.post_format === "video" ? 'VideoArticle' : 'Details'}`, {
+        navigation.push(`${item.post_format === "video" ? 'VideoArticle' : 'Details'}`, {
           item,
           detailsData: propsdata,
           screenName: 'Videos',

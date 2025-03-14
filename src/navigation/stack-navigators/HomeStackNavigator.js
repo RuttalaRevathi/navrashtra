@@ -53,7 +53,6 @@ const HomeStackNavigator = ({menuData}) => {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-        gestureDirection: 'horizontal'
       }}
       initialRouteName="Home">
       {mergedArray.length > 0 ? (

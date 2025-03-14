@@ -26,7 +26,7 @@ const CategoryComponentTwo = ({item, navigation, propsdata}) => {
   return (
       <HandlePressable
         onPress={() => {
-          navigation.navigate('Details', {
+          navigation.push('Details', {
             item,
             detailsData: propsdata,
           });

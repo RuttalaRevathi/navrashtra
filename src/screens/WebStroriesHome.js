@@ -265,7 +265,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     right: 0,
     width: Dimensions.get('window').width + 4,
-    height: Platform.OS === 'android' ? Dimensions.get('window').height - 20 : Dimensions.get('window').height - 55,
+    height: Platform.OS === 'android' ? Dimensions.get('window').height - 10 : Dimensions.get('window').height - 55,
     top: 0,
     justifyContent: 'flex-end',
   },

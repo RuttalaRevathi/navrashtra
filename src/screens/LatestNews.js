@@ -5,18 +5,16 @@ import {
   ActivityIndicator,
   FlatList,
   SafeAreaView,
-  ScrollView,
   View,
   Text,
 } from 'react-native';
 import {commonstyles} from '../styles/commonstyles';
 import CategoryComponentTwo from '../components/CategoryComponentTwo';
-import CategoryComponentOne from '../components/CategoryComponentOne';
 import {BaseUrl, LatestUrl} from '../utilities/urls';
 
-const LatestNews = ({navigation, route}: Props) => {
+const LatestNews = ({navigation}) => {
   const [latestNews, setLatestNewsData] = useState(null);
-  const [loading, setLoading] = useState(false); // State to handle the loader
+  const [loading, setLoading] = useState(false);
 
   const getLatestNewsAction = async () => {
     setLoading(true);

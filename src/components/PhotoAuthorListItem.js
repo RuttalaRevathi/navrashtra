@@ -20,7 +20,7 @@ const PhotoAuthorListItem = ({item, navigation, propsdata}) => {
   return (
     <HandlePressable
       onPress={() => {
-        navigation.navigate(`${item.post_format === 'gallery' ? 'PhotoArticle': 'Details'}`, {
+        navigation.push(`${item.post_format === 'gallery' ? 'PhotoArticle': 'Details'}`, {
           item: item,
           detailsData: propsdata?.data,
         });

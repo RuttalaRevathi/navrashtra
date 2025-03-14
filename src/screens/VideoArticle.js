@@ -4,7 +4,6 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
   Image,
   ScrollView,
   Share,
@@ -26,7 +25,6 @@ const VideoArticle = ({navigation, route}) => {
   var source1 = source?.replace('lazyload', 'text/javascript');
 
   useEffect(() => {
-    // Check if source1 contains a <video> or <iframe> element
     const videoOrIframeRegex = /<video|<iframe|blockquote/g;
     if (!videoOrIframeRegex.test(source1)) {
       setVideoAvailable(false);
@@ -51,7 +49,7 @@ const VideoArticle = ({navigation, route}) => {
   const imageUrl = route?.params?.item?.web_featured_image
     ? {uri: route?.params?.item?.web_featured_image}
     : defaultImage;
-  console.log(source1);
+
   return (
     <View style={{backgroundColor: whitecolor, flex: 1}}>
       <View style={HeaderStyle.subHeaderviewHeight}>
@@ -84,7 +82,7 @@ const VideoArticle = ({navigation, route}) => {
           <View style={commonstyles.DetailTimeMainView}>
             <Ripple
               onPress={() => {
-                navigation.navigate('Author', {
+                navigation.push('Author', {
                   url: authorName,
                   screenName: 'VideoArticle',
                 });
@@ -117,8 +115,9 @@ const VideoArticle = ({navigation, route}) => {
                 allowsFullscreenVideo={true}
                 scrollEnabled={false}
                 mixedContentMode="always"
+                overScrollMode="never"
                 mediaPlaybackRequiresUserAction={false}
-                style={{width: Dimensions.get('window').width}}
+                style={{width: Dimensions.get('window').width, opacity: 0.99}}
                 customStyle={`
                 iframe[src^="https://www.youtube.com/embed/"] {
                                 width:100%;
@@ -189,7 +188,7 @@ const VideoArticle = ({navigation, route}) => {
                                               
               `}
                 source={{html: source1, baseUrl: 'https://instagram.com'}}
-                viewportContent={'width=device-width, user-scalable=yes'}
+                viewportContent={'width=device-width, user-scalable=no'}
                 onError={error => console.error('WebView Error:', error)}
               />
             ) : (

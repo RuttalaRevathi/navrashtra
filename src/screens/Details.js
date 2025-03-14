@@ -234,7 +234,7 @@ const Details = ({ navigation, route }) => {
             <View
               style={commonstyles.DetailTimeMainView}>
                 <Ripple onPress={() => {
-                navigation.navigate('Author', {
+                navigation.push('Author', {
                   url: authorName
                 })
               }}>
@@ -259,7 +259,8 @@ const Details = ({ navigation, route }) => {
                   javaScriptEnabled={true}
                   scalesPageToFit={false}
                   allowsFullscreenVideo={true}
-                  style={{ marginHorizontal: 12, width: Dimensions.get('window').width - 24 }}
+                  overScrollMode="never"
+                  style={{ marginHorizontal: 12, width: Dimensions.get('window').width - 24, opacity: 0.99 }}
                   onTouchStart={handleTouchStart}
                   customStyle={`
                  iframe[title]{
@@ -364,6 +365,10 @@ const Details = ({ navigation, route }) => {
                   horizontal={true}
                   data={detailsData?.slice(getIndex(), getIndex() + 5)}
                   renderItem={renderItemOne}
+                  keyExtractor={(item)=>item.id?.toString()}
+                  initialNumToRender={5}
+                  maxToRenderPerBatch={10}
+                  windowSize={10}
                 />
               </View>
             ) : (<Text

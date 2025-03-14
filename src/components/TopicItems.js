@@ -1,14 +1,15 @@
 import React from 'react';
-import {View, Text, FlatList, StyleSheet} from 'react-native';
+import {View, Text, FlatList, StyleSheet, TouchableWithoutFeedback} from 'react-native';
 import {
   commonstyles,
   graycolor,
   blackcolor,
   light_gray,
 } from '../styles/commonstyles';
-import Ripple from 'react-native-material-ripple';
+import { useNavigation } from '@react-navigation/native';
 
-const TopicItems = ({navigation, tags = [], categoryName}) => {
+const TopicItems = ({ tags, categoryName}) => {
+  const navigation = useNavigation();
   return (
     <View style={styles.tagContainer}>
       <View style={[commonstyles.DetailsLatestView]}>
@@ -22,13 +23,14 @@ const TopicItems = ({navigation, tags = [], categoryName}) => {
             horizontal={true}
             data={tags}
             renderItem={({item}) => (
-              <Ripple
-                style={styles.tagItem}
+              <TouchableWithoutFeedback
                 onPress={() =>
-                  navigation.navigate('Topics', {item, categoryName})
+                  navigation.push('Topics', {item, categoryName})
                 }>
+                <View style={styles.tagItem}>
                 <Text style={styles.tagItemText}>{item.name}</Text>
-              </Ripple>
+                </View>
+              </TouchableWithoutFeedback>
             )}
             keyExtractor={item => item.id?.toString()}
           />

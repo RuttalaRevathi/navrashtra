@@ -8,7 +8,7 @@ import {
 import {Linking} from 'react-native';
 
 const AuthorComponent = ({authorData}) => {
-  if (!authorData) return null; // Don't render if there's no author data
+  if (!authorData) return null;
 
   const renderSocialLinks = links => {
     const socialPlatforms = {
@@ -68,10 +68,11 @@ const styles = StyleSheet.create({
     color: blackcolor,
   },
   authorRole: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 'bold',
     color: blackcolor,
     marginTop: 4,
+    textAlign: 'center'
   },
   authorBio: {
     textAlign: 'center',
