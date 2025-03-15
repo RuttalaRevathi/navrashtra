@@ -80,7 +80,7 @@ const DrawerNavigator = () => {
               style={HeaderStyle.HeadTitleView}>
                 <Image
                   style={HeaderStyle.HeadTitleImg}
-                  source={require('../Assets/Images/nrlogo.png')}
+                  source={require('../Assets/Images/nr_logo.png')}
                 />
             </View>
           ),
