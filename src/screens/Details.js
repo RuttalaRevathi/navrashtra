@@ -354,9 +354,9 @@ const Details = ({ navigation, route }) => {
               borderBottomColor: graycolor,
               borderBottomWidth: 2,
             }}>
-            <View style={[commonstyles.DetailsLatestView]}>
-              <Text style={commonstyles.RelatedCategory}>Next Articles</Text>
-            </View>
+            <View style={[commonstyles.homeOnetextView, commonstyles.sectionTitle]}>
+            <Text style={commonstyles.Category}>Next Articles</Text>
+          </View>
             {detailsData.length > 0 ? (
               <View style={styles.articleContainer}>
                 <FlatList
@@ -378,8 +378,8 @@ const Details = ({ navigation, route }) => {
           </View>
 
           {/* Related News */}
-          <View style={commonstyles.DetailsLatestView}>
-            <Text style={commonstyles.RelatedCategory}>सम्बंधित ख़बरें</Text>
+          <View style={[commonstyles.homeOnetextView, commonstyles.sectionTitle]}>
+            <Text style={commonstyles.Category}>सम्बंधित ख़बरें</Text>
           </View>
           <View style={{ paddingHorizontal: 12 }}>
             <FlatList

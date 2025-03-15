@@ -8,6 +8,7 @@ import {
   ScrollView,
   Share,
   Dimensions,
+  ActivityIndicator,
 } from 'react-native';
 import {blackcolor, commonstyles, whitecolor} from '../styles/commonstyles';
 import {HeaderStyle} from '../styles/Header.Styles';
@@ -21,8 +22,13 @@ import HandlePressable from '../components/HandlePressable';
 const VideoArticle = ({navigation, route}) => {
   const source = route?.params?.item?.content?.rendered;
   const [videoAvailable, setVideoAvailable] = useState(true);
+  const [showWebView, setShowWebView] = useState(false);
 
   var source1 = source?.replace('lazyload', 'text/javascript');
+
+  useEffect(() => {
+    setTimeout(() => setShowWebView(true), 1000);
+  }, []);
 
   useEffect(() => {
     const videoOrIframeRegex = /<video|<iframe|blockquote/g;
@@ -37,14 +43,12 @@ const VideoArticle = ({navigation, route}) => {
       message: Link_Url,
     })
       .then(result => console.log(result))
-      .then(error => console.log(error));
+      .catch(error => console.log(error));
   };
   const decode = require('html-entities-decoder');
-  // Date and time
   const apiDate = route?.params?.item?.date;
   const formattedDate = moment(apiDate).format('MMM DD, YYYY | hh:mm A');
   const authorName = route?.params?.item?.author_slug;
-  // Image url
   const defaultImage = require('../Assets/Images/no_image.jpeg');
   const imageUrl = route?.params?.item?.web_featured_image
     ? {uri: route?.params?.item?.web_featured_image}
@@ -63,9 +67,7 @@ const VideoArticle = ({navigation, route}) => {
         </Ripple>
         <HandlePressable
           style={commonstyles.iconRipple}
-          onPress={() => {
-            sharecall();
-          }}>
+          onPress={sharecall}>
           <Image
             source={require('../Assets/Images/share_black.png')}
             style={styles.topActionIcon}
@@ -108,14 +110,12 @@ const VideoArticle = ({navigation, route}) => {
             style={{
               justifyContent: 'center',
             }}>
-            {videoAvailable ? (
+            {(videoAvailable  && showWebView) ? (
               <AutoHeightWebView
                 javaScriptEnabled={true}
                 scalesPageToFit={false}
                 allowsFullscreenVideo={true}
                 scrollEnabled={false}
-                mixedContentMode="always"
-                overScrollMode="never"
                 mediaPlaybackRequiresUserAction={false}
                 style={{width: Dimensions.get('window').width, opacity: 0.99}}
                 customStyle={`
@@ -188,24 +188,13 @@ const VideoArticle = ({navigation, route}) => {
                                               
               `}
                 source={{html: source1, baseUrl: 'https://instagram.com'}}
-                viewportContent={'width=device-width, user-scalable=no'}
+                viewportContent={'width=device-width, user-scalable=yes'}
                 onError={error => console.error('WebView Error:', error)}
               />
             ) : (
-              <>
-                <Text
-                  style={{color: blackcolor, fontWeight: 'bold', fontSize: 18}}>
-                  {route?.params?.item?.title?.rendered}
-                </Text>
-                <Text
-                  style={{
-                    fontSize: 20,
-                    fontWeight: 'bold',
-                    color: blackcolor,
-                  }}>
-                  Video not available
-                </Text>
-              </>
+              <View style={commonstyles.loadingContainer}>
+              <ActivityIndicator size={'large'} color={blackcolor} />
+              </View>
             )}
           </View>
         </View>

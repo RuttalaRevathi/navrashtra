@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {Text, TouchableOpacity, View, Image} from 'react-native';
+import {Text, View, Image} from 'react-native';
 import {
   commonstyles,
   whitecolor,

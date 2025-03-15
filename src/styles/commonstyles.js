@@ -104,13 +104,6 @@ export const commonstyles = StyleSheet.create({
     borderRadius: 6,
     objectFit: 'cover',
   },
-
-  DetailsLatestView: {
-    justifyContent: 'space-between',
-    flex: 1,
-    flexDirection: 'row',
-    paddingVertical: 10,
-  },
   HomeoneCategoryview: {
     position: 'relative',
   },
@@ -902,7 +895,10 @@ export const commonstyles = StyleSheet.create({
   },
   iconRipple: {
     padding: 12,
-    borderRadius: 24,
-    overflow: 'hidden'
-  }
+  },
+  sectionTitle: {
+    marginLeft: 12,
+    marginVertical: 12,
+    height: 30,
+  },
 });

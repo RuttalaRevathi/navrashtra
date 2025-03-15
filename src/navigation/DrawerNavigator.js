@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { View, Text, Image, TouchableOpacity, Linking } from 'react-native';
+import { View, Text, Image, Linking } from 'react-native';
 import { HeaderStyle } from '../styles/Header.Styles';
-import { blackcolor, off_white } from '../styles/commonstyles';
+import { blackcolor, commonstyles, off_white, whitecolor } from '../styles/commonstyles';
 import SideMenu from '../screens/SideMenu';
 import { useSelector } from 'react-redux';
 import BottomTabNavigator from './BottomTabNavigator';
@@ -36,7 +36,7 @@ const DrawerNavigator = () => {
         component={BottomTabNavigator}
         options={({ navigation }) => ({
           headerStyle: {
-            backgroundColor: off_white,
+            backgroundColor: whitecolor,
           },
           headerRight: () => (
             <View style={{ flexDirection: 'row', marginRight: 10, }}>
@@ -63,7 +63,7 @@ const DrawerNavigator = () => {
           ),
           headerLeft: () => (
               <HandlePressable
-              style={HeaderStyle.headerLeftView}
+              style={commonstyles.iconRipple}
                 onPress={() => {
                   navigation.toggleDrawer();
                 }}>

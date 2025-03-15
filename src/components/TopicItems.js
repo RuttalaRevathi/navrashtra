@@ -12,7 +12,7 @@ const TopicItems = ({ tags, categoryName}) => {
   const navigation = useNavigation();
   return (
     <View style={styles.tagContainer}>
-      <View style={[commonstyles.DetailsLatestView]}>
+      <View style={[commonstyles.homeOnetextView, commonstyles.sectionTitle]}>
         <Text style={commonstyles.Category}>Topics</Text>
       </View>
       {tags?.length > 0 ? (

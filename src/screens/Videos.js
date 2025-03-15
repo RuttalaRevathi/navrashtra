@@ -11,6 +11,7 @@ import {
   ActivityIndicator,
   TouchableWithoutFeedback,
   StyleSheet,
+  ScrollView,
 } from 'react-native';
 import {
   commonstyles,
@@ -47,47 +48,49 @@ const Videos = ({navigation}) => {
             वीडियो गैलरी
           </Text>
         </View>
-        <FlatList
-          style={commonstyles.cateflist}
-          data={videosData?.data}
-          numColumns={1}
-          keyExtractor={item => item.id?.toString()}
-          renderItem={({item, index}) => (
-            <TouchableWithoutFeedback
-              onPress={() => {
-                navigation.push('VideoArticle', {
-                  item: item,
-                  detailsData: videosData?.data,
-                  screenName: 'Videos',
-                });
-              }}>
-              <View
-                style={[styles.videoContainer, index === 0 && {paddingTop: 2}]}>
-                <View style={{position: 'relative'}}>
-                  <FastImage
-                    style={commonstyles.VideoimgTag}
-                    source={{uri: item?.web_featured_image}}
-                  />
-                  <View style={styles.videoIconAbs}>
-                    <Image
-                      source={require('../Assets/Images/video.png')}
-                      style={{tintColor: whitecolor}}
+        <ScrollView style={commonstyles.scroll} scrollEnabled={true}>
+          <FlatList
+            style={commonstyles.cateflist}
+            data={videosData?.data}
+            numColumns={1}
+            keyExtractor={item => item.id?.toString()}
+            renderItem={({item, index}) => (
+              <View style={{ flex: 1 }}>
+              <TouchableWithoutFeedback
+                onPress={() => {
+                  navigation.push('VideoArticle', {
+                    item: item,
+                    detailsData: videosData?.data,
+                    screenName: 'Videos',
+                  });
+                }}>
+                <View
+                  style={[styles.videoContainer, index === 0 && {paddingTop: 2}]}>
+                  <View style={{position: 'relative'}}>
+                    <FastImage
+                      style={commonstyles.VideoimgTag}
+                      source={{uri: item?.web_featured_image}}
                     />
+                    <View style={styles.videoIconAbs}>
+                      <Image
+                        source={require('../Assets/Images/video.png')}
+                        style={{tintColor: whitecolor}}
+                      />
+                    </View>
                   </View>
+                  <Text
+                    numberOfLines={2}
+                    ellipsizeMode="tail"
+                    style={commonstyles.latestTxtTag}>
+                    {item?.title?.rendered}
+                  </Text>
                 </View>
-                <Text
-                  numberOfLines={2}
-                  ellipsizeMode="tail"
-                  style={commonstyles.latestTxtTag}>
-                  {item?.title?.rendered}
-                </Text>
+              </TouchableWithoutFeedback>
               </View>
-            </TouchableWithoutFeedback>
-          )}
-          initialNumToRender={5}
-          maxToRenderPerBatch={10}
-          windowSize={10}
-        />
+            )}
+            scrollEnabled={false}
+          />
+        </ScrollView>
       </SafeAreaView>
     );
   }

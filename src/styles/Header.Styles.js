@@ -84,12 +84,6 @@ export const HeaderStyle = StyleSheet.create({
     HeadTitleImg: {
         height: 40, width: 100
     },
-    headerLeftView: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: 30,
-        width: 30, marginLeft: 10,
-    },
     headerLeftImg: { height: 24, width: 24 },
     HeadRightView: {
         justifyContent: 'center',
