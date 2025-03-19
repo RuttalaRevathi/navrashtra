@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   View,
   Text,
-  TouchableOpacity,
   Image,
   FlatList,
   ScrollView,
@@ -29,6 +28,7 @@ import getVideoAction from '../redux/actions/getVideoAction';
 import WebStoriesHome from './WebStroriesHome';
 import TopNews from '../components/TopNews';
 import Ripple from 'react-native-material-ripple';
+import Trending from '../components/Trending';
 
 const Home = ({ navigation }) => {
   const [indiaData, setIndiaData] = useState(null);
@@ -278,6 +278,8 @@ const Home = ({ navigation }) => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }>
         <View>
+          {/* Trending */}
+          <Trending />
           {/* Breaking News */}
           <TopNews navigation={navigation} />
           {/* Slider */}

@@ -27,6 +27,7 @@ import moviesReducer from './reducers/moviesReducer';
 import specialReducer from './reducers/specialReducer';
 import nagpurReducer from './reducers/nagpurReducer';
 import crimeReducer from './reducers/crimeReducer';
+import trendingReducer from './reducers/trendingReducer';
 
 
 
@@ -36,6 +37,6 @@ const rootReducer = combineReducers({
     photosGalleryReducer, maharashtraReducer,viralReducer,careerReducer,
     videoReducer, indiaReducer,religionReducer,technologyReducer,moviesReducer,
     articleDetailReducer, webstoriesReducer,specialReducer,crimeReducer,
-    topMenuDataReducer, categoryReducer,nagpurReducer
+    topMenuDataReducer, categoryReducer,nagpurReducer, trendingReducer
 });
 export const store = createStore(rootReducer, applyMiddleware(thunk));

@@ -10,6 +10,7 @@ import { whitecolor, redcolor } from '../styles/commonstyles';
 import PhotoGallery from '../screens/PhotoGallery';
 import Videos from '../screens/Videos';
 import Webstories from '../screens/Webstories';
+import Trending from '../components/Trending';
 
 const TopTab = createMaterialTopTabNavigator();
 
@@ -34,6 +35,16 @@ const TopTabNavigator = () => {
       mergedArray.push(item);
     }
   });
+
+  function CategoryWrapper({ route }) {
+    const { item } = route.params;
+    return (
+      <>
+      <Trending />
+      <CategoryScreen isTopNavigation={true} item={item} />
+      </>
+    )
+  }
 
   return (
     <TopTab.Navigator
@@ -77,6 +88,7 @@ const TopTabNavigator = () => {
           <TopTab.Screen
             key={item.title}
             name={item.title}
+            initialParams={{ item }}
             component={
               item.title === 'व्हिडिओ'
                 ? Videos:
@@ -84,7 +96,7 @@ const TopTabNavigator = () => {
                 ? PhotoGallery:
                 item.title ==='वेब स्टोरीज'
                 ? Webstories
-                : () => <CategoryScreen isTopNavigation={true} item={item} />
+                : CategoryWrapper
             }
             options={{
               tabBarLabel: item.title,
@@ -93,7 +105,7 @@ const TopTabNavigator = () => {
         ))
       ) : (
         <TopTab.Screen
-          name="Home"
+          name="EmptyScreen"
           component={EmptyScreen}
           options={{
             tabBarIcon: () => (
