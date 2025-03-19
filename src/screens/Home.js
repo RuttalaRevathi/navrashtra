@@ -304,7 +304,7 @@ const Home = ({ navigation }) => {
               </View>
               <Ripple
                   onPress={() => {
-                    navigation.navigate('PTStack', {screen: 'PhotoGallery'});
+                    navigation.navigate('PTStack', {screen: 'Photos'});
                   }}>
                   <Image style={commonstyles.galleryImage} source={require('../Assets/Images/next.png')} />
               </Ripple>

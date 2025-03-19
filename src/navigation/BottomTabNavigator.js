@@ -38,7 +38,7 @@ function LNStackScreen() {
             {props => <CategoryScreen {...props} item={item} />}
           </LNStack.Screen>
         ))}
-      <LNStack.Screen name="Latest" component={LatestNews} />
+      <LNStack.Screen index name="Latest" component={LatestNews} />
       <LNStack.Screen name="Author" component={AuthorScreen} />
       <LNStack.Screen name="Details" component={Details} />
       <LNStack.Screen name="Topics" component={Topics} />
@@ -61,7 +61,7 @@ function PhotoStackScreen() {
             {props => <CategoryScreen {...props} item={item} />}
           </PTStack.Screen>
         ))}
-      <PTStack.Screen name="Photos" component={PhotoGallery} />
+      <PTStack.Screen index name="Photos" component={PhotoGallery} />
       <PTStack.Screen name="PhotoArticle" component={PhotoArticle} />
       <PTStack.Screen name="Author" component={AuthorScreen} />
       <PTStack.Screen name="Details" component={Details} />
@@ -85,7 +85,7 @@ function VideoStackScreen() {
             {props => <CategoryScreen {...props} item={item} />}
           </VDStack.Screen>
         ))}
-      <VDStack.Screen name="Videos" component={Videos} />
+      <VDStack.Screen index name="Videos" component={Videos} />
       <VDStack.Screen name="VideoArticle" component={VideoArticle} />
       <VDStack.Screen name="Author" component={AuthorScreen} />
       <VDStack.Screen name="Details" component={Details} />
@@ -111,7 +111,7 @@ const BottomTabNavigator = () => {
           fontWeight: '700',
           fontFamily: 'TTLogo',
         },
-        tabBarItemStyle: {width: 100, height: Platform.OS === 'android' ? 60 : 85},
+        tabBarItemStyle: {width: 100, height: Platform.OS === 'android' ? 60 : 68},
         tabBarStyle: {
           backgroundColor: blackcolor,
           height: Platform.OS === 'android' ? 60 : 85,
