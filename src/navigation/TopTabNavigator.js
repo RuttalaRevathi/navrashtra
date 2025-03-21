@@ -10,7 +10,6 @@ import { whitecolor, redcolor } from '../styles/commonstyles';
 import PhotoGallery from '../screens/PhotoGallery';
 import Videos from '../screens/Videos';
 import Webstories from '../screens/Webstories';
-import Trending from '../components/Trending';
 
 const TopTab = createMaterialTopTabNavigator();
 
@@ -39,10 +38,7 @@ const TopTabNavigator = () => {
   function CategoryWrapper({ route }) {
     const { item } = route.params;
     return (
-      <>
-      <Trending />
       <CategoryScreen isTopNavigation={true} item={item} />
-      </>
     )
   }
 

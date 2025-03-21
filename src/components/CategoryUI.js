@@ -6,7 +6,6 @@ import {
   FlatList,
   ScrollView,
   SafeAreaView,
-  TouchableOpacity,
   Image,
   ActivityIndicator,
   StyleSheet,
@@ -16,6 +15,7 @@ import CategoryComponentTwo from './CategoryComponentTwo';
 import CategoryComponentOne from './CategoryComponentOne';
 import { HeaderStyle } from '../styles/Header.Styles';
 import Ripple from 'react-native-material-ripple';
+import Trending from '../components/Trending';
 
 function CategoryUI({ navigation, data, title, isTopNavigation, loadingMore,
   hasMore,
@@ -69,7 +69,8 @@ function CategoryUI({ navigation, data, title, isTopNavigation, loadingMore,
         </View>
       )}
       <ScrollView style={commonstyles.scroll}>
-        <View style={{ padding: 12, ...!isTopNavigation && { paddingTop: 0 } }}>
+        <Trending />
+        <View style={{ padding: 12 }}>
           <View style={commonstyles.homeOnetextView}>
             <Text style={commonstyles.Category}>{title}</Text>
           </View>
