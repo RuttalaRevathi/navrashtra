@@ -25,10 +25,11 @@ import HomePhotogalleryItemTwo from '../components/HomePhotogalleryItemTwo';
 import getPhotoGalleryAction from '../redux/actions/getPhotoGalleryAction';
 import { Automobile, BaseUrl, Business, Carrer, CategoryUrl, India, Lifestyle, Maharashtra, Movies, Mumbai, Nagpur, Pune, Religion, Special, Sports, Technology, Viral, World } from '../utilities/urls';
 import getVideoAction from '../redux/actions/getVideoAction';
-import WebStoriesHome from './WebStroriesHome';
+//import WebStoriesHome from './WebStroriesHome';
 import TopNews from '../components/TopNews';
 import Ripple from 'react-native-material-ripple';
 import Trending from '../components/Trending';
+import {NewWebStories} from '../components/NewWebStories';
 
 const Home = ({ navigation }) => {
   const [indiaData, setIndiaData] = useState(null);
@@ -287,7 +288,10 @@ const Home = ({ navigation }) => {
             <SliderUI data={newsliderdata} navigation={navigation} />
           </View>
           {/* Webstories */}
-          <WebStoriesHome />
+          <View style={{ paddingLeft: 12, marginVertical: 12 }}>
+            <NewWebStories />
+          </View>
+          {/* <WebStoriesHome /> */}
           {/* India */}
 
           <HomeUI
