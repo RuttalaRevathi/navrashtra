@@ -58,13 +58,17 @@ class ShortsComponent extends React.PureComponent {
               top: 10,
               right: 10,
               zIndex: 1, // Ensure button is on top
-              backgroundColor: whitecolor,
-              borderRadius: 50,
+              backgroundColor: 'rgba(255,255,255,0.85)',
+              borderRadius: 30,
+              width: 30,
+              height: 30,
+              justifyContent: 'center',
+              alignItems: 'center',
             }}
             onPress={() => navigation.goBack()}>
             <Image
               source={require('../Assets/Images/cancel.png')} // Your close button image
-              style={{width: 30, height: 30}}
+              style={{width: 18, height: 18}}
             />
           </Ripple>
           <Image

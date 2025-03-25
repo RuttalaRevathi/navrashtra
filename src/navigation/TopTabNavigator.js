@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { Image } from 'react-native';
+import { Image, View, ActivityIndicator} from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import getTopMenuDataAction from '../redux/actions/getTopMenuDataAction';
 import CategoryScreen from '../screens/Category';
 import EmptyScreen from '../components/EmptyScreen';
 import Home from '../screens/Home';
-import { whitecolor, redcolor } from '../styles/commonstyles';
+import { whitecolor, redcolor, commonstyles, blackcolor } from '../styles/commonstyles';
 import PhotoGallery from '../screens/PhotoGallery';
 import Videos from '../screens/Videos';
 import Webstories from '../screens/Webstories';
@@ -42,10 +42,18 @@ const TopTabNavigator = () => {
     )
   }
 
+  if (mergedArray.length === 0) {
+    return <EmptyScreen message="No categories available" />;
+  }
+
   return (
     <TopTab.Navigator
       initialRouteName="Home"
+      detachInactiveScreens={false}
       screenOptions={{
+        lazy: true,
+        lazyPlaceholder: () => <View style={commonstyles.spinnerView}><ActivityIndicator size={'small'} color={blackcolor} /></View>,
+        lazyPreloadDistance: 0,
         tabBarScrollEnabled: true,
         tabBarIndicatorStyle: { backgroundColor: redcolor },
         tabBarActiveTintColor: redcolor,
@@ -79,8 +87,7 @@ const TopTabNavigator = () => {
       />
 
       {/* Other Tabs */}
-      {mergedArray.length > 0 ? (
-        mergedArray.map((item) => (
+      {mergedArray.map((item) => (
           <TopTab.Screen
             key={item.title}
             name={item.title}
@@ -98,21 +105,7 @@ const TopTabNavigator = () => {
               tabBarLabel: item.title,
             }}
           />
-        ))
-      ) : (
-        <TopTab.Screen
-          name="EmptyScreen"
-          component={EmptyScreen}
-          options={{
-            tabBarIcon: () => (
-              <Image
-                source={require('../Assets/Images/home.png')} 
-                style={{ width: 20, height: 20, top: 5 }}
-              />
-            ),
-          }}
-        />
-      )}
+        ))}
     </TopTab.Navigator>
   );
 };
