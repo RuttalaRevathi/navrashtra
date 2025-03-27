@@ -11,6 +11,7 @@ import {
   Easing,
   Dimensions,
   Share,
+  SafeAreaView
 } from 'react-native';
 import {
   blackcolor,
@@ -135,10 +136,8 @@ export const NewWebStories = React.memo(() => {
       setCurrentSlideIndex(currentSlideIndex + 1);
     } else if (currentUserIndex < storiesData.length - 1) {
       //animateCubeTurn(); // Animate cube turn
-      setTimeout(() => {
-        setCurrentUserIndex(currentUserIndex + 1);
-        setCurrentSlideIndex(0);
-      }, 300); // Change user after first part of animation
+      setCurrentUserIndex(currentUserIndex + 1);
+      setCurrentSlideIndex(0);
     } else {
       setStoryViewModal(false);
     }
@@ -227,6 +226,7 @@ export const NewWebStories = React.memo(() => {
         />
       )}
       <Modal visible={storyViewModal} animationType="slide" transparent={true}>
+      <SafeAreaView style={{flex: 1, backgroundColor: blackcolor}}>
         <Animated.View
           style={styles.modalContent}>
           <View
@@ -291,6 +291,7 @@ export const NewWebStories = React.memo(() => {
               source={{
                 uri: storiesData[currentUserIndex]?.stories[currentSlideIndex]
                   ?.story_image,
+                priority: FastImage.preload
               }}
               style={styles.storyImage}
               resizeMode={FastImage.resizeMode.cover}
@@ -355,6 +356,7 @@ export const NewWebStories = React.memo(() => {
             style={styles.nxtStory}
             onPress={nextSlide}></TouchableOpacity>
         </Animated.View>
+        </SafeAreaView>
       </Modal>
     </View>
   );
@@ -420,6 +422,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: blackcolor,
     position: 'relative',
+    overflow: 'hidden'
   },
   progressBarContainer: {
     flexDirection: 'row',

@@ -24,16 +24,14 @@ const Trending = React.memo(() => {
   }
   const trendRederItem = ({item, index}) => {
     return (
-      <>
-        <Ripple onPress={()=> navigation.navigate(item.title === "Photos" ? "PTStack" : item.title === "Videos" ? "VDStack" : "Topics", {
+        <Ripple style={{flexDirection: 'row', alignItems: 'center'}} key={index} onPress={()=> navigation.navigate(item.title === "Photos" ? "PTStack" : item.title === "Videos" ? "VDStack" : "Topics", {
             item: {link: item.url, name: item.title}
         })}>
-          <Text key={index} style={styles.trendItem}>
+          <Text style={styles.trendItem}>
             {item.title}
           </Text>
+          {trendLength !== index + 1 && <Text style={styles.pipe}>|</Text>}
         </Ripple>
-        {trendLength !== index + 1 && <Text style={styles.pipe}>|</Text>}
-      </>
     );
   };
   return (
