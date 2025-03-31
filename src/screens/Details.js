@@ -4,44 +4,29 @@ import {
   Text,
   TouchableOpacity,
   Image,
-  Linking,
   ScrollView,
   Share,
-  Dimensions,
   FlatList,
+  Platform,
 } from 'react-native';
 import {
   blackcolor,
   commonstyles,
-  Dark_graycolor,
   graycolor,
-  redcolor,
 } from '../styles/commonstyles';
 import AutoHeightWebView from 'react-native-autoheight-webview';
 import { HeaderStyle } from '../styles/Header.Styles';
 import moment from 'moment';
-import { useDispatch, useSelector } from 'react-redux';
 import DetailsComponentTwo from '../components/DetailsComponentTwo';
 import DetailsComponentOne from '../components/DetailsComponentOne';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { BaseUrl, DetailsUrl, LatestUrl, RelatedUrl } from '../utilities/urls';
 import FastImage from 'react-native-fast-image';
 import { decode } from 'html-entities';
 
-const screenWidth = Dimensions.get('window').width;
-
 const Details = ({ navigation, route }) => {
-  const dispatch = useDispatch();
   const [detailsData, setDetailsData] = useState([]);
-  const [modalVisible, setModalVisible] = useState(false);
-  const [isHomeIcon, setIsHomeIcon] = useState(false);
   const Scrollref = useRef();
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(route.params.index || 0);
   const [fontSize, setFontSize] = useState(18);
-  const [activeSlide, setActiveSlide] = useState(0);
-  const [latestNews, setLatestNewsData] = useState(null);
   const [relatedData, setRelatedData] = useState(null);
   const [detailArticleData, setDetailArticleData] = useState(null);
   const [renderWebView, setRenderWebView] = useState(false);
@@ -202,19 +187,15 @@ const Details = ({ navigation, route }) => {
 
   return (
     <View style={commonstyles.container}>
-      <View>
         <View style={HeaderStyle.DetailsHeader}>
-          <View style={{ display: 'flex', alignItems: 'center', width: '10%' }}>
-          <TouchableOpacity
+        <TouchableOpacity
                 onPress={handleGoBack}
               style={{ zIndex: 999 }}>
               <Image
                 source={require('../Assets/Images/arrow.png')}
-                style={{ width: 25, height: 25 }}
+                style={{ width: 22, height: 22 }}
               />
             </TouchableOpacity>
-          </View>
-
           <View
             style={{
               display: 'flex',
@@ -224,25 +205,20 @@ const Details = ({ navigation, route }) => {
               flexDirection: 'row',
 
             }}>
-            <View style={{ display: 'flex', alignItems: 'center' }}>
-              <TouchableOpacity onPress={toggleFontSize}>
+            <TouchableOpacity onPress={toggleFontSize}>
                 <Image
-                  style={{ width: 20, height: 20 }}
+                  style={{ width: 22, height: 22 }}
                   source={require('../Assets/Images/font.png')}
                 />
               </TouchableOpacity>
-            </View>
-            <View style={{ display: 'flex', alignItems: 'center' }}>
               <TouchableOpacity onPress={sharecall}>
                 <Image
-                  style={{ width: 20, height: 20 }}
+                  style={{ width: 22, height: 22 }}
                   source={require('../Assets/Images/share_black.png')}
                 />
               </TouchableOpacity>
-            </View>
           </View>
         </View>
-      </View>
       <ScrollView ref={Scrollref}>
         <View>
           <View
@@ -252,46 +228,32 @@ const Details = ({ navigation, route }) => {
               paddingBottom: 5,
             }}>
             {/* Tittle */}
-            <View style={{ paddingLeft: 10, paddingTop: 10, paddingBottom: 5 }}>
+            <View style={{ paddingHorizontal: 12, paddingTop: 10}}>
               <Text
                 numberOfLines={3}
                 ellipsizeMode="tail"
                 style={commonstyles.categoryText}>
                 {decode(firstArticle?.title?.rendered)}
-
               </Text>
             </View>
             {/* Author and Time */}
             <View
               style={commonstyles.DetailTimeMainView}>
-              {/* Author */}
-              {/* <TouchableOpacity onPress={() => navigation.navigate('Author')}> */}
-              <View style={{}}>
-                <Text style={commonstyles.detailauthor}>
+              <Text style={commonstyles.detailauthor}>
                   BY {firstArticle?.author_name}
                 </Text>
-              </View>
-              {/* </TouchableOpacity> */}
-              {/* Time */}
-              <View style={{}}>
                 <Text style={commonstyles.detailTime}>Updated on: {formattedDate}</Text>
-              </View>
             </View>
 
             {/* image */}
-            <View style={{ width: '100%' }}>
-              <FastImage
+            <FastImage
                 source={imageUrl}
                 style={commonstyles.Detailslargecard}
                 resizeMode={FastImage.resizeMode.cover}
               />
-            </View>
             {/* content */}
             {/* <Text>{source1}</Text> */}
-            <View
-              style={{
-                justifyContent: 'center',
-              }}>
+            <View>
               {renderWebView &&
                 <AutoHeightWebView
                   javaScriptEnabled={true}
@@ -386,7 +348,7 @@ const Details = ({ navigation, route }) => {
       p, li { font-family: 'Faustina', sans-serif; line-height: 1.4; padding: 0px 8px; color: #000; font-weight: 500; font-size: ${fontSize}px; }
     </style>
   `,
-                    baseUrl: 'https://twitter.com',
+                    baseUrl: Platform.OS === "android" ? 'https://twitter.com' : '',
                   }}
                   injectedJavaScript={`
                     document.querySelectorAll('a').forEach(a => {
@@ -414,7 +376,7 @@ const Details = ({ navigation, route }) => {
               <Text style={commonstyles.RelatedCategory}>Next Articles</Text>
             </View>
             {detailsData.length > 0 ? (
-              <View style={{ paddingLeft: 10 }}>
+              <View style={{ paddingLeft: 12 }}>
                 <FlatList
                   showsHorizontalScrollIndicator={true}
                   persistentScrollbar={false}
@@ -438,11 +400,10 @@ const Details = ({ navigation, route }) => {
           </View>
 
           {/* Related News */}
-          <View>
             <View style={commonstyles.DetailsLatestView}>
               <Text style={commonstyles.RelatedCategory}>सम्बंधित ख़बरें</Text>
             </View>
-            <View style={{ paddingLeft: 10 }}>
+            <View style={{ paddingHorizontal: 12 }}>
               <FlatList
                 data={relatedData?.data}
                 renderItem={renderItemTwo}
@@ -452,7 +413,6 @@ const Details = ({ navigation, route }) => {
                 windowSize={10}
               />
             </View>
-          </View>
         </View>
       </ScrollView>
     </View>

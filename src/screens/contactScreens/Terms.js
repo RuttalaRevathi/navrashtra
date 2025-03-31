@@ -3,106 +3,141 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
-
   ScrollView,
   SafeAreaView,
-  Linking,
 } from 'react-native';
 import SubHeader from '../../components/SubHeader';
 import {
   commonstyles,
 } from '../../styles/commonstyles';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { blackcolor, ContactStyles } from '../../styles/contactScreenStyles';
-import { TouchableOpacity } from 'react-native';
+import { ContactStyles } from '../../styles/contactScreenStyles';
 
 export default class Terms extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
   render() {
     return (
-      <SafeAreaView style={commonstyles.container}>
-        {/* <SubHeader title={'नियम व शर्तें'} leftBtnClick={() => this.props.navigation.goBack()}/> */}
+      <SafeAreaView styles={commonstyles.container}>
+        <SubHeader
+          title={'Terms & Conditions '}
+          leftBtnClick={() => this.props.navigation.goBack()}
+          isBook={true}
 
+        />
         <ScrollView>
           <View style={ContactStyles.mainView}>
             <View style={ContactStyles.subView}>
-            <View style={ContactStyles.headingview}>
-                                <Text style={ContactStyles.heading}>Conditions</Text>
-                            </View>
-              <Text style={ContactStyles.content}>
-                By accessing  <TouchableOpacity onPress={() => Linking.openURL('http://www.ibc24.in/')}>
-                  <Text style={{ textDecorationLine: 'underline', color: 'blue', top: 3 }}>www.ibc24.in</Text>
-                </TouchableOpacity> which you have read, understood and agree to
-                be legally bound by the terms of the following disclaimer and user agreement:
-                This Site is owned and operated by SB Multimedia Pvt Ltd ("IBC24") and contains
-                material which is derived in whole or in part from material supplied by the Company,
-                various new agencies and other sources, and is protected by trademark laws.
-                The restrictions on use of the material and content on this IBC24 Site by
-                the Subscriber are specified below. Except where specifically authorised,
-                the Subscriber may not modify, copy, reproduce, republish, upload, post,
-                transmit or distribute in any way any material from this site including
-                code and software. IBC24 has taken due care and caution in
-                compilation of data for its web site. The Company shall have the right at
-                any time to change or modify the terms and conditions applicable to Subscriber's
-                use of the IBC24 Site. Such changes, modifications, additions or deletions shall
-                be effective immediately upon notice thereof, which may be given by means including
-                but not limited to, posting on the IBC24 Site, or by electronic or conventional mail, or by any other means by which Subscriber obtains notice thereof.
-              </Text>
               <Text style={ContactStyles.title}>
-                Terms of Use
+                WEBSITE USAGE TERMS AND CONDITIONS
               </Text>
               <Text style={ContactStyles.content}>
-                By visiting our site you are agreeing to be bound by the following terms and conditions.
-                We may change these terms and conditions at any time. Your continued use of IBC24 means
-                that you accept any new or modified terms and conditions that we come up with. Please
-                re-visit the `Terms of Use'
-                link at our site from time to time to stay abreast of any changes that we may introduce.
-                The term ` IBC24' is used through this entire Terms of Use document to refer to the
-                website, its owners and the employees.
-              </Text>
-              <Text style={ContactStyles.title}>Indemnification</Text>
-              <Text style={ContactStyles.content}>
-                You shall indemnify, hold harmless and defend us, our subsidiaries and affiliates,
-                licensors and all our members, directors, officers, employees, agents and
-                representatives, from or against any liabilities, claims, demands, penalties, fines,
-                lawsuits, judgments, losses and expenses (including any direct or indirect consequential
-                losses, loss of profit, loss of reputation and all interest, penalties and legal and
-                other professional costs and expenses) resulting in any way from the use of this
-                website or any allegation of infringement or misappropriation of any patent, copyright,
-                trade secret, trademark, or other intellectual property right under this Agreement
-              </Text>
-              <Text style={ContactStyles.title}>
-                Licenses
-              </Text>
-              <Text style={ContactStyles.content}>IBC24 grants you a non-exclusive, non-transferable
-                license, revocable at any time at IBC24 sole discretion, to access and use the Service
-                strictly in accordance with the Terms. Use of the Service does not grant you any
-                intellectual property
-                rights in or to any information or content in the Service.</Text>
-              <Text style={ContactStyles.title}>
-                DISCLAIMER
-              </Text>
-              <Text style={ContactStyles.content}>4.1. We have taken due care and caution in
-                compilation of the Content for our website. The Content includes facts, views, and
-                opinions, which are of individuals and not that of the website or its management.
-                Our Content licensors and we do not give any investment advice, tax advice, legal
-                advice, or other professional advice. Our Content licensors and we do not guarantee
-                or warrant the accuracy, completeness or timeliness of, or otherwise endorse these
-                views, and opinions. We especially state that we have no financial
-                liability whatsoever to you on account of the use of information provided on our website.</Text>
-              <Text style={ContactStyles.content}>
-                4.2. Neither we, nor any of our employees are responsible for any errors, omissions,
-                or representations on any of our pages or on any links on any of our pages.
-                We advise you to verify the veracity of all information before undertaking any alliance.
-              </Text>
-              <Text style={ContactStyles.title}>
-              LAW AND JURISDICTION
-              </Text>
-              <Text style={ContactStyles.content}>
-                The terms of this agreement are exclusively based on and subject to Indian law. You hereby consent to the exclusive jurisdiction and venue of courts in Raipur, Chhattisgarh, India in all disputes arising out of or relating to the use of this website. Use of this website is unauthorized in any jurisdiction that does not give effect to all provisions of these terms and conditions, including without limitation this paragraph.
+                Welcome to our website. If you (“The User”) continue to browse and use. navbharatlive.com and access to the content, resources, and tools for communication, public forums, commerce platforms, and other services, which may be available from time to time (“the Site and the Service”), you are agreeing to comply with and be bound by the following terms and conditions of use, which together with our privacy policy govern your relationship with you in relation to this website. If you disagree with any part of these terms and conditions, please do not use our website{"\n"}{"\n"}
+
+                These terms of use govern your use and access to the content, resources, and tools for communication, public forums, commerce platforms, and other services, which may be available from time to time (“the Site and the Service”) on. navbharatlive.com (“the Site”). You (“The User”) agree to access the Site and the Site and the Services, subject to the terms of use as mentioned herein.{"\n"}{"\n"}
+
+                navbharatlive.com provides “The User” with access to its Site and the Services through its network of websites.. navbharatlive.com provides the Site and the Service to the user free of charge.. navbharatlive.com may in future charge the user a fee for the use of any of the Site and the Services offered.. navbharatlive.com is not responsible for providing you access facilities or equipment (in any form) to its service. You, also comprehends and concur that ‘the Site and the Service’ may include advertisements and sponsorships, and that these are necessary for. navbharatlive.com to provide ‘the Service’. You also comprehend and agree that. navbharatlive.com makes no submission about the suitability, reliability, availability, timeliness, and accuracy of the information, products, services and related graphics contained within “The Site and the Service” for any purpose. The Site and the Service is provided and available to your access “as is” without warranty of any kind.. navbharatlive.com hereby disclaims all warranties and conditions with regard to “The Site and the Service”.{"\n"}{"\n"}
+
+                ACKNOWLEDGMENT AND ACCEPTANCE OF TERMS OF SERVICE: The Site and the Service is provided to you under this terms and conditions and any amendments thereto and any operating rules or policies that may be published from time to time by. navbharatlive.com as part of the terms of use. The. navbharatlive.com terms of use comprises the entire agreement between the User and. navbharatlive.com and supersedes any prior agreements pertaining to the subject matter contained herein.{"\n"}{"\n"}
+
+                MODIFICATION OF THESE TERMS OF USE: . navbharatlive.com reserves the sole right to change or modify any of the terms, conditions, and notices under which “The Site and the Service” are offered. You are responsible for regularly reviewing these terms and conditions including changes/modifications if any incorporated by us from time to time. Your continued use of ‘The Site and the Service’ constitutes your agreement to all such terms, conditions, and notices.{"\n"}{"\n"}
+
+                MODIFICATION TO ‘THE SERVICE’: . navbharatlive.com reserves the right to modify or discontinue, temporarily or permanently, ‘The Service’ (or any part of ‘The Service’) with or without notice to the user at any time and from time to time. ‘The User’ agrees that. navbharatlive.com shall not be liable to the User or any third-party for any modification or discontinuance of the Service.{"\n"}{"\n"}
+
+                USER CONDUCT: “The Site and the Service” may include e-mail services, message boards, chat areas, news groups, forums, communities and/or other message or communication facilities designed to enable you to communicate with others (collectively, “Tools for Communication”). You agree to use the Tools for Communication only to post, send and receive messages and material that are not unlawful, harassing, libelous, invasive of another’s privacy, abusive, threatening, harmful, vulgar, obscene, tortuous, improper or otherwise objectionable, or that infringes or may infringe the intellectual property or other rights of another and, when applicable, related to the particular tool for Communication. You also hereby agree that you shall not make use of The Site and the Service for any commercial purpose.{"\n"}{"\n"}
+
+                Registration Obligations: As a condition of your use of Tools for Communications you, ‘The User’ agree to provide: (a) true, accurate, current and complete information about yourself as required by the Site and the Service’s registration form (such data being the “Registration Information “) (b) maintain and promptly update the Registration Information to keep it accurate, current and complete. If you provide any information that is untrue, inaccurate, not current or incomplete,. navbharatlive.com has the right to terminate the user account and refuse any and all current or future use of ‘The Site and the Service’. (c). navbharatlive.com has the right to use / disclose the aggregate registration information to third parties in connection with marketing of services. You have also consented. navbharatlive.com the right to use your registration information to provide targeting of advertising and other service offers. This could be also be used to customise the content you see, to fulfill your requests for certain products and services and to contact / intimate you about special offers or new products.{"\n"}{"\n"}
+
+                Usage Obligations: As a condition of your use of “The Site and the Service” you will not use “The Site and the Service” for any illegal purposes. You will be solely responsible for the contents of transmissions made by you through “The Site and the Service”.{"\n"}{"\n"}
+
+                We may serve advertisements to this site or work with a third party to serve the advertisements. Advertisements placed on the site may include but are not limited to banner ads, paid links, pop-up windows, buttons, and sponsorships. You agree that. navbharatlive.com has the right to run such advertisements and promotions.{"\n"}{"\n"}
+
+                Privacy protection is our number one priority.. navbharatlive.com uses the patent-pending “dual blind” privacy protection technology which allows. navbharatlive.com to customize ads for User’s browser without ever knowing User’s name, address, social security number, telephone number or any other personally identifiable information. It’s completely anonymous. And. navbharatlive.com does not store any data that is considered sensitive or controversial (specific medical and financial information, adult content, sexual preference, etc.){"\n"}{"\n"}
+
+                navbharatlive.com has some of the most privacy-safe technologies and policies on the Internet. We can deliver targeted advertising to your browser — offers and opportunities of interest to you — without ever knowing your identity. But we believe the most important privacy safeguard is consumer choice. If you don’t want to be part of our advertising services, we give you the power to “opt-out” at any time.{"\n"}{"\n"}
+
+                navbharatlive.com and/or third parties may, from time to time, send email messages to Users containing advertisements, special promotions, and other marketing materials (“Email Marketing Programs”) based on the agreed terms between. navbharatlive.com and its selected partner(s).. navbharatlive.com also offers Users permission-based email services. Users must decide to “opt-in” to our email services during the registration process or through a link on the. navbharatlive.com site before they receive any email services, newsletters, special promotions or other marketing materials (“Opt-In Email Programs”).. navbharatlive.com has the right to partner with any email marketers to provide these Email Marketing Programs or Opt-In Email Programs.{"\n"}{"\n"}
+
+                You agree not to use “The Site and the Service” to: (a) Obstruct or hinder the use and enjoyment of “The Site and the Service” by other Users; (b) intentionally or unintentionally violate any applicable local, state, national, and international laws and regulations; including, but not limited to, any rules of any national, international or other securities exchange, including, without limitation, the Bombay Stock Exchange, or the National Stock Exchange, and any regulations having the force of law; (c) Impersonate any person or entity, or falsely state or otherwise misrepresent your affiliation with a person or entity; (d) Interfere with or disrupt the Site and the Service or servers or networks connected to the Site and the Service, or defy any requirements, regulations or guidelines of networks connected to “The Site and the Service”; (e) Transmit or otherwise make available any material in connection with surveys, chain letters, junk email, spamming, contests, pyramid schemes, or any duplicative or unsolicited messages (commercial or otherwise); (f) Upload, post, email, transmit or otherwise make available any content that is unlawful, damaging, intimidating, harassing, defamatory, improper, obscene, vulgar, invasive of another’s privacy, caste related, ethnically or otherwise objectionable; (g) Upload, post, email, transmit or otherwise make available any content protected by any patent, trademark, copyright or other intellectual proprietary laws unless you own or control the rights thereto or have received all necessary consents to do the same; (h) Upload files that contain viruses, worms, corrupted files or any other similar software or programs designed to disrupt, damage or limit the operation of any computer or telecommunications equipment or property of another; (i) “Stalk” or otherwise harass other users; collect or store personal data about other users. (j) Advertise, Promote or offer to sell or buy any goods or services for any business purpose unless The Site and the Service specifically allows such messages or transactions. (k) Reproduce, duplicate, copy, sell, resell or exploit for any commercial purposes, any portion, use or access of the Site and the Service. (l) harm minors in any way; (m) forge headers or otherwise manipulate identifiers in order to disguise the origin of any Content transmitted through the Site and the Services or develop restricted or password-only access pages, or hidden pages or images (those not linked to from another accessible page); (n) upload, post or otherwise transmit any Content that you do not have a right to transmit under any law or under contractual or fiduciary relationships (such as inside information, proprietary and confidential information learned or disclosed as part of employment relationships or under nondisclosure agreements); (o) disrupt the normal flow of dialogue, cause a screen to “scroll” faster than other users of the Site and the Services are able to type, or otherwise act in a manner that negatively affects other users’ ability to engage in real time exchanges; (p) promote or provide instructional information about illegal activities, promote physical harm or injury against any group or individual, or promote any act of cruelty to animals. This may include, but is not limited to, providing instructions on how to assemble bombs, grenades and other weapons, and creating “Crush” sites.{"\n"}{"\n"}
+
+                navbharatlive.com has no obligation to observe and monitor The Site and the Service. However,. navbharatlive.com reserves the right to review materials posted and to remove any material/s.. navbharatlive.com reserves the right to block all mails from mailing lists and groups whose content is legally categorized as explicit, obscene, illegal, adult and pornographic in nature.. navbharatlive.com also reserves the right to terminate your access to any or all of The Site and the Services, at any time, without notice, for any reason whatsoever.{"\n"}{"\n"}
+
+                navbharatlive.com reserves the right at all times to divulge any information as it considers necessary to satisfy any applicable law, regulation, legal process or governmental request, or to edit, refuse to post or to remove any information or materials, in whole or in part. These would be more applicable to the publicly accessible areas of The Site and the Service that are intended to be available to the general public. For example, publicly accessible areas of The Site and the Service would include Message Boards, Chat that are open to both registered users and visitors.{"\n"}{"\n"}
+
+                Technical Processing: In view of the global nature of the world wide web, the User understands and agrees that technical processing of tools of communication is (and may be) required to send and receive messages, to correspond / conform to the technical requirements of connecting networks, to correspond / conform to the limitations of The Site and the Service, or to correspond / conform to other, similar technical requirements{"\n"}{"\n"}
+
+                User Account, Password and Security: As part of The Site and the Service’s registration process you will provide us with current, complete and accurate information as requested by the registration form. You will then choose a user name and password. You take total responsibility for maintaining the confidentiality of your password and account. You may change your password by following the instructions on the system.{"\n"}{"\n"}
+
+                You are also entirely responsible for any and all activities that occur under your account. You agree to notify. navbharatlive.com immediately of any unlawful / unauthorised use of your account or any other security violation. You agree to ensure that you exit from your account at the end of each session. You understand that. navbharatlive.com will not be liable for any loss or damage in any form incurred as a result of unauthorised usage of your account, with or without your knowledge. However, you could be held liable for losses or damages incurred by. navbharatlive.com or a third party as a result of your failure to comply with the terms mentioned herein. You also agree not to use anyone else’s account, at any time, without the prior permission of the account holder.{"\n"}{"\n"}
+
+                Copyright and Trademarks: Unless stated otherwise, all intellectual property rights (including without limitation the copyright etc) in all material presented on the site (including without limitation audio, video, text or images), trademarks and logos appearing on this site are the property of navabharat, its parent, affiliates and associates and are protected under applicable Indian laws. You agree not to use any framing techniques to enclose any trademark or logo or other proprietary information of. navbharatlive.com; or remove, conceal or destroy any copyright or other proprietary notice or any credit-line or date-line on other mark or source identifier included on the Site / Service, including without limitation, the size, color, location or style of all proprietary marks. Any infringement shall be vigorously defended and pursued to the fullest extent permitted by law.{"\n"}{"\n"}
+
+                Disclaimer of Warranty and Limitation of Liability: YOU ACKNOWLEDGE THAT YOU ARE USING THE WEBSITE AT YOUR OWN RISK. THE SITE AND THE SERVICE IS PROVIDED “AS IS”, AND. navbharatlive.com, ITS AFFILIATES AND ITS THIRD PARTY SERVICE PROVIDERS HEREBY EXPRESSLY DISCLAIM ANY AND ALL WARRANTIES, EXPRESS AND IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF ACCURACY, RELIABILITY, TITLE, MERCHANTABILITY, NON-INFRINGEMENT, FITNESS FOR A PARTICULAR PURPOSE OR ANY OTHER WARRANTY, CONDITION, GUARANTEE OR REPRESENTATION, WHETHER ORAL, IN WRITING OR IN ELECTRONIC FORM, INCLUDING BUT NOT LIMITED TO THE ACCURACY OR COMPLETENESS OF ANY INFORMATION CONTAINED THEREIN OR PROVIDED BY THE WEBSITE.. navbharatlive.com, ITS AFFILIATES, AND ITS THIRD PARTY SERVICE PROVIDERS DO NOT REPRESENT OR WARRANT THAT ACCESS TO THE WEBSITE WILL BE UNINTERRUPTED OR THAT THERE WILL BE NO FAILURES, ERRORS OR OMISSIONS OR LOSS OF TRANSMITTED INFORMATION, OR THAT NO VIRUSES WILL BE TRANSMITTED ON THE WEBSITE.{"\n"}{"\n"}
+
+                navbharatlive.com, ITS AFFILIATES AND ITS THIRD PARTY SERVICE PROVIDERS SHALL NOT BE LIABLE TO YOU OR ANY THIRD PARTIES FOR ANY DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL OR PUNITIVE DAMAGES ALLEGEDLY SUSTAINED ARISING OUT OF THIS AGREEMENT, THE PROVIDING OF THE SITE AND THE SERVCICE HEREUNDER, THE SALE OR PURCHASE OF ANY GOODS OR MERCHANDISE, YOUR ACCESS TO OR INABILITY TO ACCESS THE WEBSITE, INCLUDING FOR VIRUSES ALLEGED TO HAVE BEEN OBTAINED FROM THE SITE AND THE SERVICE, YOUR USE OF OR RELIANCE ON THE SITE AND THE SERVICE OR ANY OF THE MERCHANDISE, INFORMATION OR MATERIALS AVAILABLE ON THE WEBSITE, REGARDLESS OF THE TYPE OF CLAIM OR THE NATURE OF THE CAUSE OF ACTION, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. SOME JURISDICTION DO NOT ALLOW THE EXCLUSION OF IMPLIED WARRANTIES OR THE LIMITATION OR EXCLUSION OF LIABILITY FOR INCIDENTAL OR CONSEQUENTIAL DAMAGES, SO THE ABOVE EXCLUSIONS OR LIMITATIONS MAY NOT APPLY TO YOU.{"\n"}{"\n"}
+
+                YOU HEREBY AGREE TO RELEASE. navbharatlive.com, ITS AFFILIATES AND THIRD-PARTY SERVICE PROVIDERS, AND EACH OF THEIR RESPECTIVE DIRECTORS, OFFICERS, EMPLOYEES, AND AGENTS FROM CLAIMS, DEMANDS AND DAMAGES (ACTUAL AND CONSEQUENTIAL) OF EVERY KIND AND NATURE, KNOWN AND UNKNOWN, SUSPECTED AND UNSUSPECTED, DISCLOSED AND UNDISCLOSED (“CLAIMS”), ARISING OUT OF OR IN ANY WAY CONNECTED WITH YOUR USE OF THIS SITE AND THE SERVICE.{"\n"}{"\n"}
+
+                CONTENT PROVIDED TO THE SERVICE: . navbharatlive.com does not claim ownership of the “content” (in the form of information, data, text, software, music, sound, photographs, graphics, video, messages or other materials) you provide to. navbharatlive.com (including feedback and suggestions) or post, upload, privately transmit, input or submit to any. navbharatlive.com site or service for review by the general public. The ownership of this content is the sole responsibility of the person from which such content originated. This means that you, and not. navbharatlive.com, are entirely responsible for all Content that you upload, post or otherwise transmit via the Service{"\n"}{"\n"}
+
+                However, by posting, uploading, or making available content or any other material, you grant. navbharatlive.com and its affiliate sites permission to use your submission in connection with the operation of their Internet businesses including, without limitation, the rights to: copy, distribute, transmit, publicly display, publicly perform, reproduce, edit, translate and reformat your submission, and to publish your name in connection with your submission.{"\n"}{"\n"}
+
+                You comprehend and agree that no compensation will be paid in any form with respect to the use of your submission.. navbharatlive.com is under no obligation to post or use any submission provided by you and. navbharatlive.com retains the sole discretion to remove any submission at any time. You comprehend and agree that by submitting, posting, uploading, making available content or any other material you warrant that you own or otherwise control all of the rights to your submission as described in this section including, without limitation, all the rights necessary for you to provide, post, upload or submit the content or material.. navbharatlive.com does not control the content posted via the Service and, as such, does not guarantee the accuracy, integrity or quality of such Content.{"\n"}{"\n"}
+
+                You comprehend and agree that by using the Service, you may be exposed to content that is obscene, offensive, indecent or objectionable. Under no circumstances will. navbharatlive.com be liable in any way for any content or material, for any errors or omissions in any content, or for any loss or damage of any kind incurred as a result of the use of any content or material posted, emailed, uploaded, submitted, privately transmitted or otherwise made available via the Service.{"\n"}{"\n"}
+
+                CONTENT MADE AVAILABLE THROUGH THE SERVICE: All content and material that is made available to view and/or download in connection with the Service, excluding content that may be made available by the users or visitors through the Service, is owned by and is the copyrighted work of. navbharatlive.com and is protected by copyright laws.{"\n"}{"\n"}
+
+                navbharatlive.com may offer subscriptions to newsletters or magazines “Subscriptions”. This content is made available through the SERVICE and. navbharatlive.com reserves the right to cancel or deny any subscription to such content for any reason.{"\n"}{"\n"}
+
+                You acknowledge that content, including but not limited to text, software, music, sound, photographs, images, video, graphics or other material contained in either sponsor advertisements, or Internet-distributed, commercially produced information presented to User by the Services (“Content”) by. navbharatlive.com and its affiliates, advertisers and partners, or other. navbharatlive.com users may be protected by copyrights, trademarks, patents or other proprietary rights and laws; therefore, you are only permitted to use this protected Content as expressly authorized by the owner of the Content (“Owner”), the Services or the Advertiser. You may not copy, reproduce, distribute, or create derivative works from this Content without expressly being authorized to do so by the Owner, the Services or the Advertiser.{"\n"}{"\n"}
+
+                INDEMNITY: You “The User” comprehend and agree to indemnify and hold. navbharatlive.com and its parents, affiliates, officers and employees, harmless from any claim or demand, including attorneys’ fees, made by any third party due to or arising out of your use of the Service, your connection to the Service, your violation of the. navbharatlive.com Terms of Service or any other provision of the TOS, or the infringement or misappropriation by the User, or a third party using User’s computer, account or password to access and/or use the services, of any Intellectual Property Rights of any person or entity, or the use or misuse by the User or third parties of User’s passwords or accounts, or your violation of any rights of another.{"\n"}{"\n"}
+
+                STORAGE AND OTHER LIMITATIONS: . navbharatlive.com assumes no responsibility for the deletion, delivery or timely delivery of email messages and failure to store messages, other communications, content or material maintained, posted, uploaded, submitted or transmitted by use of the service.. navbharatlive.com retains the right to set and modify the upper limit on the size of the message (sent or received) on any account and storage space it will maintain for the user.{"\n"}{"\n"}
+
+                navbharatlive.com also reserves the right to limit the maximum number of times (and the maximum duration for which) you may access the service over a given period of time. You acknowledge that. navbharatlive.com reserves the right to log off / disable accounts that are inactive for a period of three months. You further acknowledge that. navbharatlive.com reserves the right to change these general practices and limits at any time, in its sole discretion, with or without notice.{"\n"}{"\n"}
+
+                TERMINATION: The User agrees that. navbharatlive.com may terminate the user’s password, account or use of the Service if. navbharatlive.com believes that the user has violated or acted inconsistently with the letter or spirit of the. navbharatlive.com’s Terms of Service, or has violated the rights of. navbharatlive.com or other users. The user further agrees that. navbharatlive.com may terminate the user’s password, account or use of the Service if the user fails to use the Service at least one time during a period of three months. This time period would be reviewed and determined by. navbharatlive.com from time to time.{"\n"}{"\n"}
+
+                The user comprehends and agrees that any termination of service under this agreement under any provision of this agreement may be effected by either party, without cause at any time, immediately upon written notice to the other party, and acknowledges and agrees that. navbharatlive.com may immediately delete all files (email included) in the user’s account and bar any further access to such files or the Service. Further, you agree that. navbharatlive.com shall not be liable to you or any third-party for any termination of your access to the Service.{"\n"}{"\n"}
+
+                Should User object to any terms and conditions of the TOS or any subsequent modifications thereto or become dissatisfied with the Services in any way, User’s only recourse is to immediately:{"\n"}{"\n"}
+
+                (1) Discontinue use of the Services;{"\n"}{"\n"}
+
+                (2) Terminate Services membership.{"\n"}{"\n"}
+
+                ASSOCIATION THROUGH THE SERVICE: Your association, correspondence or business dealings with, or participation in promotions of, advertisers and sponsors found on or through the Service, including payment and delivery of related goods or services, and any other terms, conditions, warranties or representations associated with such transactions, are solely between you and the advertiser/sponsor. You comprehend and agree that. navbharatlive.com shall not be responsible or liable for any loss or damage of any sort incurred as the result of any such associations or dealings or as the result of the presence of such advertisers/sponsors on the Service.{"\n"}{"\n"}
+
+                You also acknowledge and agree that content/material contained in the sponsor’s advertisements, promotions or information presented to you through the Service or advertisers is protected by copyrights, trademarks, service marks, patents or other proprietary rights and laws.{"\n"}{"\n"}
+
+                ASSOCIATION / LINKS TO THIRD PARTY: . navbharatlive.com may contain links to third party Web sites “Linked Sites” (“Affiliates” / “Partner Sites”). These Linked Sites are not under the control of. navbharatlive.com and. navbharatlive.com is not responsible for the contents of any Linked Site, including without limitation any link contained in a Linked Site, or any changes or updates to a Linked Site.. navbharatlive.com is not responsible for webcasting or any other form of transmission received from any Linked Site nor is. navbharatlive.com responsible if the Linked Site is not working appropriately.. navbharatlive.com is providing these links and partnerships to you, for your convenience, and the inclusion of any link does not imply endorsement by. navbharatlive.com of the site. You are responsible for viewing and abiding by the privacy statements and terms of use posted at the Linked Sites.{"\n"}{"\n"}
+
+                NOTICE: Notices to you may be made via online announcements, either email or regular mail. The Service may also provide notices of changes to the Terms of Service or other matters by displaying notices or links to notices to you generally on the Service.{"\n"}{"\n"}
+
+                navbharatlive.com may broadcast notices or messages through the Services to inform User of changes to the TOS, the Services, or other matters of importance; such broadcasts shall constitute notice to User.{"\n"}{"\n"}
+
+                GENERAL: We hereby expressly disclaim any implied warranties imputed by the laws of any jurisdiction. We consider ourselves and intend to be subject to the jurisdiction only of the courts of the state of New Delhi, India. Please report any violations of the Terms of Service to our Support team.{"\n"}{"\n"}
+
+                Additional terms applicable to our email Service{"\n"}{"\n"}
+
+                LEGAL: The Terms of Service shall for all purposes be governed by and interpreted in accordance with the laws of India, excluding its conflict of law provisions. User and The Service agree to submit to the exclusive jurisdiction of the courts of the state of New Delhi, India. Our failure to exercise or enforce any right or provision of the TOS shall not constitute a waiver of such right or provision unless acknowledged and agreed to by us in writing.{"\n"}{"\n"}
+
+                ASSIGNMENT: No right may be assigned, and no duty may be delegated, by either party under this Agreement except upon the written consent of the other party and any attempted assignment and delegation without such consent shall be void and without effect. Notwithstanding the foregoing, however,. navbharatlive.com shall be entitled to assign this agreement, and all rights and obligations hereunder, to a successor to all or substantially all of its assets, whether by sale, merger or otherwise. This TOS shall be binding upon and shall inure to the benefit of the parties hereto and their respective representatives, heirs, administrators, successors and permitted assigns except as otherwise provided herein.{"\n"}{"\n"}
+
+                NO AGENCY: Neither party is, nor will it be deemed to be, an agent or legal representative of the other party for any purpose. Neither party will be entitled to enter into any contracts in the name of or on behalf of the other party, and neither party will be entitled to pledge the credit of the other party in any way or hold itself out as having authority to do so.{"\n"}{"\n"}
+
+                SEVERABILITY: any provision(s) of the TOS is/are held by a court of competent jurisdiction to be contrary to law, or otherwise invalid or unenforceable, then such provision(s) shall be construed, as nearly as possible, to reflect the intentions of the parties with the other provisions remaining in full force and effect.{"\n"}{"\n"}
+
+                WAIVER: Any waiver (express or implied) by either party of any breach of this TOS shall not constitute a waiver of any other or subsequent breach. No provision of the TOS will be waived by any act, omission or knowledge of a party or its agents or employees except by an instrument in writing expressly waiving such provision and signed by a duly authorized officer of the waiving party.{"\n"}{"\n"}
+
+                STATUTE OF LIMITATIONS: User and. navbharatlive.com agree that any cause of action arising out of or related to these Services must commence within one (1) year after the cause of action arose; otherwise, such cause of action is permanently barred.{"\n"}{"\n"}
+
+                No SPAM: Our email service follows the “no spam” Warranted Email program. This means that we guarantee, on your behalf, that any e-mail sent through our servers is not Spam, and the only e-mail which you will send from our servers is e-mail which you send to a single addressee, to a group consisting only of your friends and family members or individuals with whom you have an established professional relationship, or to a group for whom you have the verified permission of each recipient to include them in a mailing list.{"\n"}{"\n"}
+
+                Causing e-mail, which does not meet these criteria to be sent through our servers, is a breach of our Terms of Service, and may result in your account being terminated, and legal action for misuse of our trademark and copyright.{"\n"}{"\n"}
+
+                If you do not agree with any of our terms of services mentioned above please do not read the material on any of our pages.{"\n"}{"\n"}
+
+                Additional terms applicable to our email service: For the avoidance of doubt, User grants. navbharatlive.com the right to disclose to email marketers all information provided during subscription to Email Marketing Programs or Opt-In Email Programs. Users may “opt-out” of these emails directly at any time.. navbharatlive.com does not make any representation or warranty with respect to the content of any such email messages or any goods or services, which may be obtained, from such third parties, and User agrees that. navbharatlive.com shall not have any liability with respect thereof.
               </Text>
 
             </View>

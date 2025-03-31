@@ -40,7 +40,7 @@ const HomeComponentTwo = ({ item, navigation, propsdata }) => {
 
 
   return (
-    <View>
+    <>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate('Details', {
@@ -50,43 +50,33 @@ const HomeComponentTwo = ({ item, navigation, propsdata }) => {
         }}>
         <View style={commonstyles.HomeComp2DotView}>
           <View style={commonstyles.cateviewText}>
-            <View>
               <Text
                 numberOfLines={2}
                 ellipsizeMode="tail"
                 style={commonstyles.latestText}>
                 {decode(item?.title?.rendered)}
               </Text>
-            </View>
             {/* Time View */}
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 5, }}>
-              {/* Time */}
-              <View style={{}}>
-                <Text style={commonstyles.HomeTwotime}>{formattedDate}</Text>
-              </View>
-              <View style={{ justifyContent: 'space-between', flexDirection: 'row' }}>
-               
-                <View>
-                  <TouchableOpacity
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 8, }}>
+            <Text style={commonstyles.HomeTwotime}>{formattedDate}</Text>
+            <TouchableOpacity
                     onPress={() => {
                       sharecall();
                     }}>
                     <Image
-                      style={{ width: 15, height: 15, right: 10 }}
+                      style={{ width: 16, height: 16, }}
                       source={require('../Assets/Images/share_black.png')}
                     />
                   </TouchableOpacity>
-                </View>
-              </View>
             </View>
           </View>
           <View style={commonstyles.cateviewImg}>
             <FastImage
-              resizeMode={FastImage.resizeMode.contain} source={imageUrl} style={commonstyles.cateImage} />
+              resizeMode={FastImage.resizeMode.cover} source={imageUrl} style={commonstyles.cateImage} />
           </View>
         </View>
       </TouchableOpacity>
-    </View>
+    </>
   );
 }
 

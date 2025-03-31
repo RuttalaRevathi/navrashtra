@@ -45,17 +45,15 @@ export const HeaderStyle = StyleSheet.create({
         width: "100%",
         backgroundColor: whitecolor,
         flexDirection: "row",
-        padding: 5,
+        padding: 12,
         justifyContent: 'space-between',
         alignItems:'center',
-        paddingLeft:10
-
     },
     DetailsHeader: {
         width: "100%",
         backgroundColor: whitecolor,
         flexDirection: "row",
-        padding: 10,
+        padding: 12,
         justifyContent: 'space-between',
         borderBottomColor: graycolor, borderBottomWidth: 1
     },
@@ -80,7 +78,8 @@ export const HeaderStyle = StyleSheet.create({
         fontSize: 20,
         flexWrap: 'wrap',
         textAlign: 'center',
-       fontWeight:'bold'
+       fontWeight:'bold',
+       alignItems:'center'
 
     },
     HeadTitleView: {

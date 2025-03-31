@@ -6,21 +6,16 @@ import {
     FlatList,
     Image,
     SafeAreaView,
-    ScrollView,
     Text,
     TouchableOpacity,
     View,
 } from 'react-native';
-import FastImage from 'react-native-fast-image';
-import SubHeader from '../components/SubHeader';
-import { blackcolor, commonstyles, whitecolor, redcolor, graycolor, Dark_Gray } from '../styles/commonstyles';
+import { commonstyles, whitecolor } from '../styles/commonstyles';
 import getVideoAction from '../redux/actions/getVideoAction';
 
 const Videos = ({
     navigation,
     videosData,
-    videosLoading,
-    route,
 }: Props) => {
     const dispatch = useDispatch();
 
@@ -31,18 +26,15 @@ const Videos = ({
     // share function
     return (
         <SafeAreaView style={commonstyles.container}>
-            <ScrollView style={commonstyles.scroll}>
-                <View>
-                    <Text style={commonstyles.galleryArticlecategorytext}>वीडियो गैलरी</Text>
-                </View>
-                <View>
+                          <View style={[commonstyles.gallerycategoryView, {marginLeft: 12, marginTop: 12, marginBottom: 6}]}>
+                                    <Text style={commonstyles.galleryArticlecategorytext}>वीडियो गैलरी</Text>
+                                    </View>
                     <FlatList
                         style={commonstyles.cateflist}
                         data={videosData?.data}
                         numColumns={1}
                         renderItem={({ item, index }) => (
                             <View style={{ flex: 1 }}>
-                                <View>
                                     <TouchableOpacity onPress={() => {
                                         navigation.navigate('VideoArticle', {
                                             item: item,
@@ -50,11 +42,10 @@ const Videos = ({
                                             screenName: "Videos"
                                         });
                                     }}>
-                                        <View style={{}}>
-                                            <View style={{ paddingBottom: 15 }}>
-                                                <View >
+                                        <View style={{paddingBottom: 5,paddingTop:5}}>
+                                                <>
                                                     {typeof item?.web_featured_image === 'string' && item?.web_featured_image.trim() !== '' ? (
-                                                        <View style={{paddingLeft:5,}}>
+                                                        <View>
                                                             <Image style={commonstyles.VideoimgTag}
                                                                 source={{ uri: item?.web_featured_image }} />
                                                            <View style={{
@@ -69,21 +60,15 @@ const Videos = ({
                                                                          </View>
                                                         </View>
                                                     ) : null}
-                                                </View>
-                                                <View>
+                                                </>
                                                     <Text numberOfLines={2} ellipsizeMode="tail"
                                                         style={commonstyles.latestTxtTag}>{item?.title?.rendered}
                                                     </Text>
-                                                </View>
-                                            </View>
-                                        </View>
+                                                    </View>
                                     </TouchableOpacity>
-                                </View>
                             </View>
                         )}
                     />
-                </View>
-            </ScrollView>
         </SafeAreaView>
     );
 };

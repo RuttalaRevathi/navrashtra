@@ -1,21 +1,15 @@
 /* eslint-disable prettier/prettier */
-import React, { useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, Linking, ScrollView, FlatList, Share, Dimensions } from 'react-native';
-import { appThemeColor, blackcolor, commonstyles, Header_text, red_color, whitecolor, redcolor } from '../styles/commonstyles';
+import React, { useEffect } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, Share, Dimensions } from 'react-native';
+import { blackcolor, commonstyles, whitecolor } from '../styles/commonstyles';
 import { HeaderStyle } from '../styles/Header.Styles';
-import HTMLView from 'react-native-htmlview';
 import moment from 'moment';
-import { connect, useDispatch } from 'react-redux';
-import getRelatedAction from '../redux/actions/getRelatedAction';
 import AutoHeightWebView from 'react-native-autoheight-webview';
 import { useState } from 'react';
 import FastImage from 'react-native-fast-image';
-const screenWidth = Dimensions.get('window').width;
 
 const VideoArticle = ({ navigation, route }: Props) => {
   const [detailsData, setDetailsData] = useState([]);
-  const scrollViewRef = useRef(null);
-  const dispatch = useDispatch();
   const source = route?.params?.item?.content?.rendered;
   const [videoAvailable, setVideoAvailable] = useState(true);
 
@@ -60,9 +54,7 @@ const VideoArticle = ({ navigation, route }: Props) => {
     : defaultImage;
   return (
     <View style={{ backgroundColor: whitecolor, flex: 1 }}>
-      <View>
         <View style={HeaderStyle.subHeaderviewHeight}>
-          <View style={{}}>
             <TouchableOpacity onPress={() => {
               navigation.navigate(route.params.screenName === "Videos" ? "Videos" : "Home");
             }} >
@@ -71,11 +63,6 @@ const VideoArticle = ({ navigation, route }: Props) => {
                 style={{ width: 20, height: 20 }}
               />
             </TouchableOpacity>
-          </View>
-          <View
-            style={{
-
-            }}>
             <TouchableOpacity style={{}}
               onPress={() => { sharecall() }}>
               <Image
@@ -83,48 +70,30 @@ const VideoArticle = ({ navigation, route }: Props) => {
                 style={{ width: 20, height: 20 }}
               />
             </TouchableOpacity>
-          </View>
         </View>
-      </View>
       <ScrollView style={styles.scrollView}
         scrollEnabled={true}>
         <View>
           {/* Title */}
-          <View style={{ paddingLeft: 10, paddingTop: 10 }}>
-
+          <View style={{ paddingHorizontal: 12, paddingTop: 12 }}>
             <Text numberOfLines={3} ellipsizeMode="tail" style={commonstyles.categoryText}>
               {decode(route?.params?.item?.title?.rendered)}
             </Text>
-
           </View>
-          {/* Author and Time */}
+          {/* time */}
           <View
             style={commonstyles.DetailTimeMainView}>
-            {/* Author */}
-            {/* <TouchableOpacity onPress={() => navigation.navigate('Author')}> */}
-            <View style={{}}>
               <Text style={commonstyles.detailauthor}>
                 BY {route?.params?.item?.author_name}
               </Text>
-            </View>
-            {/* </TouchableOpacity> */}
-            {/* Time */}
-            <View style={{}}>
               <Text style={commonstyles.detailTime}>Updated on: {formattedDate}</Text>
-            </View>
           </View>
-          {/* Image */}
-          <View style={{ width: '100%' }}>
+
             <FastImage
               source={imageUrl}
               style={commonstyles.Detailslargecard}
               resizeMode={FastImage.resizeMode.cover}
             />
-          </View>
-          {/* Content */}
-          <Text>
-
-          </Text>
           <View style={{
             justifyContent: 'center',
           }}>
@@ -139,7 +108,7 @@ const VideoArticle = ({ navigation, route }: Props) => {
                 iframe[src^="https://www.youtube.com/embed/"] {
                                 width:100%;
                                 height:225px;
-                                padding-bottom:10px;
+                                padding-bottom:12px;
                                  
                              
                     }
@@ -209,25 +178,18 @@ const VideoArticle = ({ navigation, route }: Props) => {
                 onError={(error) => console.error('WebView Error:', error)}
               />
             ) : (
-              <View style={{}}>
-                <View>
+              <>
                   <Text style={{ color: blackcolor, fontWeight: 'bold', fontSize: 18 }}>
                     {route?.params?.item?.title?.rendered}
                   </Text>
-                </View>
-                <View style={{}}>
                   <Text style={{
                     fontSize: 20, fontWeight: 'bold',
                     color: blackcolor
                   }}>Video not available</Text>
-
-                </View>
-              </View>
+              </>
             )}
           </View>
-
         </View>
-
       </ScrollView>
     </View>
   );

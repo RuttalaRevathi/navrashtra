@@ -31,7 +31,7 @@ class HomeComponentFour extends React.PureComponent {
             formattedDate = `${diffDays} days ago`;
         }
         return (
-            <View>
+            <View style={{marginRight: 12}}>
                 <TouchableOpacity
                     onPress={() => {
                         this.props?.navigation.navigate('Details', {
@@ -40,13 +40,11 @@ class HomeComponentFour extends React.PureComponent {
                         });
                     }}>
                     <View style={commonstyles.HomeFourcategoryView}>
-                        <View>
                             <FastImage
-                                resizeMode={FastImage.resizeMode.contain}
+                                resizeMode={FastImage.resizeMode.cover}
                                 source={imageUrl}
                                 style={commonstyles.HomeVideosliderImg}
                             />
-                        </View>
                         <View style={commonstyles.homeVideosliderTextView}>
                             <Text numberOfLines={2} style={commonstyles.homeFoursliderText}>
                                 {decode(this.props?.item?.title?.rendered)}                        </Text>

@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
   Image,
+  ActivityIndicator,
 } from 'react-native';
 import { commonstyles } from '../styles/commonstyles';
 import HomeComponentFour from './HomeComponentFour';
@@ -36,13 +37,11 @@ function HomeUINew(props) {
 
   return (
     <SafeAreaView styles={commonstyles.container}>
-      <View style={{ padding: 5 }}>
-        {/* Category text */}
+      <View style={{ padding: 12 }}>
         <View style={commonstyles.homecategoryView}>
           <View style={commonstyles.homeOnetextView}>
             <Text style={commonstyles.Category}>{props?.categoryName}</Text>
           </View>
-          <View>
           <TouchableOpacity
               onPress={() => {
                 navigation.navigate(props?.categoryName, {
@@ -52,20 +51,18 @@ function HomeUINew(props) {
                 })
               }}>
               <Image
-                style={commonstyles.homeNextImage}
                 source={require('../Assets/Images/next.png')}
               />
             </TouchableOpacity>
-          </View>
         </View>
-
-        {/* FlatList for Latest News */}
-        <View style={commonstyles.homeCategoryflatView}>
+        
+        {newdata.length > 0 ? <View style={commonstyles.homeCategoryflatView}>
           <FlatList
             data={newdata.slice(0, 1)}
             showsHorizontalScrollIndicator={false}
             persistentScrollbar={false}
             numColumns={2}
+            style={{borderRadius: 6, overflow: 'hidden'}}
             onEndReachedThreshold={50}
             getItemLayout={(data, index) => ({
               length: 40,
@@ -86,7 +83,7 @@ function HomeUINew(props) {
             })}
             renderItem={renderItemTwo}
           />
-        </View>
+        </View> : <ActivityIndicator size={'large'} style={{paddingVertical: 12}} />}
       </View>
     </SafeAreaView>
   );

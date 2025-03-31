@@ -10,9 +10,43 @@ import PhotoGallery from '../screens/PhotoGallery';
 import Videos from '../screens/Videos';
 import { navigate } from '../navigation/NavigationService';
 import LatestNews from '../screens/LatestNews';
+import Details from '../screens/Details';
 import HomeStackNavigator from './stack-navigators/HomeStackNavigator';
+import { createStackNavigator } from '@react-navigation/stack';
+import PhotoArticle from '../screens/PhotoArticle';
+import VideoArticle from '../screens/VideoArticle';
 
 const Tab = createBottomTabNavigator();
+const LNStack = createStackNavigator();
+const PTStack = createStackNavigator();
+const VDStack = createStackNavigator();
+
+function LNStackScreen() {
+  return (
+    <LNStack.Navigator>
+      <LNStack.Screen name="Latest" component={LatestNews} options={{ headerShown: false }}/>
+      <LNStack.Screen name="Details" component={Details} options={{ headerShown: false }}/>
+    </LNStack.Navigator>
+  );
+}
+
+function PhotoStackScreen() {
+  return (
+    <PTStack.Navigator>
+      <PTStack.Screen name="Photos" component={PhotoGallery} options={{ headerShown: false }}/>
+      <PTStack.Screen name="PhotoArticle" component={PhotoArticle} options={{ headerShown: false }}/>
+    </PTStack.Navigator>
+  );
+}
+
+function VideoStackScreen() {
+  return (
+    <VDStack.Navigator>
+      <VDStack.Screen name="Videos" component={Videos} options={{ headerShown: false }} />
+      <VDStack.Screen name="VideoArticle" component={VideoArticle} options={{ headerShown: false }}/>
+    </VDStack.Navigator>
+  );
+}
 
 const BottomTabNavigator = () => {
   const topTabNavigatorRef = React.useRef(null);
@@ -78,9 +112,8 @@ const BottomTabNavigator = () => {
 
 
       <Tab.Screen
-        name="Latest"
-        component={LatestNews}
-
+        name="LNStack"
+        component={LNStackScreen}
         options={{
           headerShown: false,
           tabBarLabel: 'LATEST',
@@ -115,14 +148,15 @@ const BottomTabNavigator = () => {
                 transform: [{ rotate: '45deg' }],
                 width: 40,
                 height: 40,
+                padding: 2,
                 justifyContent: 'center',
                 alignItems: 'center',
               }}>
                 <View
 
                   style={{
-                    width: 41,
-                    height: 41,
+                    width: 44,
+                    height: 44,
                     borderRadius: 5,
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -152,8 +186,8 @@ const BottomTabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Photos"
-        component={PhotoGallery}
+        name="PTStack"
+        component={PhotoStackScreen}
         options={{
           headerShown: false,
           tabBarLabel: 'PHOTOS',
@@ -177,8 +211,8 @@ const BottomTabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Videos"
-        component={Videos}
+        name="VDStack"
+        component={VideoStackScreen}
         options={{
           headerShown: false,
           tabBarLabel: 'VIDEOS',

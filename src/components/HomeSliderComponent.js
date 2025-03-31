@@ -22,7 +22,7 @@ class HomeSliderComponent extends React.PureComponent {
           index: this.props.index,  // Ensure this index matches the article to be displayed
         });
       }}>
-        <View style={{padding: 5, position: 'relative',}}>
+        <View style={{position: 'relative', marginRight: 12}}>
           
           <Image
             source={imageUrl}

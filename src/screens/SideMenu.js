@@ -1,23 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { DrawerItem } from '@react-navigation/drawer';
-import { View, Text, TouchableOpacity, Image, FlatList, SafeAreaView, ScrollView } from 'react-native';
+import { View, Text, Image, FlatList, SafeAreaView, ScrollView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import getTopMenuDataAction from '../redux/actions/getTopMenuDataAction';
 import { sideMenuStyle } from '../styles/SideMenuStyles';
-import { graycolor } from '../styles/commonstyles';
-import { TouchableNativeFeedback } from 'react-native';
+import { Dark_Gray, graycolor } from '../styles/commonstyles';
+import auth from '@react-native-firebase/auth';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { CommonActions } from '@react-navigation/native';
 
 const SideMenu = ({ navigation }: Props) => {
-  const [expandedItems, setExpandedItems] = useState({});
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log('Navigation State:', navigation.getState());
     dispatch(getTopMenuDataAction());
   }, [dispatch]);
 
   let menuData = useSelector((state) => state.topMenuDataReducer.topMenuData) || [];
 
-  const mergedArray = [];
+  const mergedArray = [];CommonActions
   menuData.forEach((item) => {
     if (item.subItems) {
       // Add the main item
@@ -37,9 +40,9 @@ const SideMenu = ({ navigation }: Props) => {
 
   const handleNavigation = (title) => {
     if (title === 'व्हिडिओ') {
-      navigation.navigate('Videos');
+      navigation.navigate('VDStack');
     } else if (title === 'फोटो') {
-      navigation.navigate('Photos');
+      navigation.navigate('PTStack');
     }
     else if (title === 'वेब स्टोरीज') {
       navigation.navigate('Webstories');
@@ -47,6 +50,29 @@ const SideMenu = ({ navigation }: Props) => {
       navigation.navigate(title);
     }
   };
+
+  const logout = async (navigation) => {
+    try {
+      // Sign out and clear login data
+      await auth().signOut();
+      await AsyncStorage.removeItem('loginUserData');
+      await GoogleSignin.revokeAccess();
+  
+      // Reset navigation stack to the login screen
+      navigation.reset({
+        index: 0,
+        routes: [
+          { key: 'some-unique-key', name: "Login", params: undefined },
+        ],
+      })
+    } catch (error) {
+      console.error('Error during logout:', error);
+    }
+  };
+                
+              
+          
+  
 
   return (
     <SafeAreaView style={sideMenuStyle.areaView}>
@@ -59,7 +85,6 @@ const SideMenu = ({ navigation }: Props) => {
         </View>
       </View>
       <ScrollView>
-
         <View>
           <FlatList
             data={mergedArray}
@@ -78,7 +103,6 @@ const SideMenu = ({ navigation }: Props) => {
                   icon={({ color, size }) => (
                     <Image
                       style={sideMenuStyle.listImg}
-                      // source={require('../Assets/Images/list.png')}
                       source={{ uri: item.Image }}
                     />
                   )}
@@ -92,20 +116,35 @@ const SideMenu = ({ navigation }: Props) => {
               </View>
             )}
           />
-          {/* <DrawerItem
+          <DrawerItem
             style={sideMenuStyle.item}
             icon={({ color, size }) => (
               <Image
-                source={require('../Assets/Images/star.png')}
+                source={require('../Assets/Images/settings.png')}
                 style={sideMenuStyle.icon}
               />
             )}
-            label="Te"
+            label="Settings"
             labelStyle={sideMenuStyle.text}
             onPress={() => {
-              navigation.navigate('Bookmark');
+              navigation.navigate('Settings');
             }}
-          /> */}
+          />
+          <DrawerItem
+          style={sideMenuStyle.item}
+            label="Logout" 
+            onPress={() => logout(navigation)} 
+          />
+          <DrawerItem
+            style={sideMenuStyle.item}
+                       label="App Version 1.0.0"
+            labelStyle={{ color:Dark_Gray,
+                fontSize: 16,
+                fontWeight:'bold',
+              
+            }}
+            
+          />
         </View>
       </ScrollView>
     </SafeAreaView>

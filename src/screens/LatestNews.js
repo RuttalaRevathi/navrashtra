@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   ScrollView,
   View,
+  Text,
 } from 'react-native';
 import { commonstyles } from '../styles/commonstyles';
 import CategoryComponentTwo from '../components/CategoryComponentTwo';
@@ -15,13 +16,15 @@ import { BaseUrl, LatestUrl } from '../utilities/urls';
 
 const LatestNews = ({ navigation, route }: Props) => {
   const [latestNews, setLatestNewsData] = useState(null);
-  const [loading, setLoading] = useState(true); // State to handle the loader
+  const [loading, setLoading] = useState(false); // State to handle the loader
 
   const getLatestNewsAction = async () => {
+    setLoading(true);
     try {
       const response = await fetch(BaseUrl + LatestUrl);
       const responseJson = await response.json();
       setLatestNewsData(responseJson);
+      setLoading(false);
     } catch (error) {
       console.error('Error fetching getLatestNewsAction data:', error);
     } finally {
@@ -41,30 +44,27 @@ const LatestNews = ({ navigation, route }: Props) => {
     />
   );
 
-  const renderItemOne = ({ item }) => (
-    <CategoryComponentOne
-      item={item}
-      propsdata={latestNews?.data}
-      navigation={navigation}
-    />
-  );
 
   return (
     <SafeAreaView style={commonstyles.container}>
-      {loading ? ( // Show the loader when loading is true
-        <ActivityIndicator size="large" color="#000000" style={{ flex: 1 }} />
-      ) : ( // Show the content once loading is false
-        <ScrollView style={commonstyles.scroll}>
-          <View>
-            <View style={{ position: 'relative' }}>
-              <FlatList
-                style={commonstyles.cateflist}
-                data={latestNews?.data}
-                renderItem={renderItemTwo}
-              />
+      {loading ? (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <ActivityIndicator size="large" />
+        </View>
+      ) : (
+          <>
+            <View style={[commonstyles.gallerycategoryView, {marginLeft: 12, marginTop: 12}]}>
+              <Text style={commonstyles.galleryArticlecategorytext}>
+                ताज्या बातम्या</Text>
             </View>
-          </View>
-        </ScrollView>
+            <ScrollView style={commonstyles.scroll}>
+                <FlatList
+                  style={commonstyles.cateflist}
+                  data={latestNews?.data}
+                  renderItem={renderItemTwo}
+                />
+            </ScrollView>
+          </>
       )}
     </SafeAreaView>
   );
