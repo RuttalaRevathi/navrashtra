@@ -135,10 +135,8 @@ export const NewWebStories = React.memo(() => {
       setCurrentSlideIndex(currentSlideIndex + 1);
     } else if (currentUserIndex < storiesData.length - 1) {
       //animateCubeTurn(); // Animate cube turn
-      setTimeout(() => {
-        setCurrentUserIndex(currentUserIndex + 1);
-        setCurrentSlideIndex(0);
-      }, 300); // Change user after first part of animation
+      setCurrentUserIndex(currentUserIndex + 1);
+      setCurrentSlideIndex(0);
     } else {
       setStoryViewModal(false);
     }
@@ -291,6 +289,7 @@ export const NewWebStories = React.memo(() => {
               source={{
                 uri: storiesData[currentUserIndex]?.stories[currentSlideIndex]
                   ?.story_image,
+                priority: FastImage.priority.high,
               }}
               style={styles.storyImage}
               resizeMode={FastImage.resizeMode.cover}
@@ -299,8 +298,8 @@ export const NewWebStories = React.memo(() => {
           <View style={styles.storyViewContent}>
             <LinearGradient
               colors={[
-                'rgba(255, 255, 255, 0)',
-                'rgba(0, 0, 0, 1)',
+                'rgba(0, 0, 0, 0)',
+                'rgba(0, 0, 0, 0.75)',
                 'rgba(0, 0, 0, 1)',
               ]}>
               <Animated.Text
@@ -440,12 +439,15 @@ const styles = StyleSheet.create({
   storyContainer: {flex: 1, justifyContent: 'center', alignItems: 'center'},
   storyImage: {width: width, height: height},
   storyText: {
-    fontSize: 24,
-    color: redcolor,
-    fontWeight: '600',
+    fontSize: 26,
+    color: '#ef0b0b',
+    fontWeight: '700',
     marginHorizontal: 12,
     textAlign: 'center',
     marginBottom: 12,
+    textShadowOffset: {width: 0, height: 0},
+    textShadowColor: blackcolor,
+    textShadowRadius: 16,
   },
   storyAuthor: {
     fontSize: 13,
@@ -453,7 +455,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   storyCaption: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: '500',
     marginBottom: 12,
     textAlign: 'center',

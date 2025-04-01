@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   View,
@@ -25,13 +25,14 @@ import HomePhotogalleryItemTwo from '../components/HomePhotogalleryItemTwo';
 import getPhotoGalleryAction from '../redux/actions/getPhotoGalleryAction';
 import { Automobile, BaseUrl, Business, Carrer, CategoryUrl, India, Lifestyle, Maharashtra, Movies, Mumbai, Nagpur, Pune, Religion, Special, Sports, Technology, Viral, World } from '../utilities/urls';
 import getVideoAction from '../redux/actions/getVideoAction';
-//import WebStoriesHome from './WebStroriesHome';
 import TopNews from '../components/TopNews';
 import Ripple from 'react-native-material-ripple';
 import Trending from '../components/Trending';
 import {NewWebStories} from '../components/NewWebStories';
+import {GotoTop} from '../components/GotoTop';
 
 const Home = ({ navigation }) => {
+  const scrollViewRef = useRef(null);
   const [indiaData, setIndiaData] = useState(null);
   const [maharashtraData, setMaharashtraData] = useState(null);
   const [mumbaiData, setMumbaiData] = useState(null);
@@ -48,6 +49,7 @@ const Home = ({ navigation }) => {
   const [careerData, setCareerData] = useState(null);
   const [puneData, setPuneData] = useState(null);
   const [nagpurData, setNagpurData] = useState(null);
+  const [showGoToTop, setShowGoToTop] = useState(false);
 
   const [refreshing, setRefreshing] = useState(false);
 
@@ -201,6 +203,14 @@ const Home = ({ navigation }) => {
     }
   };
 
+  const handleScroll = (event) => {
+    const offsetY = event.nativeEvent.contentOffset.y;
+    setShowGoToTop(offsetY > 300);
+  };
+
+  const scrollToTop = () => {
+    scrollViewRef.current?.scrollTo({ y: 0, animated: true });
+  };
 
   const onRefresh = () => {
     setRefreshing(true);
@@ -274,11 +284,13 @@ const Home = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView
-        style={commonstyles.scroll}
+        style={[commonstyles.scroll, {flex: 1, position: 'relative'}]}
+        ref={scrollViewRef}
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }>
-        <View>
           {/* Trending */}
           <Trending />
           {/* Breaking News */}
@@ -291,9 +303,7 @@ const Home = ({ navigation }) => {
           <View style={{ paddingLeft: 12, marginVertical: 12 }}>
             <NewWebStories />
           </View>
-          {/* <WebStoriesHome /> */}
           {/* India */}
-
           <HomeUI
             categoryName="देश"
             data={indiaData?.data}
@@ -464,9 +474,10 @@ const Home = ({ navigation }) => {
             navigationScreen="career"
             navigation={navigation}
           />
-
-        </View>
       </ScrollView>
+      {showGoToTop && (
+        <GotoTop handleClick={scrollToTop} />
+      )}
     </SafeAreaView>
   );
 };

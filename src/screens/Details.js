@@ -169,7 +169,7 @@ const Details = ({ navigation, route }) => {
     } else if (fontSize === 23) {
       setFontSize(25);
     } else {
-      setFontSize(16);
+      setFontSize(18);
     }
   };
   const handleTouchStart = (e) => {
@@ -379,7 +379,7 @@ const Details = ({ navigation, route }) => {
 
           {/* Related News */}
           <View style={[commonstyles.homeOnetextView, commonstyles.sectionTitle]}>
-            <Text style={commonstyles.Category}>सम्बंधित ख़बरें</Text>
+            <Text style={commonstyles.Category}>संबंधित बातम्या</Text>
           </View>
           <View style={{ paddingHorizontal: 12 }}>
             <FlatList
