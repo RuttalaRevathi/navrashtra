@@ -272,6 +272,12 @@ const Details = ({ navigation, route }) => {
       -webkit-user-select: auto;
       -webkit-touch-callout: default; 
     }
+    iframe[src^="https://www.youtube.com/embed/"] {
+        width:100%;
+        height:225px;
+        marginTop: 6px;
+        marginBottom: 6px;                     
+    }
     h4 {
       margin:5px 0px;
     }
