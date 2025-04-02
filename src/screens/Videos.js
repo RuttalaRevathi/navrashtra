@@ -45,7 +45,7 @@ const Videos = ({navigation}) => {
             {marginLeft: 12, marginVertical: 10},
           ]}>
           <Text style={commonstyles.galleryArticlecategorytext}>
-            वीडियो गैलरी
+          व्हिडिओ गैलरी
           </Text>
         </View>
         <ScrollView style={commonstyles.scroll} scrollEnabled={true}>
