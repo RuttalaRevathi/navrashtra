@@ -11,15 +11,10 @@ import {
   Easing,
   Dimensions,
   Share,
-  SafeAreaView
+  SafeAreaView,
+  Linking,
 } from 'react-native';
-import {
-  blackcolor,
-  commonstyles,
-  redcolor,
-  whitecolor,
-  yellowcolor,
-} from '../styles/commonstyles';
+import {blackcolor, commonstyles, whitecolor} from '../styles/commonstyles';
 import FastImage from 'react-native-fast-image';
 import {BaseUrl, WebstoriesUrl} from '../utilities/urls';
 import Ripple from 'react-native-material-ripple';
@@ -110,7 +105,6 @@ export const NewWebStories = React.memo(() => {
               story_caption: decode(item.caption),
               story_content: decode(item.content),
               stroy_link: item.link,
-
               swipeText: null,
             };
             return slideObj;
@@ -207,7 +201,6 @@ export const NewWebStories = React.memo(() => {
       console.log('Story link is missing or invalid');
     }
   };
-
   return (
     <View>
       <View style={commonstyles.homeOnetextView}>
@@ -226,136 +219,162 @@ export const NewWebStories = React.memo(() => {
         />
       )}
       <Modal visible={storyViewModal} animationType="slide" transparent={true}>
-      <SafeAreaView style={{flex: 1, backgroundColor: blackcolor}}>
-        <Animated.View
-          style={styles.modalContent}>
-          <View
-            style={{
-              flexDirection: 'row',
-              position: 'absolute',
-              zIndex: 1,
-              top: 26,
-              right: 12,
-            }}>
-            <HandlePressable
-              onPress={() =>
-                sharecall(
-                  storiesData[currentUserIndex]?.stories[currentUserIndex]
-                    ?.stroy_link,
-                )
-              }
-              style={styles.storyClose}>
-              <Image
-                source={require('../Assets/Images/share_black.png')}
-                style={styles.storyIconSize}
-                resizeMode="contain"
-              />
-            </HandlePressable>
-            <HandlePressable
-              onPress={() => setStoryViewModal(false)}
-              style={styles.storyClose}>
-              <Image
-                source={require('../Assets/Images/cancel.png')}
-                style={styles.storyIconSize}
-                resizeMode="contain"
-              />
-            </HandlePressable>
-          </View>
-
-          <TouchableOpacity
-            style={styles.prvStory}
-            onPress={prevSlide}></TouchableOpacity>
-          <View style={styles.progressBarContainer}>
-            {storiesData[currentUserIndex]?.stories.map((_, index) => (
-              <View key={index} style={styles.progressBarBackground}>
-                <Animated.View
-                  style={[
-                    styles.progressBarFill,
-                    {
-                      width:
-                        index < currentSlideIndex // Already viewed → Full width
-                          ? '100%'
-                          : index === currentSlideIndex // Current story → Animated progress
-                          ? progressAnim
-                          : '0%', // Upcoming → No progress (gray)
-                      backgroundColor:
-                        index <= currentSlideIndex ? 'white' : 'gray',
-                    },
-                  ]}
+        <SafeAreaView style={{flex: 1, backgroundColor: blackcolor}}>
+          <Animated.View style={styles.modalContent}>
+            <View
+              style={{
+                flexDirection: 'row',
+                position: 'absolute',
+                zIndex: 1,
+                top: 26,
+                right: 12,
+              }}>
+              <HandlePressable
+                onPress={() =>
+                  sharecall(
+                    storiesData[currentUserIndex]?.stories[currentUserIndex]
+                      ?.stroy_link,
+                  )
+                }
+                style={styles.storyClose}>
+                <Image
+                  source={require('../Assets/Images/share_black.png')}
+                  style={styles.storyIconSize}
+                  resizeMode="contain"
                 />
-              </View>
-            ))}
-          </View>
-          <Animated.View style={{transform: [{scale: storyImageScale}]}}>
-            <FastImage
-              source={{
-                uri: storiesData[currentUserIndex]?.stories[currentSlideIndex]
-                  ?.story_image,
-                priority: FastImage.preload
-              }}
-              style={styles.storyImage}
-              resizeMode={FastImage.resizeMode.cover}
-            />
-          </Animated.View>
-          <View style={styles.storyViewContent}>
-            <LinearGradient
-              colors={[
-                'rgba(0, 0, 0, 0)',
-                'rgba(0, 0, 0, 0.75)',
-                'rgba(0, 0, 0, 1)',
-              ]}>
-              <Animated.Text
-                style={[
-                  styles.storyText,
-                  {transform: [{translateY: storyTextAnimTop}]},
-                ]}>
-                {
-                  storiesData[currentUserIndex]?.stories[currentSlideIndex]
-                    ?.story_caption
-                }
-              </Animated.Text>
-              <Animated.Text
-                style={[
-                  styles.storyCaption,
-                  {transform: [{translateY: storyContentAnimTop}]},
-                ]}>
-                {
-                  storiesData[currentUserIndex]?.stories[currentSlideIndex]
-                    ?.story_content
-                }
-              </Animated.Text>
+              </HandlePressable>
+              <HandlePressable
+                onPress={() => setStoryViewModal(false)}
+                style={styles.storyClose}>
+                <Image
+                  source={require('../Assets/Images/cancel.png')}
+                  style={styles.storyIconSize}
+                  resizeMode="contain"
+                />
+              </HandlePressable>
+            </View>
 
-              {storiesData[currentUserIndex]?.stories[currentSlideIndex]
-                ?.story_source && (
-                <View style={styles.authorSource}>
-                  {storiesData[currentUserIndex]?.stories[currentSlideIndex]
-                    ?.story_source !== '' && (
-                    <Text style={styles.storyAuthor}>
+            <TouchableOpacity
+              style={styles.prvStory}
+              onPress={prevSlide}></TouchableOpacity>
+            <View style={styles.progressBarContainer}>
+              {storiesData[currentUserIndex]?.stories.map((_, index) => (
+                <View key={index} style={styles.progressBarBackground}>
+                  <Animated.View
+                    style={[
+                      styles.progressBarFill,
                       {
-                        storiesData[currentUserIndex]?.stories[
-                          currentSlideIndex
-                        ]?.story_source
-                      }
-                    </Text>
-                  )}
-                  {storiesData[currentUserIndex]?.stories[currentSlideIndex]
-                    ?.story_author !== '' && (
-                    <Text style={[styles.storyAuthor, {textAlign: 'right'}]}>
-                      {
-                        storiesData[currentUserIndex]?.stories[
-                          currentSlideIndex
-                        ]?.story_author
-                      }
-                    </Text>
-                  )}
+                        width:
+                          index < currentSlideIndex // Already viewed → Full width
+                            ? '100%'
+                            : index === currentSlideIndex // Current story → Animated progress
+                            ? progressAnim
+                            : '0%', // Upcoming → No progress (gray)
+                        backgroundColor:
+                          index <= currentSlideIndex ? 'white' : 'gray',
+                      },
+                    ]}
+                  />
                 </View>
-              )}
-            </LinearGradient>
-          </View>
-          <TouchableOpacity
-            style={styles.nxtStory}
-            onPress={nextSlide}></TouchableOpacity>
-        </Animated.View>
+              ))}
+            </View>
+            <Animated.View style={{transform: [{scale: storyImageScale}]}}>
+              <FastImage
+                source={{
+                  uri: storiesData[currentUserIndex]?.stories[currentSlideIndex]
+                    ?.story_image,
+                  priority: FastImage.preload,
+                }}
+                style={styles.storyImage}
+                resizeMode={FastImage.resizeMode.cover}
+              />
+            </Animated.View>
+            <View style={styles.storyViewContent}>
+              <LinearGradient
+                colors={[
+                  'rgba(0, 0, 0, 0)',
+                  'rgba(0, 0, 0, 0.75)',
+                  'rgba(0, 0, 0, 1)',
+                ]}>
+                {storiesData[currentUserIndex]?.stories?.length ===
+                storiesData[currentUserIndex]?.stories[currentSlideIndex]
+                  ?.story_id +
+                  1 ? (
+                  <HandlePressable
+                    onPress={() =>
+                      Linking.openURL(
+                        storiesData[currentUserIndex]?.stories[
+                          currentSlideIndex
+                        ]?.stroy_link,
+                      )
+                    }>
+                    <Animated.Text
+                      style={[
+                        styles.storyText,
+                        styles.storyTextLine,
+                        {transform: [{translateY: storyTextAnimTop}]},
+                      ]}>
+                      {
+                        storiesData[currentUserIndex]?.stories[
+                          currentSlideIndex
+                        ]?.story_caption
+                      }
+                    </Animated.Text>
+                  </HandlePressable>
+                ) : (
+                  <Animated.Text
+                    style={[
+                      styles.storyText,
+                      {transform: [{translateY: storyTextAnimTop}]},
+                    ]}>
+                    {
+                      storiesData[currentUserIndex]?.stories[currentSlideIndex]
+                        ?.story_caption
+                    }
+                  </Animated.Text>
+                )}
+                <Animated.Text
+                  style={[
+                    styles.storyCaption,
+                    {transform: [{translateY: storyContentAnimTop}]},
+                  ]}>
+                  {
+                    storiesData[currentUserIndex]?.stories[currentSlideIndex]
+                      ?.story_content
+                  }
+                </Animated.Text>
+
+                {storiesData[currentUserIndex]?.stories[currentSlideIndex]
+                  ?.story_source && (
+                  <View style={styles.authorSource}>
+                    {storiesData[currentUserIndex]?.stories[currentSlideIndex]
+                      ?.story_source !== '' && (
+                      <Text style={styles.storyAuthor}>
+                        {
+                          storiesData[currentUserIndex]?.stories[
+                            currentSlideIndex
+                          ]?.story_source
+                        }
+                      </Text>
+                    )}
+                    {storiesData[currentUserIndex]?.stories[currentSlideIndex]
+                      ?.story_author !== '' && (
+                      <Text style={[styles.storyAuthor, {textAlign: 'right'}]}>
+                        {
+                          storiesData[currentUserIndex]?.stories[
+                            currentSlideIndex
+                          ]?.story_author
+                        }
+                      </Text>
+                    )}
+                  </View>
+                )}
+              </LinearGradient>
+            </View>
+            <TouchableOpacity
+              style={styles.nxtStory}
+              onPress={nextSlide}></TouchableOpacity>
+          </Animated.View>
         </SafeAreaView>
       </Modal>
     </View>
@@ -401,7 +420,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   prvStory: {
-    width: '40%',
+    width: '20%',
     height: '100%',
     position: 'absolute',
     top: 60,
@@ -410,7 +429,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   nxtStory: {
-    width: '40%',
+    width: '20%',
     height: '100%',
     position: 'absolute',
     top: 60,
@@ -422,7 +441,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: blackcolor,
     position: 'relative',
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   progressBarContainer: {
     flexDirection: 'row',
@@ -477,9 +496,13 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
+    zIndex: 2,
   },
   storyIconSize: {
     width: 18,
     height: 18,
+  },
+  storyTextLine: {
+    textDecorationLine: 'underline',
   },
 });
