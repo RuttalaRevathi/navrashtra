@@ -21,15 +21,15 @@ export default function SubHeader(props) {
         <Text style={HeaderStyle.subHeaderheading}>{props.title}</Text>
 
 
-      {props.isBook != null && props.isBook === true && (
-        <View style={{}}>
+      {props.isBook != null && props.isBook === true ? (
+        <View>
           <TouchableOpacity
             onPress={() => {
               props.BookClick();
             }}
             style={{zIndex: 999}}></TouchableOpacity>
         </View>
-      )}
+      ): <View />}
     </View>
   );
 }

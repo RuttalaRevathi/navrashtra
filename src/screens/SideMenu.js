@@ -6,12 +6,11 @@ import {
   Image,
   FlatList,
   SafeAreaView,
-  ScrollView,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import getTopMenuDataAction from '../redux/actions/getTopMenuDataAction';
 import {sideMenuStyle} from '../styles/SideMenuStyles';
-import {blackcolor, Dark_Gray, graycolor} from '../styles/commonstyles';
+import {blackcolor, graycolor} from '../styles/commonstyles';
 
 const SideMenu = ({navigation}) => {
   const dispatch = useDispatch();
@@ -82,7 +81,7 @@ const SideMenu = ({navigation}) => {
                   source={{uri: item.Image}}
                 />
               )}
-              label={() => <Text style={sideMenuStyle.text}>{item.title}</Text>}
+              label={item.title}
               labelStyle={sideMenuStyle.text}
             />
         )}

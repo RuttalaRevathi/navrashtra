@@ -71,7 +71,6 @@ export const HeaderStyle = StyleSheet.create({
     subHeaderheading: {
         color: blackcolor,
         fontSize: 20,
-        flexWrap: 'wrap',
         textAlign: 'center',
        fontWeight:'bold',
        alignItems:'center'

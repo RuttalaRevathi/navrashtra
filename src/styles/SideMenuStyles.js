@@ -42,6 +42,5 @@ export const sideMenuStyle = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  listImg:{ width: 18, height: 18,
-  },
+  listImg:{ width: 18, height: 18},
 });
