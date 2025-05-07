@@ -80,7 +80,7 @@ android {
         applicationId "com.navarashtra"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
+        versionCode 2
         versionName "1.0"
     }
     signingConfigs {
@@ -91,7 +91,7 @@ android {
             keyPassword 'android'
         }
         release {
-        storeFile file('D:/mobileapp/navrashtra/nr.keystore')                     
+        storeFile file('D:/Revathi/ReactNative/navrashtra/nr.keystore')                     
       storePassword '@123@123'
       keyAlias 'nr'
       keyPassword '@123@123'
