@@ -747,6 +747,12 @@ export const commonstyles = StyleSheet.create({
     fontFamily: 'Mukta-Regular',
     fontSize: 11,
   },
+    publishedtext: {
+    color: blackcolor,
+    fontSize: 11,
+    fontFamily: 'Mandali-Bold',
+    fontWeight: '800',
+  },
   detailTimegallery: {
     color: whitecolor,
     fontFamily: 'Mukta-Regular',
@@ -896,9 +902,33 @@ export const commonstyles = StyleSheet.create({
   iconRipple: {
     padding: 12,
   },
+    actionIconSize: { width: 22, height: 22 },
+
   sectionTitle: {
     marginLeft: 12,
     marginVertical: 12,
     height: 30,
+  },
+    articleContainer: { paddingLeft: 12, flex: 1, alignItems: 'flex-start' },
+
+    noNextArticles: {
+    fontSize: 16,
+    color: blackcolor,
+    textAlign: 'center',
+    marginBottom: 13
+  },
+   loadMoreBtn: {
+    alignSelf: 'center',
+    marginVertical: 12,
+    paddingHorizontal: 18,
+    paddingVertical: 8,
+    backgroundColor: appThemeColor,
+    borderRadius: 30,
+    padding: 10,
+  },
+  loadMoreBtnTxt: {
+    color: whitecolor,
+    fontWeight: 'bold',
+    fontSize: 16,
   },
 });

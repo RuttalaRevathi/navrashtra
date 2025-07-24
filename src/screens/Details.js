@@ -118,7 +118,8 @@ const Details = ({ navigation, route }) => {
   };
   useEffect(() => {
     goToTop();
-  },);
+  }, [articleId]);
+
 
   useEffect(() => {
     if (route?.params?.detailsData) {
@@ -140,7 +141,8 @@ const Details = ({ navigation, route }) => {
 
   const apiDate = firstArticle?.date;
   const formattedDate = moment(apiDate).format("MMM DD, YYYY | hh:mm A");
-
+const publishedapiDate = route?.params?.item?.date_gmt;
+    const publishedformattedDate = moment(publishedapiDate).format('MMM DD, YYYY | hh:mm A');
   const defaultImage = require('../Assets/Images/no_image.jpeg');
   const imageUrl = firstArticle?.web_featured_image
     ? { uri: firstArticle?.web_featured_image }
@@ -351,6 +353,16 @@ const Details = ({ navigation, route }) => {
                 />
               }
             </View>
+             {/* Published view */}
+                      <View style={{
+                        marginLeft: 12,
+                        flexDirection: 'row',
+                        marginTop: 10
+                      }}>
+                        <Text style={commonstyles.publishedtext}>Published on: </Text>
+            
+                        <Text style={commonstyles.detailTime}>{publishedformattedDate}</Text>
+                      </View>
           </View>
            {/* Topics */}
         <TopicItems navigation={navigation} tags={tags} categoryName={firstArticle?.category_name} />
@@ -389,7 +401,7 @@ const Details = ({ navigation, route }) => {
           </View>
           <View style={{ paddingHorizontal: 12 }}>
             <FlatList
-              data={relatedData?.data}
+              data={relatedData?.data?.slice(0, 4)}
               renderItem={renderItemTwo}
               keyExtractor={item => item?.id?.toString()}
               initialNumToRender={5}

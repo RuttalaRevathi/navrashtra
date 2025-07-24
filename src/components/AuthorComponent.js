@@ -1,16 +1,12 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
-import {
-  blackcolor,
-  light_gray,
-  whitecolor,
-} from '../styles/commonstyles';
-import {Linking} from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { blackcolor, Dark_Gray, graycolor, whitecolor } from '../styles/commonstyles';
+import { Linking } from 'react-native';
 
-const AuthorComponent = ({authorData}) => {
-  if (!authorData) return null;
+const AuthorComponent = ({ authorData }) => {
+  if (!authorData) return null; // Don't render if there's no author data
 
-  const renderSocialLinks = links => {
+  const renderSocialLinks = (links) => {
     const socialPlatforms = {
       facebook: require('../Assets/Images/facebook.png'),
       instagram: require('../Assets/Images/instagram.png'),
@@ -23,7 +19,8 @@ const AuthorComponent = ({authorData}) => {
           <TouchableOpacity
             key={key}
             onPress={() => Linking.openURL(links[key])} // Open social media link
-            style={styles.socialButton}>
+            style={styles.socialButton}
+          >
             <Image source={icon} style={styles.socialIcon} />
           </TouchableOpacity>
         );
@@ -32,16 +29,21 @@ const AuthorComponent = ({authorData}) => {
     });
   };
   return (
+    <View style={{borderColor:Dark_Gray,borderWidth:5,marginTop:10}}>
     <View style={styles.authorContainer}>
       {authorData.avatar && (
-        <Image source={{uri: authorData.avatar}} style={styles.authorImage} />
+        <Image
+          source={{ uri: authorData.avatar }}
+          style={styles.authorImage}
+        />
       )}
       <Text style={styles.authorName}>{authorData.name}</Text>
       <Text style={styles.authorRole}>{authorData.roles}</Text>
-      {authorData.social_links?.length > 0 && <View style={styles.socialLinks}>
+      <View style={styles.socialLinks}>
         {renderSocialLinks(authorData.social_links)}
-      </View>}
+      </View>
       {authorData.description && <Text style={styles.authorBio}>{authorData.description}</Text>}
+    </View>
     </View>
   );
 };
@@ -52,9 +54,9 @@ const styles = StyleSheet.create({
     padding: 12,
     backgroundColor: whitecolor,
     borderRadius: 8,
-    borderColor: light_gray,
+    borderColor: graycolor,
     borderWidth: 1,
-    marginTop: 10,
+    margin: 10,
   },
   authorImage: {
     width: 100,
@@ -65,13 +67,12 @@ const styles = StyleSheet.create({
   authorName: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: blackcolor,
+    color: blackcolor
   },
   authorRole: {
     fontSize: 14,
     fontWeight: 'bold',
     color: blackcolor,
-    marginTop: 4,
     textAlign: 'center'
   },
   authorBio: {
@@ -79,17 +80,16 @@ const styles = StyleSheet.create({
     color: blackcolor,
     fontSize: 14,
     lineHeight: 20,
-    fontWeight: '500',
-    marginTop: 8,
+    fontWeight: '500'
   },
   socialLinks: {
-    flexDirection: 'row', // Align icons horizontally
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: 10,
   },
   socialButton: {
-    marginHorizontal: 10, // Add spacing between buttons
+    marginHorizontal: 10,
   },
 });
 

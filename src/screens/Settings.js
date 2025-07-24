@@ -62,7 +62,7 @@ const Settings = ({navigation}) => {
     },
     {
       id: 3,
-      text: 'youtube',
+      text: 'YouTube',
       img: require('../Assets/Images/youtube.png'),
       screen: 'https://www.youtube.com/@NavaRashtra',
     },

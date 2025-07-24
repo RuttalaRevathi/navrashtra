@@ -1,7 +1,7 @@
 /* eslint-disable no-return-assign */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   View,
   Text,
@@ -17,15 +17,15 @@ import {
   gllery_background,
 } from '../styles/commonstyles';
 import AutoHeightWebView from 'react-native-autoheight-webview';
-import {HeaderStyle} from '../styles/Header.Styles';
+import { HeaderStyle } from '../styles/Header.Styles';
 import HTMLView from 'react-native-htmlview';
 import moment from 'moment';
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import getRelatedAction from '../redux/actions/getRelatedAction';
 import Ripple from 'react-native-material-ripple';
 import HandlePressable from '../components/HandlePressable';
 
-const PhotoArticle = ({navigation, route}) => {
+const PhotoArticle = ({ navigation, route }) => {
   const scrollViewRef = useRef(null);
   const dispatch = useDispatch();
 
@@ -46,6 +46,8 @@ const PhotoArticle = ({navigation, route}) => {
   // Date and time
   const apiDate = route?.params?.item?.date;
   const formattedDate = moment(apiDate).format('MMM DD, YYYY | hh:mm A');
+    const publishedapiDate = route?.params?.item?.date_gmt;
+  const publishedformattedDate = moment(publishedapiDate).format('MMM DD, YYYY | hh:mm A');
 
   const sharecall = () => {
     const Link_Url = route?.params?.item?.link;
@@ -57,7 +59,7 @@ const PhotoArticle = ({navigation, route}) => {
   };
 
   const authorName = route.params?.item?.author_slug;
-  
+
   return (
     <View style={commonstyles.container}>
       <View style={HeaderStyle.subHeaderviewHeight}>
@@ -70,7 +72,7 @@ const PhotoArticle = ({navigation, route}) => {
           />
         </Ripple>
         <HandlePressable
-        style={commonstyles.iconRipple}
+          style={commonstyles.iconRipple}
           onPress={() => {
             sharecall();
           }}>
@@ -82,9 +84,9 @@ const PhotoArticle = ({navigation, route}) => {
       </View>
       <ScrollView
         ref={scrollViewRef}
-        style={{backgroundColor: gllery_background}}>
+        style={{ backgroundColor: gllery_background }}>
         {/* Tittle */}
-        <View style={{padding: 12, flex: 1}}>
+        <View style={{ padding: 12, flex: 1 }}>
           <HTMLView
             value={'<p>' + route?.params?.item?.title?.rendered + '</p>'}
             stylesheet={headerStyles}
@@ -101,7 +103,7 @@ const PhotoArticle = ({navigation, route}) => {
             }}>
             <Text style={commonstyles.detailauthorgallery}>
               BY{' '}
-              <Text style={{fontWeight: '600'}}>
+              <Text style={{ fontWeight: '600' }}>
                 {route?.params?.item?.author_name}
               </Text>
             </Text>
@@ -148,15 +150,29 @@ const PhotoArticle = ({navigation, route}) => {
         });
         true;
     `}
-              source={{html: result}}
+              source={{ html: result }}
               scrollEnabled={false}
               viewportContent={'width=device-width, user-scalable=no'}
             />
           ) : (
-            <View style={{paddingTop: 20}}>
+            <View style={{ paddingTop: 20 }}>
               <ActivityIndicator size={'large'} />
             </View>
           )}
+          {/* Published view */}
+          <View style={{
+            marginLeft: 12,
+            flexDirection: 'row',
+            // marginTop: 10,
+            marginBottom: 10
+          }}>
+            <Text style={[commonstyles.detailTimegallery, {
+              fontFamily: 'Mandali-Bold',
+              fontWeight: '800',
+            }]}>Published on: </Text>
+
+            <Text style={commonstyles.detailTimegallery}>{publishedformattedDate}</Text>
+          </View>
         </View>
       </ScrollView>
     </View>
@@ -172,7 +188,7 @@ const headerStyles = StyleSheet.create({
     marginBottom: 0,
     fontWeight: '600',
   },
-  topActionIcon: {width: 22, height: 22}
+  topActionIcon: { width: 22, height: 22 }
 });
 
 export default PhotoArticle;

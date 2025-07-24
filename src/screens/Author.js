@@ -4,18 +4,18 @@ import {
   FlatList,
   View,
   Image,
-  TouchableOpacity,
   ActivityIndicator,
   Text,
 } from 'react-native';
+import {HeaderStyle} from '../styles/Header.Styles';
 import CategoryComponentTwo from '../components/CategoryComponentTwo';
 import AuthorComponent from '../components/AuthorComponent';
-import {HeaderStyle} from '../styles/Header.Styles';
-import {blackcolor, commonstyles} from '../styles/commonstyles';
-import {authorUrl, BaseUrl} from '../utilities/urls';
-import VideoAuthorListItem from '../components/VideoAuthorListItem';
-import PhotoAuthorListItem from '../components/PhotoAuthorListItem';
+import {appThemeColor, blackcolor, commonstyles} from '../styles/commonstyles';
+import {BaseUrl, authorUrl} from '../utilities/urls';
 import Ripple from 'react-native-material-ripple';
+
+const PhotoAuthorListItem = React.lazy(() => import('../components/PhotoAuthorListItem'));
+const VideoAuthorListItem = React.lazy(() => import('../components/VideoAuthorListItem'));
 
 const AuthorScreen = ({title}) => {
   const navigation = useNavigation();
@@ -25,43 +25,53 @@ const AuthorScreen = ({title}) => {
   const [offset] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
   const limit = 10;
+  
+  
 
   useEffect(() => {
     fetchAuthorData();
   }, [route]);
 
-  const fetchAuthorData = async () => {
-    setLoading(true);
+  const fetchAuthorData = async (isLoadMore = false) => {
+    if (loadingMore || (!hasMore && isLoadMore)) return;
+  
+    if (isLoadMore) {
+      setLoadingMore(true);
+    } else {
+      setLoading(true);
+    }
+  
     try {
       const author = route.params?.url?.split(' ').join('');
-      const url = `${BaseUrl}${authorUrl}?author-name=${author}&limit=${limit}&offset=${offset}`;
-
+      const currentOffset = isLoadMore ? parentData.length : 0;
+      const url = `${BaseUrl}${authorUrl}?author-name=${author}&limit=${limit}&offset=${currentOffset}`;
+  
       const response = await fetch(url);
       const jsonData = await response.json();
-
-      if (
-        jsonData &&
-        jsonData.posts &&
-        Array.isArray(jsonData.posts) &&
-        jsonData.posts.length > 0
-      ) {
-        setParentData(jsonData.posts); // Update state with the fetched posts
+  
+      if (jsonData?.posts?.length > 0) {
+        setParentData(prev => isLoadMore ? [...prev, ...jsonData.posts] : jsonData.posts);
+        setHasMore(jsonData.posts.length === limit);
       } else {
-        setError('No posts available for this author.');
+        setHasMore(false);
       }
-
-      if (jsonData && jsonData.author) {
-        setAuthorData(jsonData.author); // Set author data if present
+  
+      if (jsonData?.author) {
+        setAuthorData(jsonData.author);
       } else {
         setError('No author data available.');
       }
     } catch (error) {
-      setError('Error fetching author posts:', error);
+      setError('Error fetching author posts.');
     } finally {
       setLoading(false);
+      setLoadingMore(false);
     }
   };
+  
 
   const renderAuthor = ({item}) => {
     const {screenName} = route.params;
@@ -94,6 +104,29 @@ const AuthorScreen = ({title}) => {
       );
     }
   };
+    const renderLoadMoreButton = () => {
+      if (loadingMore) {
+        return (
+          <ActivityIndicator
+            style={{marginVertical: 22}}
+            size="small"
+            color={appThemeColor}
+          />
+        );
+      }
+  
+      if (!hasMore) {
+        return (
+          <Text style={commonstyles.noMoreText}>No more data available</Text>
+        );
+      }
+  
+      return (
+        <Ripple style={commonstyles.loadMoreBtn} onPress={() => fetchAuthorData(true)}>
+          <Text style={commonstyles.loadMoreBtnTxt}>Load More</Text>
+        </Ripple>
+      );
+    };
 
   if (loading) {
     return (
@@ -105,10 +138,11 @@ const AuthorScreen = ({title}) => {
     return (
       <>
         <View style={HeaderStyle.DetailsHeader}>
-          <Ripple style={commonstyles.iconRipple} onPress={() => navigation.goBack()}>
+          <Ripple onPress={() => navigation.goBack()}
+            style={commonstyles.iconRipple}>
             <Image
               source={require('../Assets/Images/arrow.png')}
-              style={{width: 22, height: 22}}
+              style={commonstyles.actionIconSize}
             />
           </Ripple>
         </View>
@@ -126,7 +160,7 @@ const AuthorScreen = ({title}) => {
               keyExtractor={item =>
                 item.id?.toString() || Math.random().toString()
               }
-              // ListFooterComponent={renderLoadMoreButton}
+              ListFooterComponent={renderLoadMoreButton}
             />
           )}
         </>

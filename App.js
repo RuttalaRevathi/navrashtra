@@ -19,8 +19,12 @@ const App = () => {
   const [isConnected, setIsConnected] = useState(null);
   const [connectionType, setConnectionType] = useState(null);
 
-  useEffect(() => {
+    useEffect(() => {
+  setTimeout(() => {
     SplashScreen.hide();
+  }, 3000); 
+}, []);
+  useEffect(() => {
     // Dispatch actions to fetch data
     store.dispatch(getSliderAction());
     store.dispatch(getLatestNewsAction());
