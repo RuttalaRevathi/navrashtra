@@ -19,7 +19,7 @@ function videoReducer(state = initialState, action) {
     case GET_VIDEOS_SUCCESS:
       return {...state, videosData: action.payload, videosLoading: false};
             case GET_VIDEOS_ERROR:
-return {...state, videosLoading: true, error: true};
+return {...state, videosLoading: false, error: true};
     default:
       return state;
   }

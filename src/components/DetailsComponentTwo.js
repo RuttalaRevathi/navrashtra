@@ -1,34 +1,29 @@
 /* eslint-disable prettier/prettier */
-import React, { useState, useEffect } from 'react';
-import {  Text, TouchableOpacity, View, Image, Share } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {commonstyles } from '../styles/commonstyles'; // Ensure these are correctly defined and imported
-import { decode } from 'html-entities';
+import React from 'react';
+import {Text, TouchableOpacity, View, Image, Share, StyleSheet} from 'react-native';
+import {commonstyles} from '../styles/commonstyles';
+import {decode} from 'html-entities';
 import FastImage from 'react-native-fast-image';
+import HandlePressable from './HandlePressable';
 
-const DetailsComponentTwo = ({ item, navigation, propsdata }) => {
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState('');
-
- 
+const DetailsComponentTwo = ({item, navigation, propsdata}) => {
 
   const sharecall = () => {
     const Link_Url = item?.link;
     Share.share({
       message: Link_Url,
     })
-      .then((result) => console.log(result))
-      .catch((error) => console.log(error));
+      .then(result => console.log(result))
+      .catch(error => console.log(error));
   };
 
   const defaultImage = require('../Assets/Images/no_image.jpeg');
   const imageUrl = item?.web_featured_image
-    ? { uri: item?.web_featured_image }
+    ? {uri: item?.web_featured_image}
     : defaultImage;
 
   return (
-    <View>
-      <TouchableOpacity
+      <HandlePressable
         onPress={() => {
           navigation.navigate('Details', {
             item,
@@ -37,38 +32,39 @@ const DetailsComponentTwo = ({ item, navigation, propsdata }) => {
         }}>
         <View style={commonstyles.HomeComp2DotView}>
           <View style={commonstyles.cateviewText}>
-            <View>
-              <Text
-                numberOfLines={2}
-                ellipsizeMode="tail"
-                style={commonstyles.latestText}>
-                {decode(item?.title?.rendered)}
-              </Text>
-            </View>
-            {/* Time View */}
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-end', }}>
-              
-              <View>
-                <TouchableOpacity
-                  onPress={sharecall}>
-                  <Image
-                    style={{ width: 15, height: 15, marginRight: 10 }}
-                    source={require('../Assets/Images/share_black.png')}
-                  />
-                </TouchableOpacity>
-              </View>
+            <Text
+              numberOfLines={2}
+              ellipsizeMode="tail"
+              style={commonstyles.latestText}>
+              {decode(item?.title?.rendered)}
+            </Text>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'flex-end',
+                paddingTop: 8,
+              }}>
+              <HandlePressable onPress={sharecall} style={styles.sharePress}>
+                <Image
+                  style={styles.shareIcon}
+                  source={require('../Assets/Images/share_black.png')}
+                />
+              </HandlePressable>
             </View>
           </View>
-          <View style={commonstyles.cateviewImg}>
           <FastImage
-            resizeMode={FastImage.resizeMode.contain}
-             source={imageUrl} style={commonstyles.cateImage} />
-          </View>
+            resizeMode={FastImage.resizeMode.cover}
+            source={imageUrl}
+            style={commonstyles.cateImage}
+          />
         </View>
-      </TouchableOpacity>
-      
-    </View>
+      </HandlePressable>
   );
 };
+
+const styles = StyleSheet.create({
+  shareIcon: {width: 16, height: 16},
+  sharePress: {padding: 4, borderRadius: 12}
+})
 
 export default DetailsComponentTwo;

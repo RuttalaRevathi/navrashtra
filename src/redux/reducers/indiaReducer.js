@@ -17,7 +17,6 @@ function indiaReducer(state = initialState, action) {
     case GET_INDIA:
       return { ...state, indiaLoading: true };
     case GET_INDIA_SUCCESS:
-      console.log(indiaData,"reducer india");
       return { ...state, indiaData: action.payload, indiaLoading: false };
     case GET_INDIA_ERROR:
       return { ...state, indiaLoading: false, error: true };

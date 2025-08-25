@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Dimensions, StyleSheet } from "react-native";
-import { appThemeColor, blackcolor, graycolor, whitecolor, Header_BG_Color, Header_text, dark_blue } from "../styles/commonstyles";
+import { appThemeColor, blackcolor, graycolor, whitecolor, Header_BG_Color, Header_text, dark_blue, light_gray } from "../styles/commonstyles";
 
 export const HeaderStyle = StyleSheet.create({
     viewHeight: {
@@ -38,26 +38,19 @@ export const HeaderStyle = StyleSheet.create({
         textAlign: 'center',
         fontSize: 33,
         color: Header_text,
-        // fontWeight:'bold',
-        // top:20
     },
     subHeaderviewHeight: {
-        width: "100%",
         backgroundColor: whitecolor,
         flexDirection: "row",
-        padding: 5,
         justifyContent: 'space-between',
-        alignItems:'center',
-        paddingLeft:10
-
+        alignItems: 'center'
     },
     DetailsHeader: {
         width: "100%",
         backgroundColor: whitecolor,
         flexDirection: "row",
-        padding: 10,
         justifyContent: 'space-between',
-        borderBottomColor: graycolor, borderBottomWidth: 1
+        borderBottomColor: light_gray, borderBottomWidth: 1
     },
     subHeadercustom: {
         // height: 50,
@@ -78,9 +71,9 @@ export const HeaderStyle = StyleSheet.create({
     subHeaderheading: {
         color: blackcolor,
         fontSize: 20,
-        flexWrap: 'wrap',
         textAlign: 'center',
-       fontWeight:'bold'
+       fontWeight:'bold',
+       alignItems:'center'
 
     },
     HeadTitleView: {
@@ -89,12 +82,6 @@ export const HeaderStyle = StyleSheet.create({
     },
     HeadTitleImg: {
         height: 40, width: 100
-    },
-    headerLeftView: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: 30,
-        width: 30, marginLeft: 10,
     },
     headerLeftImg: { height: 24, width: 24 },
     HeadRightView: {

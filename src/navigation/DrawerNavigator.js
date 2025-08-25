@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { View, Text, Image, TouchableOpacity, Linking } from 'react-native';
+import { View, Text, Image, Linking } from 'react-native';
 import { HeaderStyle } from '../styles/Header.Styles';
-import { blackcolor, dark_blue, off_white, red_color, whitecolor } from '../styles/commonstyles';
+import { blackcolor, commonstyles, off_white, whitecolor } from '../styles/commonstyles';
 import SideMenu from '../screens/SideMenu';
-import TopTabNavigator from './TopTabNavigator';
 import { useSelector } from 'react-redux';
-import HomeStackNavigator from './stack-navigators/HomeStackNavigator';
 import BottomTabNavigator from './BottomTabNavigator';
+import HandlePressable from '../components/HandlePressable';
 
 const Drawer = createDrawerNavigator();
 
@@ -31,18 +30,17 @@ const DrawerNavigator = () => {
 
   return (
     <Drawer.Navigator
-
       drawerContent={props => <SideMenu {...props} />} useLegacyImplementation={false}>
       <Drawer.Screen
         name="Home"
         component={BottomTabNavigator}
         options={({ navigation }) => ({
           headerStyle: {
-            backgroundColor: off_white,
+            backgroundColor: whitecolor,
           },
           headerRight: () => (
             <View style={{ flexDirection: 'row', marginRight: 10, }}>
-              <TouchableOpacity
+              <HandlePressable
                 style={{
                   flexDirection: 'row', marginRight: 10, borderColor: blackcolor,
                   borderWidth: 1.5, borderRadius: 5, width: 70, justifyContent: 'center',
@@ -60,22 +58,12 @@ const DrawerNavigator = () => {
                   fontFamily: 'Mukta-SemiBold',
                   textAlign: 'center'
                 }}>ई-पेपर</Text>
-              </TouchableOpacity>
-              {/* <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate('Notifications');
-                }}> */}
-              {/* <Image
-                style={{ height: 20, width: 20, marginRight: 10, marginTop: 2 }}
-                source={require('../Assets/Images/notification.png')}
-
-              /> */}
-              {/* </TouchableOpacity> */}
+              </HandlePressable>
             </View>
           ),
           headerLeft: () => (
-              <TouchableOpacity
-              style={HeaderStyle.headerLeftView}
+              <HandlePressable
+              style={commonstyles.iconRipple}
                 onPress={() => {
                   navigation.toggleDrawer();
                 }}>
@@ -85,21 +73,15 @@ const DrawerNavigator = () => {
                   source={require('../Assets/Images/menu.png')}
                 />
                 </View>
-              </TouchableOpacity>
+              </HandlePressable>
           ),
           headerTitle: () => (
             <View
               style={HeaderStyle.HeadTitleView}>
-              {/* <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate('TopTabs', { screen: 'Home' });
-                }}
-              > */}
                 <Image
                   style={HeaderStyle.HeadTitleImg}
-                  source={require('../Assets/Images/nrlogo.png')}
+                  source={require('../Assets/Images/nr_logo.png')}
                 />
-              {/* </TouchableOpacity> */}
             </View>
           ),
         })}

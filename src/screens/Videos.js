@@ -1,103 +1,113 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
-import React, { useEffect } from 'react';
-import { useDispatch, connect } from 'react-redux';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {
-    FlatList,
-    Image,
-    SafeAreaView,
-    ScrollView,
-    Text,
-    TouchableOpacity,
-    View,
+  FlatList,
+  Image,
+  SafeAreaView,
+  Text,
+  View,
+  ActivityIndicator,
+  TouchableWithoutFeedback,
+  StyleSheet,
+  ScrollView,
 } from 'react-native';
-import FastImage from 'react-native-fast-image';
-import SubHeader from '../components/SubHeader';
-import { blackcolor, commonstyles, whitecolor, redcolor, graycolor, Dark_Gray } from '../styles/commonstyles';
+import {
+  commonstyles,
+  whitecolor,
+  appThemeColor,
+  graycolor,
+} from '../styles/commonstyles';
 import getVideoAction from '../redux/actions/getVideoAction';
+import FastImage from 'react-native-fast-image';
 
-const Videos = ({
-    navigation,
-    videosData,
-    videosLoading,
-    route,
-}: Props) => {
-    const dispatch = useDispatch();
+const Videos = ({navigation}) => {
+  const {videosData, videosLoading} = useSelector(state => state.videoReducer);
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getVideoAction());
-    }, []);
+  useEffect(() => {
+    dispatch(getVideoAction());
+  }, []);
 
-    // share function
+  if (videosLoading) {
     return (
-        <SafeAreaView style={commonstyles.container}>
-            <ScrollView style={commonstyles.scroll}>
-                <View>
-                    <Text style={commonstyles.galleryArticlecategorytext}>वीडियो गैलरी</Text>
-                </View>
-                <View>
-                    <FlatList
-                        style={commonstyles.cateflist}
-                        data={videosData?.data}
-                        numColumns={1}
-                        renderItem={({ item, index }) => (
-                            <View style={{ flex: 1 }}>
-                                <View>
-                                    <TouchableOpacity onPress={() => {
-                                        navigation.navigate('VideoArticle', {
-                                            item: item,
-                                            detailsData: videosData?.data,
-                                            screenName: "Videos"
-                                        });
-                                    }}>
-                                        <View style={{}}>
-                                            <View style={{ paddingBottom: 15 }}>
-                                                <View >
-                                                    {typeof item?.web_featured_image === 'string' && item?.web_featured_image.trim() !== '' ? (
-                                                        <View style={{paddingLeft:5,}}>
-                                                            <Image style={commonstyles.VideoimgTag}
-                                                                source={{ uri: item?.web_featured_image }} />
-                                                           <View style={{
-                                                                           bottom: 15,
-                                                                           right: 15,
-                                                                           position: 'absolute',
-                                                                         }}>
-                                                                           <Image
-                                                                             source={require('../Assets/Images/video.png')}
-                                                                             style={{ tintColor: whitecolor }}
-                                                                           />
-                                                                         </View>
-                                                        </View>
-                                                    ) : null}
-                                                </View>
-                                                <View>
-                                                    <Text numberOfLines={2} ellipsizeMode="tail"
-                                                        style={commonstyles.latestTxtTag}>{item?.title?.rendered}
-                                                    </Text>
-                                                </View>
-                                            </View>
-                                        </View>
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
-                        )}
-                    />
-                </View>
-            </ScrollView>
-        </SafeAreaView>
+      <View style={commonstyles.loadingContainer}>
+        <ActivityIndicator color={appThemeColor} size="large" />
+      </View>
     );
+  } else {
+    return (
+      <SafeAreaView style={commonstyles.container}>
+        <View
+          style={[
+            commonstyles.gallerycategoryView,
+            {marginLeft: 12, marginVertical: 10},
+          ]}>
+          <Text style={commonstyles.galleryArticlecategorytext}>
+          व्हिडिओ गैलरी
+          </Text>
+        </View>
+        <ScrollView style={commonstyles.scroll} scrollEnabled={true}>
+          <FlatList
+            style={commonstyles.cateflist}
+            data={videosData?.data}
+            numColumns={1}
+            keyExtractor={item => item.id?.toString()}
+            renderItem={({item, index}) => (
+              <View style={{ flex: 1 }}>
+              <TouchableWithoutFeedback
+                onPress={() => {
+                  navigation.push('VideoArticle', {
+                    item: item,
+                    detailsData: videosData?.data,
+                    screenName: 'Videos',
+                  });
+                }}>
+                <View
+                  style={[styles.videoContainer, index === 0 && {paddingTop: 2}]}>
+                  <View style={{position: 'relative'}}>
+                    <FastImage
+                      style={commonstyles.VideoimgTag}
+                      source={{uri: item?.web_featured_image}}
+                    />
+                    <View style={styles.videoIconAbs}>
+                      <Image
+                        source={require('../Assets/Images/video.png')}
+                        style={{tintColor: whitecolor}}
+                      />
+                    </View>
+                  </View>
+                  <Text
+                    numberOfLines={2}
+                    ellipsizeMode="tail"
+                    style={commonstyles.latestTxtTag}>
+                    {item?.title?.rendered}
+                  </Text>
+                </View>
+              </TouchableWithoutFeedback>
+              </View>
+            )}
+            scrollEnabled={false}
+          />
+        </ScrollView>
+      </SafeAreaView>
+    );
+  }
 };
 
-type Props = {
-    videosData: Function,
-    videosLoading: Boolean,
-};
-
-const mapStateToProps = state => ({
-    videosData: state.videoReducer?.videosData,
-    videosLoading: state.videoReducer?.videosLoading,
+const styles = StyleSheet.create({
+  videoContainer: {
+    borderBottomColor: graycolor,
+    borderBottomWidth: 1,
+    paddingTop: 12,
+    overflow: 'hidden',
+  },
+  videoIconAbs: {
+    bottom: 12,
+    right: 12,
+    position: 'absolute',
+  },
 });
-const mapDispatchToProps = {
-    getVideoAction,
-};
-export default connect(mapStateToProps, mapDispatchToProps)(Videos);
+
+export default Videos;

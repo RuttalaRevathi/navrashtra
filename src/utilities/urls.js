@@ -11,9 +11,12 @@ export const WebstoriesUrl = 'webstories';
 export const RelatedUrl = 'article-related-api';
 export const MainMenuUrl ='header-menu/header';
 export const DetailsUrl = 'article-details';
+export const TagsUrl = 'tag-api';
+export const BreakingNewsUrl = 'breaking-news';
+export const authorUrl = 'author-posts';
+export const trendingUrl = 'trending';
 
 // categories
-
 export const India = 'india';
 export const Maharashtra = 'maharashtra';
 export const Mumbai = 'mumbai';

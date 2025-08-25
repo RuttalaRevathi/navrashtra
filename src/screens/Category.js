@@ -1,59 +1,69 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import CategoryUI from '../components/CategoryUI';
-import { useRoute, useNavigation } from '@react-navigation/native';
-import { View, Text, ActivityIndicator } from 'react-native';
-import { blackcolor, commonstyles } from '../styles/commonstyles';
+import {useRoute, useNavigation} from '@react-navigation/native';
+import {View, ActivityIndicator} from 'react-native';
+import {blackcolor, commonstyles} from '../styles/commonstyles';
 
-const CategoryScreen = ({ item }) => {
+const CategoryScreen = ({item, isTopNavigation}) => {
   const navigation = useNavigation();
   const route = useRoute();
 
   const [parentData, setParentData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+  const [offset, setOffset] = useState(0);
+  const limit = 10;
 
   useEffect(() => {
     fetchParentData();
   }, []);
 
   const fetchParentData = async () => {
-    setLoading(true); // Set loading to true before starting the fetch
+    if (loadingMore || !hasMore) return;
+
+    setLoadingMore(true);
     try {
-      let response = null;
-      if (route.params?.isCategoryClicked) {
-        response = await fetch(
-          'https://navarashtra.com/wp-json/navarashtra/v1/category-posts/' + route.params?.url
-        );
-      } else {
-        response = await fetch(
-          'https://navarashtra.com/wp-json/navarashtra/v1/category-posts/' + item?.url
-        );
-      }
+      const category = route.params?.isCategoryClicked
+        ? route.params?.url
+        : item?.url;
+      const url = `https://www.navarashtra.com/wp-json/navarashtra/v1/category-posts?category=${category}&limit=${limit}&offset=${offset}`;
+
+      const response = await fetch(url);
       const jsonData = await response.json();
 
-      if (jsonData.status === 'success') {
-        setParentData(jsonData?.data);
-        setLoading(false);
+      if (jsonData.status === 'success' && jsonData.data?.length > 0) {
+        setParentData(prevData => [...prevData, ...jsonData.data]);
+        setOffset(prevOffset => prevOffset + limit); // Increment offset for the next fetch
       } else {
+        setHasMore(false); // No more data to fetch
       }
     } catch (error) {
-      console.error('Error fetching parent data in category: ', error);
+      console.error('Error fetching category data:', error);
     } finally {
-      setLoading(false); // Ensure loading stops after fetch or error
+      setLoadingMore(false);
     }
   };
 
   return (
-    <>{loading? <View style={commonstyles.spinnerView}>
-    <ActivityIndicator color={blackcolor} size="large" />
-    <Text style={commonstyles.spinnerText}>. . . Loading . . .</Text>
-  </View>: <CategoryUI
-      data={parentData}
-      navigation={navigation}
-      title={item?.title}
-      categoryName={item?.title}
-    />} 
+    <>
+      <React.Suspense
+        fallback={
+          <View style={commonstyles.spinnerView}>
+            <ActivityIndicator color={blackcolor} size="large" />
+          </View>
+        }>
+        <CategoryUI
+          data={parentData}
+          navigation={navigation}
+          title={item?.title}
+          categoryName={item?.title}
+          isTopNavigation={isTopNavigation}
+          loadMore={fetchParentData} // Load more function for infinite scroll
+          loadingMore={loadingMore}
+          hasMore={hasMore}
+        />
+      </React.Suspense>
     </>
-    
   );
 };
 

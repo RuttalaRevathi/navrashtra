@@ -1,26 +1,19 @@
 /* eslint-disable prettier/prettier */
 import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch, connect, useSelector } from 'react-redux';
-import FastImage from 'react-native-fast-image';
-import Carousel, { Pagination } from 'react-native-snap-carousel';
-import Spinner from 'react-native-loading-spinner-overlay';
-
-
+import { useDispatch, useSelector } from 'react-redux';
 import {
   View,
   Text,
-  TouchableOpacity,
   Image,
   FlatList,
   ScrollView,
   ActivityIndicator,
-  ImageBackground,
   SafeAreaView,
   RefreshControl,
 } from 'react-native';
 
 import {
-  commonstyles, whitecolor
+  commonstyles
 } from '../styles/commonstyles';
 import HomeUI from '../components/HomeUI';
 import SliderUI from '../components/SliderUI';
@@ -30,13 +23,17 @@ import HomeVideosgalleryItemOne from '../components/HomeVideosgalleryItemOne';
 import HomeVideosgalleryItemTwo from '../components/HomeVideosgalleryItemTwo';
 import HomePhotogalleryItemTwo from '../components/HomePhotogalleryItemTwo';
 import getPhotoGalleryAction from '../redux/actions/getPhotoGalleryAction';
-import { Automobile, BaseUrl, Business, Carrer, CategoryUrl, Elections, India, Lifestyle, Maharashtra, Movies, Mumbai, Nagpur, Pune, Religion, Special, Sports, Technology, Travel, Viral, World } from '../utilities/urls';
+import { Automobile, BaseUrl, Business, Carrer, CategoryUrl, India, Lifestyle, Maharashtra, Movies, Mumbai, Nagpur, Pune, Religion, Special, Sports, Technology, Viral, World } from '../utilities/urls';
 import getVideoAction from '../redux/actions/getVideoAction';
-import WebStoriesHome from './WebStroriesHome';
+import TopNews from '../components/TopNews';
+import Ripple from 'react-native-material-ripple';
+import Trending from '../components/Trending';
+import {NewWebStories} from '../components/NewWebStories';
+import {GotoTop} from '../components/GotoTop';
 
 const Home = ({ navigation }) => {
+  const scrollViewRef = useRef(null);
   const [indiaData, setIndiaData] = useState(null);
-  const [loading, setLoading] = useState(null);
   const [maharashtraData, setMaharashtraData] = useState(null);
   const [mumbaiData, setMumbaiData] = useState(null);
   const [worldData, setWorldData] = useState(null);
@@ -52,6 +49,7 @@ const Home = ({ navigation }) => {
   const [careerData, setCareerData] = useState(null);
   const [puneData, setPuneData] = useState(null);
   const [nagpurData, setNagpurData] = useState(null);
+  const [showGoToTop, setShowGoToTop] = useState(false);
 
   const [refreshing, setRefreshing] = useState(false);
 
@@ -80,7 +78,7 @@ const Home = ({ navigation }) => {
   };
   const getMumbaiAction = async () => {
     try {
-      const response = await fetch(BaseUrl + CategoryUrl + Mumbai);
+      const response = await fetch(BaseUrl + CategoryUrl + Mumbai );
       const responseJson = await response.json();
       setMumbaiData(responseJson);
     } catch (error) {
@@ -205,6 +203,14 @@ const Home = ({ navigation }) => {
     }
   };
 
+  const handleScroll = (event) => {
+    const offsetY = event.nativeEvent.contentOffset.y;
+    setShowGoToTop(offsetY > 300);
+  };
+
+  const scrollToTop = () => {
+    scrollViewRef.current?.scrollTo({ y: 0, animated: true });
+  };
 
   const onRefresh = () => {
     setRefreshing(true);
@@ -278,27 +284,26 @@ const Home = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView
-        style={commonstyles.scroll}
+        style={[commonstyles.scroll, {flex: 1, position: 'relative'}]}
+        ref={scrollViewRef}
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }>
-        <View style={{}}>
-          {/* Spinner */}
-          <Spinner
-            visible={loading}
-            textContent={'Loading...'}
-            textStyle={{ color: '#FFF' }}
-          />
-
-
+          {/* Trending */}
+          <Trending />
+          {/* Breaking News */}
+          <TopNews navigation={navigation} />
           {/* Slider */}
-          <View style={{ paddingLeft: 5, paddingTop: 5 }}>
+          <View style={{ paddingLeft: 12, paddingTop: 10 }}>
             <SliderUI data={newsliderdata} navigation={navigation} />
           </View>
           {/* Webstories */}
-          <WebStoriesHome />
+          <View style={{ paddingLeft: 12, marginVertical: 12 }}>
+            <NewWebStories />
+          </View>
           {/* India */}
-
           <HomeUI
             categoryName="देश"
             data={indiaData?.data}
@@ -306,31 +311,27 @@ const Home = ({ navigation }) => {
             navigation={navigation}
           />
           {/* Photo Gallery */}
-          {/* photo gallery  Cards*/}
-
           <View style={commonstyles.homeVideoview}>
             <View style={commonstyles.homegallerycategoryView}>
               <View style={commonstyles.gallerytextView}>
                 <Text style={commonstyles.homevideocategorytext}>फोटो</Text>
               </View>
-              <View style={{}}>
-                <TouchableOpacity
+              <Ripple
                   onPress={() => {
-                    navigation.navigate('Photos');
+                    navigation.navigate('PTStack', {screen: 'Photos'});
                   }}>
                   <Image style={commonstyles.galleryImage} source={require('../Assets/Images/next.png')} />
-                </TouchableOpacity>
-              </View>
+              </Ripple>
             </View>
             {/* photo gallery  Cards*/}
-            <View style={{ paddingLeft: 10 }}>
-              <FlatList
+            <View style={{ paddingLeft: 12 }}>
+              {photosData?.data?.length > 0 ? <FlatList
                 persistentScrollbar
                 data={photosData?.data}
                 showsHorizontalScrollIndicator={true}
                 horizontal={true}
                 renderItem={photoGalleryItemTwo}
-              />
+              /> : <ActivityIndicator size={'large'} style={{paddingVertical: 12}} />}
             </View>
           </View>
           {/* Maharashtra */}
@@ -347,26 +348,21 @@ const Home = ({ navigation }) => {
               <View style={commonstyles.gallerytextView}>
                 <Text style={commonstyles.homevideocategorytext}>व्हिडिओ</Text>
               </View>
-              <View style={{}}>
-                <TouchableOpacity
+              <Ripple
                   onPress={() => {
-                    navigation.navigate('Videos');
+                    navigation.navigate('VDStack', {screen: 'Videos'});
                   }}>
                   <Image style={commonstyles.galleryImage} source={require('../Assets/Images/next.png')} />
-                </TouchableOpacity>
-              </View>
+                </Ripple>
             </View>
 
-            {/* videos gallery  Cards*/}
-            <View>
-              <View>
-                <FlatList
+            {videosData?.data?.length ? <>
+              <FlatList
                   data={videosData?.data?.slice(0, 1)}
                   showsHorizontalScrollIndicator={false}
                   renderItem={videoGalleryitemOne}
                 />
-              </View>
-              <View style={{ paddingLeft: 10 }}>
+              <View style={{ paddingLeft: 12, paddingBottom: 12 }}>
                 <FlatList
                   persistentScrollbar
                   data={videosData?.data?.slice(1, 10)}
@@ -375,9 +371,11 @@ const Home = ({ navigation }) => {
                   renderItem={videoGalleryitemTwo}
                 />
               </View>
-            </View>
+            </> : <ActivityIndicator size={"large"} style={{paddingVertical: 12}} />}
+                
           </View>
           {/* Mumbai */}
+          <View style={{paddingVertical: 6}}></View>
           <HomeUI
             categoryName="मुंबई"
             data={mumbaiData?.data || []}
@@ -427,6 +425,7 @@ const Home = ({ navigation }) => {
             navigation={navigation}
           />
           {/* Movies */}
+          <View style={{paddingVertical: 6}}></View>
           <HomeUI
             categoryName="मनोरंजन"
             data={moviesData?.data}
@@ -475,21 +474,12 @@ const Home = ({ navigation }) => {
             navigationScreen="career"
             navigation={navigation}
           />
-
-        </View>
       </ScrollView>
+      {showGoToTop && (
+        <GotoTop handleClick={scrollToTop} />
+      )}
     </SafeAreaView>
   );
 };
-
-type Props = {
-  sliderData: Function,
-  loading: Boolean,
-  indiaData: Function,
-  maharashtraData: Function,
-  videosData: Function,
-  photosData: Function
-
-}
 
 export default Home;

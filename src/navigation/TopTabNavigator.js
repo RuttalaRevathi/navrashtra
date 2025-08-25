@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { Image } from 'react-native';
+import { Image, View, ActivityIndicator} from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import getTopMenuDataAction from '../redux/actions/getTopMenuDataAction';
 import CategoryScreen from '../screens/Category';
 import EmptyScreen from '../components/EmptyScreen';
 import Home from '../screens/Home';
-import { blackcolor, whitecolor } from '../styles/commonstyles';
+import { whitecolor, redcolor, commonstyles, blackcolor } from '../styles/commonstyles';
 import PhotoGallery from '../screens/PhotoGallery';
 import Videos from '../screens/Videos';
 import Webstories from '../screens/Webstories';
 
 const TopTab = createMaterialTopTabNavigator();
 
-const TopTabNavigator = ({ navigation }: Props) => {
+const TopTabNavigator = () => {
   const dispatch = useDispatch();
   const menuData = useSelector((state) => state.topMenuDataReducer.topMenuData) || [];
 
@@ -21,35 +21,44 @@ const TopTabNavigator = ({ navigation }: Props) => {
     dispatch(getTopMenuDataAction());
   }, [dispatch]);
 
-  // Flatten menu data with subItems included
   const mergedArray = [];
   menuData.forEach(item => {
     if (item.subItems) {
-      // Add the main item
       mergedArray.push(item);
-
-      // Add each subItem as a separate item
       item.subItems.forEach(subItem => {
         mergedArray.push({
-          ...subItem, // Include the parent title for reference
+          ...subItem,
         });
       });
     } else {
-      // If no subItems, add the main item as is
       mergedArray.push(item);
     }
   });
 
+  function CategoryWrapper({ route }) {
+    const { item } = route.params;
+    return (
+      <CategoryScreen isTopNavigation={true} item={item} />
+    )
+  }
+
+  if (mergedArray.length === 0) {
+    return <EmptyScreen message="No categories available" />;
+  }
 
   return (
     <TopTab.Navigator
       initialRouteName="Home"
+      detachInactiveScreens={false}
       screenOptions={{
+        lazy: true,
+        lazyPlaceholder: () => <View style={commonstyles.spinnerView}><ActivityIndicator size={'small'} color={blackcolor} /></View>,
+        lazyPreloadDistance: 0,
         tabBarScrollEnabled: true,
-        tabBarIndicatorStyle: { backgroundColor: blackcolor },
-        tabBarActiveTintColor: blackcolor,
+        tabBarIndicatorStyle: { backgroundColor: redcolor },
+        tabBarActiveTintColor: redcolor,
         tabBarInactiveTintColor: 'black',
-        tabBarLabelStyle: { fontSize: 16, fontFamily: 'Mandali-Bold' },
+        tabBarLabelStyle: { fontSize: 16, fontFamily: 'Mandali-Bold', fontWeight: '700' },
         tabBarStyle: {
           backgroundColor: whitecolor,
           height: 50,
@@ -57,6 +66,7 @@ const TopTabNavigator = ({ navigation }: Props) => {
         tabBarItemStyle: {
           width: 'auto',
           alignItems: 'flex-start',
+          paddingHorizontal: 5,
         },
       }}
     >
@@ -66,7 +76,7 @@ const TopTabNavigator = ({ navigation }: Props) => {
         name="Home"
         component={Home}
         options={{
-          tabBarLabel: '', // No label for the Home tab
+          tabBarLabel: '',
           tabBarIcon: () => (
             <Image
               source={require('../Assets/Images/home.png')} 
@@ -77,12 +87,11 @@ const TopTabNavigator = ({ navigation }: Props) => {
       />
 
       {/* Other Tabs */}
-      {mergedArray.length > 0 ? (
-        mergedArray.map((item) => (
-          
+      {mergedArray.map((item) => (
           <TopTab.Screen
             key={item.title}
             name={item.title}
+            initialParams={{ item }}
             component={
               item.title === 'व्हिडिओ'
                 ? Videos:
@@ -90,36 +99,15 @@ const TopTabNavigator = ({ navigation }: Props) => {
                 ? PhotoGallery:
                 item.title ==='वेब स्टोरीज'
                 ? Webstories
-                : () => <CategoryScreen item={item} />
-                
-                
+                : CategoryWrapper
             }
-            
             options={{
               tabBarLabel: item.title,
             }}
           />
-        ))
-      ) : (
-        <TopTab.Screen
-          name="Home"
-          component={EmptyScreen}
-          options={{
-            tabBarIcon: () => (
-              <Image
-                source={require('../Assets/Images/home.png')} 
-                style={{ width: 20, height: 20, top: 5 }}
-              />
-            ),
-          }}
-        />
-      )}
+        ))}
     </TopTab.Navigator>
   );
-};
-
-type Props = {
-  navigation: any, // Define type if using TypeScript
 };
 
 export default TopTabNavigator;

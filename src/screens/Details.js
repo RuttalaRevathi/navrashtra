@@ -4,51 +4,40 @@ import {
   Text,
   TouchableOpacity,
   Image,
-  Linking,
   ScrollView,
   Share,
-  Dimensions,
   FlatList,
+  Platform,
+  Dimensions,
+  StyleSheet,
 } from 'react-native';
 import {
   blackcolor,
   commonstyles,
-  Dark_graycolor,
   graycolor,
-  redcolor,
 } from '../styles/commonstyles';
 import AutoHeightWebView from 'react-native-autoheight-webview';
 import { HeaderStyle } from '../styles/Header.Styles';
 import moment from 'moment';
-import { useDispatch, useSelector } from 'react-redux';
 import DetailsComponentTwo from '../components/DetailsComponentTwo';
 import DetailsComponentOne from '../components/DetailsComponentOne';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { BaseUrl, DetailsUrl, LatestUrl, RelatedUrl } from '../utilities/urls';
+import { BaseUrl, DetailsUrl, RelatedUrl } from '../utilities/urls';
 import FastImage from 'react-native-fast-image';
 import { decode } from 'html-entities';
-
-const screenWidth = Dimensions.get('window').width;
+import TopicItems from '../components/TopicItems';
+import Ripple from 'react-native-material-ripple';
 
 const Details = ({ navigation, route }) => {
-  const dispatch = useDispatch();
   const [detailsData, setDetailsData] = useState([]);
-  const [modalVisible, setModalVisible] = useState(false);
-  const [isHomeIcon, setIsHomeIcon] = useState(false);
   const Scrollref = useRef();
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(route.params.index || 0);
   const [fontSize, setFontSize] = useState(18);
-  const [activeSlide, setActiveSlide] = useState(0);
-  const [latestNews, setLatestNewsData] = useState(null);
   const [relatedData, setRelatedData] = useState(null);
   const [detailArticleData, setDetailArticleData] = useState(null);
   const [renderWebView, setRenderWebView] = useState(false);
   const [firstArticle, setFirstArticle] = useState(null);
   const [articleId, setArticleId] = useState(route.params?.item?.id);
+  const [tags, setTags] = useState([]);
 
-  // Fetch the article when the formatedid changes
   useEffect(() => {
     getDetailArticleAction(articleId);
     getRelatedAction(articleId);
@@ -66,6 +55,7 @@ const Details = ({ navigation, route }) => {
     ) {
       const firstArticleData = detailArticleData.data[0];
       setFirstArticle(firstArticleData);
+      setTags(firstArticleData?.tags);
     }
   }, [detailArticleData]);
 
@@ -74,13 +64,12 @@ const Details = ({ navigation, route }) => {
       item => item.id === route.params?.item?.id,
     )[0];
     setFirstArticle(articleObj);
+    setTags(articleObj?.tags);
   }
 
-  // Function to fetch the details of the article
   const getDetailArticleAction = async artId => {
     try {
       const response = await fetch(BaseUrl + DetailsUrl + '?id=' + artId);
-
       const responseJson = await response.json();
       setDetailArticleData(responseJson);
     } catch (error) {
@@ -119,9 +108,9 @@ const Details = ({ navigation, route }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setRenderWebView(true);
-    }, 500); // Delay rendering by 0.5 seconds
+    }, 500);
 
-    return () => clearTimeout(timer); // Clean up the timer on unmount
+    return () => clearTimeout(timer);
   }, []);
 
   const goToTop = () => {
@@ -129,7 +118,8 @@ const Details = ({ navigation, route }) => {
   };
   useEffect(() => {
     goToTop();
-  },);
+  }, [articleId]);
+
 
   useEffect(() => {
     if (route?.params?.detailsData) {
@@ -149,17 +139,15 @@ const Details = ({ navigation, route }) => {
       .catch(error => console.log(error));
   };
 
-
-  // Date and time 
   const apiDate = firstArticle?.date;
   const formattedDate = moment(apiDate).format("MMM DD, YYYY | hh:mm A");
-
+const publishedapiDate = route?.params?.item?.date_gmt;
+    const publishedformattedDate = moment(publishedapiDate).format('MMM DD, YYYY | hh:mm A');
   const defaultImage = require('../Assets/Images/no_image.jpeg');
   const imageUrl = firstArticle?.web_featured_image
     ? { uri: firstArticle?.web_featured_image }
     : defaultImage;
 
-  // Handle "Read Also" link clicks
   const handleWebViewRequest = request => {
     const url = request?.url;
 
@@ -183,64 +171,50 @@ const Details = ({ navigation, route }) => {
     } else if (fontSize === 23) {
       setFontSize(25);
     } else {
-      setFontSize(16);
+      setFontSize(18);
     }
   };
   const handleTouchStart = (e) => {
-    // Prevent the default scroll behavior
     e.preventDefault();
   };
   const handleGoBack = () => {
     if (route.params?.screenName === 'Shorts') {
-        navigation.navigate('Shorts');
+      navigation.navigate('Shorts');
     } else {
-        navigation.goBack(); // Default back behavior
+      navigation.goBack();
     }
-};
+  };
   const source = firstArticle?.content?.rendered;
   let source1 = source?.replace('lazyload', 'text/javascript');
-
+  const authorName = firstArticle?.author_slug;
   return (
     <View style={commonstyles.container}>
-      <View>
-        <View style={HeaderStyle.DetailsHeader}>
-          <View style={{ display: 'flex', alignItems: 'center', width: '10%' }}>
-          <TouchableOpacity
-                onPress={handleGoBack}
-              style={{ zIndex: 999 }}>
-              <Image
-                source={require('../Assets/Images/arrow.png')}
-                style={{ width: 25, height: 25 }}
-              />
-            </TouchableOpacity>
-          </View>
-
-          <View
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              width: '15%',
-              justifyContent: 'space-between',
-              flexDirection: 'row',
-
-            }}>
-            <View style={{ display: 'flex', alignItems: 'center' }}>
-              <TouchableOpacity onPress={toggleFontSize}>
-                <Image
-                  style={{ width: 20, height: 20 }}
-                  source={require('../Assets/Images/font.png')}
-                />
-              </TouchableOpacity>
-            </View>
-            <View style={{ display: 'flex', alignItems: 'center' }}>
-              <TouchableOpacity onPress={sharecall}>
-                <Image
-                  style={{ width: 20, height: 20 }}
-                  source={require('../Assets/Images/share_black.png')}
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
+      <View style={HeaderStyle.DetailsHeader}>
+        <Ripple
+          style={commonstyles.iconRipple}
+          onPress={handleGoBack}>
+          <Image
+            source={require('../Assets/Images/arrow.png')}
+            style={styles.iconSize}
+          />
+        </Ripple>
+        <View
+          style={{
+            alignItems: 'center',
+            flexDirection: 'row',
+          }}>
+          <Ripple onPress={toggleFontSize} style={commonstyles.iconRipple}>
+            <Image
+              style={styles.iconSize}
+              source={require('../Assets/Images/font.png')}
+            />
+          </Ripple>
+          <Ripple onPress={sharecall} style={commonstyles.iconRipple}>
+            <Image
+              style={styles.iconSize}
+              source={require('../Assets/Images/share_black.png')}
+            />
+          </Ripple>
         </View>
       </View>
       <ScrollView ref={Scrollref}>
@@ -252,97 +226,84 @@ const Details = ({ navigation, route }) => {
               paddingBottom: 5,
             }}>
             {/* Tittle */}
-            <View style={{ paddingLeft: 10, paddingTop: 10, paddingBottom: 5 }}>
+            <View style={{ paddingHorizontal: 12, paddingTop: 10 }}>
               <Text
-                numberOfLines={3}
-                ellipsizeMode="tail"
                 style={commonstyles.categoryText}>
                 {decode(firstArticle?.title?.rendered)}
-
               </Text>
             </View>
             {/* Author and Time */}
             <View
               style={commonstyles.DetailTimeMainView}>
-              {/* Author */}
-              {/* <TouchableOpacity onPress={() => navigation.navigate('Author')}> */}
-              <View style={{}}>
-                <Text style={commonstyles.detailauthor}>
-                  BY {firstArticle?.author_name}
-                </Text>
-              </View>
-              {/* </TouchableOpacity> */}
-              {/* Time */}
-              <View style={{}}>
-                <Text style={commonstyles.detailTime}>Updated on: {formattedDate}</Text>
-              </View>
+                <Ripple onPress={() => {
+                navigation.push('Author', {
+                  url: authorName
+                })
+              }}>
+              <Text style={commonstyles.detailauthor}>
+                BY <Text style={{fontWeight: '700'}}>{firstArticle?.author_name}</Text>
+              </Text>
+              </Ripple>
+              <Text style={commonstyles.detailTime}>Updated on: {formattedDate}</Text>
             </View>
 
             {/* image */}
-            <View style={{ width: '100%' }}>
-              <FastImage
-                source={imageUrl}
-                style={commonstyles.Detailslargecard}
-                resizeMode={FastImage.resizeMode.cover}
-              />
-            </View>
+            <FastImage
+              source={imageUrl}
+              style={commonstyles.Detailslargecard}
+              resizeMode={FastImage.resizeMode.cover}
+            />
             {/* content */}
             {/* <Text>{source1}</Text> */}
-            <View
-              style={{
-                justifyContent: 'center',
-              }}>
+            <View>
               {renderWebView &&
                 <AutoHeightWebView
                   javaScriptEnabled={true}
                   scalesPageToFit={false}
                   allowsFullscreenVideo={true}
-                  style={{ opacity: 0.99 }}
+                  overScrollMode="never"
+                  style={{ marginHorizontal: 12, width: Dimensions.get('window').width - 24, opacity: 0.99 }}
                   onTouchStart={handleTouchStart}
                   customStyle={`
-                    
-                     iframe[src^="https://www.youtube.com/embed/"] {
-                                width:100% !important;
-                                height:225px
-                             
-                    }
-    iframe[title]{
+                 iframe[title]{
       font-size: 16px;
     }
-      
     * {
       font-family: 'Mandali-Bold';
       line-height: 1.5;
       -webkit-user-select: auto;
       -webkit-touch-callout: default; 
     }
-    h4 {
-      margin:5px;
+    iframe[src^="https://www.youtube.com/embed/"] {
+        width:100%;
+        height:225px;
+        marginTop: 6px;
+        marginBottom: 6px;                     
     }
-      h2 {
-      padding-left:15px
-      }
+    h4 {
+      margin:5px 0px;
+    }
     p strong {
       font-size: 18px;
     }
     p, h4 a {
       font-size: 14px;
       text-align:left;
-      margin:5px;
+      margin:5px 0px;
       font-family:'Mandali-Regular';
-      line-height:2
+      line-height:1.6
     }
     h2 a {
       font-size: 18px;
       text-align:left;
-      margin:5px;
+      margin:5px 0px;
       font-family:'Mandali-Regular';
       line-height:1.6
     }
     h1{
       font-size: 18px;
       text-align:left;
-      margin:5px;
+      margin: 5px 0px;
       font-family:'Mandali-Regular';
       line-height:1.6
     }
@@ -362,19 +323,9 @@ const Details = ({ navigation, route }) => {
       max-width:100%!important;
       height:inherit
     }
-      h3{
-      padding-left:10px;
-      }
       p a{
       width:100%;
       height:inherit
-      }
-      div[dir="auto"]{
-      font-size: 14px;
-      text-align:left;
-      margin:5px;
-      font-family:'Mandali-Regular';
-      line-height:1.6
       }
   `}
                   source={{
@@ -383,10 +334,10 @@ const Details = ({ navigation, route }) => {
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Faustina&display=swap');
       p strong, span, p span { font-family: 'Faustina', sans-serif; }
-      p, li { font-family: 'Faustina', sans-serif; line-height: 1.4; padding: 0px 8px; color: #000; font-weight: 500; font-size: ${fontSize}px; }
+      p, li { font-family: 'Faustina', sans-serif; line-height: 1.4; padding: 0px; color: #000; font-weight: 500; font-size: ${fontSize}px; }
     </style>
   `,
-                    baseUrl: 'https://twitter.com',
+                    baseUrl: Platform.OS === "android" ? 'https://twitter.com' : '',
                   }}
                   injectedJavaScript={`
                     document.querySelectorAll('a').forEach(a => {
@@ -396,67 +347,84 @@ const Details = ({ navigation, route }) => {
                     });
                     true;
                 `}
-                scrollEnabled={false}
+                  scrollEnabled={false}
                   onShouldStartLoadWithRequest={handleWebViewRequest}
                   viewportContent={'width=device-width, user-scalable=no'}
                 />
-
               }
             </View>
+             {/* Published view */}
+                      <View style={{
+                        marginLeft: 12,
+                        flexDirection: 'row',
+                        marginTop: 10
+                      }}>
+                        <Text style={commonstyles.publishedtext}>Published on: </Text>
+            
+                        <Text style={commonstyles.detailTime}>{publishedformattedDate}</Text>
+                      </View>
           </View>
+           {/* Topics */}
+        <TopicItems navigation={navigation} tags={tags} categoryName={firstArticle?.category_name} />
           {/* Next Article */}
           <View
             style={{
               borderBottomColor: graycolor,
               borderBottomWidth: 2,
             }}>
-            <View style={[commonstyles.DetailsLatestView]}>
-              <Text style={commonstyles.RelatedCategory}>Next Articles</Text>
-            </View>
+            <View style={[commonstyles.homeOnetextView, commonstyles.sectionTitle]}>
+            <Text style={commonstyles.Category}>Next Articles</Text>
+          </View>
             {detailsData.length > 0 ? (
-              <View style={{ paddingLeft: 10 }}>
+              <View style={styles.articleContainer}>
                 <FlatList
-                  showsHorizontalScrollIndicator={true}
+                  showsHorizontalScrollIndicator={false}
                   persistentScrollbar={false}
                   horizontal={true}
                   data={detailsData?.slice(getIndex(), getIndex() + 5)}
                   renderItem={renderItemOne}
+                  keyExtractor={(item)=>item.id?.toString()}
+                  initialNumToRender={5}
+                  maxToRenderPerBatch={10}
+                  windowSize={10}
                 />
               </View>
-            ) : (
-              <View style={{}}>
-                <Text
-                  style={{
-                    fontSize: 18,
-                    color: blackcolor,
-                    textAlign: 'center',
-                  }}>
-                  No Next Articles{' '}
-                </Text>
-              </View>
-            )}
+            ) : (<Text
+                  style={styles.noNextArticles}>
+                  No Next Articles
+                </Text>)}
           </View>
 
           {/* Related News */}
-          <View>
-            <View style={commonstyles.DetailsLatestView}>
-              <Text style={commonstyles.RelatedCategory}>सम्बंधित ख़बरें</Text>
-            </View>
-            <View style={{ paddingLeft: 10 }}>
-              <FlatList
-                data={relatedData?.data}
-                renderItem={renderItemTwo}
-                // keyExtractor={item => item.id.toString()}
-                initialNumToRender={5}
-                maxToRenderPerBatch={10}
-                windowSize={10}
-              />
-            </View>
+          <View style={[commonstyles.homeOnetextView, commonstyles.sectionTitle]}>
+            <Text style={commonstyles.Category}>संबंधित बातम्या</Text>
+          </View>
+          <View style={{ paddingHorizontal: 12 }}>
+            <FlatList
+              data={relatedData?.data?.slice(0, 4)}
+              renderItem={renderItemTwo}
+              keyExtractor={item => item?.id?.toString()}
+              initialNumToRender={5}
+              maxToRenderPerBatch={10}
+              windowSize={10}
+              scrollEnabled={false}
+            />
           </View>
         </View>
       </ScrollView>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  noNextArticles: {
+    fontSize: 16,
+    color: blackcolor,
+    textAlign: 'center',
+    marginBottom: 13
+  },
+  articleContainer: { paddingLeft: 12, flex: 1, alignItems: 'flex-start' },
+  iconSize: { width: 22, height: 22 },
+});
 
 export default Details;
